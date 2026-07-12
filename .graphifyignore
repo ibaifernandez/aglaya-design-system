@@ -1,0 +1,21 @@
+# graphify — exclusiones del grafo
+graphify-out/
+.DS_Store
+.claude/
+.git/
+
+# Fuentes: binarios, sin señal textual
+fonts/
+
+# Dependencias vendorizadas (minificadas, ruido)
+ui_kits/website/vendor/
+*.min.js
+
+# Media binaria
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.otf
+*.ttf
+*.ico
