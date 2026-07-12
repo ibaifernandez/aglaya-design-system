@@ -12,13 +12,12 @@ Clients are **founders and ops leads at high-performance companies** — not ear
 
 | Source | Location | Notes |
 | ------ | -------- | ----- |
-| Live codebase | `src/` (Astro + Tailwind v4) | source of truth for tokens |
-| GitHub repo | `ibaifernandez/aglaya.biz` | production deployment |
-| Brand kit | `uploads/aglaya-kit-de-diseño.jpg` | reviewed \u2014 web palette kept as canonical |
-| Logos | `brand/` (SVG canonical) + `assets/` (SVG + PNG derivatives) | white / black / brand-red variants |
+| Live codebase (external) | Astro + Tailwind v4, GitHub `ibaifernandez/aglaya.biz` | original source of truth for tokens — not shipped in this package |
+| Brand kit | `aglaya-kit-de-diseño/` (`.jpg` + `.pdf`) | reviewed \u2014 web palette kept as canonical |
+| Logos | `assets/` (SVG canonical + PNG derivatives) | white / black / brand-red variants |
 | Fonts | `fonts/` (31 files \u2014 Outfit, Inter, Space Mono) | all local, no CDN |
 
-The codebase is the source of truth. Every token, class, component pattern, and copy sample in this system was pulled from `src/` directly.
+Sourced from the live Astro codebase (external, on GitHub `ibaifernandez/aglaya.biz`) and then made fully self-contained here. This package has no external dependencies.
 
 ---
 
@@ -31,9 +30,8 @@ Root files:
 
 Folders:
 - **`assets/`** \u2014 logos (white / black / brand-red), favicons (SVG), PNG fallbacks
-- **`brand/`** \u2014 canonical SVG sources (wordmark + favicon in white/black/brand variants)
 - **`fonts/`** \u2014 31 local font files (Outfit variable + statics, Inter 100\u2013900 + italics, Space Mono)
-- **`preview/`** \u2014 20+ Design System specimen cards (colors, type, spacing, components, brand)
+- **`preview/`** \u2014 22 design-system specimen cards (colors, type, spacing, components, brand)
 - **`ui_kits/website/`** \u2014 full AGLAYA.biz homepage recreation using the tokens
 
 ---
@@ -171,7 +169,7 @@ The site replaces the OS cursor with a 20px hollow ring + 4px white dot at `mix-
 
 ## Iconography
 
-- **No icon font.** No Lucide, no Heroicons, no FontAwesome. Icons are bespoke inline SVGs in `src/components/icons/` (Languages, Mail, MessageCircle, MessageSquare, Send, User) or inlined directly into components (X, arrows, WhatsApp mark, hamburger).
+- **No icon font.** No Lucide, no Heroicons, no FontAwesome. Icons are bespoke inline SVGs — in the live codebase they live in `src/components/icons/` (Languages, Mail, MessageCircle, MessageSquare, Send, User) or inlined directly into components (X, arrows, WhatsApp mark, hamburger). That `src/` tree is the external Astro repo, not part of this package.
 - **Stroke icons.** Pure strokes, `stroke-width: 2–4`, `stroke-linecap: round`, `stroke-linejoin: round`. Brand red `#e8003d` for attention, `currentColor` otherwise.
 - **Fill icons.** Only the WhatsApp glyph.
 - **Decorative squares.** `w-1 h-1` / `w-1.5 h-1.5` / `w-2 h-2` solid squares in `brand/40` are used as bullet points, list markers, and pulse indicators. This is the closest AGLAYA gets to a decorative element.

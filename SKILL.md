@@ -15,7 +15,7 @@ If the user invokes this skill without any other guidance, ask them what they wa
 - `README.md` — full brand guide (content voice, visual foundations, iconography, forbidden patterns, sample copy)
 - `colors_and_type.css` — all tokens as CSS custom properties + ready-to-use `t-*` semantic classes
 - `assets/` — logos (white / black / color) + favicons (SVG + PNG)
-- `preview/` — 19 design-system specimen cards (colors, type, spacing, components, brand)
+- `preview/` — 22 design-system specimen cards (colors, type, spacing, components, brand)
 - `ui_kits/website/` — hi-fi React recreation of the marketing site. Start here for any web work.
 
 ## Non-negotiables
