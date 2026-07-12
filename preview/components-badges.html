@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #000; color: #fff; }
+  body { padding: 24px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; min-height: 100vh; }
+  .badge {
+    font-family: 'Space Mono', monospace; font-size: 10px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    padding: 6px 12px; border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.6);
+  }
+  .badge.brand { color: #9fc243; border-color: rgba(232,0,61,0.2); background: rgba(232,0,61,0.1); }
+  .badge.codetag { background: #fff; color: #000; border-color: transparent; letter-spacing: 0.18em; }
+  .badge.ok { color: #9fc243; border-color: rgba(159,194,67,0.3); }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'Space Mono', monospace; font-size: 9px;
+    letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.35);
+  }
+  .pulse { width: 6px; height: 6px; background: #e8003d; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+</style>
+</head>
+<body>
+  <span class="badge">Narrative Delivery</span>
+  <span class="badge brand">Equity Model</span>
+  <span class="badge codetag">REF_ID: 001</span>
+  <span class="badge ok">SYSTEM_INTEGRITY_OK</span>
+  <span class="pill"><span class="pulse"></span>PRIORITY CASE</span>
+  <span class="badge">[GO]</span>
+</body>
+</html>

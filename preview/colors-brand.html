@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #000; }
+  body { padding: 24px; display: flex; align-items: center; }
+  .row { display: flex; gap: 16px; flex-wrap: wrap; align-items: stretch; width: 100%; }
+  .swatch {
+    flex: 1 1 140px;
+    min-width: 140px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 14px 16px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .name { font-weight: 700; color: #fff; }
+  .hex { color: rgba(255,255,255,0.45); font-size: 9px; letter-spacing: 0.15em; }
+  .brand { background: #e8003d; border-color: #e8003d; }
+  .brand .name, .brand .hex { color: #fff; }
+  .brand-dark { background: #b5002f; }
+  .brand-dark .name, .brand-dark .hex { color: #fff; }
+  .brand-light { background: #ff4d70; }
+  .brand-light .name, .brand-light .hex { color: #fff; }
+  .green { background: #9fc243; }
+  .green .name, .green .hex { color: #000; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="swatch brand"><span class="name">Brand</span><span class="hex">#E8003D</span></div>
+    <div class="swatch brand-dark"><span class="name">Brand / Dark</span><span class="hex">#B5002F</span></div>
+    <div class="swatch brand-light"><span class="name">Brand / Light</span><span class="hex">#FF4D70</span></div>
+    <div class="swatch green"><span class="name">Corp. Green</span><span class="hex">#9FC243</span></div>
+  </div>
+</body>
+</html>

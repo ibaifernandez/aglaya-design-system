@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #000; }
+  body { padding: 24px; }
+  .card {
+    background: #0c0c0c; border: 1px solid rgba(255,255,255,0.05);
+    padding: 28px; position: relative; overflow: hidden;
+  }
+  .top { display: flex; justify-content: space-between; margin-bottom: 20px; }
+  .idx {
+    font-family: 'Space Mono', monospace; font-size: 9px;
+    letter-spacing: 0.4em; text-transform: uppercase; color: #9fc243; opacity: 0.7;
+  }
+  .dot { width: 6px; height: 6px; background: #e8003d; }
+  .title {
+    font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 22px;
+    letter-spacing: -0.02em; text-transform: uppercase; color: #fff;
+    margin: 0 0 12px; line-height: 1.1;
+  }
+  .body {
+    font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.55;
+    color: rgba(255,255,255,0.45);
+  }
+  .rule { margin-top: 20px; width: 32px; height: 1px; background: rgba(255,255,255,0.1); }
+  .card.hover { border-color: rgba(232,0,61,0.4); }
+  .card.hover .rule { width: 100%; background: rgba(232,0,61,0.2); }
+  .card.hover .title { color: #e8003d; }
+</style>
+</head>
+<body>
+  <div class="card hover">
+    <div class="top">
+      <span class="idx">LOGIC_NODE_001</span>
+      <span class="dot"></span>
+    </div>
+    <h3 class="title">The Rental Trap</h3>
+    <p class="body">Stop building your empire on rented soil. When the contract ends, they walk away with your accounts, automations and hard-earned knowledge.</p>
+    <div class="rule"></div>
+  </div>
+</body>
+</html>

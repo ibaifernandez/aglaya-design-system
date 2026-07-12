@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #000; }
+  body { padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: center; min-height: 100vh; }
+  .row { display: flex; align-items: center; gap: 16px; padding: 10px 14px; border: 1px solid rgba(255,255,255,0.05); }
+  .chip { width: 40px; height: 40px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1); }
+  .label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; }
+  .name { color: #fff; display: block; }
+  .hex { color: rgba(255,255,255,0.45); font-size: 9px; letter-spacing: 0.1em; }
+  .text-demo { font-family: 'Inter', sans-serif; font-size: 13px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="chip" style="background: #fcfcfc;"></div>
+    <div class="label"><span class="name">fg-1 / Text</span><span class="hex">#FCFCFC</span></div>
+  </div>
+  <div class="row">
+    <div class="chip" style="background: rgba(252,252,252,0.45);"></div>
+    <div class="label"><span class="name">fg-2 / Muted</span><span class="hex">white 45%</span></div>
+  </div>
+  <div class="row">
+    <div class="chip" style="background: rgba(252,252,252,0.25);"></div>
+    <div class="label"><span class="name">fg-3 / Faint</span><span class="hex">white 25%</span></div>
+  </div>
+  <div class="row">
+    <div class="chip" style="background: #e8003d;"></div>
+    <div class="label"><span class="name">fg-brand</span><span class="hex">#E8003D</span></div>
+  </div>
+  <div class="row">
+    <div class="chip" style="background: #9fc243;"></div>
+    <div class="label"><span class="name">fg-eyebrow</span><span class="hex">#9FC243</span></div>
+  </div>
+  <div class="row">
+    <div class="chip" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2);"></div>
+    <div class="label"><span class="name">border</span><span class="hex">white 8%</span></div>
+  </div>
+</body>
+</html>

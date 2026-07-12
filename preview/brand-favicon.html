@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html,body{margin:0;padding:0;background:#000;color:#fff;font-family:ui-monospace,monospace}
+  body{display:flex;align-items:center;justify-content:space-around;min-height:100vh;padding:20px;gap:20px}
+  .tile{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .chip{width:64px;height:64px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08)}
+  .chip.white{background:#fff}
+  .chip.black{background:#000}
+  .chip.brand{background:#e8003d}
+  .chip svg{width:44px;height:44px;display:block}
+  .label{font:9px/1 ui-monospace,monospace;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.5)}
+</style>
+</head>
+<body>
+  <div class="tile">
+    <div class="chip black">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 532 532">
+        <polygon fill="#ffffff" points="361.9 396.7 265.99 171.7 188.87 349.68 111.17 349.5 246.11 36.97 286.44 36.85 483.61 494.96 404.71 495.15 361.9 396.7"/>
+        <polygon fill="#ffffff" points="126.21 495.05 48.39 495.14 80.08 421.4 157.79 421.74 126.21 495.05"/>
+      </svg>
+    </div>
+    <span class="label">WHITE MARK</span>
+  </div>
+  <div class="tile">
+    <div class="chip white">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 532 532">
+        <polygon fill="#000000" points="361.9 396.7 265.99 171.7 188.87 349.68 111.17 349.5 246.11 36.97 286.44 36.85 483.61 494.96 404.71 495.15 361.9 396.7"/>
+        <polygon fill="#000000" points="126.21 495.05 48.39 495.14 80.08 421.4 157.79 421.74 126.21 495.05"/>
+      </svg>
+    </div>
+    <span class="label">BLACK MARK</span>
+  </div>
+  <div class="tile">
+    <div class="chip black">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 532 532">
+        <polygon fill="#e8003d" points="361.9 396.7 265.99 171.7 188.87 349.68 111.17 349.5 246.11 36.97 286.44 36.85 483.61 494.96 404.71 495.15 361.9 396.7"/>
+        <polygon fill="#e8003d" points="126.21 495.05 48.39 495.14 80.08 421.4 157.79 421.74 126.21 495.05"/>
+      </svg>
+    </div>
+    <span class="label">BRAND MARK</span>
+  </div>
+  <div class="tile">
+    <div class="chip brand">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 532 532">
+        <polygon fill="#000000" points="361.9 396.7 265.99 171.7 188.87 349.68 111.17 349.5 246.11 36.97 286.44 36.85 483.61 494.96 404.71 495.15 361.9 396.7"/>
+        <polygon fill="#000000" points="126.21 495.05 48.39 495.14 80.08 421.4 157.79 421.74 126.21 495.05"/>
+      </svg>
+    </div>
+    <span class="label">ON BRAND</span>
+  </div>
+</body>
+</html>

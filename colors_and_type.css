@@ -1,0 +1,199 @@
+/* =========================================================
+   AGLAYA — colors_and_type.css
+   Brutalist, high-contrast, zero-decoration tokens
+   ========================================================= */
+
+/* Outfit (display), Inter (body) and Space Mono (labels) — all loaded locally. */
+
+/* ---------- Space Mono — local brand font files ---------- */
+@font-face { font-family: 'Space Mono'; src: url('./fonts/SpaceMono-Regular.ttf')    format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Space Mono'; src: url('./fonts/SpaceMono-Italic.ttf')     format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Space Mono'; src: url('./fonts/SpaceMono-Bold.ttf')       format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Space Mono'; src: url('./fonts/SpaceMono-BoldItalic.ttf') format('truetype'); font-weight: 700; font-style: italic; font-display: swap; }
+
+/* ---------- Outfit — local brand font files ---------- */
+/* Variable font first (covers 100\u2013900 in a single file) with static fallbacks */
+@font-face { font-family: 'Outfit'; src: url('./fonts/Outfit-Variable.ttf')  format('truetype-variations'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Outfit'; src: url('./fonts/Outfit-ExtraLight.ttf') format('truetype'); font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Outfit'; src: url('./fonts/Outfit-Light.ttf')     format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Outfit'; src: url('./fonts/Outfit-Regular.ttf')   format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Outfit'; src: url('./fonts/Outfit-Medium.ttf')    format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Outfit'; src: url('./fonts/Outfit-SemiBold.ttf')  format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Outfit'; src: url('./fonts/Outfit-Bold.ttf')      format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Outfit'; src: url('./fonts/Outfit-ExtraBold.ttf') format('truetype'); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Outfit'; src: url('./fonts/Outfit-Black.ttf')     format('truetype'); font-weight: 900; font-style: normal; font-display: swap; }
+
+/* ---------- Inter — local brand font files ---------- */
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-Thin-BETA.otf')          format('opentype'); font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-ThinItalic-BETA.otf')    format('opentype'); font-weight: 100; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-ExtraLight-BETA.otf')    format('opentype'); font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-ExtraLightItalic-BETA.otf') format('opentype'); font-weight: 200; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-Light-BETA.otf')         format('opentype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-LightItalic-BETA.otf')   format('opentype'); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-Regular.otf')            format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-Italic.otf')             format('opentype'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-Medium.otf')             format('opentype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-MediumItalic.otf')       format('opentype'); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-SemiBold.otf')           format('opentype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-SemiBoldItalic.otf')     format('opentype'); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-Bold.otf')               format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-BoldItalic.otf')         format('opentype'); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-ExtraBold.otf')          format('opentype'); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-ExtraBoldItalic.otf')    format('opentype'); font-weight: 800; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-Black.otf')              format('opentype'); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('./fonts/Inter-BlackItalic.otf')        format('opentype'); font-weight: 900; font-style: italic; font-display: swap; }
+
+:root {
+  /* ---------- BRAND COLORS ---------- */
+  --color-brand:            #e8003d;  /* AGLAYA Red — primary signal color */
+  --color-brand-dark:       #b5002f;  /* Hover / press state */
+  --color-brand-light:      #ff4d70;  /* Tint / decorative accent */
+  --color-corporate-green:  #9fc243;  /* Eyebrow / code / annotation color */
+
+  /* ---------- SURFACE / BG ---------- */
+  --color-bg:               #000000;  /* Pure black — default canvas */
+  --color-bg-deep:          #040404;  /* Footer / extreme depth */
+  --color-surface:          #080808;  /* Card base */
+  --color-surface-2:        #0c0c0c;  /* Card base alt */
+  --color-surface-3:        #0f0f0f;  /* Raised */
+
+  /* ---------- FG / TEXT ---------- */
+  --color-text:             #fcfcfc;  /* Primary foreground */
+  --color-muted:            rgba(252, 252, 252, 0.45);  /* Secondary text */
+  --color-faint:            rgba(252, 252, 252, 0.25);  /* Tertiary / captions */
+  --color-accent:           #e2e2e2;  /* Technical silver */
+
+  /* ---------- LINES / BORDERS ---------- */
+  --color-border:           rgba(255, 255, 255, 0.08);
+  --color-border-strong:    rgba(255, 255, 255, 0.20);
+  --color-border-brand:     rgba(232, 0, 61, 0.40);
+
+  /* ---------- SEMANTIC FG ---------- */
+  --fg-1: var(--color-text);
+  --fg-2: var(--color-muted);
+  --fg-3: var(--color-faint);
+  --fg-brand: var(--color-brand);
+  --fg-eyebrow: var(--color-corporate-green);
+
+  /* ---------- TYPE FAMILIES ---------- */
+  --font-display: 'Outfit', 'Inter', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'Space Mono', ui-monospace, monospace;
+
+  /* ---------- TYPE SCALE (display headings are tight / uppercase) ---------- */
+  --text-display-xl: 900 clamp(3rem, 9vw, 9rem)/0.94 var(--font-display);
+  --text-display-lg: 900 clamp(2.5rem, 6vw, 6rem)/1.0 var(--font-display);
+  --text-display-md: 900 clamp(2rem, 4vw, 4rem)/1.05 var(--font-display);
+  --text-h1: 900 clamp(2rem, 5vw, 4rem)/1.05 var(--font-display);
+  --text-h2: 900 clamp(1.5rem, 3vw, 2.5rem)/1.1 var(--font-display);
+  --text-h3: 800 1.5rem/1.2 var(--font-display);
+  --text-h4: 800 1.125rem/1.25 var(--font-display);
+  --text-body-lg: 400 1.25rem/1.6 var(--font-body);
+  --text-body: 400 1rem/1.6 var(--font-body);
+  --text-body-sm: 400 0.875rem/1.55 var(--font-body);
+
+  /* Mono / code / eyebrow (uppercase, wide tracking) */
+  --text-eyebrow: 900 0.75rem/1 var(--font-mono);
+  --text-mono-sm: 400 0.6875rem/1.4 var(--font-mono);
+  --text-mono-xs: 400 0.5625rem/1.4 var(--font-mono);
+
+  /* ---------- TRACKING ---------- */
+  --tracking-tightest: -0.04em;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.1em;
+  --tracking-wider: 0.2em;
+  --tracking-widest: 0.3em;
+  --tracking-ultra: 0.5em;
+
+  /* ---------- SPACING ---------- */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* ---------- RADII — ALL ZERO by brand rule (except the custom cursor dot) ---------- */
+  --radius-none: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-full: 9999px; /* for cursor dot + flag pips only */
+
+  /* ---------- SHADOWS / GLOWS ---------- */
+  --shadow-none: none;
+  --glow-brand: 0 6px 25px rgba(232, 0, 61, 0.4);
+  --glow-brand-soft: 0 0 0 1px rgba(232, 0, 61, 0.08);
+  --aura-brand: 0 0 120px rgba(232, 0, 61, 0.15);
+
+  /* ---------- MOTION ---------- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+  --dur-fast: 150ms;
+  --dur-base: 300ms;
+  --dur-slow: 500ms;
+  --dur-slower: 700ms;
+
+  /* ---------- BREAKPOINTS (reference) ---------- */
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-max: 80rem;
+
+  /* ---------- LAYOUT ---------- */
+  --layout-max: 80rem;      /* 1280px content width */
+  --layout-gutter: 1.5rem;
+  --layout-gutter-lg: 5rem;
+}
+
+/* =========================================================
+   SEMANTIC TYPE PRIMITIVES
+   Use these in prototypes / pages
+   ========================================================= */
+
+.t-display-xl { font: var(--text-display-xl); letter-spacing: var(--tracking-tightest); text-transform: uppercase; color: var(--fg-1); }
+.t-display-lg { font: var(--text-display-lg); letter-spacing: var(--tracking-tight); text-transform: uppercase; color: var(--fg-1); }
+.t-display-md { font: var(--text-display-md); letter-spacing: var(--tracking-tight); text-transform: uppercase; color: var(--fg-1); }
+.t-h1 { font: var(--text-h1); letter-spacing: var(--tracking-tight); text-transform: uppercase; color: var(--fg-1); }
+.t-h2 { font: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; color: var(--fg-1); }
+.t-h3 { font: var(--text-h3); letter-spacing: 0; text-transform: uppercase; color: var(--fg-1); }
+.t-h4 { font: var(--text-h4); letter-spacing: 0.04em; text-transform: uppercase; color: var(--fg-1); }
+.t-body-lg { font: var(--text-body-lg); color: var(--fg-2); }
+.t-body { font: var(--text-body); color: var(--fg-2); }
+.t-body-sm { font: var(--text-body-sm); color: var(--fg-2); }
+.t-eyebrow {
+  font: var(--text-eyebrow);
+  letter-spacing: var(--tracking-ultra);
+  text-transform: uppercase;
+  color: var(--fg-eyebrow);
+}
+.t-mono { font: var(--text-mono-sm); letter-spacing: var(--tracking-wide); color: var(--fg-2); }
+.t-codetag {
+  font: var(--text-mono-sm);
+  background: rgba(255, 255, 255, 0.95);
+  color: #000 !important;
+  padding: 0.25rem 0.5rem;
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+html, body {
+  background: var(--color-bg);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+::selection { background: var(--color-brand); color: #fff; }

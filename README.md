@@ -1,0 +1,235 @@
+# AGLAYA Design System
+
+> **AGLAYA — The Uncomfortable AI·gency.** AI systems, automation and sovereign infrastructure for high-performance teams. Black brutalist aesthetic, high-contrast, zero decoration.
+
+`AGLAYA` is always written in full caps. The tagline _"The Uncomfortable AI·gency"_ — where `AI` sits inside `AGENCY` as a deliberate typographic collision — signals the core thesis: AGLAYA replaces agency labor with owned AI systems.
+
+Clients are **founders and ops leads at high-performance companies** — not early-stage startups. AGLAYA qualifies them out on purpose (see `AntiClient` below).
+
+---
+
+## Sources
+
+| Source | Location | Notes |
+| ------ | -------- | ----- |
+| Live codebase | `src/` (Astro + Tailwind v4) | source of truth for tokens |
+| GitHub repo | `ibaifernandez/aglaya.biz` | production deployment |
+| Brand kit | `uploads/aglaya-kit-de-diseño.jpg` | reviewed \u2014 web palette kept as canonical |
+| Logos | `brand/` (SVG canonical) + `assets/` (SVG + PNG derivatives) | white / black / brand-red variants |
+| Fonts | `fonts/` (31 files \u2014 Outfit, Inter, Space Mono) | all local, no CDN |
+
+The codebase is the source of truth. Every token, class, component pattern, and copy sample in this system was pulled from `src/` directly.
+
+---
+
+## Index
+
+Root files:
+- **`README.md`** — this document
+- **`colors_and_type.css`** — all design tokens as CSS custom properties + semantic classes
+- **`SKILL.md`** — Agent Skill entry point
+
+Folders:
+- **`assets/`** \u2014 logos (white / black / brand-red), favicons (SVG), PNG fallbacks
+- **`brand/`** \u2014 canonical SVG sources (wordmark + favicon in white/black/brand variants)
+- **`fonts/`** \u2014 31 local font files (Outfit variable + statics, Inter 100\u2013900 + italics, Space Mono)
+- **`preview/`** \u2014 20+ Design System specimen cards (colors, type, spacing, components, brand)
+- **`ui_kits/website/`** \u2014 full AGLAYA.biz homepage recreation using the tokens
+
+---
+
+## Content Fundamentals
+
+### Voice
+**Terse, imperative, technical.** Copy reads like a systems-engineering spec written by someone who doesn't care if you like them. The "uncomfortable" in the tagline is literal: AGLAYA doesn't soften bad news, doesn't hedge, doesn't over-explain.
+
+### Pronouns
+- **"You"** addresses the founder/operator directly: _"You own it."_, _"Stop renting your future."_
+- **"We"** for AGLAYA's own actions: _"We build it."_, _"We engineer your proprietary automation architecture."_
+- **Never "our team"**, **"we believe"**, **"we're passionate about"**, or any filler phrase.
+
+### Casing
+- **`AGLAYA`** always uppercase.
+- **Display headlines & eyebrows** always UPPERCASE, tight tracking on display / ultra-wide on mono.
+- **Body copy** sentence case.
+- **Monospace labels** UPPERCASE with `tracking-[0.4em]` to `tracking-[0.5em]`.
+
+### Signature terms
+Used consistently across the site; treat these as protected brand vocabulary:
+
+| Term | Usage |
+| --- | --- |
+| **Sovereignty** / **Sovereign** | The thing AGLAYA sells. Not "ownership", not "control". |
+| **Systems** (not "solutions", not "tools") | The thing AGLAYA ships. |
+| **Architecture** / **Infrastructure** | What the system is made of. |
+| **Operational truth** | What the audit surfaces. |
+| **Signal** | Data that matters. Used in place of "lead", "metric", "input". |
+| **Protocol** | A process. Always a protocol, never "process" or "steps". |
+| **Zero-leak** / **Zero-filter** | Qualifiers on architecture and diagnostics. |
+| **Systemic alpha** | The compounding advantage of an owned system. |
+| **Dispatch** | The newsletter. Never "newsletter". |
+
+### Forbidden patterns
+- "We believe…" / "We're passionate about…" / "Our mission is…"
+- "Solutions" (say systems)
+- "Partners" / "Journey" / "Transform your business"
+- Exclamation marks
+- Emoji in product copy (the codebase contains zero emoji)
+- Rhetorical questions used for sales warmth
+
+### Sample copy
+
+> **Hero.** _"The agency is dead. Long live the system."_
+> _"Most teams don't need an agency. They need their own infrastructure. We build it. You own it. The system keeps running when we're not in the room."_
+
+> **Problem card.** _"Stop building your empire on rented soil. When you hire a traditional agency, you are merely financing their portfolio."_
+
+> **Anti-Client.** _"If you are looking for a partner to validate your current inefficiencies, find a traditional agency. If you need to build a sovereign engine, let's talk."_
+
+> **Form state.** `SYNCING...` → `SYNCED` / `DATA_SYNCHRONIZED` / `ERROR_DURING_TRANSMISSION. REATTEMPT_REQUIRED.`
+
+> **Footer.** _"Sovereign systems. Zero platform dependency theatre."_
+
+Monospace labels behave as terminal output — `REF_ID:`, `LOGIC_NODE_001`, `EXCLUSION_PRINCIPLE_01`, `PLATFORM_FEES: 0.00`, `SYSTEM_INTEGRITY_OK`. Use them as structural chrome, not decoration.
+
+---
+
+## Visual Foundations
+
+### Palette
+Pure `#000000` black is the canvas. Not near-black. Not `#0a0a0a`. **Black.** Card surfaces step up in ~4-value increments (`#080808`, `#0c0c0c`, `#0f0f0f`) to create depth without ever introducing grey warmth. The only saturated color is **AGLAYA Red `#e8003d`** — used surgically for the logo accent, brand type spans, primary CTAs, focus rings, and the second line of two-line headlines. **Corporate Green `#9fc243`** is reserved for monospace eyebrows, code tags, and "applied logic" annotations — it never appears as a fill or button.
+
+### Typography
+- **Display: Outfit Black (900).** Always uppercase, tracking tighter than normal (`-0.02em` to `-0.04em`), leading `~0.94–1.1`. Headlines routinely hit `9rem+` at large viewports.
+- **Body: Inter 400–500.** Sentence case, generous leading (`1.6`), often set at `--color-muted` (45% white) against pure black — the contrast is intentionally softened on long-form to force scanability to the display type.
+- **Mono: Space Mono 400/700.** UPPERCASE, extreme tracking (`0.3em–0.5em`), used for eyebrows, codetags, annotations, and terminal-style status strings.
+
+Headlines frequently split across lines with the **second line colored brand red** (`heading2Class="text-brand"` in `SectionHeader`). This is the signature headline move.
+
+### Backgrounds
+No illustrations. No photography in chrome. No gradients-as-decoration. What you get instead:
+- **Scanlines** — `linear-gradient` striped overlays at `50%` stops, `2–4px` bands, opacity `0.02–0.07`, applied to hero and card hover states.
+- **Grid lines** — `60×60px` brand-red grid at `3%` opacity (`.bg-grid`).
+- **Reactive aura** — a 900px radial gradient of `rgba(232,0,61,0.10)` follows the mouse on `body::before` (desktop hover-capable only).
+- **Blurred orbs** — single `500×500px` brand-red blob at `blur(120px)`, `5%` opacity, one per hero section max. Used sparingly.
+- **Noise** — SVG `fractalNoise` turbulence at `1.5%` opacity, fixed to viewport.
+- **Marquee** — slowly-crawling UPPERCASE display text at `20%` white, rotated `-1deg`, used as a rhythm break between sections.
+
+### Animation
+- **Easing: `cubic-bezier(0.16, 1, 0.3, 1)`** (the "Apple" out-expo). Used on every hover, reveal, and transition. Never `ease`, never `linear` except for marquees.
+- **Durations:** `150ms` (micro), `300ms` (default), `500–700ms` (section reveals / card hovers).
+- **Reveals:** `fade-up` (30px translate) and `fade-in` triggered by `IntersectionObserver` on `[data-animate]` elements. Staggered with `100–800ms` delays.
+- **Hover on cards:** border `white/5 → brand/30–40`, accent line grows from `12px` to full-width `brand/20`, background scanline opacity increases.
+- **Press states:** buttons `scale(0.95–0.98)` + slight `translateY(-1px)` on hover.
+- **No bounces. No spring. No scale-up pops.** The motion language is controlled, industrial, out-easing.
+
+### Borders & radii
+**All radii are zero.** Literally — `global.css` ships `border-radius: 0 !important` on `*::before, *::after`. The only exceptions in the entire product are the custom cursor dot and the tiny flag pips in the language switcher. Cards are rectangles. Buttons are rectangles. Inputs are rectangles.
+
+Border colors:
+- Default: `rgba(255,255,255,0.05–0.08)` — whisper-thin separators.
+- Hover: `rgba(232,0,61,0.30–0.40)` — brand wash.
+- Accent rule: `2px` solid `brand` on blockquotes, `1px` everywhere else.
+
+### Shadows
+Essentially absent. The one exception is the primary CTA glow: `0 6px 25px rgba(232, 0, 61, 0.4)` on hover. Depth is created by surface stepping, never by shadow.
+
+### Cards
+Flat rectangles:
+```
+background: #0c0c0c  (or #080808 / #050505)
+border: 1px solid rgba(255,255,255,0.05)
+padding: 2.5rem (p-10)
+no radius, no shadow
+```
+Hover flips border to brand and grows an accent line along the bottom.
+
+### Layout
+- **Max content width:** `max-w-7xl` (80rem / 1280px), horizontally centered.
+- **Side gutters:** `px-6` mobile → `px-10` tablet → `px-20` desktop.
+- **Section vertical rhythm:** `py-20` to `py-24`, separated by `border-t border-white/5` (never a hard rule).
+- **Grid:** 12-col via Tailwind, but layouts favor explicit flex columns. 3-up on desktop for principle/case grids.
+- **Fixed elements:** site header (fixed, `z-50`, `backdrop-blur-xl`), custom cursor (fixed, `z-10000`, `mix-blend-mode: difference`), cookie banner, skip link.
+
+### Transparency & blur
+- Glass chrome only on the fixed header: `bg-black/80 backdrop-blur-xl`.
+- Soft glass utility `.glass` / `.glass-strong` exists but used sparingly.
+- Blur as "aura" on background orbs — never as a foreground element.
+
+### Imagery
+Client logos render on `bg-[#eaeaea]/10` panels at `h-24` to `h-32`, `object-contain`. The live site has no lifestyle or stock photography. All product screenshots are captured and placed as dark flat panels. Treat imagery as **annotated technical evidence**, not atmosphere.
+
+### Focus & accessibility
+- Focus ring: `outline: 2px solid #e8003d; outline-offset: 3px`.
+- Skip link pinned to top-left, background brand red on focus.
+- `prefers-reduced-motion` is honored — marquee stops, reveals collapse to instant.
+
+### Cursor
+The site replaces the OS cursor with a 20px hollow ring + 4px white dot at `mix-blend-mode: difference`, lerped at `0.2`. On interactive elements it scales to `3×` and the dot shrinks. This is a signature interaction — the only rounded thing in the entire product.
+
+---
+
+## Iconography
+
+- **No icon font.** No Lucide, no Heroicons, no FontAwesome. Icons are bespoke inline SVGs in `src/components/icons/` (Languages, Mail, MessageCircle, MessageSquare, Send, User) or inlined directly into components (X, arrows, WhatsApp mark, hamburger).
+- **Stroke icons.** Pure strokes, `stroke-width: 2–4`, `stroke-linecap: round`, `stroke-linejoin: round`. Brand red `#e8003d` for attention, `currentColor` otherwise.
+- **Fill icons.** Only the WhatsApp glyph.
+- **Decorative squares.** `w-1 h-1` / `w-1.5 h-1.5` / `w-2 h-2` solid squares in `brand/40` are used as bullet points, list markers, and pulse indicators. This is the closest AGLAYA gets to a decorative element.
+- **Country flags** (SVG) used only in the language switcher, clipped to a round chip.
+- **No emoji anywhere.** Zero. Don't add them.
+- **No unicode symbol icons** (no `→` dingbats, no `✓`, no `⚡`). Arrows inside buttons are inline SVG strokes. The exception: a literal `→` character is used inside CTA labels like `"Request Proposal →"` as part of the text string — keep it there, don't replace with an SVG.
+
+When you need an icon AGLAYA doesn't already have, draw a minimal line-stroke version in the same weight/style. Do not import Lucide or Heroicons — the whole point of the aesthetic is that nothing is store-bought.
+
+---
+
+## Fonts
+
+All three brand families are loaded from local files in `fonts/` \u2014 zero external font requests.
+
+- **Outfit** (display) \u2014 variable font (`Outfit-Variable.ttf`, 100\u2013900) plus 8 static weights (ExtraLight 200 \u2192 Black 900).
+- **Inter** (body) \u2014 18 OTF files covering 100 \u2192 900 with italics (BETA files for the three lightest weights).
+- **Space Mono** (labels) \u2014 Regular + Bold with italics.
+
+Nothing is being substituted. The kit is fully offline-capable once these files ship alongside it.
+
+---
+
+## How to use this system
+
+This design system is a **self-contained folder** you can drop anywhere. It has no dependencies beyond a browser.
+
+### Browse the system
+Open any file in `preview/` in a browser and you'll see the specimen card for that token (colors, type, spacing, components, brand). `ui_kits/website/index.html` is a full hi-fi recreation of the homepage built with the tokens — use it as the canonical reference for how everything composes.
+
+### Use it in production code
+```html
+<!-- Drop-in stylesheet; loads fonts and exposes all tokens as CSS variables -->
+<link rel="stylesheet" href="./colors_and_type.css">
+
+<body style="background: var(--color-bg); color: var(--fg-1);">
+  <h1 class="t-display-lg">Sovereign <span style="color: var(--color-brand);">systems.</span></h1>
+</body>
+```
+
+All tokens are CSS custom properties (`--color-brand`, `--text-display-xl`, `--space-8`, `--ease-out`, etc.). Import `colors_and_type.css` and they're available globally.
+
+### Use it with an AI coding tool (Claude Code, Cursor, Copilot)
+Unzip the folder into your project. Any agent can read `SKILL.md` + `README.md` and immediately start generating on-brand code. Example prompt:
+
+> "Using the design system in `./aglaya-design-system/`, build a landing page for our new ROI audit product."
+
+The agent reads the tokens, copies assets, follows the voice rules, and ships pixel-consistent with the rest of the brand.
+
+### Use it in Figma / other tools
+- **Fonts:** install the `.otf` / `.ttf` files from `fonts/` into your OS font book.
+- **Colors:** copy the hex values from `preview/colors-brand.html` and `colors-surface.html` into Figma Variables, Tailwind config, etc.
+- **Logos:** drop the SVGs from `assets/` directly into Figma / Sketch / Illustrator.
+- **Typography scale:** translate the `--text-*` tokens in `colors_and_type.css` into your tool's text styles.
+
+### Extend it
+If you build new components, drop them in `preview/components-*.html` and they become part of the system. The README's voice and visual rules are the contract — anything that follows them belongs.
+
+---
+
+

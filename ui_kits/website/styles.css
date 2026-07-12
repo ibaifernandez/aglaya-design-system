@@ -1,0 +1,99 @@
+/* AGLAYA UI Kit — Tailwind-equivalent utilities, scoped to the kit. */
+/* All three brand families (Outfit, Inter, Space Mono) loaded locally. */
+
+/* Space Mono */
+@font-face { font-family: 'Space Mono'; src: url('../../fonts/SpaceMono-Regular.ttf')    format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Space Mono'; src: url('../../fonts/SpaceMono-Italic.ttf')     format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Space Mono'; src: url('../../fonts/SpaceMono-Bold.ttf')       format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Space Mono'; src: url('../../fonts/SpaceMono-BoldItalic.ttf') format('truetype'); font-weight: 700; font-style: italic; font-display: swap; }
+
+/* Outfit */
+@font-face { font-family: 'Outfit'; src: url('../../fonts/Outfit-Variable.ttf') format('truetype-variations'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Outfit'; src: url('../../fonts/Outfit-Regular.ttf')  format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Outfit'; src: url('../../fonts/Outfit-Bold.ttf')     format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Outfit'; src: url('../../fonts/Outfit-Black.ttf')    format('truetype'); font-weight: 900; font-style: normal; font-display: swap; }
+
+@font-face { font-family: 'Inter'; src: url('../../fonts/Inter-Regular.otf')    format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../../fonts/Inter-Italic.otf')     format('opentype'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../../fonts/Inter-Medium.otf')     format('opentype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../../fonts/Inter-SemiBold.otf')   format('opentype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../../fonts/Inter-Bold.otf')       format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../../fonts/Inter-ExtraBold.otf')  format('opentype'); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../../fonts/Inter-Black.otf')      format('opentype'); font-weight: 900; font-style: normal; font-display: swap; }
+
+:root {
+  --brand: #e8003d;
+  --brand-dark: #b5002f;
+  --brand-light: #ff2e66;
+  --green: #9fc243;
+  --muted: rgba(255,255,255,0.45);
+  --bg: #000000;
+  --surface-1: #050505;
+  --surface-2: #0c0c0c;
+  --surface-3: #0f0f0f;
+  --ease: cubic-bezier(0.16,1,0.3,1);
+  --font-display: 'Outfit', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; border-radius: 0; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: #fff; font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; background: none; border: 0; color: inherit; cursor: pointer; padding: 0; }
+
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+.font-mono { font-family: var(--font-mono); }
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(232,0,61,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,0,61,0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.bg-scanlines {
+  background-image: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%),
+                    linear-gradient(90deg, rgba(255,0,0,0.03), rgba(0,255,0,0.01), rgba(0,0,255,0.03));
+  background-size: 100% 4px, 3px 100%;
+}
+
+/* typographic presets */
+.t-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px; font-weight: 900;
+  letter-spacing: 0.5em; text-transform: uppercase;
+  color: var(--green);
+}
+.t-codetag {
+  font-family: var(--font-mono);
+  font-size: 9px; letter-spacing: 0.4em;
+  text-transform: uppercase; color: var(--green);
+  opacity: 0.7;
+}
+.t-display-xl {
+  font-family: var(--font-display);
+  font-weight: 900; text-transform: uppercase;
+  letter-spacing: -0.04em; line-height: 0.94;
+  font-size: clamp(3rem, 9vw, 9rem);
+}
+.t-body { font-family: var(--font-body); font-size: 1.125rem; line-height: 1.65; color: var(--muted); }
+
+.text-brand { color: var(--brand); }
+.text-green { color: var(--green); }
+.text-muted { color: var(--muted); }
+.text-white\/60 { color: rgba(255,255,255,0.6); }
+.text-white\/70 { color: rgba(255,255,255,0.7); }
+.text-white\/40 { color: rgba(255,255,255,0.4); }
+.text-white\/20 { color: rgba(255,255,255,0.2); }
+
+/* marquee */
+@keyframes marquee { 0% {transform: translateX(0)} 100% {transform: translateX(-50%)} }
+.marquee-track { animation: marquee 80s linear infinite; }
+
+/* reveal */
+@keyframes fade-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+[data-animate] { animation: fade-up 0.8s var(--ease) both; }
+
+/* focus */
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
