@@ -2,6 +2,8 @@
 
 > **AGLAYA — The Uncomfortable AI·gency.** AI systems, automation and sovereign infrastructure for high-performance teams. Black brutalist aesthetic, high-contrast, zero decoration.
 
+> **This folder is the CANONICAL, SOVEREIGN source of the AGLAYA brand identity** — design tokens, typography, voice, and logos. `aglaya.biz` and every other AGLAYA-branded surface **consume from here, not the other way around.** When a token, rule, or asset changes, it changes *here first*; downstream surfaces follow. Nothing upstream of this folder is authoritative.
+
 `AGLAYA` is always written in full caps. The tagline _"The Uncomfortable AI·gency"_ — where `AI` sits inside `AGENCY` as a deliberate typographic collision — signals the core thesis: AGLAYA replaces agency labor with owned AI systems.
 
 Clients are **founders and ops leads at high-performance companies** — not early-stage startups. AGLAYA qualifies them out on purpose (see `AntiClient` below).
@@ -12,12 +14,12 @@ Clients are **founders and ops leads at high-performance companies** — not ear
 
 | Source | Location | Notes |
 | ------ | -------- | ----- |
-| Live codebase (external) | Astro + Tailwind v4, GitHub `ibaifernandez/aglaya.biz` | original source of truth for tokens — not shipped in this package |
-| Brand kit (external) | reviewed offline reference, not shipped in this package | web palette kept as canonical |
-| Logos | `assets/` (SVG canonical + PNG derivatives) | white / black / brand-red variants |
+| **Design tokens (canonical)** | `colors_and_type.css` | the single source of truth — everything else follows |
+| Historical origin | Astro + Tailwind v4, GitHub `ibaifernandez/aglaya.biz` | where the tokens were *first authored*; the site now **consumes** this package, it no longer defines the brand |
+| Logos (canonical) | `assets/` (SVG canonical + PNG derivatives) | white / black / brand-red variants |
 | Fonts | `fonts/` (31 files — Outfit, Inter, Space Mono) | all local, no CDN |
 
-Sourced from the live Astro codebase (external, on GitHub `ibaifernandez/aglaya.biz`) and then made fully self-contained here. This package has no external dependencies.
+The tokens were first authored inside the live Astro codebase, but that codebase is **no longer authoritative**: this folder is now the canonical, sovereign definition of the brand, and `aglaya.biz` consumes it. This package depends on nothing upstream.
 
 ---
 

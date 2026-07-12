@@ -4,6 +4,8 @@ description: Use this skill to generate well-branded interfaces and assets for A
 user-invocable: true
 ---
 
+**This folder is the canonical, sovereign source of the AGLAYA brand** — tokens, typography, voice, logos. `aglaya.biz` and every other AGLAYA-branded surface consume from here, never the reverse. Treat it as the single source of truth; do not derive brand values from any other codebase.
+
 Read the `README.md` file within this skill, and explore the other available files.
 
 If creating visual artifacts (slides, mocks, throwaway prototypes, etc), copy assets out and create static HTML files for the user to view. If working on production code, you can copy assets and read the rules here to become an expert in designing with this brand.
