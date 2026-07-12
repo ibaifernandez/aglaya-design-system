@@ -11,6 +11,12 @@ fonts/
 ui_kits/website/vendor/
 *.min.js
 
+# Entornos virtuales / caches del MCP (site-packages = ruido masivo)
+.venv/
+**/.venv/
+__pycache__/
+**/__pycache__/
+
 # Media binaria
 *.png
 *.jpg
