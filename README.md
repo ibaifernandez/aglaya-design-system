@@ -15,7 +15,7 @@ Clients are **founders and ops leads at high-performance companies** — not ear
 | Live codebase (external) | Astro + Tailwind v4, GitHub `ibaifernandez/aglaya.biz` | original source of truth for tokens — not shipped in this package |
 | Brand kit (external) | reviewed offline reference, not shipped in this package | web palette kept as canonical |
 | Logos | `assets/` (SVG canonical + PNG derivatives) | white / black / brand-red variants |
-| Fonts | `fonts/` (31 files \u2014 Outfit, Inter, Space Mono) | all local, no CDN |
+| Fonts | `fonts/` (31 files — Outfit, Inter, Space Mono) | all local, no CDN |
 
 Sourced from the live Astro codebase (external, on GitHub `ibaifernandez/aglaya.biz`) and then made fully self-contained here. This package has no external dependencies.
 
@@ -29,10 +29,10 @@ Root files:
 - **`SKILL.md`** — Agent Skill entry point
 
 Folders:
-- **`assets/`** \u2014 logos (white / black / brand-red), favicons (SVG), PNG fallbacks
-- **`fonts/`** \u2014 31 local font files (Outfit variable + statics, Inter 100\u2013900 + italics, Space Mono)
-- **`preview/`** \u2014 22 design-system specimen cards (colors, type, spacing, components, brand)
-- **`ui_kits/website/`** \u2014 full AGLAYA.biz homepage recreation using the tokens
+- **`assets/`** — logos (white / black / brand-red), favicons (SVG), PNG fallbacks
+- **`fonts/`** — 31 local font files (Outfit variable + statics, Inter 100–900 + italics, Space Mono)
+- **`preview/`** — 22 design-system specimen cards (colors, type, spacing, components, brand)
+- **`ui_kits/website/`** — full AGLAYA.biz homepage recreation using the tokens
 
 ---
 
@@ -183,11 +183,11 @@ When you need an icon AGLAYA doesn't already have, draw a minimal line-stroke ve
 
 ## Fonts
 
-All three brand families are loaded from local files in `fonts/` \u2014 zero external font requests.
+All three brand families are loaded from local files in `fonts/` — zero external font requests.
 
-- **Outfit** (display) \u2014 variable font (`Outfit-Variable.ttf`, 100\u2013900) plus 8 static weights (ExtraLight 200 \u2192 Black 900).
-- **Inter** (body) \u2014 18 OTF files covering 100 \u2192 900 with italics (BETA files for the three lightest weights).
-- **Space Mono** (labels) \u2014 Regular + Bold with italics.
+- **Outfit** (display) — variable font (`Outfit-Variable.ttf`, 100–900) plus 8 static weights (ExtraLight 200 → Black 900).
+- **Inter** (body) — 18 OTF files covering 100 → 900 with italics (BETA files for the three lightest weights).
+- **Space Mono** (labels) — Regular + Bold with italics.
 
 Nothing is being substituted. The kit is fully offline-capable once these files ship alongside it.
 
