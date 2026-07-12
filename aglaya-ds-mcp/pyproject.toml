@@ -1,0 +1,18 @@
+[project]
+name = "aglaya-ds-mcp"
+version = "0.1.0"
+description = "AGLAYA Design System — sovereign brand MCP: live-reads tokens, voice rules and logos from the canonical folder."
+requires-python = ">=3.10"
+# Sovereign core: stdlib only. The MCP SDK is the sole third-party dependency,
+# and only the transport layer (server.py) touches it — brand.py has zero deps.
+dependencies = [
+    "mcp>=1.2.0",
+]
+
+[tool.aglaya]
+canonical_files = [
+    "../colors_and_type.css",
+    "../README.md",
+    "../SKILL.md",
+    "../assets/",
+]

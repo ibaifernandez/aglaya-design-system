@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "aglaya-ds": {
+      "command": "aglaya-ds-mcp/.venv/bin/python",
+      "args": ["aglaya-ds-mcp/server.py"]
+    }
+  }
+}

@@ -221,6 +221,9 @@ Unzip the folder into your project. Any agent can read `SKILL.md` + `README.md` 
 
 The agent reads the tokens, copies assets, follows the voice rules, and ships pixel-consistent with the rest of the brand.
 
+### Query the brand live (MCP)
+For projects that should read the brand **live** instead of copying it, this repo ships a sovereign MCP server in [`aglaya-ds-mcp/`](aglaya-ds-mcp/README.md). It exposes `get_token`, `list_tokens`, `get_voice_rules`, `check_voice`, `is_allowed_word`, `get_logo`, and `get_nonnegotiables` — each reading these canonical files live, so downstream surfaces (`aglaya.biz` included) consume the brand instead of duplicating it. The MCP is an optional, separable layer; the design-system folder stays runtime-free without it.
+
 ### Use it in Figma / other tools
 - **Fonts:** install the `.otf` / `.ttf` files from `fonts/` into your OS font book.
 - **Colors:** copy the hex values from `preview/colors-brand.html` and `colors-surface.html` into Figma Variables, Tailwind config, etc.
