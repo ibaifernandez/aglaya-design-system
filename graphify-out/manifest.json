@@ -1,0 +1,207 @@
+{
+  "ui_kits/website/AntiClient.jsx": {
+    "mtime": 1776768241.0,
+    "ast_hash": "9da2d25c57e67058f4fc378cc9a78083",
+    "semantic_hash": "9da2d25c57e67058f4fc378cc9a78083"
+  },
+  "ui_kits/website/Footer.jsx": {
+    "mtime": 1776768241.0,
+    "ast_hash": "1fce703d932a17953ea4cfb264e130bb",
+    "semantic_hash": "1fce703d932a17953ea4cfb264e130bb"
+  },
+  "ui_kits/website/Header.jsx": {
+    "mtime": 1776768241.0,
+    "ast_hash": "afbbbfb733023571622aaf8a26a613df",
+    "semantic_hash": "afbbbfb733023571622aaf8a26a613df"
+  },
+  "ui_kits/website/Hero.jsx": {
+    "mtime": 1776768241.0,
+    "ast_hash": "818adca5c432173869e4e7bad2508382",
+    "semantic_hash": "818adca5c432173869e4e7bad2508382"
+  },
+  "ui_kits/website/Primitives.jsx": {
+    "mtime": 1776768241.0,
+    "ast_hash": "cfd792f089d2abc130281f52771543d2",
+    "semantic_hash": "cfd792f089d2abc130281f52771543d2"
+  },
+  "ui_kits/website/Problem.jsx": {
+    "mtime": 1776768241.0,
+    "ast_hash": "7686ac0574553d0d446b867dafd08677",
+    "semantic_hash": "7686ac0574553d0d446b867dafd08677"
+  },
+  "ui_kits/website/SystemsGrid.jsx": {
+    "mtime": 1776768241.0,
+    "ast_hash": "3d4b9a17a82a3df6a397446364b719c4",
+    "semantic_hash": "3d4b9a17a82a3df6a397446364b719c4"
+  },
+  "README.md": {
+    "mtime": 1783877996.4318833,
+    "ast_hash": "90517ee406aa98c63a0a5046bd8e801a",
+    "semantic_hash": ""
+  },
+  "SKILL.md": {
+    "mtime": 1783854033.6974075,
+    "ast_hash": "cb9901921bd71f414d2aff3d4971749c",
+    "semantic_hash": ""
+  },
+  "preview/brand-favicon.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "d728f7930dc41a1cdeedd1ccc1bdafa1",
+    "semantic_hash": ""
+  },
+  "preview/brand-iconography.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "a2aa0599480a2d30a1445331b0cc0685",
+    "semantic_hash": ""
+  },
+  "preview/brand-logo-primary.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "e3624e04bd466ec3c7f3e779f7008597",
+    "semantic_hash": ""
+  },
+  "preview/brand-logo-variants.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "698612520682dddd48b353cba556579e",
+    "semantic_hash": ""
+  },
+  "preview/colors-brand.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "d195774af7a055a94b4d47a7dc7cc9aa",
+    "semantic_hash": ""
+  },
+  "preview/colors-semantic.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "76247191a3e76927a22e2fbb55eced46",
+    "semantic_hash": ""
+  },
+  "preview/colors-surface.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "6df7dbd43af099f9901363091b87eabe",
+    "semantic_hash": ""
+  },
+  "preview/components-badges.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "ffc3d9bff34c4764083e43b169429c5c",
+    "semantic_hash": ""
+  },
+  "preview/components-buttons.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "63295be3bd27f8a078f2d1cb5ee1d1bb",
+    "semantic_hash": ""
+  },
+  "preview/components-card.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "74355b28ccba46d3f9c66f6110be15a0",
+    "semantic_hash": ""
+  },
+  "preview/components-comparison.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "f3c60f7a3c253baed1f8dc1bf185500d",
+    "semantic_hash": ""
+  },
+  "preview/components-inputs.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "2411be4be3fc40700f713ab2588699c5",
+    "semantic_hash": ""
+  },
+  "preview/spacing-borders.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "434966f8a749c114c00cc32a769a8da7",
+    "semantic_hash": ""
+  },
+  "preview/spacing-radii-shadows.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "d2f0d5b18b90c82af0cb8f708f5d3a13",
+    "semantic_hash": ""
+  },
+  "preview/spacing-scale.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "9718c5cabc389818899731ce63236101",
+    "semantic_hash": ""
+  },
+  "preview/type-body.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "12636f2f1d33832e67ef5aa5a8b527d6",
+    "semantic_hash": ""
+  },
+  "preview/type-display.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "45bf93c4e99424820554a73791e05676",
+    "semantic_hash": ""
+  },
+  "preview/type-headline-signature.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "52891cd3962f5a665b9d39a2e4aa422f",
+    "semantic_hash": ""
+  },
+  "preview/type-inter-weights.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "c3a7514f6764c93abfb3e4cc205aeb31",
+    "semantic_hash": ""
+  },
+  "preview/type-mono.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "d68c7a41b10dfeff5dbcc34bf0f23ed5",
+    "semantic_hash": ""
+  },
+  "preview/type-outfit-weights.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "76de5c84499437c1408a43db661a5bba",
+    "semantic_hash": ""
+  },
+  "preview/type-spacemono-weights.html": {
+    "mtime": 1776768241.0,
+    "ast_hash": "b7fce19b9c5ef6f85ec77eff7dab1b00",
+    "semantic_hash": ""
+  },
+  "ui_kits/website/README.md": {
+    "mtime": 1776768241.0,
+    "ast_hash": "485d7c0406ddbf655259c26ef8b12e89",
+    "semantic_hash": ""
+  },
+  "ui_kits/website/index.html": {
+    "mtime": 1783853717.515194,
+    "ast_hash": "cf86c5a0a073eabbce20906e80279ecf",
+    "semantic_hash": ""
+  },
+  "assets/isotipo/svg/aglaya-isotipo-blanco.svg": {
+    "mtime": 1776768240.0,
+    "ast_hash": "b98bd8f52f480db248339908e1b631be",
+    "semantic_hash": ""
+  },
+  "assets/isotipo/svg/aglaya-isotipo-negro.svg": {
+    "mtime": 1776768240.0,
+    "ast_hash": "2b733893478aa79badb8b7c983ecdac6",
+    "semantic_hash": ""
+  },
+  "assets/isotipo/svg/aglaya-isotipo-rojo.svg": {
+    "mtime": 1776768240.0,
+    "ast_hash": "362bb574b17863856af9d3279608b125",
+    "semantic_hash": ""
+  },
+  "assets/logotipo/svg/aglaya-logotipo-blanco.svg": {
+    "mtime": 1776768240.0,
+    "ast_hash": "ccb40830c22e3075d366a31aaa0d8e87",
+    "semantic_hash": ""
+  },
+  "assets/logotipo/svg/aglaya-logotipo-color.svg": {
+    "mtime": 1779543429.7712073,
+    "ast_hash": "01e257b64b316cd4aca7db5d7ac2d97c",
+    "semantic_hash": ""
+  },
+  "assets/logotipo/svg/aglaya-logotipo-negro.svg": {
+    "mtime": 1776768240.0,
+    "ast_hash": "105df6e32be19b0ec92f8886b81121b0",
+    "semantic_hash": ""
+  },
+  "ui_kits/website/assets/favicon-red.svg": {
+    "mtime": 1783853671.2173667,
+    "ast_hash": "362bb574b17863856af9d3279608b125",
+    "semantic_hash": ""
+  },
+  "ui_kits/website/assets/logo-white.svg": {
+    "mtime": 1783853671.2194197,
+    "ast_hash": "ccb40830c22e3075d366a31aaa0d8e87",
+    "semantic_hash": ""
+  }
+}
