@@ -35,173 +35,208 @@
     "semantic_hash": "3d4b9a17a82a3df6a397446364b719c4"
   },
   "README.md": {
-    "mtime": 1783877996.4318833,
-    "ast_hash": "90517ee406aa98c63a0a5046bd8e801a",
+    "mtime": 1783883646.4061103,
+    "ast_hash": "02a8d840a67a806bc9563954eb3e76ee",
     "semantic_hash": ""
   },
   "SKILL.md": {
-    "mtime": 1783854033.6974075,
-    "ast_hash": "cb9901921bd71f414d2aff3d4971749c",
+    "mtime": 1783879788.1029387,
+    "ast_hash": "9fe8f72ff3c6959dea726d727806ee4f",
     "semantic_hash": ""
   },
   "preview/brand-favicon.html": {
     "mtime": 1776768241.0,
     "ast_hash": "d728f7930dc41a1cdeedd1ccc1bdafa1",
-    "semantic_hash": ""
+    "semantic_hash": "d728f7930dc41a1cdeedd1ccc1bdafa1"
   },
   "preview/brand-iconography.html": {
     "mtime": 1776768241.0,
     "ast_hash": "a2aa0599480a2d30a1445331b0cc0685",
-    "semantic_hash": ""
+    "semantic_hash": "a2aa0599480a2d30a1445331b0cc0685"
   },
   "preview/brand-logo-primary.html": {
     "mtime": 1776768241.0,
     "ast_hash": "e3624e04bd466ec3c7f3e779f7008597",
-    "semantic_hash": ""
+    "semantic_hash": "e3624e04bd466ec3c7f3e779f7008597"
   },
   "preview/brand-logo-variants.html": {
     "mtime": 1776768241.0,
     "ast_hash": "698612520682dddd48b353cba556579e",
-    "semantic_hash": ""
+    "semantic_hash": "698612520682dddd48b353cba556579e"
   },
   "preview/colors-brand.html": {
     "mtime": 1776768241.0,
     "ast_hash": "d195774af7a055a94b4d47a7dc7cc9aa",
-    "semantic_hash": ""
+    "semantic_hash": "d195774af7a055a94b4d47a7dc7cc9aa"
   },
   "preview/colors-semantic.html": {
     "mtime": 1776768241.0,
     "ast_hash": "76247191a3e76927a22e2fbb55eced46",
-    "semantic_hash": ""
+    "semantic_hash": "76247191a3e76927a22e2fbb55eced46"
   },
   "preview/colors-surface.html": {
     "mtime": 1776768241.0,
     "ast_hash": "6df7dbd43af099f9901363091b87eabe",
-    "semantic_hash": ""
+    "semantic_hash": "6df7dbd43af099f9901363091b87eabe"
   },
   "preview/components-badges.html": {
     "mtime": 1776768241.0,
     "ast_hash": "ffc3d9bff34c4764083e43b169429c5c",
-    "semantic_hash": ""
+    "semantic_hash": "ffc3d9bff34c4764083e43b169429c5c"
   },
   "preview/components-buttons.html": {
     "mtime": 1776768241.0,
     "ast_hash": "63295be3bd27f8a078f2d1cb5ee1d1bb",
-    "semantic_hash": ""
+    "semantic_hash": "63295be3bd27f8a078f2d1cb5ee1d1bb"
   },
   "preview/components-card.html": {
     "mtime": 1776768241.0,
     "ast_hash": "74355b28ccba46d3f9c66f6110be15a0",
-    "semantic_hash": ""
+    "semantic_hash": "74355b28ccba46d3f9c66f6110be15a0"
   },
   "preview/components-comparison.html": {
     "mtime": 1776768241.0,
     "ast_hash": "f3c60f7a3c253baed1f8dc1bf185500d",
-    "semantic_hash": ""
+    "semantic_hash": "f3c60f7a3c253baed1f8dc1bf185500d"
   },
   "preview/components-inputs.html": {
     "mtime": 1776768241.0,
     "ast_hash": "2411be4be3fc40700f713ab2588699c5",
-    "semantic_hash": ""
+    "semantic_hash": "2411be4be3fc40700f713ab2588699c5"
   },
   "preview/spacing-borders.html": {
     "mtime": 1776768241.0,
     "ast_hash": "434966f8a749c114c00cc32a769a8da7",
-    "semantic_hash": ""
+    "semantic_hash": "434966f8a749c114c00cc32a769a8da7"
   },
   "preview/spacing-radii-shadows.html": {
     "mtime": 1776768241.0,
     "ast_hash": "d2f0d5b18b90c82af0cb8f708f5d3a13",
-    "semantic_hash": ""
+    "semantic_hash": "d2f0d5b18b90c82af0cb8f708f5d3a13"
   },
   "preview/spacing-scale.html": {
     "mtime": 1776768241.0,
     "ast_hash": "9718c5cabc389818899731ce63236101",
-    "semantic_hash": ""
+    "semantic_hash": "9718c5cabc389818899731ce63236101"
   },
   "preview/type-body.html": {
     "mtime": 1776768241.0,
     "ast_hash": "12636f2f1d33832e67ef5aa5a8b527d6",
-    "semantic_hash": ""
+    "semantic_hash": "12636f2f1d33832e67ef5aa5a8b527d6"
   },
   "preview/type-display.html": {
     "mtime": 1776768241.0,
     "ast_hash": "45bf93c4e99424820554a73791e05676",
-    "semantic_hash": ""
+    "semantic_hash": "45bf93c4e99424820554a73791e05676"
   },
   "preview/type-headline-signature.html": {
     "mtime": 1776768241.0,
     "ast_hash": "52891cd3962f5a665b9d39a2e4aa422f",
-    "semantic_hash": ""
+    "semantic_hash": "52891cd3962f5a665b9d39a2e4aa422f"
   },
   "preview/type-inter-weights.html": {
     "mtime": 1776768241.0,
     "ast_hash": "c3a7514f6764c93abfb3e4cc205aeb31",
-    "semantic_hash": ""
+    "semantic_hash": "c3a7514f6764c93abfb3e4cc205aeb31"
   },
   "preview/type-mono.html": {
     "mtime": 1776768241.0,
     "ast_hash": "d68c7a41b10dfeff5dbcc34bf0f23ed5",
-    "semantic_hash": ""
+    "semantic_hash": "d68c7a41b10dfeff5dbcc34bf0f23ed5"
   },
   "preview/type-outfit-weights.html": {
     "mtime": 1776768241.0,
     "ast_hash": "76de5c84499437c1408a43db661a5bba",
-    "semantic_hash": ""
+    "semantic_hash": "76de5c84499437c1408a43db661a5bba"
   },
   "preview/type-spacemono-weights.html": {
     "mtime": 1776768241.0,
     "ast_hash": "b7fce19b9c5ef6f85ec77eff7dab1b00",
-    "semantic_hash": ""
+    "semantic_hash": "b7fce19b9c5ef6f85ec77eff7dab1b00"
   },
   "ui_kits/website/README.md": {
     "mtime": 1776768241.0,
     "ast_hash": "485d7c0406ddbf655259c26ef8b12e89",
-    "semantic_hash": ""
+    "semantic_hash": "485d7c0406ddbf655259c26ef8b12e89"
   },
   "ui_kits/website/index.html": {
     "mtime": 1783853717.515194,
     "ast_hash": "cf86c5a0a073eabbce20906e80279ecf",
-    "semantic_hash": ""
+    "semantic_hash": "cf86c5a0a073eabbce20906e80279ecf"
   },
   "assets/isotipo/svg/aglaya-isotipo-blanco.svg": {
     "mtime": 1776768240.0,
     "ast_hash": "b98bd8f52f480db248339908e1b631be",
-    "semantic_hash": ""
+    "semantic_hash": "b98bd8f52f480db248339908e1b631be"
   },
   "assets/isotipo/svg/aglaya-isotipo-negro.svg": {
     "mtime": 1776768240.0,
     "ast_hash": "2b733893478aa79badb8b7c983ecdac6",
-    "semantic_hash": ""
+    "semantic_hash": "2b733893478aa79badb8b7c983ecdac6"
   },
   "assets/isotipo/svg/aglaya-isotipo-rojo.svg": {
     "mtime": 1776768240.0,
     "ast_hash": "362bb574b17863856af9d3279608b125",
-    "semantic_hash": ""
+    "semantic_hash": "362bb574b17863856af9d3279608b125"
   },
   "assets/logotipo/svg/aglaya-logotipo-blanco.svg": {
     "mtime": 1776768240.0,
     "ast_hash": "ccb40830c22e3075d366a31aaa0d8e87",
-    "semantic_hash": ""
+    "semantic_hash": "ccb40830c22e3075d366a31aaa0d8e87"
   },
   "assets/logotipo/svg/aglaya-logotipo-color.svg": {
     "mtime": 1779543429.7712073,
     "ast_hash": "01e257b64b316cd4aca7db5d7ac2d97c",
-    "semantic_hash": ""
+    "semantic_hash": "01e257b64b316cd4aca7db5d7ac2d97c"
   },
   "assets/logotipo/svg/aglaya-logotipo-negro.svg": {
     "mtime": 1776768240.0,
     "ast_hash": "105df6e32be19b0ec92f8886b81121b0",
-    "semantic_hash": ""
+    "semantic_hash": "105df6e32be19b0ec92f8886b81121b0"
   },
   "ui_kits/website/assets/favicon-red.svg": {
     "mtime": 1783853671.2173667,
     "ast_hash": "362bb574b17863856af9d3279608b125",
-    "semantic_hash": ""
+    "semantic_hash": "362bb574b17863856af9d3279608b125"
   },
   "ui_kits/website/assets/logo-white.svg": {
     "mtime": 1783853671.2194197,
     "ast_hash": "ccb40830c22e3075d366a31aaa0d8e87",
+    "semantic_hash": "ccb40830c22e3075d366a31aaa0d8e87"
+  },
+  ".mcp.json": {
+    "mtime": 1783883633.4470255,
+    "ast_hash": "90fc88ab5de9279173a58de25075d5c7",
+    "semantic_hash": "90fc88ab5de9279173a58de25075d5c7"
+  },
+  "aglaya-ds-mcp/brand.py": {
+    "mtime": 1783879975.46639,
+    "ast_hash": "47f00f882c9e8fb95730368678d2f980",
+    "semantic_hash": "47f00f882c9e8fb95730368678d2f980"
+  },
+  "aglaya-ds-mcp/pyproject.toml": {
+    "mtime": 1783880374.9552777,
+    "ast_hash": "8470d03ebd680b2d5f13ea3e1769d0a2",
+    "semantic_hash": "8470d03ebd680b2d5f13ea3e1769d0a2"
+  },
+  "aglaya-ds-mcp/selftest.py": {
+    "mtime": 1783883011.2252665,
+    "ast_hash": "d54cf8fdbbee88a790d38c0b61cbb4c0",
+    "semantic_hash": "d54cf8fdbbee88a790d38c0b61cbb4c0"
+  },
+  "aglaya-ds-mcp/server.py": {
+    "mtime": 1783880362.5070994,
+    "ast_hash": "459ec898050e8eb0eb3e9c4d32925383",
+    "semantic_hash": "459ec898050e8eb0eb3e9c4d32925383"
+  },
+  "aglaya-ds-mcp/zerocopy_test.py": {
+    "mtime": 1783883246.3993635,
+    "ast_hash": "de66bc25a8ed37c526e3b5f961a9c4c1",
+    "semantic_hash": "de66bc25a8ed37c526e3b5f961a9c4c1"
+  },
+  "aglaya-ds-mcp/README.md": {
+    "mtime": 1783883291.0443738,
+    "ast_hash": "643850dcdbcfbed620020a6375014cec",
     "semantic_hash": ""
   }
 }
