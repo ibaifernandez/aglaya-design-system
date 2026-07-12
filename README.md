@@ -13,7 +13,7 @@ Clients are **founders and ops leads at high-performance companies** — not ear
 | Source | Location | Notes |
 | ------ | -------- | ----- |
 | Live codebase (external) | Astro + Tailwind v4, GitHub `ibaifernandez/aglaya.biz` | original source of truth for tokens — not shipped in this package |
-| Brand kit | `aglaya-kit-de-diseño/` (`.jpg` + `.pdf`) | reviewed \u2014 web palette kept as canonical |
+| Brand kit (external) | reviewed offline reference, not shipped in this package | web palette kept as canonical |
 | Logos | `assets/` (SVG canonical + PNG derivatives) | white / black / brand-red variants |
 | Fonts | `fonts/` (31 files \u2014 Outfit, Inter, Space Mono) | all local, no CDN |
 
