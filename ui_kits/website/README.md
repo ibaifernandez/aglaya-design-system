@@ -1,6 +1,6 @@
 # AGLAYA · Website UI Kit
 
-Hi-fi recreation of the **AGLAYA.biz** marketing site. Sourced directly from the live Astro codebase (`src/components/`) — every color, token, spacing value, and copy string matches production.
+Hi-fi recreation of the **AGLAYA.biz** marketing home, built from this design system's canonical tokens and brand rules. Every color, token, spacing value, and copy string comes from `colors_and_type.css` + the voice/visual rules in the root `README.md` — the site consumes these tokens, not the other way around.
 
 ## Files
 - `index.html` — composes the home view (Header → Hero → Problem → Systems → AntiClient → Footer)

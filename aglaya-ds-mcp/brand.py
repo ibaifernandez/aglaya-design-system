@@ -249,10 +249,16 @@ def check_voice(text: str) -> dict:
                 }
             )
 
-    # 2) forbidden phrases (substring, from forbidden-patterns list)
+    # 2) forbidden phrases (word-boundary match, from forbidden-patterns list).
+    # \b…\b avoids substring false positives (e.g. "solutions" inside
+    # "resolutions", "partners" inside "partnerships").
     for phrase in _forbidden_phrases():
         pl = phrase.lower()
-        if pl and pl in low and not any(f["match"] == pl for f in findings):
+        if (
+            pl
+            and re.search(r"\b" + re.escape(pl) + r"\b", low)
+            and not any(f["match"] == pl for f in findings)
+        ):
             findings.append(
                 {
                     "type": "forbidden_phrase",
