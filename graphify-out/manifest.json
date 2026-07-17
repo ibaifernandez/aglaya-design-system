@@ -155,9 +155,9 @@
     "semantic_hash": "b7fce19b9c5ef6f85ec77eff7dab1b00"
   },
   "ui_kits/website/README.md": {
-    "mtime": 1776768241.0,
-    "ast_hash": "485d7c0406ddbf655259c26ef8b12e89",
-    "semantic_hash": "485d7c0406ddbf655259c26ef8b12e89"
+    "mtime": 1784155810.9977558,
+    "ast_hash": "1baa7f260f250085b1f67ff10d1165eb",
+    "semantic_hash": ""
   },
   "ui_kits/website/index.html": {
     "mtime": 1783853717.515194,
@@ -210,9 +210,9 @@
     "semantic_hash": "90fc88ab5de9279173a58de25075d5c7"
   },
   "aglaya-ds-mcp/brand.py": {
-    "mtime": 1783879975.46639,
-    "ast_hash": "47f00f882c9e8fb95730368678d2f980",
-    "semantic_hash": "47f00f882c9e8fb95730368678d2f980"
+    "mtime": 1784155804.9616787,
+    "ast_hash": "72cb32bc5f5d31f7626e8d9150d75cad",
+    "semantic_hash": ""
   },
   "aglaya-ds-mcp/pyproject.toml": {
     "mtime": 1783880374.9552777,
@@ -237,6 +237,11 @@
   "aglaya-ds-mcp/README.md": {
     "mtime": 1783883291.0443738,
     "ast_hash": "643850dcdbcfbed620020a6375014cec",
+    "semantic_hash": ""
+  },
+  "docs/CONTRACT.md": {
+    "mtime": 1784155798.816933,
+    "ast_hash": "2e3cc7f98eeebb7ce803745373e5ad48",
     "semantic_hash": ""
   }
 }

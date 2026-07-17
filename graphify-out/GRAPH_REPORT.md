@@ -1,15 +1,16 @@
-# Graph Report - .  (2026-07-12)
+# Graph Report - aglaya-design-system  (2026-07-15)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- 18 files · ~14,470 words
+- Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 141 nodes · 162 edges · 38 communities (10 shown, 28 thin omitted)
+- 151 nodes · 171 edges · 40 communities (12 shown, 28 thin omitted)
 - Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.71)
-- Token cost: 36,564 input · 2,206 output
+- Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7aae0f98`
+- Built from commit: `5576f561`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -49,6 +50,8 @@
 - Monospace Typography
 - Outfit Font Weights
 - Space Mono Weights
+- CONTRACT — Estilo de marca AGLAYA
+- AGLAYA · Website UI Kit
 
 ## God Nodes (most connected - your core abstractions)
 1. `_signature_terms()` - 9 edges
@@ -59,8 +62,8 @@
 6. `get_voice_rules()` - 7 edges
 7. `_section()` - 6 edges
 8. `_forbidden_phrases()` - 6 edges
-9. `_all_tokens()` - 5 edges
-10. `list_tokens()` - 5 edges
+9. `CONTRACT — Estilo de marca AGLAYA` - 6 edges
+10. `_all_tokens()` - 5 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Primary Logo Specimen` --displays--> `AGLAYA Logotype – White`  [INFERRED]
@@ -83,7 +86,7 @@
 - **MCP Server Implementation (Query Layer)** — aglaya_ds_mcp_server, aglaya_ds_mcp_brand, aglaya_ds_mcp_readme [EXTRACTED 1.00]
 - **Design System Preview and Documentation Suite** — readme, preview_brand_favicon_html, preview_brand_iconography_html, preview_colors_brand_html, preview_components_badges_html, preview_components_buttons_html, preview_components_card_html, preview_spacing_borders_html [EXTRACTED 0.95]
 
-## Communities (38 total, 28 thin omitted)
+## Communities (40 total, 28 thin omitted)
 
 ### Community 0 - "Brand Voice Rules"
 Cohesion: 0.17
@@ -110,20 +113,30 @@ Cohesion: 0.40
 Nodes (5): AGLAYA Logotype – White, AGLAYA Logotype – Brand Red, AGLAYA Logotype – Black, Primary Logo Specimen, Logo Variants Specimen
 
 ### Community 10 - "Website Kit"
+Cohesion: 0.67
+Nodes (3): Website Kit Favicon, Website Kit Logo White, Website UI Kit Index
+
+### Community 38 - "CONTRACT — Estilo de marca AGLAYA"
+Cohesion: 0.29
+Nodes (6): CONTRACT — Estilo de marca AGLAYA, Interfaces (dos formas de consumir), No-negociables, Quién consume, Quién NO (exclusión dura), Qué rige
+
+### Community 39 - "AGLAYA · Website UI Kit"
 Cohesion: 0.50
-Nodes (4): Website Kit Favicon, Website Kit Logo White, Website UI Kit Index, Website UI Kit Documentation
+Nodes (4): AGLAYA · Website UI Kit, Composition rules the kit enforces, Files, Known gaps
 
 ## Knowledge Gaps
-- **35 isolated node(s):** `EXCLUSIONS`, `FOOTER_LINKS`, `PROBLEMS`, `SYSTEMS`, `aglaya-ds-mcp/.venv/bin/python` (+30 more)
+- **42 isolated node(s):** `Qué rige`, `Interfaces (dos formas de consumir)`, `Quién consume`, `Quién NO (exclusión dura)`, `No-negociables` (+37 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **28 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
+- **Why does `AGLAYA · Website UI Kit` connect `AGLAYA · Website UI Kit` to `Design System Assets`?**
+  _High betweenness centrality (0.018) - this node is a cross-community bridge._
 - **Why does `BrandError` connect `Token Management API` to `Brand Voice Rules`?**
-  _High betweenness centrality (0.014) - this node is a cross-community bridge._
+  _High betweenness centrality (0.013) - this node is a cross-community bridge._
 - **Why does `Design Tokens (CSS Custom Properties)` connect `Design System Assets` to `Brand Voice Rules`?**
-  _High betweenness centrality (0.014) - this node is a cross-community bridge._
-- **What connects `EXCLUSIONS`, `FOOTER_LINKS`, `PROBLEMS` to the rest of the system?**
-  _35 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.012) - this node is a cross-community bridge._
+- **What connects `Qué rige`, `Interfaces (dos formas de consumir)`, `Quién consume` to the rest of the system?**
+  _42 weakly-connected nodes found - possible documentation gaps or missing edges._
