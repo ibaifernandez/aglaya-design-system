@@ -27,4 +27,7 @@ Reglas para cualquier hilo que trabaje aquí:
 - **El capitán puede haber tocado docs de este repo**: sus commits van identificados. Este repo no lleva CHANGELOG — el registro es el git log.
 - La verdad comercial (precios, ofertas, GTM) NO vive aquí: vive en el atlas del capitán (`atlas/gtm.md`).
 
+
+**Consulta al capitán EN VIVO:** MCP **`aglaya-atlas`** (disponible en toda sesión de Claude de esta máquina) — `flota_estado` · `ficha(nave)` · `contrato(nombre)` · `quien_consume` · `verdad_comercial` · `parked` · `buscar`. Responde leyendo el atlas en vivo y citando fuente. Ya no hace falta esperar un brief del capitán: pregúntale.
+
 **Último pase del capitán: 2026-07-17** — re-verificación 7/7 (cerrada por primera vez el 15-jul): MCP vivo (7 tools), `CONTRACT.md` + tag `v1.0.0` verificados, este `CLAUDE.md` creado (no existía entrada para agentes), grafo fresco commiteado y republicado al global.
