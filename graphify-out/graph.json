@@ -17,22 +17,6 @@
         "source_file": "README.md"
       },
       {
-        "id": "canonical_brand_source",
-        "label": "Canonical Brand Source (Sovereign Package)",
-        "nodes": [
-          "readme",
-          "skill",
-          "colors_and_type",
-          "assets",
-          "fonts",
-          "preview"
-        ],
-        "relation": "participate_in",
-        "confidence": "EXTRACTED",
-        "confidence_score": 1.0,
-        "source_file": "README.md"
-      },
-      {
         "id": "mcp_server_implementation",
         "label": "MCP Server Implementation (Query Layer)",
         "nodes": [
@@ -44,37 +28,181 @@
         "confidence": "EXTRACTED",
         "confidence_score": 1.0,
         "source_file": "aglaya-ds-mcp/README.md"
-      },
-      {
-        "id": "design_system_preview_suite",
-        "label": "Design System Preview and Documentation Suite",
-        "nodes": [
-          "readme",
-          "preview_brand_favicon_html",
-          "preview_brand_iconography_html",
-          "preview_colors_brand_html",
-          "preview_components_badges_html",
-          "preview_components_buttons_html",
-          "preview_components_card_html",
-          "preview_spacing_borders_html"
-        ],
-        "relation": "implement",
-        "confidence": "EXTRACTED",
-        "confidence_score": 0.95,
-        "source_file": "README.md, preview/*"
       }
     ]
   },
   "nodes": [
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude",
+      "community": 3,
+      "norm_label": "claude.md"
+    },
+    {
+      "label": "CLAUDE.md \u2014 aglaya-design-system",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude_claude_md_aglaya_design_system",
+      "community": 3,
+      "norm_label": "claude.md \u2014 aglaya-design-system"
+    },
+    {
+      "label": "Qu\u00e9 es este repo",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "claude_qu\u00e9_es_este_repo",
+      "community": 3,
+      "norm_label": "que es este repo"
+    },
+    {
+      "label": "Orden de lectura",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "claude_orden_de_lectura",
+      "community": 3,
+      "norm_label": "orden de lectura"
+    },
+    {
+      "label": "Reglas duras",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "claude_reglas_duras",
+      "community": 3,
+      "norm_label": "reglas duras"
+    },
+    {
+      "label": "AGLAYA \u00b7 Flota \u2014 el capit\u00e1n",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "claude_aglaya_flota_el_capit\u00e1n",
+      "community": 3,
+      "norm_label": "aglaya \u00b7 flota \u2014 el capitan"
+    },
+    {
+      "label": "Esta secci\u00f3n no lleva estado",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "claude_esta_secci\u00f3n_no_lleva_estado",
+      "community": 3,
+      "norm_label": "esta seccion no lleva estado"
+    },
+    {
+      "label": "guard_huella.py",
+      "file_type": "code",
+      "source_file": "tools/guard_huella.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tools_guard_huella",
+      "community": 40,
+      "norm_label": "guard_huella.py"
+    },
+    {
+      "label": "enmascarar()",
+      "file_type": "code",
+      "source_file": "tools/guard_huella.py",
+      "source_location": "L88",
+      "_origin": "ast",
+      "id": "tools_guard_huella_enmascarar",
+      "community": 40,
+      "norm_label": "enmascarar()"
+    },
+    {
+      "label": "recortar_seccion()",
+      "file_type": "code",
+      "source_file": "tools/guard_huella.py",
+      "source_location": "L97",
+      "_origin": "ast",
+      "id": "tools_guard_huella_recortar_seccion",
+      "community": 40,
+      "norm_label": "recortar_seccion()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "tools/guard_huella.py",
+      "source_location": "L108",
+      "_origin": "ast",
+      "id": "tools_guard_huella_main",
+      "community": 40,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Tapa los fragmentos entrecomillados conservando offsets y saltos.",
+      "file_type": "rationale",
+      "source_file": "tools/guard_huella.py",
+      "source_location": "L89",
+      "_origin": "ast",
+      "id": "tools_guard_huella_rationale_89",
+      "community": 40,
+      "norm_label": "tapa los fragmentos entrecomillados conservando offsets y saltos."
+    },
+    {
+      "label": "test_guard_huella.sh",
+      "file_type": "code",
+      "source_file": "tools/test_guard_huella.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "tools_test_guard_huella",
+      "community": 41,
+      "norm_label": "test_guard_huella.sh"
+    },
+    {
+      "label": "test_guard_huella.sh script",
+      "file_type": "code",
+      "source_file": "tools/test_guard_huella.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "tools_test_guard_huella_sh__entry",
+      "community": 41,
+      "norm_label": "test_guard_huella.sh script"
+    },
+    {
+      "label": "probar()",
+      "file_type": "code",
+      "source_file": "tools/test_guard_huella.sh",
+      "source_location": "L24",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "tools_test_guard_huella_probar",
+      "community": 41,
+      "norm_label": "probar()"
+    },
     {
       "label": "brand.py",
       "file_type": "code",
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand",
       "community": 0,
-      "norm_label": "brand.py"
+      "norm_label": "brand.py",
+      "id": "aglaya_ds_mcp_brand"
     },
     {
       "label": "BrandError",
@@ -82,9 +210,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L35",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_branderror",
-      "community": 3,
-      "norm_label": "branderror"
+      "community": 0,
+      "norm_label": "branderror",
+      "id": "aglaya_ds_mcp_brand_branderror"
     },
     {
       "label": "Exception",
@@ -92,9 +220,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "exception",
-      "community": 3,
-      "norm_label": "exception"
+      "community": 0,
+      "norm_label": "exception",
+      "id": "exception"
     },
     {
       "label": "_read()",
@@ -102,9 +230,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L39",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_read",
       "community": 0,
-      "norm_label": "_read()"
+      "norm_label": "_read()",
+      "id": "aglaya_ds_mcp_brand_read"
     },
     {
       "label": "Path",
@@ -112,9 +240,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "path",
       "community": 0,
-      "norm_label": "path"
+      "norm_label": "path",
+      "id": "path"
     },
     {
       "label": "_all_tokens()",
@@ -122,9 +250,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L62",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_all_tokens",
-      "community": 3,
-      "norm_label": "_all_tokens()"
+      "community": 0,
+      "norm_label": "_all_tokens()",
+      "id": "aglaya_ds_mcp_brand_all_tokens"
     },
     {
       "label": "_category_of()",
@@ -132,9 +260,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L73",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_category_of",
-      "community": 3,
-      "norm_label": "_category_of()"
+      "community": 0,
+      "norm_label": "_category_of()",
+      "id": "aglaya_ds_mcp_brand_category_of"
     },
     {
       "label": "get_token()",
@@ -142,9 +270,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L80",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_get_token",
-      "community": 3,
-      "norm_label": "get_token()"
+      "community": 0,
+      "norm_label": "get_token()",
+      "id": "aglaya_ds_mcp_brand_get_token"
     },
     {
       "label": "list_tokens()",
@@ -152,9 +280,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L92",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_list_tokens",
-      "community": 3,
-      "norm_label": "list_tokens()"
+      "community": 0,
+      "norm_label": "list_tokens()",
+      "id": "aglaya_ds_mcp_brand_list_tokens"
     },
     {
       "label": "_section()",
@@ -162,9 +290,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L121",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_section",
       "community": 0,
-      "norm_label": "_section()"
+      "norm_label": "_section()",
+      "id": "aglaya_ds_mcp_brand_section"
     },
     {
       "label": "_bullets()",
@@ -172,9 +300,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L132",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_bullets",
       "community": 0,
-      "norm_label": "_bullets()"
+      "norm_label": "_bullets()",
+      "id": "aglaya_ds_mcp_brand_bullets"
     },
     {
       "label": "_table_rows()",
@@ -182,9 +310,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L141",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_table_rows",
       "community": 0,
-      "norm_label": "_table_rows()"
+      "norm_label": "_table_rows()",
+      "id": "aglaya_ds_mcp_brand_table_rows"
     },
     {
       "label": "_strip_md()",
@@ -192,9 +320,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L158",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_strip_md",
       "community": 0,
-      "norm_label": "_strip_md()"
+      "norm_label": "_strip_md()",
+      "id": "aglaya_ds_mcp_brand_strip_md"
     },
     {
       "label": "_signature_terms()",
@@ -202,9 +330,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L162",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_signature_terms",
       "community": 0,
-      "norm_label": "_signature_terms()"
+      "norm_label": "_signature_terms()",
+      "id": "aglaya_ds_mcp_brand_signature_terms"
     },
     {
       "label": "_forbidden_phrases()",
@@ -212,9 +340,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L189",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_forbidden_phrases",
       "community": 0,
-      "norm_label": "_forbidden_phrases()"
+      "norm_label": "_forbidden_phrases()",
+      "id": "aglaya_ds_mcp_brand_forbidden_phrases"
     },
     {
       "label": "get_voice_rules()",
@@ -222,9 +350,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L202",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_get_voice_rules",
       "community": 0,
-      "norm_label": "get_voice_rules()"
+      "norm_label": "get_voice_rules()",
+      "id": "aglaya_ds_mcp_brand_get_voice_rules"
     },
     {
       "label": "_replacement_map()",
@@ -232,9 +360,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L219",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_replacement_map",
       "community": 0,
-      "norm_label": "_replacement_map()"
+      "norm_label": "_replacement_map()",
+      "id": "aglaya_ds_mcp_brand_replacement_map"
     },
     {
       "label": "check_voice()",
@@ -242,9 +370,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L234",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_check_voice",
       "community": 0,
-      "norm_label": "check_voice()"
+      "norm_label": "check_voice()",
+      "id": "aglaya_ds_mcp_brand_check_voice"
     },
     {
       "label": "is_allowed_word()",
@@ -252,9 +380,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L312",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_is_allowed_word",
       "community": 0,
-      "norm_label": "is_allowed_word()"
+      "norm_label": "is_allowed_word()",
+      "id": "aglaya_ds_mcp_brand_is_allowed_word"
     },
     {
       "label": "_available_logos()",
@@ -262,9 +390,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L359",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_available_logos",
-      "community": 3,
-      "norm_label": "_available_logos()"
+      "community": 0,
+      "norm_label": "_available_logos()",
+      "id": "aglaya_ds_mcp_brand_available_logos"
     },
     {
       "label": "get_logo()",
@@ -272,9 +400,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L369",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_get_logo",
-      "community": 3,
-      "norm_label": "get_logo()"
+      "community": 0,
+      "norm_label": "get_logo()",
+      "id": "aglaya_ds_mcp_brand_get_logo"
     },
     {
       "label": "get_nonnegotiables()",
@@ -282,9 +410,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L412",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_get_nonnegotiables",
       "community": 0,
-      "norm_label": "get_nonnegotiables()"
+      "norm_label": "get_nonnegotiables()",
+      "id": "aglaya_ds_mcp_brand_get_nonnegotiables"
     },
     {
       "label": "AGLAYA brand core \u2014 sovereign, dependency-free readers over the canonical files.",
@@ -292,9 +420,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_rationale_1",
       "community": 0,
-      "norm_label": "aglaya brand core \u2014 sovereign, dependency-free readers over the canonical files."
+      "norm_label": "aglaya brand core \u2014 sovereign, dependency-free readers over the canonical files.",
+      "id": "aglaya_ds_mcp_brand_rationale_1"
     },
     {
       "label": "Raised for caller-facing problems (unknown token, missing file, etc.).",
@@ -302,9 +430,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L36",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_rationale_36",
-      "community": 3,
-      "norm_label": "raised for caller-facing problems (unknown token, missing file, etc.)."
+      "community": 0,
+      "norm_label": "raised for caller-facing problems (unknown token, missing file, etc.).",
+      "id": "aglaya_ds_mcp_brand_rationale_36"
     },
     {
       "label": "Parse every custom property inside the first :root { \u2026 } block.",
@@ -312,9 +440,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L63",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_rationale_63",
-      "community": 3,
-      "norm_label": "parse every custom property inside the first :root { ... } block."
+      "community": 0,
+      "norm_label": "parse every custom property inside the first :root { ... } block.",
+      "id": "aglaya_ds_mcp_brand_rationale_63"
     },
     {
       "label": "Return the value of a single token. Accepts 'color-brand' or '--color-brand'.",
@@ -322,9 +450,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L81",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_rationale_81",
-      "community": 3,
-      "norm_label": "return the value of a single token. accepts 'color-brand' or '--color-brand'."
+      "community": 0,
+      "norm_label": "return the value of a single token. accepts 'color-brand' or '--color-brand'.",
+      "id": "aglaya_ds_mcp_brand_rationale_81"
     },
     {
       "label": "List tokens, optionally filtered by category.      Returns {\"category\": <str|\"al",
@@ -332,9 +460,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L93",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_rationale_93",
-      "community": 3,
-      "norm_label": "list tokens, optionally filtered by category.      returns {\"category\": <str|\"al"
+      "community": 0,
+      "norm_label": "list tokens, optionally filtered by category.      returns {\"category\": <str|\"al",
+      "id": "aglaya_ds_mcp_brand_rationale_93"
     },
     {
       "label": "Return the body of a markdown section (### heading) up to the next     heading o",
@@ -342,9 +470,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L122",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_rationale_122",
       "community": 0,
-      "norm_label": "return the body of a markdown section (### heading) up to the next     heading o"
+      "norm_label": "return the body of a markdown section (### heading) up to the next     heading o",
+      "id": "aglaya_ds_mcp_brand_rationale_122"
     },
     {
       "label": "Parse a two-column markdown table into (col1, col2) rows, skipping     the heade",
@@ -352,9 +480,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L142",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_rationale_142",
       "community": 0,
-      "norm_label": "parse a two-column markdown table into (col1, col2) rows, skipping     the heade"
+      "norm_label": "parse a two-column markdown table into (col1, col2) rows, skipping     the heade",
+      "id": "aglaya_ds_mcp_brand_rationale_142"
     },
     {
       "label": "Protected vocabulary from README '### Signature terms', with the     forbidden w",
@@ -362,9 +490,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L163",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_rationale_163",
       "community": 0,
-      "norm_label": "protected vocabulary from readme '### signature terms', with the     forbidden w"
+      "norm_label": "protected vocabulary from readme '### signature terms', with the     forbidden w",
+      "id": "aglaya_ds_mcp_brand_rationale_163"
     },
     {
       "label": "Quoted forbidden phrases from README '### Forbidden patterns'.",
@@ -372,9 +500,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L190",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_rationale_190",
       "community": 0,
-      "norm_label": "quoted forbidden phrases from readme '### forbidden patterns'."
+      "norm_label": "quoted forbidden phrases from readme '### forbidden patterns'.",
+      "id": "aglaya_ds_mcp_brand_rationale_190"
     },
     {
       "label": "Structured voice rules read live from README '## Content Fundamentals'.",
@@ -382,9 +510,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L203",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_rationale_203",
       "community": 0,
-      "norm_label": "structured voice rules read live from readme '## content fundamentals'."
+      "norm_label": "structured voice rules read live from readme '## content fundamentals'.",
+      "id": "aglaya_ds_mcp_brand_rationale_203"
     },
     {
       "label": "Analyse `text` against the live brand voice rules. Returns findings with     the",
@@ -392,9 +520,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L235",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_rationale_235",
       "community": 0,
-      "norm_label": "analyse `text` against the live brand voice rules. returns findings with     the"
+      "norm_label": "analyse `text` against the live brand voice rules. returns findings with     the",
+      "id": "aglaya_ds_mcp_brand_rationale_235"
     },
     {
       "label": "Is `term` allowed? Protected terms -> allowed; off-brand terms -> the     correc",
@@ -402,9 +530,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L313",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_rationale_313",
       "community": 0,
-      "norm_label": "is `term` allowed? protected terms -> allowed; off-brand terms -> the     correc"
+      "norm_label": "is `term` allowed? protected terms -> allowed; off-brand terms -> the     correc",
+      "id": "aglaya_ds_mcp_brand_rationale_313"
     },
     {
       "label": "Resolve a logo variant to its canonical file.      variant: '<kind>-<color>' e.g",
@@ -412,9 +540,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L370",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_rationale_370",
-      "community": 3,
-      "norm_label": "resolve a logo variant to its canonical file.      variant: '<kind>-<color>' e.g"
+      "community": 0,
+      "norm_label": "resolve a logo variant to its canonical file.      variant: '<kind>-<color>' e.g",
+      "id": "aglaya_ds_mcp_brand_rationale_370"
     },
     {
       "label": "The hard brand rules, read live from SKILL.md '## Non-negotiables'.",
@@ -422,9 +550,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L413",
       "_origin": "ast",
-      "id": "aglaya_ds_mcp_brand_rationale_413",
       "community": 0,
-      "norm_label": "the hard brand rules, read live from skill.md '## non-negotiables'."
+      "norm_label": "the hard brand rules, read live from skill.md '## non-negotiables'.",
+      "id": "aglaya_ds_mcp_brand_rationale_413"
     },
     {
       "label": "CONTRACT.md",
@@ -432,9 +560,9 @@
       "source_file": "docs/CONTRACT.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "docs_contract",
       "community": 38,
-      "norm_label": "contract.md"
+      "norm_label": "contract.md",
+      "id": "docs_contract"
     },
     {
       "label": "CONTRACT \u2014 Estilo de marca AGLAYA",
@@ -442,9 +570,9 @@
       "source_file": "docs/CONTRACT.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "docs_contract_contract_estilo_de_marca_aglaya",
       "community": 38,
-      "norm_label": "contract \u2014 estilo de marca aglaya"
+      "norm_label": "contract \u2014 estilo de marca aglaya",
+      "id": "docs_contract_contract_estilo_de_marca_aglaya"
     },
     {
       "label": "Qu\u00e9 rige",
@@ -452,9 +580,9 @@
       "source_file": "docs/CONTRACT.md",
       "source_location": "L6",
       "_origin": "ast",
-      "id": "docs_contract_qu\u00e9_rige",
       "community": 38,
-      "norm_label": "que rige"
+      "norm_label": "que rige",
+      "id": "docs_contract_qu\u00e9_rige"
     },
     {
       "label": "Interfaces (dos formas de consumir)",
@@ -462,9 +590,9 @@
       "source_file": "docs/CONTRACT.md",
       "source_location": "L9",
       "_origin": "ast",
-      "id": "docs_contract_interfaces_dos_formas_de_consumir",
       "community": 38,
-      "norm_label": "interfaces (dos formas de consumir)"
+      "norm_label": "interfaces (dos formas de consumir)",
+      "id": "docs_contract_interfaces_dos_formas_de_consumir"
     },
     {
       "label": "Qui\u00e9n consume",
@@ -472,9 +600,9 @@
       "source_file": "docs/CONTRACT.md",
       "source_location": "L13",
       "_origin": "ast",
-      "id": "docs_contract_qui\u00e9n_consume",
       "community": 38,
-      "norm_label": "quien consume"
+      "norm_label": "quien consume",
+      "id": "docs_contract_qui\u00e9n_consume"
     },
     {
       "label": "Qui\u00e9n NO (exclusi\u00f3n dura)",
@@ -482,9 +610,9 @@
       "source_file": "docs/CONTRACT.md",
       "source_location": "L16",
       "_origin": "ast",
-      "id": "docs_contract_qui\u00e9n_no_exclusi\u00f3n_dura",
       "community": 38,
-      "norm_label": "quien no (exclusion dura)"
+      "norm_label": "quien no (exclusion dura)",
+      "id": "docs_contract_qui\u00e9n_no_exclusi\u00f3n_dura"
     },
     {
       "label": "No-negociables",
@@ -492,9 +620,9 @@
       "source_file": "docs/CONTRACT.md",
       "source_location": "L19",
       "_origin": "ast",
-      "id": "docs_contract_no_negociables",
       "community": 38,
-      "norm_label": "no-negociables"
+      "norm_label": "no-negociables",
+      "id": "docs_contract_no_negociables"
     },
     {
       "label": "README.md",
@@ -502,9 +630,9 @@
       "source_file": "ui_kits/website/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "ui_kits_website_readme",
       "community": 2,
-      "norm_label": "readme.md"
+      "norm_label": "readme.md",
+      "id": "ui_kits_website_readme"
     },
     {
       "label": "AGLAYA \u00b7 Website UI Kit",
@@ -512,9 +640,9 @@
       "source_file": "ui_kits/website/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "ui_kits_website_readme_aglaya_website_ui_kit",
       "community": 39,
-      "norm_label": "aglaya \u00b7 website ui kit"
+      "norm_label": "aglaya \u00b7 website ui kit",
+      "id": "ui_kits_website_readme_aglaya_website_ui_kit"
     },
     {
       "label": "Files",
@@ -522,9 +650,9 @@
       "source_file": "ui_kits/website/README.md",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "ui_kits_website_readme_files",
       "community": 39,
-      "norm_label": "files"
+      "norm_label": "files",
+      "id": "ui_kits_website_readme_files"
     },
     {
       "label": "Composition rules the kit enforces",
@@ -532,9 +660,9 @@
       "source_file": "ui_kits/website/README.md",
       "source_location": "L17",
       "_origin": "ast",
-      "id": "ui_kits_website_readme_composition_rules_the_kit_enforces",
       "community": 39,
-      "norm_label": "composition rules the kit enforces"
+      "norm_label": "composition rules the kit enforces",
+      "id": "ui_kits_website_readme_composition_rules_the_kit_enforces"
     },
     {
       "label": "Known gaps",
@@ -542,9 +670,9 @@
       "source_file": "ui_kits/website/README.md",
       "source_location": "L26",
       "_origin": "ast",
-      "id": "ui_kits_website_readme_known_gaps",
       "community": 39,
-      "norm_label": "known gaps"
+      "norm_label": "known gaps",
+      "id": "ui_kits_website_readme_known_gaps"
     },
     {
       "label": "AntiClient.jsx",
@@ -1825,12 +1953,165 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "claude",
+      "target": "claude_claude_md_aglaya_design_system",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "claude_claude_md_aglaya_design_system",
+      "target": "claude_aglaya_flota_el_capit\u00e1n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "claude_claude_md_aglaya_design_system",
+      "target": "claude_orden_de_lectura",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "claude_claude_md_aglaya_design_system",
+      "target": "claude_qu\u00e9_es_este_repo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "claude_claude_md_aglaya_design_system",
+      "target": "claude_reglas_duras",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "claude_aglaya_flota_el_capit\u00e1n",
+      "target": "claude_esta_secci\u00f3n_no_lleva_estado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tools/guard_huella.py",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "tools_guard_huella",
+      "target": "tools_guard_huella_enmascarar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tools/guard_huella.py",
+      "source_location": "L108",
+      "weight": 1.0,
+      "source": "tools_guard_huella",
+      "target": "tools_guard_huella_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tools/guard_huella.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "tools_guard_huella",
+      "target": "tools_guard_huella_recortar_seccion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tools/guard_huella.py",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "tools_guard_huella_main",
+      "target": "tools_guard_huella_enmascarar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tools/guard_huella.py",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "tools_guard_huella_rationale_89",
+      "target": "tools_guard_huella_enmascarar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tools/guard_huella.py",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "tools_guard_huella_main",
+      "target": "tools_guard_huella_recortar_seccion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "tools/test_guard_huella.sh",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "tools_test_guard_huella",
+      "target": "tools_test_guard_huella_probar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tools/test_guard_huella.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tools_test_guard_huella",
+      "target": "tools_test_guard_huella_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tools/test_guard_huella.sh",
+      "source_location": "L48",
+      "weight": 1.0,
+      "context": "call",
+      "source": "tools_test_guard_huella_sh__entry",
+      "target": "tools_test_guard_huella_probar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L62",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_all_tokens",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_all_tokens"
     },
     {
       "relation": "contains",
@@ -1838,9 +2119,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L359",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_available_logos",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_available_logos"
     },
     {
       "relation": "contains",
@@ -1848,9 +2129,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L35",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_branderror",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_branderror"
     },
     {
       "relation": "contains",
@@ -1858,9 +2139,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L132",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_bullets",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_bullets"
     },
     {
       "relation": "contains",
@@ -1868,9 +2149,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L73",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_category_of",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_category_of"
     },
     {
       "relation": "contains",
@@ -1878,9 +2159,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L234",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_check_voice",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_check_voice"
     },
     {
       "relation": "contains",
@@ -1888,9 +2169,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L189",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_forbidden_phrases",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_forbidden_phrases"
     },
     {
       "relation": "contains",
@@ -1898,9 +2179,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L369",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_get_logo",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_get_logo"
     },
     {
       "relation": "contains",
@@ -1908,9 +2189,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L412",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_get_nonnegotiables",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_get_nonnegotiables"
     },
     {
       "relation": "contains",
@@ -1918,9 +2199,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L80",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_get_token",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_get_token"
     },
     {
       "relation": "contains",
@@ -1928,9 +2209,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L202",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_get_voice_rules",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_get_voice_rules"
     },
     {
       "relation": "contains",
@@ -1938,9 +2219,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L312",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_is_allowed_word",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_is_allowed_word"
     },
     {
       "relation": "contains",
@@ -1948,9 +2229,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L92",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_list_tokens",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_list_tokens"
     },
     {
       "relation": "contains",
@@ -1958,9 +2239,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_read",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_read"
     },
     {
       "relation": "contains",
@@ -1968,9 +2249,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L219",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_replacement_map",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_replacement_map"
     },
     {
       "relation": "contains",
@@ -1978,9 +2259,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L121",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_section",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_section"
     },
     {
       "relation": "contains",
@@ -1988,9 +2269,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L162",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_signature_terms",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_signature_terms"
     },
     {
       "relation": "contains",
@@ -1998,9 +2279,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L158",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_strip_md",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_strip_md"
     },
     {
       "relation": "contains",
@@ -2008,9 +2289,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L141",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "aglaya_ds_mcp_brand_table_rows",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_table_rows"
     },
     {
       "relation": "references",
@@ -2040,7 +2321,7 @@
       "source_location": null,
       "weight": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "ui_kits_website_readme"
+      "target": "skill"
     },
     {
       "relation": "references",
@@ -2050,7 +2331,7 @@
       "source_location": null,
       "weight": 1.0,
       "source": "aglaya_ds_mcp_brand",
-      "target": "skill"
+      "target": "ui_kits_website_readme"
     },
     {
       "relation": "rationale_for",
@@ -2058,9 +2339,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_rationale_1",
-      "target": "aglaya_ds_mcp_brand",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand"
     },
     {
       "relation": "imports",
@@ -2079,9 +2360,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L35",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_branderror",
-      "target": "exception",
-      "confidence_score": 1.0
+      "target": "exception"
     },
     {
       "relation": "calls",
@@ -2090,9 +2371,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L379",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_get_logo",
-      "target": "aglaya_ds_mcp_brand_branderror",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_branderror"
     },
     {
       "relation": "calls",
@@ -2101,9 +2382,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L88",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_get_token",
-      "target": "aglaya_ds_mcp_brand_branderror",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_branderror"
     },
     {
       "relation": "calls",
@@ -2112,9 +2393,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L103",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_list_tokens",
-      "target": "aglaya_ds_mcp_brand_branderror",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_branderror"
     },
     {
       "relation": "rationale_for",
@@ -2122,9 +2403,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L36",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_rationale_36",
-      "target": "aglaya_ds_mcp_brand_branderror",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_branderror"
     },
     {
       "relation": "calls",
@@ -2133,9 +2414,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L41",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_read",
-      "target": "aglaya_ds_mcp_brand_branderror",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_branderror"
     },
     {
       "relation": "calls",
@@ -2144,9 +2425,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L64",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_all_tokens",
-      "target": "aglaya_ds_mcp_brand_read",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_read"
     },
     {
       "relation": "calls",
@@ -2155,9 +2436,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L191",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_forbidden_phrases",
-      "target": "aglaya_ds_mcp_brand_read",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_read"
     },
     {
       "relation": "calls",
@@ -2166,9 +2447,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L414",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_get_nonnegotiables",
-      "target": "aglaya_ds_mcp_brand_read",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_read"
     },
     {
       "relation": "calls",
@@ -2177,9 +2458,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L204",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_get_voice_rules",
-      "target": "aglaya_ds_mcp_brand_read",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_read"
     },
     {
       "relation": "references",
@@ -2188,9 +2469,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_read",
-      "target": "path",
-      "confidence_score": 1.0
+      "target": "path"
     },
     {
       "relation": "calls",
@@ -2199,9 +2480,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L165",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_signature_terms",
-      "target": "aglaya_ds_mcp_brand_read",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_read"
     },
     {
       "relation": "calls",
@@ -2210,9 +2491,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L83",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_get_token",
-      "target": "aglaya_ds_mcp_brand_all_tokens",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_all_tokens"
     },
     {
       "relation": "calls",
@@ -2221,9 +2502,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L98",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_list_tokens",
-      "target": "aglaya_ds_mcp_brand_all_tokens",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_all_tokens"
     },
     {
       "relation": "rationale_for",
@@ -2231,9 +2512,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L63",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_rationale_63",
-      "target": "aglaya_ds_mcp_brand_all_tokens",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_all_tokens"
     },
     {
       "relation": "calls",
@@ -2242,9 +2523,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L106",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_list_tokens",
-      "target": "aglaya_ds_mcp_brand_category_of",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_category_of"
     },
     {
       "relation": "rationale_for",
@@ -2252,9 +2533,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L81",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_rationale_81",
-      "target": "aglaya_ds_mcp_brand_get_token",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_get_token"
     },
     {
       "relation": "rationale_for",
@@ -2262,9 +2543,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L93",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_rationale_93",
-      "target": "aglaya_ds_mcp_brand_list_tokens",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_list_tokens"
     },
     {
       "relation": "calls",
@@ -2273,9 +2554,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L192",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_forbidden_phrases",
-      "target": "aglaya_ds_mcp_brand_section",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_section"
     },
     {
       "relation": "calls",
@@ -2284,9 +2565,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L415",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_get_nonnegotiables",
-      "target": "aglaya_ds_mcp_brand_section",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_section"
     },
     {
       "relation": "calls",
@@ -2295,9 +2576,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L207",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_get_voice_rules",
-      "target": "aglaya_ds_mcp_brand_section",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_section"
     },
     {
       "relation": "rationale_for",
@@ -2305,9 +2586,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L122",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_rationale_122",
-      "target": "aglaya_ds_mcp_brand_section",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_section"
     },
     {
       "relation": "calls",
@@ -2316,9 +2597,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L166",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_signature_terms",
-      "target": "aglaya_ds_mcp_brand_section",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_section"
     },
     {
       "relation": "calls",
@@ -2327,9 +2608,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L194",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_forbidden_phrases",
-      "target": "aglaya_ds_mcp_brand_bullets",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_bullets"
     },
     {
       "relation": "calls",
@@ -2338,9 +2619,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L416",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_get_nonnegotiables",
-      "target": "aglaya_ds_mcp_brand_bullets",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_bullets"
     },
     {
       "relation": "calls",
@@ -2349,9 +2630,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L208",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_get_voice_rules",
-      "target": "aglaya_ds_mcp_brand_bullets",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_bullets"
     },
     {
       "relation": "rationale_for",
@@ -2359,9 +2640,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L142",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_rationale_142",
-      "target": "aglaya_ds_mcp_brand_table_rows",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_table_rows"
     },
     {
       "relation": "calls",
@@ -2370,9 +2651,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L168",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_signature_terms",
-      "target": "aglaya_ds_mcp_brand_table_rows",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_table_rows"
     },
     {
       "relation": "calls",
@@ -2381,9 +2662,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L207",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_get_voice_rules",
-      "target": "aglaya_ds_mcp_brand_strip_md",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_strip_md"
     },
     {
       "relation": "calls",
@@ -2392,9 +2673,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L170",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_signature_terms",
-      "target": "aglaya_ds_mcp_brand_strip_md",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_strip_md"
     },
     {
       "relation": "calls",
@@ -2403,9 +2684,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L205",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_get_voice_rules",
-      "target": "aglaya_ds_mcp_brand_signature_terms",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_signature_terms"
     },
     {
       "relation": "calls",
@@ -2414,9 +2695,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L317",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_is_allowed_word",
-      "target": "aglaya_ds_mcp_brand_signature_terms",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_signature_terms"
     },
     {
       "relation": "rationale_for",
@@ -2424,9 +2705,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L163",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_rationale_163",
-      "target": "aglaya_ds_mcp_brand_signature_terms",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_signature_terms"
     },
     {
       "relation": "calls",
@@ -2435,9 +2716,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L221",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_replacement_map",
-      "target": "aglaya_ds_mcp_brand_signature_terms",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_signature_terms"
     },
     {
       "relation": "calls",
@@ -2446,9 +2727,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L255",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_check_voice",
-      "target": "aglaya_ds_mcp_brand_forbidden_phrases",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_forbidden_phrases"
     },
     {
       "relation": "rationale_for",
@@ -2456,9 +2737,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L190",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_rationale_190",
-      "target": "aglaya_ds_mcp_brand_forbidden_phrases",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_forbidden_phrases"
     },
     {
       "relation": "rationale_for",
@@ -2466,9 +2747,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L203",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_rationale_203",
-      "target": "aglaya_ds_mcp_brand_get_voice_rules",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_get_voice_rules"
     },
     {
       "relation": "calls",
@@ -2477,9 +2758,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L241",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_check_voice",
-      "target": "aglaya_ds_mcp_brand_replacement_map",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_replacement_map"
     },
     {
       "relation": "calls",
@@ -2488,9 +2769,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L325",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_is_allowed_word",
-      "target": "aglaya_ds_mcp_brand_replacement_map",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_replacement_map"
     },
     {
       "relation": "rationale_for",
@@ -2498,9 +2779,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L235",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_rationale_235",
-      "target": "aglaya_ds_mcp_brand_check_voice",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_check_voice"
     },
     {
       "relation": "rationale_for",
@@ -2508,9 +2789,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L313",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_rationale_313",
-      "target": "aglaya_ds_mcp_brand_is_allowed_word",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_is_allowed_word"
     },
     {
       "relation": "calls",
@@ -2519,9 +2800,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L381",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_get_logo",
-      "target": "aglaya_ds_mcp_brand_available_logos",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_available_logos"
     },
     {
       "relation": "rationale_for",
@@ -2529,9 +2810,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L370",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_rationale_370",
-      "target": "aglaya_ds_mcp_brand_get_logo",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_get_logo"
     },
     {
       "relation": "rationale_for",
@@ -2539,9 +2820,9 @@
       "source_file": "aglaya-ds-mcp/brand.py",
       "source_location": "L413",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_rationale_413",
-      "target": "aglaya_ds_mcp_brand_get_nonnegotiables",
-      "confidence_score": 1.0
+      "target": "aglaya_ds_mcp_brand_get_nonnegotiables"
     },
     {
       "relation": "contains",
@@ -2549,9 +2830,9 @@
       "source_file": "docs/CONTRACT.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_contract",
-      "target": "docs_contract_contract_estilo_de_marca_aglaya",
-      "confidence_score": 1.0
+      "target": "docs_contract_contract_estilo_de_marca_aglaya"
     },
     {
       "relation": "contains",
@@ -2559,9 +2840,9 @@
       "source_file": "docs/CONTRACT.md",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_contract_contract_estilo_de_marca_aglaya",
-      "target": "docs_contract_interfaces_dos_formas_de_consumir",
-      "confidence_score": 1.0
+      "target": "docs_contract_interfaces_dos_formas_de_consumir"
     },
     {
       "relation": "contains",
@@ -2569,9 +2850,9 @@
       "source_file": "docs/CONTRACT.md",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_contract_contract_estilo_de_marca_aglaya",
-      "target": "docs_contract_no_negociables",
-      "confidence_score": 1.0
+      "target": "docs_contract_no_negociables"
     },
     {
       "relation": "contains",
@@ -2579,9 +2860,9 @@
       "source_file": "docs/CONTRACT.md",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_contract_contract_estilo_de_marca_aglaya",
-      "target": "docs_contract_qui\u00e9n_consume",
-      "confidence_score": 1.0
+      "target": "docs_contract_qui\u00e9n_consume"
     },
     {
       "relation": "contains",
@@ -2589,9 +2870,9 @@
       "source_file": "docs/CONTRACT.md",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_contract_contract_estilo_de_marca_aglaya",
-      "target": "docs_contract_qui\u00e9n_no_exclusi\u00f3n_dura",
-      "confidence_score": 1.0
+      "target": "docs_contract_qui\u00e9n_no_exclusi\u00f3n_dura"
     },
     {
       "relation": "contains",
@@ -2599,9 +2880,9 @@
       "source_file": "docs/CONTRACT.md",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_contract_contract_estilo_de_marca_aglaya",
-      "target": "docs_contract_qu\u00e9_rige",
-      "confidence_score": 1.0
+      "target": "docs_contract_qu\u00e9_rige"
     },
     {
       "relation": "references",
@@ -2611,6 +2892,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "aglaya_ds_mcp_readme",
+      "target": "ui_kits_website_readme"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "skill",
       "target": "ui_kits_website_readme"
     },
     {
@@ -2704,6 +2995,16 @@
       "target": "ui_kits_website"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui_kits/website/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ui_kits_website_readme",
+      "target": "ui_kits_website_readme_aglaya_website_ui_kit"
+    },
+    {
       "relation": "documents",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -2714,34 +3015,14 @@
       "target": "voice_and_content"
     },
     {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "SKILL.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "skill",
-      "target": "ui_kits_website_readme"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "ui_kits/website/README.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "ui_kits_website_readme",
-      "target": "ui_kits_website_readme_aglaya_website_ui_kit",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ui_kits/website/README.md",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_kits_website_readme_aglaya_website_ui_kit",
-      "target": "ui_kits_website_readme_composition_rules_the_kit_enforces",
-      "confidence_score": 1.0
+      "target": "ui_kits_website_readme_composition_rules_the_kit_enforces"
     },
     {
       "relation": "contains",
@@ -2749,9 +3030,9 @@
       "source_file": "ui_kits/website/README.md",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_kits_website_readme_aglaya_website_ui_kit",
-      "target": "ui_kits_website_readme_files",
-      "confidence_score": 1.0
+      "target": "ui_kits_website_readme_files"
     },
     {
       "relation": "contains",
@@ -2759,9 +3040,9 @@
       "source_file": "ui_kits/website/README.md",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "ui_kits_website_readme_aglaya_website_ui_kit",
-      "target": "ui_kits_website_readme_known_gaps",
-      "confidence_score": 1.0
+      "target": "ui_kits_website_readme_known_gaps"
     },
     {
       "relation": "contains",
@@ -3597,22 +3878,6 @@
       "source_file": "README.md"
     },
     {
-      "id": "canonical_brand_source",
-      "label": "Canonical Brand Source (Sovereign Package)",
-      "nodes": [
-        "readme",
-        "skill",
-        "colors_and_type",
-        "assets",
-        "fonts",
-        "preview"
-      ],
-      "relation": "participate_in",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md"
-    },
-    {
       "id": "mcp_server_implementation",
       "label": "MCP Server Implementation (Query Layer)",
       "nodes": [
@@ -3624,25 +3889,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "aglaya-ds-mcp/README.md"
-    },
-    {
-      "id": "design_system_preview_suite",
-      "label": "Design System Preview and Documentation Suite",
-      "nodes": [
-        "readme",
-        "preview_brand_favicon_html",
-        "preview_brand_iconography_html",
-        "preview_colors_brand_html",
-        "preview_components_badges_html",
-        "preview_components_buttons_html",
-        "preview_components_card_html",
-        "preview_spacing_borders_html"
-      ],
-      "relation": "implement",
-      "confidence": "EXTRACTED",
-      "confidence_score": 0.95,
-      "source_file": "README.md, preview/*"
     }
   ],
-  "built_at_commit": "5576f561bba2c1afd1dcea724196ad2583f53d75"
+  "built_at_commit": "4aa514607a4bc2a24bb20cec5456bbf36c31620d"
 }

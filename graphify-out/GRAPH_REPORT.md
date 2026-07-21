@@ -1,16 +1,16 @@
-# Graph Report - aglaya-design-system  (2026-07-15)
+# Graph Report - aglaya-design-system  (2026-07-21)
 
 ## Corpus Check
-- 18 files · ~14,470 words
+- 21 files · ~16,744 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 151 nodes · 171 edges · 40 communities (12 shown, 28 thin omitted)
-- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.71)
+- 166 nodes · 186 edges · 42 communities (13 shown, 29 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.71)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5576f561`
+- Built from commit: `4aa51460`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -52,6 +52,8 @@
 - Space Mono Weights
 - CONTRACT — Estilo de marca AGLAYA
 - AGLAYA · Website UI Kit
+- guard_huella.py
+- test_guard_huella.sh
 
 ## God Nodes (most connected - your core abstractions)
 1. `_signature_terms()` - 9 edges
@@ -63,7 +65,7 @@
 7. `_section()` - 6 edges
 8. `_forbidden_phrases()` - 6 edges
 9. `CONTRACT — Estilo de marca AGLAYA` - 6 edges
-10. `_all_tokens()` - 5 edges
+10. `CLAUDE.md — aglaya-design-system` - 5 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Primary Logo Specimen` --displays--> `AGLAYA Logotype – White`  [INFERRED]
@@ -82,15 +84,13 @@
 
 ## Hyperedges (group relationships)
 - **Typography System (Display, Body, Mono)** — outfit_font, inter_font, space_mono_font [EXTRACTED 1.00]
-- **Canonical Brand Source (Sovereign Package)** — readme, skill, colors_and_type, assets, fonts, preview [EXTRACTED 1.00]
 - **MCP Server Implementation (Query Layer)** — aglaya_ds_mcp_server, aglaya_ds_mcp_brand, aglaya_ds_mcp_readme [EXTRACTED 1.00]
-- **Design System Preview and Documentation Suite** — readme, preview_brand_favicon_html, preview_brand_iconography_html, preview_colors_brand_html, preview_components_badges_html, preview_components_buttons_html, preview_components_card_html, preview_spacing_borders_html [EXTRACTED 0.95]
 
-## Communities (40 total, 28 thin omitted)
+## Communities (42 total, 29 thin omitted)
 
 ### Community 0 - "Brand Voice Rules"
-Cohesion: 0.17
-Nodes (22): _bullets(), check_voice(), _forbidden_phrases(), get_nonnegotiables(), get_voice_rules(), is_allowed_word(), AGLAYA brand core — sovereign, dependency-free readers over the canonical files., Return the body of a markdown section (### heading) up to the next     heading o (+14 more)
+Cohesion: 0.10
+Nodes (35): _all_tokens(), _available_logos(), BrandError, _bullets(), _category_of(), check_voice(), _forbidden_phrases(), get_logo() (+27 more)
 
 ### Community 1 - "Sovereign Brand Server"
 Cohesion: 0.16
@@ -101,8 +101,8 @@ Cohesion: 0.33
 Nodes (11): AGLAYA.biz Website, MCP Server Documentation, Logos and Favicons, Design Tokens (CSS Custom Properties), Font Files, Inter Typeface (Body), Outfit Typeface (Display), Design System Specimen Cards (+3 more)
 
 ### Community 3 - "Token Management API"
-Cohesion: 0.17
-Nodes (13): _all_tokens(), _available_logos(), BrandError, _category_of(), get_logo(), get_token(), list_tokens(), Raised for caller-facing problems (unknown token, missing file, etc.). (+5 more)
+Cohesion: 0.29
+Nodes (6): AGLAYA · Flota — el capitán, CLAUDE.md — aglaya-design-system, Esta sección no lleva estado, Orden de lectura, Qué es este repo, Reglas duras
 
 ### Community 4 - "MCP Server Testing"
 Cohesion: 0.20
@@ -124,19 +124,23 @@ Nodes (6): CONTRACT — Estilo de marca AGLAYA, Interfaces (dos formas de consum
 Cohesion: 0.50
 Nodes (4): AGLAYA · Website UI Kit, Composition rules the kit enforces, Files, Known gaps
 
+### Community 40 - "guard_huella.py"
+Cohesion: 0.60
+Nodes (4): enmascarar(), main(), Tapa los fragmentos entrecomillados conservando offsets y saltos., recortar_seccion()
+
 ## Knowledge Gaps
-- **42 isolated node(s):** `Qué rige`, `Interfaces (dos formas de consumir)`, `Quién consume`, `Quién NO (exclusión dura)`, `No-negociables` (+37 more)
+- **46 isolated node(s):** `Qué es este repo`, `Orden de lectura`, `Reglas duras`, `Esta sección no lleva estado`, `Qué rige` (+41 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **28 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **29 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `AGLAYA · Website UI Kit` connect `AGLAYA · Website UI Kit` to `Design System Assets`?**
-  _High betweenness centrality (0.018) - this node is a cross-community bridge._
-- **Why does `BrandError` connect `Token Management API` to `Brand Voice Rules`?**
-  _High betweenness centrality (0.013) - this node is a cross-community bridge._
+  _High betweenness centrality (0.015) - this node is a cross-community bridge._
 - **Why does `Design Tokens (CSS Custom Properties)` connect `Design System Assets` to `Brand Voice Rules`?**
-  _High betweenness centrality (0.012) - this node is a cross-community bridge._
-- **What connects `Qué rige`, `Interfaces (dos formas de consumir)`, `Quién consume` to the rest of the system?**
-  _42 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+- **What connects `Qué es este repo`, `Orden de lectura`, `Reglas duras` to the rest of the system?**
+  _46 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Brand Voice Rules` be split into smaller, more focused modules?**
+  _Cohesion score 0.10158730158730159 - nodes in this community are weakly interconnected._

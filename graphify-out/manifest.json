@@ -243,5 +243,25 @@
     "mtime": 1784155798.816933,
     "ast_hash": "2e3cc7f98eeebb7ce803745373e5ad48",
     "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1784635583.381051,
+    "ast_hash": "98fa5321d15a623e96a2593cc44fe8d9",
+    "semantic_hash": ""
+  },
+  "tools/guard_huella.py": {
+    "mtime": 1784634941.680508,
+    "ast_hash": "7e9e3ebe0a807e9c99d3a019c34845a9",
+    "semantic_hash": ""
+  },
+  "tools/test_guard_huella.sh": {
+    "mtime": 1784634933.7706273,
+    "ast_hash": "d771a52b8ac06e477d80ea1c27f21f27",
+    "semantic_hash": ""
+  },
+  ".github/workflows/huella.yml": {
+    "mtime": 1784634945.0974386,
+    "ast_hash": "3143c0a09ba10e856e2495a45841345b",
+    "semantic_hash": ""
   }
 }
