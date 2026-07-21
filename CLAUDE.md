@@ -9,7 +9,7 @@
 1. [`README.md`](README.md) — el canon: tokens, tipografía, voz, no-negociables.
 2. [`SKILL.md`](SKILL.md) — la skill de marca (fuente de los no-negociables que sirve el MCP).
 3. [`docs/CONTRACT.md`](docs/CONTRACT.md) — **el contrato de marca local** (v1.0.0, tag `v1.0.0`): qué expone este repo, qué excluye (los 6 dummies de `ui_kits/`), y el puntero al registro de contratos de la flota.
-4. `aglaya-ds-mcp/` — el **servidor MCP `aglaya-ds`** (7 tools read-only: `get_token`, `list_tokens`, `get_logo`, `get_voice_rules`, `check_voice`, `is_allowed_word`, `get_nonnegotiables`). Es la vía programática de consumo de marca para toda la flota.
+4. `aglaya-ds-mcp/` — el **servidor MCP `aglaya-ds`** (tools read-only: `get_token`, `list_tokens`, `get_logo`, `get_voice_rules`, `check_voice`, `is_allowed_word`, `get_nonnegotiables`). Es la vía programática de consumo de marca para toda la flota.
 
 ## Reglas duras
 
@@ -20,14 +20,40 @@
 
 ## AGLAYA · Flota — el capitán
 
-Este repo es una **nave de la flota AGLAYA**. Existe un orquestador (el «capitán», repo `aglaya-orchestrator` en `/Users/AGLAYA/Local Sites/aglaya-orchestrator`) cuyo atlas es la fuente de verdad **de flota**: registro de contratos inter-nave (`atlas/contratos/README.md`), fichas por nave (`atlas/repos/aglaya-design-system/`) y tablero global (`atlas/tablero.md`).
+Este repo es una **nave de la flota AGLAYA**. Existe un orquestador (el «capitán», repo `aglaya-orchestrator` en `/Users/AGLAYA/Local Sites/aglaya-orchestrator`). Qué es y qué no:
 
-Reglas para cualquier hilo que trabaje aquí:
+- **Es enrutador**: sabe qué nave contesta cada pregunta y a quién preguntar cuando no está aquí.
+- **Es dueño del diseño**: los contratos inter-nave y la forma acordada de la flota los custodia él (`atlas/contratos/README.md`).
+- **Es ejecutor de lo barato**: hace los pases y arreglos triviales que no merecen abrir un hilo por nave.
+- **NO es autoridad sobre el estado de este repo.** Su ficha de esta nave (`atlas/repos/aglaya-design-system/`) describe el diseño acordado, no lo que hay hoy en disco. Si su ficha y este repo se contradicen, **gana el repo** — y hay que avisarle.
+
+**Canal abierto:** MCP **`aglaya-atlas`**, montado en toda sesión de Claude de esta máquina. Contesta leyendo el atlas y citando `archivo:línea`. No hay que esperar un brief: se le pregunta.
+
+### Esta sección no lleva estado
+
+Cada pregunta se contesta yendo a mirar. La tercera columna es la que hace el trabajo: nombra el atajo que ya nos ha costado dinero.
+
+| Pregunta | Se contesta con | NUNCA con |
+|---|---|---|
+| ¿En qué estado está este repo? (HEAD, rama, sucios, sin pushear) | `git status` / `git log` aquí mismo · `repo_estado` del MCP `aglaya-atlas`, que lo deriva de git | una línea de «último pase» ni un marcador de progreso escritos en este archivo · la ficha del atlas |
+| ¿El MCP `aglaya-ds` está montado y qué tools expone? | la lista de tools del servidor en la sesión actual · `python3 aglaya-ds-mcp/selftest.py` | un conteo de tools tecleado aquí · «el MCP está arriba» leído en un doc |
+| ¿Qué versión tiene el contrato de marca? | `git tag --list` · la cabecera de [`docs/CONTRACT.md`](docs/CONTRACT.md) | un número de versión tecleado en esta sección |
+| ¿Un token, un logo, los no-negociables? | MCP `aglaya-ds` (`get_token`, `get_logo`, `get_nonnegotiables`) sobre `colors_and_type.css` y `SKILL.md` | parafrasear el `README.md` de memoria |
+| ¿Qué contrato rige esta marca y quién la consume? | `contrato` y `quien_consume` del MCP `aglaya-atlas` | una lista de consumidores copiada aquí, que envejece a espaldas de todos |
+| ¿Precios, ofertas, GTM? | `verdad_comercial` del MCP `aglaya-atlas` | una cifra escrita en este repo |
+| ¿Un servicio de la flota responde ahora mismo? | el panel del proveedor · `servicios` y `flags` del MCP `aglaya-atlas` | un doc que diga que está arriba · la salida truncada de un comando |
+| ¿Qué afirma el atlas sobre mí, y se lo puede creer? | `contradicciones` del MCP `aglaya-atlas` lista dónde el atlas se hace dueño de estado de esta nave | tratar `ficha` como autoridad sobre este repo: describe el diseño, no el disco |
+| ¿Y si la pregunta no cae en ninguna fila? | `donde_pregunto` y `buscar` del MCP `aglaya-atlas` | inventar la respuesta desde esta tabla |
+
+Reglas que siguen vigentes:
 - **Antes de un cambio estructural** (tokens, voz, contrato de marca, tools del MCP), consulta el registro de contratos del atlas — toda superficie AGLAYA consume de este repo.
 - **El capitán puede haber tocado docs de este repo**: sus commits van identificados. Este repo no lleva CHANGELOG — el registro es el git log.
-- La verdad comercial (precios, ofertas, GTM) NO vive aquí: vive en el atlas del capitán (`atlas/gtm.md`).
 
+**Esto lo vigila un script.** [`tools/guard_huella.py`](tools/guard_huella.py) lee esta sección y falla si reaparece una fecha de pase, un marcador de progreso `N/N`, un conteo, una versión a mano, un precio, un sello de `verificado`, un «está `encendido`» o un valor de marca en hexadecimal copiado a mano. Solo vigila esta sección — el resto del archivo tiene versiones y conteos legítimos. Exime lo que va entre acentos graves, y solo el fragmento: si necesitas nombrar un patrón, entrecomíllalo; no ensanches la exención.
 
-**Consulta al capitán EN VIVO:** MCP **`aglaya-atlas`** (disponible en toda sesión de Claude de esta máquina) — `flota_estado` · `ficha(nave)` · `contrato(nombre)` · `quien_consume` · `verdad_comercial` · `parked` · `buscar`. Responde leyendo el atlas en vivo y citando fuente. Ya no hace falta esperar un brief del capitán: pregúntale.
+Y **al guardián lo vigila su propia batería**: [`tools/test_guard_huella.sh`](tools/test_guard_huella.sh) sabotea este archivo con cada forma prohibida y comprueba que cada una se pone roja. Existe porque un guardián puede correr y dar verde estando roto — así se cazaron un patrón ciego a las MAYÚSCULAS y un precio que se colaba. Si tocas las reglas, corre la batería. Las dos cosas corren en CI ([`.github/workflows/huella.yml`](.github/workflows/huella.yml)) y a mano:
 
-**Último pase del capitán: 2026-07-17** — re-verificación 7/7 (cerrada por primera vez el 15-jul): MCP vivo (7 tools), `CONTRACT.md` + tag `v1.0.0` verificados, este `CLAUDE.md` creado (no existía entrada para agentes), grafo fresco commiteado y republicado al global.
+```
+python3 tools/guard_huella.py
+bash tools/test_guard_huella.sh
+```
