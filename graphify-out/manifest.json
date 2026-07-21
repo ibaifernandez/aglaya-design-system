@@ -155,8 +155,8 @@
     "semantic_hash": "b7fce19b9c5ef6f85ec77eff7dab1b00"
   },
   "ui_kits/website/README.md": {
-    "mtime": 1784155810.9977558,
-    "ast_hash": "1baa7f260f250085b1f67ff10d1165eb",
+    "mtime": 1784647152.7439623,
+    "ast_hash": "6821e731ad27eec864a7c7de74b5a0a3",
     "semantic_hash": ""
   },
   "ui_kits/website/index.html": {
@@ -235,18 +235,18 @@
     "semantic_hash": "de66bc25a8ed37c526e3b5f961a9c4c1"
   },
   "aglaya-ds-mcp/README.md": {
-    "mtime": 1783883291.0443738,
-    "ast_hash": "643850dcdbcfbed620020a6375014cec",
+    "mtime": 1784647151.2988591,
+    "ast_hash": "253ddb0309d58c49f32e8f18b14c05f3",
     "semantic_hash": ""
   },
   "docs/CONTRACT.md": {
-    "mtime": 1784155798.816933,
-    "ast_hash": "2e3cc7f98eeebb7ce803745373e5ad48",
+    "mtime": 1784647166.3495407,
+    "ast_hash": "c57ce5fa6ba5aaabed6717d6543993db",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1784635583.381051,
-    "ast_hash": "98fa5321d15a623e96a2593cc44fe8d9",
+    "mtime": 1784647184.0516908,
+    "ast_hash": "7e8b332be48b9606373f4771b1896358",
     "semantic_hash": ""
   },
   "tools/guard_huella.py": {

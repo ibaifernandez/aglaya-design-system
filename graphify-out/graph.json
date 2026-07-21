@@ -103,14 +103,204 @@
       "norm_label": "esta seccion no lleva estado"
     },
     {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "aglaya-ds-mcp/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "aglaya_ds_mcp_readme",
+      "community": 38,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "AGLAYA Design System \u2014 Sovereign Brand MCP",
+      "file_type": "document",
+      "source_file": "aglaya-ds-mcp/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "aglaya_ds_mcp_readme_aglaya_design_system_sovereign_brand_mcp",
+      "community": 38,
+      "norm_label": "aglaya design system \u2014 sovereign brand mcp"
+    },
+    {
+      "label": "Tools",
+      "file_type": "document",
+      "source_file": "aglaya-ds-mcp/README.md",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "aglaya_ds_mcp_readme_tools",
+      "community": 38,
+      "norm_label": "tools"
+    },
+    {
+      "label": "Setup (one-time bootstrap)",
+      "file_type": "document",
+      "source_file": "aglaya-ds-mcp/README.md",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "aglaya_ds_mcp_readme_setup_one_time_bootstrap",
+      "community": 38,
+      "norm_label": "setup (one-time bootstrap)"
+    },
+    {
+      "label": "Register",
+      "file_type": "document",
+      "source_file": "aglaya-ds-mcp/README.md",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "aglaya_ds_mcp_readme_register",
+      "community": 38,
+      "norm_label": "register"
+    },
+    {
+      "label": "Response shapes",
+      "file_type": "document",
+      "source_file": "aglaya-ds-mcp/README.md",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "aglaya_ds_mcp_readme_response_shapes",
+      "community": 38,
+      "norm_label": "response shapes"
+    },
+    {
+      "label": "Verify",
+      "file_type": "document",
+      "source_file": "aglaya-ds-mcp/README.md",
+      "source_location": "L115",
+      "_origin": "ast",
+      "id": "aglaya_ds_mcp_readme_verify",
+      "community": 38,
+      "norm_label": "verify"
+    },
+    {
+      "label": "Files",
+      "file_type": "document",
+      "source_file": "aglaya-ds-mcp/README.md",
+      "source_location": "L122",
+      "_origin": "ast",
+      "id": "aglaya_ds_mcp_readme_files",
+      "community": 38,
+      "norm_label": "files"
+    },
+    {
+      "label": "CONTRACT.md",
+      "file_type": "document",
+      "source_file": "docs/CONTRACT.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_contract",
+      "community": 3,
+      "norm_label": "contract.md"
+    },
+    {
+      "label": "CONTRACT - AGLAYA Design System",
+      "file_type": "document",
+      "source_file": "docs/CONTRACT.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_contract_contract_aglaya_design_system",
+      "community": 3,
+      "norm_label": "contract - aglaya design system"
+    },
+    {
+      "label": "Misi\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/CONTRACT.md",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "docs_contract_misi\u00f3n",
+      "community": 3,
+      "norm_label": "mision"
+    },
+    {
+      "label": "Interfaces (dos formas de consumir)",
+      "file_type": "document",
+      "source_file": "docs/CONTRACT.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "docs_contract_interfaces_dos_formas_de_consumir",
+      "community": 3,
+      "norm_label": "interfaces (dos formas de consumir)"
+    },
+    {
+      "label": "No consumidores",
+      "file_type": "document",
+      "source_file": "docs/CONTRACT.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "docs_contract_no_consumidores",
+      "community": 3,
+      "norm_label": "no consumidores"
+    },
+    {
+      "label": "Qu\u00e9 impone al consumidor",
+      "file_type": "document",
+      "source_file": "docs/CONTRACT.md",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "docs_contract_qu\u00e9_impone_al_consumidor",
+      "community": 3,
+      "norm_label": "que impone al consumidor"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "ui_kits/website/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "ui_kits_website_readme",
+      "community": 2,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "AGLAYA \u00b7 Website UI Kit",
+      "file_type": "document",
+      "source_file": "ui_kits/website/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "ui_kits_website_readme_aglaya_website_ui_kit",
+      "community": 2,
+      "norm_label": "aglaya \u00b7 website ui kit"
+    },
+    {
+      "label": "Files",
+      "file_type": "document",
+      "source_file": "ui_kits/website/README.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "ui_kits_website_readme_files",
+      "community": 2,
+      "norm_label": "files"
+    },
+    {
+      "label": "Composition rules the kit enforces",
+      "file_type": "document",
+      "source_file": "ui_kits/website/README.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "ui_kits_website_readme_composition_rules_the_kit_enforces",
+      "community": 2,
+      "norm_label": "composition rules the kit enforces"
+    },
+    {
+      "label": "Known gaps",
+      "file_type": "document",
+      "source_file": "ui_kits/website/README.md",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "ui_kits_website_readme_known_gaps",
+      "community": 2,
+      "norm_label": "known gaps"
+    },
+    {
       "label": "guard_huella.py",
       "file_type": "code",
       "source_file": "tools/guard_huella.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "tools_guard_huella",
       "community": 40,
-      "norm_label": "guard_huella.py"
+      "norm_label": "guard_huella.py",
+      "id": "tools_guard_huella"
     },
     {
       "label": "enmascarar()",
@@ -118,9 +308,9 @@
       "source_file": "tools/guard_huella.py",
       "source_location": "L88",
       "_origin": "ast",
-      "id": "tools_guard_huella_enmascarar",
       "community": 40,
-      "norm_label": "enmascarar()"
+      "norm_label": "enmascarar()",
+      "id": "tools_guard_huella_enmascarar"
     },
     {
       "label": "recortar_seccion()",
@@ -128,9 +318,9 @@
       "source_file": "tools/guard_huella.py",
       "source_location": "L97",
       "_origin": "ast",
-      "id": "tools_guard_huella_recortar_seccion",
       "community": 40,
-      "norm_label": "recortar_seccion()"
+      "norm_label": "recortar_seccion()",
+      "id": "tools_guard_huella_recortar_seccion"
     },
     {
       "label": "main()",
@@ -138,9 +328,9 @@
       "source_file": "tools/guard_huella.py",
       "source_location": "L108",
       "_origin": "ast",
-      "id": "tools_guard_huella_main",
       "community": 40,
-      "norm_label": "main()"
+      "norm_label": "main()",
+      "id": "tools_guard_huella_main"
     },
     {
       "label": "Tapa los fragmentos entrecomillados conservando offsets y saltos.",
@@ -148,9 +338,9 @@
       "source_file": "tools/guard_huella.py",
       "source_location": "L89",
       "_origin": "ast",
-      "id": "tools_guard_huella_rationale_89",
       "community": 40,
-      "norm_label": "tapa los fragmentos entrecomillados conservando offsets y saltos."
+      "norm_label": "tapa los fragmentos entrecomillados conservando offsets y saltos.",
+      "id": "tools_guard_huella_rationale_89"
     },
     {
       "label": "test_guard_huella.sh",
@@ -162,9 +352,9 @@
         "kind": "file"
       },
       "_origin": "ast",
-      "id": "tools_test_guard_huella",
       "community": 41,
-      "norm_label": "test_guard_huella.sh"
+      "norm_label": "test_guard_huella.sh",
+      "id": "tools_test_guard_huella"
     },
     {
       "label": "test_guard_huella.sh script",
@@ -176,9 +366,9 @@
         "kind": "bash_entrypoint"
       },
       "_origin": "ast",
-      "id": "tools_test_guard_huella_sh__entry",
       "community": 41,
-      "norm_label": "test_guard_huella.sh script"
+      "norm_label": "test_guard_huella.sh script",
+      "id": "tools_test_guard_huella_sh__entry"
     },
     {
       "label": "probar()",
@@ -190,9 +380,9 @@
         "kind": "bash_function"
       },
       "_origin": "ast",
-      "id": "tools_test_guard_huella_probar",
       "community": 41,
-      "norm_label": "probar()"
+      "norm_label": "probar()",
+      "id": "tools_test_guard_huella_probar"
     },
     {
       "label": "brand.py",
@@ -553,126 +743,6 @@
       "community": 0,
       "norm_label": "the hard brand rules, read live from skill.md '## non-negotiables'.",
       "id": "aglaya_ds_mcp_brand_rationale_413"
-    },
-    {
-      "label": "CONTRACT.md",
-      "file_type": "document",
-      "source_file": "docs/CONTRACT.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 38,
-      "norm_label": "contract.md",
-      "id": "docs_contract"
-    },
-    {
-      "label": "CONTRACT \u2014 Estilo de marca AGLAYA",
-      "file_type": "document",
-      "source_file": "docs/CONTRACT.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 38,
-      "norm_label": "contract \u2014 estilo de marca aglaya",
-      "id": "docs_contract_contract_estilo_de_marca_aglaya"
-    },
-    {
-      "label": "Qu\u00e9 rige",
-      "file_type": "document",
-      "source_file": "docs/CONTRACT.md",
-      "source_location": "L6",
-      "_origin": "ast",
-      "community": 38,
-      "norm_label": "que rige",
-      "id": "docs_contract_qu\u00e9_rige"
-    },
-    {
-      "label": "Interfaces (dos formas de consumir)",
-      "file_type": "document",
-      "source_file": "docs/CONTRACT.md",
-      "source_location": "L9",
-      "_origin": "ast",
-      "community": 38,
-      "norm_label": "interfaces (dos formas de consumir)",
-      "id": "docs_contract_interfaces_dos_formas_de_consumir"
-    },
-    {
-      "label": "Qui\u00e9n consume",
-      "file_type": "document",
-      "source_file": "docs/CONTRACT.md",
-      "source_location": "L13",
-      "_origin": "ast",
-      "community": 38,
-      "norm_label": "quien consume",
-      "id": "docs_contract_qui\u00e9n_consume"
-    },
-    {
-      "label": "Qui\u00e9n NO (exclusi\u00f3n dura)",
-      "file_type": "document",
-      "source_file": "docs/CONTRACT.md",
-      "source_location": "L16",
-      "_origin": "ast",
-      "community": 38,
-      "norm_label": "quien no (exclusion dura)",
-      "id": "docs_contract_qui\u00e9n_no_exclusi\u00f3n_dura"
-    },
-    {
-      "label": "No-negociables",
-      "file_type": "document",
-      "source_file": "docs/CONTRACT.md",
-      "source_location": "L19",
-      "_origin": "ast",
-      "community": 38,
-      "norm_label": "no-negociables",
-      "id": "docs_contract_no_negociables"
-    },
-    {
-      "label": "README.md",
-      "file_type": "document",
-      "source_file": "ui_kits/website/README.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "readme.md",
-      "id": "ui_kits_website_readme"
-    },
-    {
-      "label": "AGLAYA \u00b7 Website UI Kit",
-      "file_type": "document",
-      "source_file": "ui_kits/website/README.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 39,
-      "norm_label": "aglaya \u00b7 website ui kit",
-      "id": "ui_kits_website_readme_aglaya_website_ui_kit"
-    },
-    {
-      "label": "Files",
-      "file_type": "document",
-      "source_file": "ui_kits/website/README.md",
-      "source_location": "L5",
-      "_origin": "ast",
-      "community": 39,
-      "norm_label": "files",
-      "id": "ui_kits_website_readme_files"
-    },
-    {
-      "label": "Composition rules the kit enforces",
-      "file_type": "document",
-      "source_file": "ui_kits/website/README.md",
-      "source_location": "L17",
-      "_origin": "ast",
-      "community": 39,
-      "norm_label": "composition rules the kit enforces",
-      "id": "ui_kits_website_readme_composition_rules_the_kit_enforces"
-    },
-    {
-      "label": "Known gaps",
-      "file_type": "document",
-      "source_file": "ui_kits/website/README.md",
-      "source_location": "L26",
-      "_origin": "ast",
-      "community": 39,
-      "norm_label": "known gaps",
-      "id": "ui_kits_website_readme_known_gaps"
     },
     {
       "label": "AntiClient.jsx",
@@ -1865,20 +1935,6 @@
       "id": "ui_kits_website"
     },
     {
-      "label": "MCP Server Documentation",
-      "file_type": "document",
-      "source_file": "aglaya-ds-mcp/README.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 2,
-      "norm_label": "mcp server documentation",
-      "community_name": "Design System Assets",
-      "id": "aglaya_ds_mcp_readme"
-    },
-    {
       "label": "AGLAYA.biz Website",
       "file_type": "concept",
       "source_file": null,
@@ -1961,6 +2017,16 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "claude",
+      "target": "docs_contract",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
@@ -2013,12 +2079,282 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "aglaya-ds-mcp/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "aglaya_ds_mcp_readme",
+      "target": "aglaya_ds_mcp_readme_aglaya_design_system_sovereign_brand_mcp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "aglaya-ds-mcp/README.md",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "aglaya_ds_mcp_readme_aglaya_design_system_sovereign_brand_mcp",
+      "target": "aglaya_ds_mcp_readme_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "aglaya-ds-mcp/README.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "aglaya_ds_mcp_readme_aglaya_design_system_sovereign_brand_mcp",
+      "target": "aglaya_ds_mcp_readme_register",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "aglaya-ds-mcp/README.md",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "aglaya_ds_mcp_readme_aglaya_design_system_sovereign_brand_mcp",
+      "target": "aglaya_ds_mcp_readme_response_shapes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "aglaya-ds-mcp/README.md",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "aglaya_ds_mcp_readme_aglaya_design_system_sovereign_brand_mcp",
+      "target": "aglaya_ds_mcp_readme_setup_one_time_bootstrap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "aglaya-ds-mcp/README.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "aglaya_ds_mcp_readme_aglaya_design_system_sovereign_brand_mcp",
+      "target": "aglaya_ds_mcp_readme_tools",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "aglaya-ds-mcp/README.md",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "aglaya_ds_mcp_readme_aglaya_design_system_sovereign_brand_mcp",
+      "target": "aglaya_ds_mcp_readme_verify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CONTRACT.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_contract",
+      "target": "docs_contract_contract_aglaya_design_system",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CONTRACT.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "docs_contract_contract_aglaya_design_system",
+      "target": "docs_contract_interfaces_dos_formas_de_consumir",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CONTRACT.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "docs_contract_contract_aglaya_design_system",
+      "target": "docs_contract_misi\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CONTRACT.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "docs_contract_contract_aglaya_design_system",
+      "target": "docs_contract_no_consumidores",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CONTRACT.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "docs_contract_contract_aglaya_design_system",
+      "target": "docs_contract_qu\u00e9_impone_al_consumidor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "skill",
+      "target": "ui_kits_website_readme"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "ui_kits_website_readme",
+      "target": "aglaya_biz"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "ui_kits_website_readme",
+      "target": "assets"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "ui_kits_website_readme",
+      "target": "colors_and_type"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "ui_kits_website_readme",
+      "target": "fonts"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "ui_kits_website_readme",
+      "target": "inter_font"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "ui_kits_website_readme",
+      "target": "outfit_font"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "ui_kits_website_readme",
+      "target": "preview"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "ui_kits_website_readme",
+      "target": "space_mono_font"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "ui_kits_website_readme",
+      "target": "ui_kits_website"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui_kits/website/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "ui_kits_website_readme",
+      "target": "ui_kits_website_readme_aglaya_website_ui_kit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "documents",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "ui_kits_website_readme",
+      "target": "voice_and_content"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui_kits/website/README.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "ui_kits_website_readme_aglaya_website_ui_kit",
+      "target": "ui_kits_website_readme_composition_rules_the_kit_enforces",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui_kits/website/README.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "ui_kits_website_readme_aglaya_website_ui_kit",
+      "target": "ui_kits_website_readme_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ui_kits/website/README.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "ui_kits_website_readme_aglaya_website_ui_kit",
+      "target": "ui_kits_website_readme_known_gaps",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "tools/guard_huella.py",
       "source_location": "L88",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tools_guard_huella",
-      "target": "tools_guard_huella_enmascarar",
-      "confidence_score": 1.0
+      "target": "tools_guard_huella_enmascarar"
     },
     {
       "relation": "contains",
@@ -2026,9 +2362,9 @@
       "source_file": "tools/guard_huella.py",
       "source_location": "L108",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tools_guard_huella",
-      "target": "tools_guard_huella_main",
-      "confidence_score": 1.0
+      "target": "tools_guard_huella_main"
     },
     {
       "relation": "contains",
@@ -2036,9 +2372,9 @@
       "source_file": "tools/guard_huella.py",
       "source_location": "L97",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tools_guard_huella",
-      "target": "tools_guard_huella_recortar_seccion",
-      "confidence_score": 1.0
+      "target": "tools_guard_huella_recortar_seccion"
     },
     {
       "relation": "calls",
@@ -2047,9 +2383,9 @@
       "source_file": "tools/guard_huella.py",
       "source_location": "L127",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tools_guard_huella_main",
-      "target": "tools_guard_huella_enmascarar",
-      "confidence_score": 1.0
+      "target": "tools_guard_huella_enmascarar"
     },
     {
       "relation": "rationale_for",
@@ -2057,9 +2393,9 @@
       "source_file": "tools/guard_huella.py",
       "source_location": "L89",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tools_guard_huella_rationale_89",
-      "target": "tools_guard_huella_enmascarar",
-      "confidence_score": 1.0
+      "target": "tools_guard_huella_enmascarar"
     },
     {
       "relation": "calls",
@@ -2068,9 +2404,9 @@
       "source_file": "tools/guard_huella.py",
       "source_location": "L115",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tools_guard_huella_main",
-      "target": "tools_guard_huella_recortar_seccion",
-      "confidence_score": 1.0
+      "target": "tools_guard_huella_recortar_seccion"
     },
     {
       "relation": "defines",
@@ -2078,9 +2414,9 @@
       "source_file": "tools/test_guard_huella.sh",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tools_test_guard_huella",
-      "target": "tools_test_guard_huella_probar",
-      "confidence_score": 1.0
+      "target": "tools_test_guard_huella_probar"
     },
     {
       "relation": "contains",
@@ -2088,9 +2424,9 @@
       "source_file": "tools/test_guard_huella.sh",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tools_test_guard_huella",
-      "target": "tools_test_guard_huella_sh__entry",
-      "confidence_score": 1.0
+      "target": "tools_test_guard_huella_sh__entry"
     },
     {
       "relation": "calls",
@@ -2099,9 +2435,9 @@
       "source_location": "L48",
       "weight": 1.0,
       "context": "call",
+      "confidence_score": 1.0,
       "source": "tools_test_guard_huella_sh__entry",
-      "target": "tools_test_guard_huella_probar",
-      "confidence_score": 1.0
+      "target": "tools_test_guard_huella_probar"
     },
     {
       "relation": "contains",
@@ -2292,46 +2628,6 @@
       "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand",
       "target": "aglaya_ds_mcp_brand_table_rows"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "aglaya-ds-mcp/README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "aglaya_ds_mcp_brand",
-      "target": "assets"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "aglaya-ds-mcp/README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "aglaya_ds_mcp_brand",
-      "target": "colors_and_type"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "aglaya-ds-mcp/README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "aglaya_ds_mcp_brand",
-      "target": "skill"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "aglaya-ds-mcp/README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "aglaya_ds_mcp_brand",
-      "target": "ui_kits_website_readme"
     },
     {
       "relation": "rationale_for",
@@ -2823,226 +3119,6 @@
       "confidence_score": 1.0,
       "source": "aglaya_ds_mcp_brand_rationale_413",
       "target": "aglaya_ds_mcp_brand_get_nonnegotiables"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CONTRACT.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "docs_contract",
-      "target": "docs_contract_contract_estilo_de_marca_aglaya"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CONTRACT.md",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "docs_contract_contract_estilo_de_marca_aglaya",
-      "target": "docs_contract_interfaces_dos_formas_de_consumir"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CONTRACT.md",
-      "source_location": "L19",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "docs_contract_contract_estilo_de_marca_aglaya",
-      "target": "docs_contract_no_negociables"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CONTRACT.md",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "docs_contract_contract_estilo_de_marca_aglaya",
-      "target": "docs_contract_qui\u00e9n_consume"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CONTRACT.md",
-      "source_location": "L16",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "docs_contract_contract_estilo_de_marca_aglaya",
-      "target": "docs_contract_qui\u00e9n_no_exclusi\u00f3n_dura"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CONTRACT.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "docs_contract_contract_estilo_de_marca_aglaya",
-      "target": "docs_contract_qu\u00e9_rige"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "aglaya-ds-mcp/README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "aglaya_ds_mcp_readme",
-      "target": "ui_kits_website_readme"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "SKILL.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "skill",
-      "target": "ui_kits_website_readme"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "ui_kits_website_readme",
-      "target": "aglaya_biz"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "ui_kits_website_readme",
-      "target": "assets"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "ui_kits_website_readme",
-      "target": "colors_and_type"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "ui_kits_website_readme",
-      "target": "fonts"
-    },
-    {
-      "relation": "cites",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "ui_kits_website_readme",
-      "target": "inter_font"
-    },
-    {
-      "relation": "cites",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "ui_kits_website_readme",
-      "target": "outfit_font"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "ui_kits_website_readme",
-      "target": "preview"
-    },
-    {
-      "relation": "cites",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "ui_kits_website_readme",
-      "target": "space_mono_font"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "ui_kits_website_readme",
-      "target": "ui_kits_website"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "ui_kits/website/README.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "ui_kits_website_readme",
-      "target": "ui_kits_website_readme_aglaya_website_ui_kit"
-    },
-    {
-      "relation": "documents",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "ui_kits_website_readme",
-      "target": "voice_and_content"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "ui_kits/website/README.md",
-      "source_location": "L17",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "ui_kits_website_readme_aglaya_website_ui_kit",
-      "target": "ui_kits_website_readme_composition_rules_the_kit_enforces"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "ui_kits/website/README.md",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "ui_kits_website_readme_aglaya_website_ui_kit",
-      "target": "ui_kits_website_readme_files"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "ui_kits/website/README.md",
-      "source_location": "L26",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "ui_kits_website_readme_aglaya_website_ui_kit",
-      "target": "ui_kits_website_readme_known_gaps"
     },
     {
       "relation": "contains",
@@ -3726,16 +3802,6 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "aglaya-ds-mcp/README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "aglaya_ds_mcp_readme",
-      "target": "skill"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
       "source_file": "SKILL.md",
       "source_location": null,
       "weight": 1.0,
@@ -3783,16 +3849,6 @@
       "target": "colors_and_type"
     },
     {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "aglaya-ds-mcp/README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "aglaya_ds_mcp_readme",
-      "target": "colors_and_type"
-    },
-    {
       "relation": "shares_data_with",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -3831,16 +3887,6 @@
       "weight": 1.0,
       "source": "ui_kits_website",
       "target": "colors_and_type"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "aglaya-ds-mcp/README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "aglaya_ds_mcp_readme",
-      "target": "assets"
     },
     {
       "relation": "shares_data_with",
@@ -3891,5 +3937,5 @@
       "source_file": "aglaya-ds-mcp/README.md"
     }
   ],
-  "built_at_commit": "4aa514607a4bc2a24bb20cec5456bbf36c31620d"
+  "built_at_commit": "8ad78e276288a6116f535ffe68e4392298357875"
 }
