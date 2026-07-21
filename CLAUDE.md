@@ -8,19 +8,19 @@
 
 1. [`README.md`](README.md) — el canon: tokens, tipografía, voz, no-negociables.
 2. [`SKILL.md`](SKILL.md) — la skill de marca (fuente de los no-negociables que sirve el MCP).
-3. [`docs/CONTRACT.md`](docs/CONTRACT.md) — **el contrato de marca local** (v1.0.0, tag `v1.0.0`): qué expone este repo, qué excluye (los 6 dummies de `ui_kits/`), y el puntero al registro de contratos de la flota.
-4. `aglaya-ds-mcp/` — el **servidor MCP `aglaya-ds`** (tools read-only: `get_token`, `list_tokens`, `get_logo`, `get_voice_rules`, `check_voice`, `is_allowed_word`, `get_nonnegotiables`). Es la vía programática de consumo de marca para toda la flota.
+3. [`docs/CONTRACT.md`](docs/CONTRACT.md) — **el contrato de marca local**: quién manda, en qué orden, cómo se consume y quién NO puede consumir. Versión: la del tag (`git tag --list`), no una tecleada aquí.
+4. `aglaya-ds-mcp/` — el **servidor MCP `aglaya-ds`**, read-only. Es la vía programática de consumo de marca para toda la flota. Qué tools expone hoy: la sesión que lo tenga montado, o `aglaya-ds-mcp/server.py`.
 
 ## Reglas duras
 
 - Los **no-negociables de marca** los sirve el MCP (`get_nonnegotiables`) desde `SKILL.md` — no los parafrasees: consúltalos.
-- Los 6 kits de `ui_kits/` marcados como dummy en `docs/CONTRACT.md` **no son marca AGLAYA** — no los cites como referencia.
+- **`ui_kits/` SÍ es marca AGLAYA** — es la composición canónica «así va todo junto», construida con los tokens de este repo. Cítala. Los que NO son marca son los **dummies de `aglaya-web`**, que viven en otro repo y tienen cada uno su propio sistema de diseño: **jamás cablear un dummy a esta marca.**
 - Regla de marca AGLAYA: **eliminar > legacy**. Lo obsoleto se borra, no se archiva.
 - `graphify-out/`: se versionan solo los esenciales (`graph.json`, `GRAPH_REPORT.md`, `manifest.json`, `cost.json`); el resto es regenerable.
 
 ## AGLAYA · Flota — el capitán
 
-Este repo es una **nave de la flota AGLAYA**. Existe un orquestador (el «capitán», repo `aglaya-orchestrator` en `/Users/AGLAYA/Local Sites/aglaya-orchestrator`). Qué es y qué no:
+Este repo es una **nave de la flota AGLAYA**. Existe un orquestador (el «capitán», repo `aglaya-orchestrator`). Qué es y qué no:
 
 - **Es enrutador**: sabe qué nave contesta cada pregunta y a quién preguntar cuando no está aquí.
 - **Es dueño del diseño**: los contratos inter-nave y la forma acordada de la flota los custodia él (`atlas/contratos/README.md`).

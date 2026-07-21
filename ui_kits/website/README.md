@@ -8,20 +8,27 @@ Hi-fi recreation of the **AGLAYA.biz** marketing home, built from this design sy
 - `Primitives.jsx` — `PrimaryButton`, `GhostButton`, `MonoLink`, `Eyebrow`, `SectionHeader`
 - `Header.jsx` — fixed glass header with nav, lang, WhatsApp, Contact
 - `Hero.jsx` — signature two-line red-accent headline + CTAs
-- `Problem.jsx` — 6-card grid ("Agencies sell hours. / We sell sovereignty.")
-- `SystemsGrid.jsx` — 5 architecture principles + rotated industrial marquee
+- `Problem.jsx` — card grid ("Agencies sell hours. / We sell sovereignty.")
+- `SystemsGrid.jsx` — architecture principles + rotated industrial marquee
 - `AntiClient.jsx` — exclusion-principle grid with pulse integrity check
 - `Footer.jsx` — Dispatch signup + primary channel list + legal strip
 - `assets/` — brand logo + favicon (copied from `/assets`)
 
 ## Composition rules the kit enforces
+
+The **rules** live here. The **values** do not — they live in
+`colors_and_type.css` and answer to `list_tokens()`. This file used to spell out
+the canvas black, both surface steps, the brand red, the green and the easing
+curve; the day any of them moves, a README that names them is quietly wrong
+while claiming to be canonical.
+
 - Zero border-radius anywhere (enforced globally in `styles.css`)
-- Pure `#000` canvas — card surfaces step up to `#050505 / #0c0c0c`
-- Brand red `#e8003d` used only on: logo accent, second-line headlines, primary CTAs, hover borders, focus outlines
-- Corporate green `#9fc243` used only for mono eyebrows, codetags, "applied logic" labels
-- All transitions use `cubic-bezier(0.16, 1, 0.3, 1)`
-- Hover pattern: border `white/5 → brand/30–40` + rule grows `w-12 → w-full`
-- Primary CTA has an offset `translate(4,4)` border-shadow that snaps home on hover
+- Pure black canvas — card surfaces step up through the surface tokens, never a warm grey
+- **Brand red only on:** logo accent, second-line headlines, primary CTAs, hover borders, focus outlines. Signal, never decoration
+- **Corporate green only on:** mono eyebrows, codetags, "applied logic" labels. Never a fill, never a button
+- One easing curve for every transition — no bounce, no spring
+- Hover pattern: border steps from the faint rule to the brand wash + rule grows `w-12 → w-full`
+- Primary CTA has an offset border-shadow that snaps home on hover
 
 ## Known gaps
 - `Services`, `Proof`, `ROI Audit`, and `Contact` pages are NOT built — the kit covers the home-page sections only. Open an issue if more are needed.

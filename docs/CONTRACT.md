@@ -1,20 +1,28 @@
-# CONTRACT — Estilo de marca AGLAYA
+# CONTRACT - AGLAYA Design System
 
-**Versión:** v1.0.0 · **Dueño canónico:** este repo (`aglaya-design-system`)
-**Registro de flota (fuente única):** `aglaya-orchestrator/atlas/contratos/README.md` — este doc lo resume y apunta ahí; si divergen, manda el registro.
+- **Propietario canónico:** este mismo repo.
+- **Registro en el atlas:** el registro de contratos inter-nave, repo `aglaya-orchestrator` → `atlas/contratos/README.md`, o pregúntalo sin saber dónde vive: `contrato("marca")`. Ahí vive la fila de este contrato: quién lo posee y quién lo consume. *(La ficha de la nave, `ficha("aglaya-design-system")`, es contexto — describe el diseño acordado, no lo que hay en disco.)* La fuente de la verdad es este repo y en cualquier caso, manda la _codebase_ del repo. En definitiva:
 
-## Qué rige
-La identidad de marca de AGLAYA: tokens, tipografía, voz, logos. Dirección **soberana** — esta carpeta manda; los consumidores beben de ella, nunca al revés.
+codebase → MCP que lee la codebase → docs del repo → ficha del atlas
+
+## Misión
+
+- Este repo rige el sistema de diseño de la identidad de la marca AGLAYA: tokens, tipografía, voz, logos.
+- A nivel de identidad de marca, esta carpeta manda y las demás consumen de ella (nunca al revés): `aglaya.biz` y toda otra superficie con marca AGLAYA (materiales, portafolio de agencia), incluyendo contenidos para redes sociales.
 
 ## Interfaces (dos formas de consumir)
-- **SKILL `aglaya-design`** — generar artefactos/código on-brand.
-- **MCP `aglaya-ds`** — consultar en vivo: `get_token`, `list_tokens`, `get_voice_rules`, `check_voice`, `is_allowed_word`, `get_logo`, `get_nonnegotiables`.
 
-## Quién consume
-`aglaya.biz` + toda superficie con marca AGLAYA (materiales, portafolio de agencia).
+- **SKILL `aglaya-design`** (`SKILL.md`, en la raíz de este repo): generar artefactos/código _on-brand_/no-negociables (ver MCP a continuación).
+- **MCP `aglaya-ds`**: consultar en vivo (`aglaya-ds-mcp/server.py`, en este repo)
 
-## Quién NO (exclusión dura)
-Los **6 dummies de `aglaya-web`** (Relay y cía.): cada uno tiene su PROPIO sistema de diseño. **Jamás cablear un dummy a esta marca** — sería pintar a los clientes con la cara de AGLAYA.
+## No consumidores
 
-## No-negociables
-AGLAYA mayúsculas · radio cero · 3 colores (negro / rojo `#e8003d` / verde `#9fc243`) · sin emoji/Lucide/Heroicons · copy terso sin exclamaciones · headline 2ª línea roja.
+- Los **dummies de `aglaya-web`**: cada uno tiene su propio sistema de diseño: **jamás cablear un _dummy_ a esta marca**.
+
+## Qué impone al consumidor
+
+Esto es lo que hace de esto un contrato y no una descripción. Son obligaciones, no sugerencias:
+
+- **Construir con estos tokens y esta voz**, pedidos a `aglaya-ds` (`get_token`, `list_tokens`, `get_voice_rules`) — no copiados a un archivo del consumidor.
+- **Respetar los no-negociables**, que sirve `get_nonnegotiables()` leyendo `SKILL.md` en vivo. No se parafrasean ni se listan aquí: un no-negociable copiado es un no-negociable que caduca sin avisar.
+- **No derivar marca de ningún otro repo.** La dirección es esta carpeta → el consumidor, nunca al revés ni de lado.

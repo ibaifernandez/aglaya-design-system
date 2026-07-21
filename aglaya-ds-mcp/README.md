@@ -22,7 +22,7 @@ folder; the folder stays the single source of truth.
 | Tool | Reads | Returns |
 | ---- | ----- | ------- |
 | `get_token(name)` | `colors_and_type.css` | value of one token (`color-brand` or `--color-brand`) |
-| `list_tokens(category?)` | `colors_and_type.css` | all tokens, or one category: `color·type·spacing·radius·motion·shadow·other` |
+| `list_tokens(category?)` | `colors_and_type.css` | all tokens, or one category — call it with no argument to see which categories exist |
 | `get_voice_rules()` | `README.md` | tone, pronouns, casing, protected vocabulary, forbidden patterns |
 | `check_voice(text)` | `README.md` | off-brand findings + AGLAYA-correct replacement |
 | `is_allowed_word(term)` | `README.md` | allowed? + correct term if off-brand |
@@ -69,37 +69,48 @@ python3 -m venv .venv
 
 Then the tools are callable from any session: `get_token`, `check_voice`, etc.
 
-## Examples (real output)
+## Response shapes
+
+**These show the shape of each answer, never the answer.** A README that prints
+`"value": "#e8003d"` is doing by hand exactly what this server exists to avoid —
+and the day someone edits the CSS, this file says the old colour with the
+confidence of a worked example. The whole point of the tool is that **only the
+call knows the value**. Run them; the shapes below tell you what you'll get back.
 
 ```text
 get_token("color-brand")
-  -> {"token": "--color-brand", "value": "#e8003d"}
+  -> {"token": "--color-brand", "value": <live from colors_and_type.css>}
 
 list_tokens("motion")
-  -> {"category": "motion", "count": 6,
-      "tokens": {"--ease-out": "cubic-bezier(0.16, 1, 0.3, 1)", ...}}
+  -> {"category": "motion", "count": <n>, "tokens": {<name>: <value>, ...}}
 
 get_voice_rules()
-  -> {"voice": "Terse, imperative, technical. ...",
-      "protected_vocabulary": [{"term": "Dispatch", "usage": "The newsletter. Never \"newsletter\"."}, ...],
-      "forbidden_patterns": ["\"Solutions\" (say systems)", ...]}
+  -> {"voice": <tone paragraph>,
+      "protected_vocabulary": [{"term": <t>, "usage": <rule>}, ...],
+      "forbidden_patterns": [<pattern>, ...]}                  # all live from README.md
 
-check_voice("Our solutions transform your business!")
-  -> {"clean": false, "findings": [
-        {"type": "replace_term",     "match": "solutions",              "suggestion": "use \"Systems\""},
-        {"type": "forbidden_phrase", "match": "Transform your business", "suggestion": "remove / rewrite ..."},
-        {"type": "punctuation",      "match": "!",                       "suggestion": "state it flat ..."}]}
+check_voice(<text>)
+  -> {"clean": <bool>, "findings": [
+        {"type": "replace_term" | "forbidden_phrase" | "punctuation",
+         "match": <offending fragment>, "suggestion": <on-brand fix>}, ...]}
 
-is_allowed_word("newsletter")
-  -> {"allowed": false, "correct_term": "Dispatch", "note": "off-brand — use \"Dispatch\""}
+is_allowed_word(<term>)
+  -> {"allowed": <bool>, "correct_term": <replacement, if any>, "note": <why>}
 
-get_logo("isotipo-rojo")
-  -> {"variant": "isotipo-rojo", "format": "svg",
-      "relative_path": "assets/isotipo/svg/aglaya-isotipo-rojo.svg", "exists": true}
+get_logo(<variant>, <fmt?>)
+  -> {"variant": <v>, "format": <fmt>, "relative_path": <path under assets/>,
+      "exists": <bool>}
 
 get_nonnegotiables()
-  -> {"source": "SKILL.md", "rules": ["`AGLAYA` always UPPERCASE.", "Zero border-radius. ...", ...]}
+  -> {"source": "SKILL.md", "rules": [<rule>, ...]}             # live from SKILL.md
 ```
+
+> `check_voice` is a heuristic, not a parser. It matches surface patterns, so it
+> can miss a violation or flag a clean phrase. Safety net, never final judge — if
+> a finding looks wrong, read the rule it cites in `README.md` and decide there.
+> No worked example of a known weakness lives here on purpose: the last one
+> named a false positive that had been fixed for weeks, and a doc that teaches
+> distrust of a working tool is worse than one that says nothing.
 
 ## Verify
 
@@ -110,7 +121,8 @@ get_nonnegotiables()
 
 ## Files
 
-- `server.py` — FastMCP server, stdio transport (the 7 tools)
+- `server.py` — FastMCP server, stdio transport. It declares the tools; this file
+  does not count them.
 - `brand.py` — sovereign, dependency-free core (all file reading + parsing)
 - `selftest.py` — end-to-end MCP client test
 - `zerocopy_test.py` — live-read proof
