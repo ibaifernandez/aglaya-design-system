@@ -1,16 +1,16 @@
 # Graph Report - aglaya-design-system  (2026-07-24)
 
 ## Corpus Check
-- 24 files · ~25,626 words
+- 24 files · ~25,493 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 256 nodes · 278 edges · 53 communities (16 shown, 37 thin omitted)
+- 256 nodes · 277 edges · 54 communities (17 shown, 37 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 12 edges (avg confidence: 0.69)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `cd1f736a`
+- Built from commit: `07208fea`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -64,6 +64,7 @@
 - Design System Specimen Cards
 - Space Mono Typeface (Monospace Labels)
 - Website UI Kit (Hi-fi Recreation)
+- Content Fundamentals
 - AGLAYA Design System — Sovereign Brand MCP
 
 ## God Nodes (most connected - your core abstractions)
@@ -97,7 +98,7 @@
 - **Typography System (Display, Body, Mono)** — outfit_font, inter_font, space_mono_font [EXTRACTED 1.00]
 - **MCP Server Implementation (Query Layer)** — aglaya_ds_mcp_server, aglaya_ds_mcp_brand, aglaya_ds_mcp_readme [EXTRACTED 1.00]
 
-## Communities (53 total, 37 thin omitted)
+## Communities (54 total, 37 thin omitted)
 
 ### Community 0 - "Brand Voice Rules"
 Cohesion: 0.09
@@ -112,8 +113,8 @@ Cohesion: 0.40
 Nodes (4): AGLAYA · Website UI Kit, Composition rules the kit enforces, Files, Known gaps
 
 ### Community 3 - "Token Management API"
-Cohesion: 0.12
-Nodes (14): AGLAYA · Flota — el capitán, CLAUDE.md — aglaya-design-system, Esta sección no lleva estado, Orden de lectura, Qué es este repo, Reglas duras, CONTRACT - AGLAYA Design System, Interfaces (dos formas de consumir) (+6 more)
+Cohesion: 0.33
+Nodes (6): AGLAYA · Flota — el capitán, CLAUDE.md — aglaya-design-system, Esta sección no lleva estado, Orden de lectura, Qué es este repo, Reglas duras
 
 ### Community 4 - "MCP Server Testing"
 Cohesion: 0.20
@@ -128,8 +129,8 @@ Cohesion: 0.67
 Nodes (3): Website Kit Favicon, Website Kit Logo White, Website UI Kit Index
 
 ### Community 38 - "CONTRACT — Estilo de marca AGLAYA"
-Cohesion: 0.10
-Nodes (20): AGLAYA Design System, Browse the system, Casing, Content Fundamentals, Extend it, Fonts, Forbidden patterns, How to use this system (+12 more)
+Cohesion: 0.08
+Nodes (21): CONTRACT - AGLAYA Design System, Interfaces (dos formas de consumir), Misión, No consumidores, Qué impone al consumidor, AGLAYA Design System, Browse the system, Extend it (+13 more)
 
 ### Community 39 - "Visual Foundations"
 Cohesion: 0.15
@@ -147,8 +148,12 @@ Nodes (11): 10. Riesgos / vigilancias, 1. Problema, 2. Decisiones (brainstorming
 Cohesion: 0.15
 Nodes (20): _bullets(), check_voice(), _forbidden_phrases(), get_nonnegotiables(), get_voice_rules(), is_allowed_word(), Return the body of a markdown section (### heading) up to the next     heading o, Parse a two-column markdown table into (col1, col2) rows, skipping     the heade (+12 more)
 
+### Community 52 - "Content Fundamentals"
+Cohesion: 0.29
+Nodes (7): Casing, Content Fundamentals, Forbidden patterns, Pronouns, Sample copy, Signature terms, Voice
+
 ### Community 53 - "AGLAYA Design System — Sovereign Brand MCP"
-Cohesion: 0.22
+Cohesion: 0.25
 Nodes (7): AGLAYA Design System — Sovereign Brand MCP, Files, Register, Response shapes, Setup (one-time bootstrap), Tools, Verify
 
 ## Knowledge Gaps
@@ -159,17 +164,17 @@ Nodes (7): AGLAYA Design System — Sovereign Brand MCP, Files, Register, Respon
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `AGLAYA Design System` connect `CONTRACT — Estilo de marca AGLAYA` to `AGLAYA Design System — Sovereign Brand MCP`, `Visual Foundations`?**
-  _High betweenness centrality (0.037) - this node is a cross-community bridge._
-- **Why does `Visual Foundations` connect `Visual Foundations` to `CONTRACT — Estilo de marca AGLAYA`?**
-  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+- **Why does `AGLAYA Design System` connect `CONTRACT — Estilo de marca AGLAYA` to `Content Fundamentals`, `Visual Foundations`?**
+  _High betweenness centrality (0.029) - this node is a cross-community bridge._
 - **Why does `_read()` connect `_read` to `Brand Voice Rules`, `guard_huella.py`?**
   _High betweenness centrality (0.018) - this node is a cross-community bridge._
+- **Why does `Visual Foundations` connect `Visual Foundations` to `CONTRACT — Estilo de marca AGLAYA`?**
+  _High betweenness centrality (0.016) - this node is a cross-community bridge._
 - **What connects `Sources`, `Index`, `Voice` to the rest of the system?**
   _93 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Brand Voice Rules` be split into smaller, more focused modules?**
   _Cohesion score 0.09206349206349207 - nodes in this community are weakly interconnected._
 - **Should `Sovereign Brand Server` be split into smaller, more focused modules?**
   _Cohesion score 0.0855614973262032 - nodes in this community are weakly interconnected._
-- **Should `Token Management API` be split into smaller, more focused modules?**
-  _Cohesion score 0.11764705882352941 - nodes in this community are weakly interconnected._
+- **Should `CONTRACT — Estilo de marca AGLAYA` be split into smaller, more focused modules?**
+  _Cohesion score 0.08 - nodes in this community are weakly interconnected._
