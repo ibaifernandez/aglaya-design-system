@@ -112,5 +112,53 @@ def get_nonnegotiables(scope: Optional[str] = None) -> dict:
     return _guard(brand.get_nonnegotiables, scope)
 
 
+# ── Product identity (read live from products/products.json) ────────────────
+
+
+@mcp.tool()
+def list_products() -> dict:
+    """List the AGLAYA product roster read live from products/products.json:
+    id, name, accent (hex + token), functions, sacred flag. Includes the
+    monolithic model + single-voice markers and any removed products."""
+    return _guard(brand.list_products)
+
+
+@mcp.tool()
+def get_product(id: str) -> dict:
+    """Full identity record for one product (accent, functions, glyph/lockup
+    paths, exceptions). `id` accepts the slug ('kanban-desk') or display name."""
+    return _guard(brand.get_product, id)
+
+
+@mcp.tool()
+def get_accent(id: str) -> dict:
+    """A product's accent color: token, hex, oklch, cross-checked against the
+    live CSS token. Two-level doctrine: the accent is first-class on that
+    product's surface (CTA allowed, no proportion cap), never on the master."""
+    return _guard(brand.get_accent, id)
+
+
+@mcp.tool()
+def get_glyph(id: str, variant: str = "accent") -> dict:
+    """Resolve a product glyph SVG. variant: 'white' | 'accent' | 'fill'.
+    Errors with the reason when a product ships no glyph (e.g. the sacred
+    CONSENT FLOW ships none — it is never fabricated)."""
+    return _guard(brand.get_glyph, id, variant)
+
+
+@mcp.tool()
+def get_lockup(id: str, layout: str = "lockup") -> dict:
+    """Resolve a product lockup SVG. layout: 'lockup' (horizontal) | 'stacked'
+    | product-specific ('lockup-outlined', 'lockup-ondark' for CONSENT FLOW)."""
+    return _guard(brand.get_lockup, id, layout)
+
+
+@mcp.tool()
+def get_product_voice(id: str) -> dict:
+    """A product's voice. Single-voice doctrine: returns the one AGLAYA voice
+    for every product (per-product voice is intentional absence, not a gap)."""
+    return _guard(brand.get_product_voice, id)
+
+
 if __name__ == "__main__":
     mcp.run()  # stdio transport
