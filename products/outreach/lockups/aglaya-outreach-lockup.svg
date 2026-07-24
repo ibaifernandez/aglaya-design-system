@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 318 88" width="318" height="88" font-family="Outfit, sans-serif">
+  <g transform="translate(0, 6)">
+    <rect x="0.5" y="0.5" width="75" height="75" fill="none" stroke="rgba(255,255,255,0.16)"></rect>
+    <g transform="translate(9, 9) scale(0.604)"><polygon points="10,22 28,22 50,48 28,74 10,74 32,48" fill="#4eb2ac"></polygon>
+    <polygon points="40,22 58,22 80,48 58,74 40,74 62,48" fill="#4eb2ac"></polygon></g>
+  </g>
+  <text x="98" y="30" fill="rgba(252,252,252,0.30)" font-family="&#39;Space Mono&#39;, monospace" font-weight="700" font-size="13" letter-spacing="6.5">AGLAYA</text>
+  <text x="97" y="74" fill="#fcfcfc" font-weight="900" font-size="40" letter-spacing="-1.2">OUTREACH</text>
+  <rect x="304.4" y="63" width="11" height="11" fill="#4eb2ac"></rect>
+</svg>
