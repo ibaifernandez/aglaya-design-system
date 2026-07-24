@@ -160,5 +160,23 @@ def get_product_voice(id: str) -> dict:
     return _guard(brand.get_product_voice, id)
 
 
+# ── Component specs (read live from components/components.json) ──────────────
+
+
+@mcp.tool()
+def list_components() -> dict:
+    """List UI component specs (button, card, input, badge…) with their
+    variants, read live from components/components.json."""
+    return _guard(brand.list_components)
+
+
+@mcp.tool()
+def get_component(id: str) -> dict:
+    """Full spec for one component: token refs, per-variant/structural values,
+    states, and rules. `id` accepts the id ('button') or display name.
+    Colors cite colors_and_type.css tokens — resolve them with get_token."""
+    return _guard(brand.get_component, id)
+
+
 if __name__ == "__main__":
     mcp.run()  # stdio transport

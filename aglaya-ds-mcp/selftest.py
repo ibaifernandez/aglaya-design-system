@@ -42,6 +42,7 @@ async def main() -> int:
                 "is_allowed_word", "get_logo", "get_nonnegotiables",
                 "list_products", "get_product", "get_accent", "get_glyph",
                 "get_lockup", "get_product_voice",
+                "list_components", "get_component",
             }
             missing = expected - set(names)
             if missing:
@@ -68,6 +69,8 @@ async def main() -> int:
                 ("get_glyph", {"id": "kanban-desk", "variant": "fill"}),
                 ("get_lockup", {"id": "consent-flow", "layout": "lockup-ondark"}),
                 ("get_product_voice", {"id": "crm"}),
+                ("list_components", {}),
+                ("get_component", {"id": "button"}),
             ]
             for name, args in calls:
                 res = await session.call_tool(name, args)

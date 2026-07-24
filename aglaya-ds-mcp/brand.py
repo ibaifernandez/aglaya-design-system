@@ -32,6 +32,7 @@ README_FILE = REPO_ROOT / "README.md"
 SKILL_FILE = REPO_ROOT / "SKILL.md"
 ASSETS_DIR = REPO_ROOT / "assets"
 PRODUCTS_FILE = REPO_ROOT / "products" / "products.json"
+COMPONENTS_FILE = REPO_ROOT / "components" / "components.json"
 
 
 class BrandError(Exception):
@@ -540,6 +541,48 @@ def get_product_voice(pid: str) -> dict:
         ),
         "voice": get_voice_rules(),
     }
+
+
+# ────────────────────────────────────────────────────────────────────────────
+# COMPONENTS  (read live from components/components.json)
+# ────────────────────────────────────────────────────────────────────────────
+
+
+def _components_manifest() -> dict:
+    raw = _read(COMPONENTS_FILE)
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError as e:
+        raise BrandError(f"components.json is not valid JSON: {e}")
+
+
+def list_components() -> dict:
+    """Component roster (button, card, input, badge…) with their variants,
+    read live from components/components.json."""
+    comps = _components_manifest().get("components", [])
+    return {
+        "count": len(comps),
+        "components": [
+            {
+                "id": c["id"],
+                "name": c["name"],
+                "variants": [v["name"] for v in c.get("variants", [])],
+            }
+            for c in comps
+        ],
+    }
+
+
+def get_component(cid: str) -> dict:
+    """Full spec for one component: token refs, per-variant/structural values,
+    states and rules. `cid` accepts the id ('button') or display name."""
+    key = cid.strip().lower()
+    comps = _components_manifest().get("components", [])
+    for c in comps:
+        if c.get("id") == key or c.get("name", "").lower() == key:
+            return c
+    known = ", ".join(c.get("id", "?") for c in comps)
+    raise BrandError(f"unknown component '{cid}'. Known: {known}")
 
 
 # ────────────────────────────────────────────────────────────────────────────
