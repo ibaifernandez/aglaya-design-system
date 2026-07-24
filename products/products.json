@@ -68,8 +68,8 @@
       "id": "consent-flow",
       "name": "CONSENT FLOW",
       "status": "active",
-      "sacred": true,
-      "author": "Mónica Montúfar",
+      "sacred": false,
+      "author": "Claude (AGLAYA-native) · Mónica Montúfar (original)",
       "product_ref": "plugin consent-ledger-wp",
       "accent": { "token": "--product-consent-flow-accent", "hex": "#ae214d", "oklch": null, "name": "Carmín", "secondary": { "token": "--product-consent-flow-accent-2", "hex": "#5b964d", "name": "Verde" } },
       "functions": ["registro de consentimiento (WordPress)"],
@@ -78,8 +78,13 @@
         "accent": null,
         "fill": null
       },
-      "glyphs_absent_reason": "Mónica no entregó glyph aislado; el monograma (C + blob verde + badge check) va embebido en los lockups. No se fabrica — sagrado.",
+      "glyphs_absent_reason": "Sin glyph/isotipo AGLAYA-native todavía (decisión pendiente). El monograma original de Mónica (C + blob + badge) usa Aptos + esquinas redondeadas; no se adopta tal cual.",
       "lockups": {
+        "lockup": "products/consent-flow/lockups/aglaya-consent-flow-lockup.svg",
+        "stacked": "products/consent-flow/lockups/aglaya-consent-flow-stacked.svg"
+      },
+      "originals": {
+        "note": "Arte original de Mónica Montúfar (fuente Aptos, badge redondeado, paleta propia). Referencia — el texto requiere Aptos salvo -04 (vectorizado). No es la identidad AGLAYA-native primaria.",
         "lockup": "products/consent-flow/ConsetFlow-01.svg",
         "stacked": "products/consent-flow/ConsetFlow-02.svg",
         "lockup-outlined": "products/consent-flow/ConsetFlow-03.svg",
@@ -92,11 +97,11 @@
         "Solo ConsetFlow-04 (stacked) está totalmente vectorizado y renderiza sin Aptos; el resto depende de la fuente. Aptos NO se incluye en fonts/ (no es tipo AGLAYA).",
         "El wordmark de 01/02/03/04 es oscuro (#211915) — diseñado para FONDO CLARO; sobre el canvas negro AGLAYA solo funciona ConsetFlow-05 (on-dark, wordmark blanco). No existe variante que sea a la vez on-dark Y font-independiente — gap a resolver con Mónica."
       ],
-      "notes": "Identidad diseñada por Mónica Montúfar. Se envuelve verbatim (nombres de archivo originales, incluida la grafía 'ConsetFlow'). No se redibuja ni se conforma al molde."
+      "notes": "Wordmark AGLAYA-native: 'ConsentFlow' en Inter Black (C y F mayúsculas, resto minúsculas), sin Aptos — sustituye al arte roto en negro. El arte original de Mónica se preserva bajo 'originals'. Isotipo AGLAYA-native pendiente de decisión."
     },
     {
       "id": "legal-reg-tech",
-      "name": "LEGAL REG-TECH",
+      "name": "LEGAL REG TECH",
       "status": "active",
       "sacred": false,
       "author": "Claude (Claude Design)",

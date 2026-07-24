@@ -196,15 +196,15 @@ Model: **MONOLITHIC** — AGLAYA leads, the product describes. `aglaya.biz` is t
 | KANBAN DESK | Cobalt `#4a8fd6` | three bars (columns) |
 | CRM | Violet `#b073d8` | line + three nodes |
 | OUTREACH | Teal `#4eb2ac` | two chevrons |
-| CONSENT FLOW | Carmín `#ae214d` (+ green `#5b964d`) | **sacred** — Mónica Montúfar |
-| LEGAL REG-TECH | Gold `#d1a63e` | framed check (audit seal) |
+| CONSENT FLOW | Carmín `#ae214d` (+ green `#5b964d`) | AGLAYA-native wordmark (Inter Black `ConsentFlow`); Mónica Montúfar originals preserved |
+| LEGAL REG TECH | Gold `#d1a63e` | framed check (audit seal) |
 | ORQUESTADOR | Steel `#909fb8` | hub + four satellites |
 
 **Two-level colour doctrine.** The 3-colour master palette (black / red / green) is rigid on the master brand. A **product surface** adds its accent as a first-class colour — allowed on CTAs, no proportion cap — per `get_nonnegotiables(scope="product")`. The accent never leaks onto the master; the master never adopts a product accent.
 
 **Taxonomy.** Each product ships a **glyph** on a 96×96 grid in three variants — `white`, `accent` (accent on transparent), `fill` (accent square, mark knocked out in black) — and two **lockups**: `lockup` (horizontal) and `stacked`. Lockups reference Outfit / Space Mono by name; the repo ships those fonts.
 
-**CONSENT FLOW is sacred.** Designed by Mónica Montúfar for the `consent-ledger-wp` plugin, wrapped verbatim and never redrawn. It breaks three non-negotiables by design (Aptos font, a rounded check badge, its own two-colour palette) and ships no isolated glyph. Only its `lockup-ondark` variant (`ConsetFlow-05`) works on the black canvas, and only its `stacked-outlined` (`ConsetFlow-04`) renders without Aptos — see the `exceptions` in `products.json`.
+**CONSENT FLOW.** Originally designed by Mónica Montúfar for the `consent-ledger-wp` plugin in the Aptos typeface with a rounded check badge — which broke three non-negotiables and rendered poorly on the black canvas. Its wordmark is now rebuilt **AGLAYA-native**: `ConsentFlow` in Inter Black (C and F capitalised, the rest lowercase — a deliberate lowercase move, unlike the Outfit-uppercase of the other products). Mónica's five original SVGs are preserved under `originals` in `products.json` for reference. An AGLAYA-native isotipo is still pending.
 
 PULSE was removed from the set (telephone outbound, out of scope) — deleted, not archived, per the brand rule *eliminar > legacy*.
 

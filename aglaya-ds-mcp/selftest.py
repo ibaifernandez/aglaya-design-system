@@ -67,7 +67,7 @@ async def main() -> int:
                 ("get_product", {"id": "legal-reg-tech"}),
                 ("get_accent", {"id": "orquestador"}),
                 ("get_glyph", {"id": "kanban-desk", "variant": "fill"}),
-                ("get_lockup", {"id": "consent-flow", "layout": "lockup-ondark"}),
+                ("get_lockup", {"id": "consent-flow", "layout": "stacked"}),
                 ("get_product_voice", {"id": "crm"}),
                 ("list_components", {}),
                 ("get_component", {"id": "button"}),
