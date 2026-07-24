@@ -17,7 +17,9 @@ If the user invokes this skill without any other guidance, ask them what they wa
 - `README.md` — full brand guide (content voice, visual foundations, iconography, forbidden patterns, sample copy)
 - `colors_and_type.css` — all tokens as CSS custom properties + ready-to-use `t-*` semantic classes
 - `assets/` — logos (white / black / color) + favicons (SVG + PNG)
-- `preview/` — 22 design-system specimen cards (colors, type, spacing, components, brand)
+- `products/` — product identity (monolithic model): 6 products, each with glyphs (white/accent/fill) + lockups, plus `products.json` (the roster's single source of truth). Served live by the MCP.
+- `components/` — component specs (`components.json`: button/card/input/badge) served by the MCP.
+- `preview/` — design-system specimen cards (colors, type, spacing, components, brand, product identity)
 - `ui_kits/website/` — hi-fi React recreation of the marketing site. Start here for any web work.
 
 ## Non-negotiables

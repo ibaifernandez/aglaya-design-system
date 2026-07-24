@@ -185,6 +185,31 @@ When you need an icon AGLAYA doesn't already have, draw a minimal line-stroke ve
 
 ---
 
+## Product Identity
+
+Model: **MONOLITHIC** — AGLAYA leads, the product describes. `aglaya.biz` is the master house, never a sub-brand; the products below are surfaces that consume from this repo. The single source of truth for the roster is [`products/products.json`](products/products.json), served live by the MCP (`list_products`, `get_product`, `get_accent`, `get_glyph`, `get_lockup`).
+
+**Roster (6) and accents.** Each product carries exactly one accent:
+
+| Product | Accent | Mark |
+| ------- | ------ | ---- |
+| KANBAN DESK | Cobalt `#4a8fd6` | three bars (columns) |
+| CRM | Violet `#b073d8` | line + three nodes |
+| OUTREACH | Teal `#4eb2ac` | two chevrons |
+| CONSENT FLOW | Carmín `#ae214d` (+ green `#5b964d`) | **sacred** — Mónica Montúfar |
+| LEGAL REG-TECH | Gold `#d1a63e` | framed check (audit seal) |
+| ORQUESTADOR | Steel `#909fb8` | hub + four satellites |
+
+**Two-level colour doctrine.** The 3-colour master palette (black / red / green) is rigid on the master brand. A **product surface** adds its accent as a first-class colour — allowed on CTAs, no proportion cap — per `get_nonnegotiables(scope="product")`. The accent never leaks onto the master; the master never adopts a product accent.
+
+**Taxonomy.** Each product ships a **glyph** on a 96×96 grid in three variants — `white`, `accent` (accent on transparent), `fill` (accent square, mark knocked out in black) — and two **lockups**: `lockup` (horizontal) and `stacked`. Lockups reference Outfit / Space Mono by name; the repo ships those fonts.
+
+**CONSENT FLOW is sacred.** Designed by Mónica Montúfar for the `consent-ledger-wp` plugin, wrapped verbatim and never redrawn. It breaks three non-negotiables by design (Aptos font, a rounded check badge, its own two-colour palette) and ships no isolated glyph. Only its `lockup-ondark` variant (`ConsetFlow-05`) works on the black canvas, and only its `stacked-outlined` (`ConsetFlow-04`) renders without Aptos — see the `exceptions` in `products.json`.
+
+PULSE was removed from the set (telephone outbound, out of scope) — deleted, not archived, per the brand rule *eliminar > legacy*.
+
+---
+
 ## Fonts
 
 All three brand families are loaded from local files in `fonts/` — zero external font requests.
@@ -224,7 +249,7 @@ Unzip the folder into your project. Any agent can read `SKILL.md` + `README.md` 
 The agent reads the tokens, copies assets, follows the voice rules, and ships pixel-consistent with the rest of the brand.
 
 ### Query the brand live (MCP)
-For projects that should read the brand **live** instead of copying it, this repo ships a sovereign MCP server in [`aglaya-ds-mcp/`](aglaya-ds-mcp/README.md). It exposes `get_token`, `list_tokens`, `get_voice_rules`, `check_voice`, `is_allowed_word`, `get_logo`, and `get_nonnegotiables` — each reading these canonical files live, so downstream surfaces (`aglaya.biz` included) consume the brand instead of duplicating it. The MCP is an optional, separable layer; the design-system folder stays runtime-free without it.
+For projects that should read the brand **live** instead of copying it, this repo ships a sovereign MCP server in [`aglaya-ds-mcp/`](aglaya-ds-mcp/README.md). It exposes `get_token`, `list_tokens`, `get_voice_rules`, `check_voice`, `is_allowed_word`, `get_logo`, and `get_nonnegotiables` (master + `scope="product"`), plus **product identity** (`list_products`, `get_product`, `get_accent`, `get_glyph`, `get_lockup`, `get_product_voice`) and **component specs** (`list_components`, `get_component`) — each reading these canonical files live, so downstream surfaces (`aglaya.biz` included) consume the brand instead of duplicating it. The MCP is an optional, separable layer; the design-system folder stays runtime-free without it.
 
 ### Use it in Figma / other tools
 - **Fonts:** install the `.otf` / `.ttf` files from `fonts/` into your OS font book.
