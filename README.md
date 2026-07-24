@@ -99,7 +99,7 @@ Monospace labels behave as terminal output — `REF_ID:`, `LOGIC_NODE_001`, `EXC
 ### Palette
 Pure `#000000` black is the canvas. Not near-black. Not `#0a0a0a`. **Black.** Card surfaces step up in ~4-value increments (`#080808`, `#0c0c0c`, `#0f0f0f`) to create depth without ever introducing grey warmth. The only saturated color is **AGLAYA Red `#e8003d`** — used surgically for the logo accent, brand type spans, primary CTAs, focus rings, and the second line of two-line headlines. **Corporate Green `#9fc243`** is reserved for monospace eyebrows, code tags, and "applied logic" annotations — it never appears as a fill or button.
 
-**This palette governs the master brand** (`aglaya.biz`, agency materials, social). Product surfaces add exactly one first-class **product accent** each (KANBAN DESK cobalt, CRM violet, OUTREACH teal, CONSENT FLOW carmín, LEGAL REG-TECH gold, ORQUESTADOR steel) — the single source is [`products/products.json`](products/products.json), served live by the MCP (`get_accent`, `list_products`). On its own product surface the accent is unrestricted — allowed on CTAs, no proportion cap — per the product tier of the non-negotiables (`get_nonnegotiables(scope="product")`). It never leaks onto the master, and the master never adopts a product accent: outside a product surface, the three colors above are still the whole palette.
+**This palette governs the master brand** (`aglaya.biz`, agency materials, social). Product surfaces add exactly one first-class **product accent** each (KANBAN DESK cobalt, CRM violet, OUTREACH teal, CONSENT FLOW carmín, LEGAL REG TECH gold, ORCHESTRATOR steel, plus the DESIGN SYSTEM house itself in corporate green) — the single source is [`products/products.json`](products/products.json), served live by the MCP (`get_accent`, `list_products`). On its own product surface the accent is unrestricted — allowed on CTAs, no proportion cap — per the product tier of the non-negotiables (`get_nonnegotiables(scope="product")`). It never leaks onto the master, and the master never adopts a product accent: outside a product surface, the three colors above are still the whole palette.
 
 ### Typography
 - **Display: Outfit Black (900).** Always uppercase, tracking tighter than normal (`-0.02em` to `-0.04em`), leading `~0.94–1.1`. Headlines routinely hit `9rem+` at large viewports.
@@ -189,7 +189,7 @@ When you need an icon AGLAYA doesn't already have, draw a minimal line-stroke ve
 
 Model: **MONOLITHIC** — AGLAYA leads, the product describes. `aglaya.biz` is the master house, never a sub-brand; the products below are surfaces that consume from this repo. The single source of truth for the roster is [`products/products.json`](products/products.json), served live by the MCP (`list_products`, `get_product`, `get_accent`, `get_glyph`, `get_lockup`).
 
-**Roster (6) and accents.** Each product carries exactly one accent:
+**Roster (7) and accents.** Six products plus the DESIGN SYSTEM house itself (`is_house`), each carrying exactly one accent:
 
 | Product | Accent | Mark |
 | ------- | ------ | ---- |
@@ -198,7 +198,8 @@ Model: **MONOLITHIC** — AGLAYA leads, the product describes. `aglaya.biz` is t
 | OUTREACH | Teal `#4eb2ac` | two chevrons |
 | CONSENT FLOW | Carmín `#ae214d` (+ green `#5b964d`) | Mónica Montúfar's seal, AGLAYA type, outlined — colour isotipo (set exception) |
 | LEGAL REG TECH | Gold `#d1a63e` | framed check (audit seal) |
-| ORQUESTADOR | Steel `#909fb8` | hub + four satellites |
+| ORCHESTRATOR | Steel `#909fb8` | hub + four satellites |
+| DESIGN SYSTEM | Corporate green `#9fc243` | 2×2 token grid — the house itself (`is_house`) |
 
 **Two-level colour doctrine.** The 3-colour master palette (black / red / green) is rigid on the master brand. A **product surface** adds its accent as a first-class colour — allowed on CTAs, no proportion cap — per `get_nonnegotiables(scope="product")`. The accent never leaks onto the master; the master never adopts a product accent.
 

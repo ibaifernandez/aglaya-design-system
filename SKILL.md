@@ -36,7 +36,7 @@ Reglas de la **marca madre AGLAYA** (aglaya.biz, materiales de agencia, redes). 
 
 ## Non-negotiables — producto
 
-Una **superficie de producto** (KANBAN DESK, CRM, OUTREACH, CONSENT FLOW, LEGAL REG TECH, ORQUESTADOR — ver `products/products.json`) hereda TODOS los no-negociables de la marca madre, con una única excepción: su color de acento es de primera clase.
+Una **superficie de producto** (KANBAN DESK, CRM, OUTREACH, CONSENT FLOW, LEGAL REG TECH, ORCHESTRATOR, y la propia DESIGN SYSTEM — ver `products/products.json`) hereda TODOS los no-negociables de la marca madre, con una única excepción: su color de acento es de primera clase.
 
 - Hereda todos los no-negociables de la marca madre **excepto la exclusividad de color** («Nothing else»).
 - El **acento del producto** (definido en `products/products.json` y como token en `colors_and_type.css`) es color de primera clase: **libre en CTA, sin tope de proporción**.

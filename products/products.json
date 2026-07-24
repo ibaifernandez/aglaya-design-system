@@ -105,23 +105,43 @@
       "notes": "Un producto, dos funciones (escáner + auditoría). Marca: check enmarcado (sello de auditoría / cumplimiento). Hue liberado por la baja de PULSE."
     },
     {
-      "id": "orquestador",
-      "name": "ORQUESTADOR",
+      "id": "orchestrator",
+      "name": "ORCHESTRATOR",
       "status": "active",
       "sacred": false,
       "author": "Claude (Claude Design)",
-      "accent": { "token": "--product-orquestador-accent", "hex": "#909fb8", "oklch": "oklch(0.70 0.04 260)", "name": "Steel" },
+      "accent": { "token": "--product-orchestrator-accent", "hex": "#909fb8", "oklch": "oklch(0.70 0.04 260)", "name": "Steel" },
       "functions": ["orquestación / enrutado de la flota"],
       "glyphs": {
-        "white": "products/orquestador/glyphs/orquestador-glyph-white.svg",
-        "accent": "products/orquestador/glyphs/orquestador-glyph-accent.svg",
-        "fill": "products/orquestador/glyphs/orquestador-glyph-fill.svg"
+        "white": "products/orchestrator/glyphs/orchestrator-glyph-white.svg",
+        "accent": "products/orchestrator/glyphs/orchestrator-glyph-accent.svg",
+        "fill": "products/orchestrator/glyphs/orchestrator-glyph-fill.svg"
       },
       "lockups": {
-        "lockup": "products/orquestador/lockups/aglaya-orquestador-lockup.svg",
-        "stacked": "products/orquestador/lockups/aglaya-orquestador-stacked.svg"
+        "lockup": "products/orchestrator/lockups/aglaya-orchestrator-lockup.svg",
+        "stacked": "products/orchestrator/lockups/aglaya-orchestrator-stacked.svg"
       },
       "notes": "Marca: hub central + 4 satélites (enrutado). Acento steel desaturado a propósito — el director no compite en croma con lo que enruta."
+    },
+    {
+      "id": "design-system",
+      "name": "DESIGN SYSTEM",
+      "status": "active",
+      "sacred": false,
+      "is_house": true,
+      "author": "Claude (Claude Design)",
+      "accent": { "token": "--product-design-system-accent", "hex": "#9fc243", "oklch": null, "name": "Corporate Green" },
+      "functions": ["fuente canónica de la marca AGLAYA: tokens, tipografía, voz, logos"],
+      "glyphs": {
+        "white": "products/design-system/glyphs/design-system-glyph-white.svg",
+        "accent": "products/design-system/glyphs/design-system-glyph-accent.svg",
+        "fill": "products/design-system/glyphs/design-system-glyph-fill.svg"
+      },
+      "lockups": {
+        "lockup": "products/design-system/lockups/aglaya-design-system-lockup.svg",
+        "stacked": "products/design-system/lockups/aglaya-design-system-stacked.svg"
+      },
+      "notes": "La nave-fundación: este repo. No consume la marca, la DEFINE (is_house). Marca: rejilla 2×2 (tokens/swatches). Acento = verde corporativo (color-fuente / 'applied logic'). PROPUESTA — confirmar color y nombre."
     }
   ],
   "removed": [
