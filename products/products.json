@@ -80,8 +80,7 @@
       "glyph_note": "Excepción del set: isotipo a COLOR (sello verde + C + check carmín), no las 3 variantes mono (white/accent/fill) de los demás. 'color' = C blanca, para fondo oscuro; 'light' = C en tinta oscura, para fondo claro.",
       "lockups": {
         "lockup": "products/consent-flow/lockups/aglaya-consent-flow-lockup.svg",
-        "stacked": "products/consent-flow/lockups/aglaya-consent-flow-stacked.svg",
-        "wordmark": "products/consent-flow/wordmark/aglaya-consent-flow-wordmark.svg"
+        "stacked": "products/consent-flow/lockups/aglaya-consent-flow-stacked.svg"
       },
       "notes": "Concepto de Mónica Montúfar (sello verde + C + check carmín), reconstruido con tipos AGLAYA (wordmark Inter, eyebrow Space Mono) y entregado en CONTORNOS — cero dependencia de fuentes, renderiza idéntico en cualquier máquina. Lockup master + isotipo exportados por el usuario; stacked y wordmark compuestos desde ellos."
     },
