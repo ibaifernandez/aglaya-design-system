@@ -74,10 +74,9 @@
       "accent": { "token": "--product-consent-flow-accent", "hex": "#ae214d", "oklch": null, "name": "Carmín", "secondary": { "token": "--product-consent-flow-accent-2", "hex": "#5b964d", "name": "Verde" } },
       "functions": ["registro de consentimiento (WordPress)"],
       "glyphs": {
-        "color": "products/consent-flow/glyphs/consent-flow-glyph.svg",
-        "light": "products/consent-flow/glyphs/consent-flow-glyph-light.svg"
+        "color": "products/consent-flow/glyphs/consent-flow-glyph.svg"
       },
-      "glyph_note": "Excepción del set: isotipo a COLOR (sello verde + C + check carmín), no las 3 variantes mono (white/accent/fill) de los demás. 'color' = C blanca, para fondo oscuro; 'light' = C en tinta oscura, para fondo claro.",
+      "glyph_note": "Excepción del set: un ÚNICO isotipo a color (sello verde + C blanca + check carmín), no las 3 variantes mono (white/accent/fill) de los demás. La C es siempre blanca: el sello verde la encapsula y le da forma, así que funciona sobre cualquier fondo — no hay variante para fondo claro ni hace falta.",
       "lockups": {
         "lockup": "products/consent-flow/lockups/aglaya-consent-flow-lockup.svg",
         "stacked": "products/consent-flow/lockups/aglaya-consent-flow-stacked.svg"
