@@ -100,11 +100,16 @@ def get_logo(variant: str, fmt: str = "svg") -> dict:
 
 
 @mcp.tool()
-def get_nonnegotiables() -> dict:
-    """The hard brand rules read live from SKILL.md: AGLAYA uppercase, zero
-    radius, 3 colors only, no emoji / Lucide / Heroicons, two-line headline with
-    the second line in brand red, etc."""
-    return _guard(brand.get_nonnegotiables)
+def get_nonnegotiables(scope: Optional[str] = None) -> dict:
+    """The hard brand rules read live from SKILL.md.
+
+    scope: 'master' (default) — the rigid marca-madre rules: AGLAYA uppercase,
+    zero radius, 3 colors only, no emoji / Lucide / Heroicons, two-line headline
+    with the second line in brand red, etc. 'product' — the product-surface
+    rules: everything inherited from master EXCEPT color exclusivity; the
+    product accent is first-class (allowed on CTAs, no proportion cap).
+    """
+    return _guard(brand.get_nonnegotiables, scope)
 
 
 if __name__ == "__main__":

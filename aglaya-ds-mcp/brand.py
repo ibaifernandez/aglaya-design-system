@@ -409,8 +409,32 @@ def get_logo(variant: str, fmt: str = "svg") -> dict:
 # ────────────────────────────────────────────────────────────────────────────
 
 
-def get_nonnegotiables() -> dict:
-    """The hard brand rules, read live from SKILL.md '## Non-negotiables'."""
+# scope -> the exact SKILL.md heading it maps to. Kept HERE (not in the caller)
+# so the em-dash heading string lives in one place and callers pass a plain word.
+_NONNEG_HEADINGS = {
+    "master": "Non-negotiables",
+    "product": "Non-negotiables — producto",
+}
+_NONNEG_SCOPE_ALIASES = {
+    "master": "master", "madre": "master", "casa": "master", "house": "master",
+    "product": "product", "producto": "product",
+}
+
+
+def get_nonnegotiables(scope: Optional[str] = None) -> dict:
+    """The hard brand rules, read live from SKILL.md.
+
+    scope: 'master' (default) -> the rigid marca-madre rules from
+    '## Non-negotiables'. 'product' -> the product-surface rules from
+    '## Non-negotiables — producto' (accent is first-class: CTA allowed, no
+    proportion cap; everything else inherited from master).
+    """
+    key = (scope or "master").strip().lower()
+    resolved = _NONNEG_SCOPE_ALIASES.get(key)
+    if resolved is None:
+        raise BrandError(
+            f"unknown scope '{scope}'. Use 'master' (default) or 'product'."
+        )
     md = _read(SKILL_FILE)
-    block = _section(md, "Non-negotiables")
-    return {"source": "SKILL.md", "rules": _bullets(block)}
+    block = _section(md, _NONNEG_HEADINGS[resolved])
+    return {"source": "SKILL.md", "scope": resolved, "rules": _bullets(block)}
