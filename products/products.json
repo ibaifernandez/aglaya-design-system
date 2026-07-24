@@ -69,35 +69,21 @@
       "name": "CONSENT FLOW",
       "status": "active",
       "sacred": false,
-      "author": "Claude (AGLAYA-native) · Mónica Montúfar (original)",
+      "author": "Mónica Montúfar (concepto) · AGLAYA (tipos + contornos)",
       "product_ref": "plugin consent-ledger-wp",
       "accent": { "token": "--product-consent-flow-accent", "hex": "#ae214d", "oklch": null, "name": "Carmín", "secondary": { "token": "--product-consent-flow-accent-2", "hex": "#5b964d", "name": "Verde" } },
       "functions": ["registro de consentimiento (WordPress)"],
       "glyphs": {
-        "white": null,
-        "accent": null,
-        "fill": null
+        "color": "products/consent-flow/glyphs/consent-flow-glyph.svg",
+        "light": "products/consent-flow/glyphs/consent-flow-glyph-light.svg"
       },
-      "glyphs_absent_reason": "Sin glyph/isotipo AGLAYA-native todavía (decisión pendiente). El monograma original de Mónica (C + blob + badge) usa Aptos + esquinas redondeadas; no se adopta tal cual.",
+      "glyph_note": "Excepción del set: isotipo a COLOR (sello verde + C + check carmín), no las 3 variantes mono (white/accent/fill) de los demás. 'color' = C blanca, para fondo oscuro; 'light' = C en tinta oscura, para fondo claro.",
       "lockups": {
         "lockup": "products/consent-flow/lockups/aglaya-consent-flow-lockup.svg",
-        "stacked": "products/consent-flow/lockups/aglaya-consent-flow-stacked.svg"
+        "stacked": "products/consent-flow/lockups/aglaya-consent-flow-stacked.svg",
+        "wordmark": "products/consent-flow/wordmark/aglaya-consent-flow-wordmark.svg"
       },
-      "originals": {
-        "note": "Arte original de Mónica Montúfar (fuente Aptos, badge redondeado, paleta propia). Referencia — el texto requiere Aptos salvo -04 (vectorizado). No es la identidad AGLAYA-native primaria.",
-        "lockup": "products/consent-flow/ConsetFlow-01.svg",
-        "stacked": "products/consent-flow/ConsetFlow-02.svg",
-        "lockup-outlined": "products/consent-flow/ConsetFlow-03.svg",
-        "stacked-outlined": "products/consent-flow/ConsetFlow-04.svg",
-        "lockup-ondark": "products/consent-flow/ConsetFlow-05.svg"
-      },
-      "exceptions": [
-        "Usa fuente Aptos (Microsoft), NO el sistema de tipos AGLAYA (Outfit/Inter/Space Mono).",
-        "El badge del check tiene esquinas redondeadas — excepción al no-negociable de radius 0.",
-        "Solo ConsetFlow-04 (stacked) está totalmente vectorizado y renderiza sin Aptos; el resto depende de la fuente. Aptos NO se incluye en fonts/ (no es tipo AGLAYA).",
-        "El wordmark de 01/02/03/04 es oscuro (#211915) — diseñado para FONDO CLARO; sobre el canvas negro AGLAYA solo funciona ConsetFlow-05 (on-dark, wordmark blanco). No existe variante que sea a la vez on-dark Y font-independiente — gap a resolver con Mónica."
-      ],
-      "notes": "Wordmark AGLAYA-native: 'ConsentFlow' en Inter Black (C y F mayúsculas, resto minúsculas), sin Aptos — sustituye al arte roto en negro. El arte original de Mónica se preserva bajo 'originals'. Isotipo AGLAYA-native pendiente de decisión."
+      "notes": "Concepto de Mónica Montúfar (sello verde + C + check carmín), reconstruido con tipos AGLAYA (wordmark Inter, eyebrow Space Mono) y entregado en CONTORNOS — cero dependencia de fuentes, renderiza idéntico en cualquier máquina. Lockup master + isotipo exportados por el usuario; stacked y wordmark compuestos desde ellos."
     },
     {
       "id": "legal-reg-tech",

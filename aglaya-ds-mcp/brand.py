@@ -483,19 +483,25 @@ def get_accent(pid: str) -> dict:
     return out
 
 
-def get_glyph(pid: str, variant: str = "accent") -> dict:
-    """Resolve a product glyph SVG path. variant: white|accent|fill.
-
-    Raises with the manifest's reason when a product has no glyph (e.g. the
-    sacred CONSENT FLOW ships no isolated glyph — it is never fabricated)."""
+def get_glyph(pid: str, variant: Optional[str] = None) -> dict:
+    """Resolve a product glyph SVG path. Variant keys are manifest-driven and
+    vary by product: most use 'white'|'accent'|'fill'; CONSENT FLOW is the
+    set's exception with a colour isotipo ('color'|'light'). Omit `variant`
+    for the default ('accent' if present, else the first available key)."""
     p = _product(pid)
-    v = variant.strip().lower()
-    if v not in ("white", "accent", "fill"):
-        raise BrandError("variant must be 'white', 'accent' or 'fill'")
-    path = (p.get("glyphs") or {}).get(v)
-    if not path:
+    glyphs = {k: val for k, val in (p.get("glyphs") or {}).items() if val}
+    if not glyphs:
         reason = p.get("glyphs_absent_reason", "product ships no glyph")
-        raise BrandError(f"'{p['id']}' has no '{v}' glyph — {reason}")
+        raise BrandError(f"'{p['id']}' ships no glyph — {reason}")
+    if variant is None:
+        v = "accent" if "accent" in glyphs else next(iter(glyphs))
+    else:
+        v = variant.strip().lower()
+    if v not in glyphs:
+        raise BrandError(
+            f"'{p['id']}' has no '{v}' glyph. Available: {', '.join(glyphs)}"
+        )
+    path = glyphs[v]
     full = REPO_ROOT / path
     return {
         "product": p["id"],

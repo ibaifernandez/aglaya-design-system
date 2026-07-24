@@ -196,7 +196,7 @@ Model: **MONOLITHIC** — AGLAYA leads, the product describes. `aglaya.biz` is t
 | KANBAN DESK | Cobalt `#4a8fd6` | three bars (columns) |
 | CRM | Violet `#b073d8` | line + three nodes |
 | OUTREACH | Teal `#4eb2ac` | two chevrons |
-| CONSENT FLOW | Carmín `#ae214d` (+ green `#5b964d`) | AGLAYA-native wordmark (Inter Black `ConsentFlow`); Mónica Montúfar originals preserved |
+| CONSENT FLOW | Carmín `#ae214d` (+ green `#5b964d`) | Mónica Montúfar's seal, AGLAYA type, outlined — colour isotipo (set exception) |
 | LEGAL REG TECH | Gold `#d1a63e` | framed check (audit seal) |
 | ORQUESTADOR | Steel `#909fb8` | hub + four satellites |
 
@@ -204,7 +204,7 @@ Model: **MONOLITHIC** — AGLAYA leads, the product describes. `aglaya.biz` is t
 
 **Taxonomy.** Each product ships a **glyph** on a 96×96 grid in three variants — `white`, `accent` (accent on transparent), `fill` (accent square, mark knocked out in black) — and two **lockups**: `lockup` (horizontal) and `stacked`. Lockups reference Outfit / Space Mono by name; the repo ships those fonts.
 
-**CONSENT FLOW.** Originally designed by Mónica Montúfar for the `consent-ledger-wp` plugin in the Aptos typeface with a rounded check badge — which broke three non-negotiables and rendered poorly on the black canvas. Its wordmark is now rebuilt **AGLAYA-native**: `ConsentFlow` in Inter Black (C and F capitalised, the rest lowercase — a deliberate lowercase move, unlike the Outfit-uppercase of the other products). Mónica's five original SVGs are preserved under `originals` in `products.json` for reference. An AGLAYA-native isotipo is still pending.
+**CONSENT FLOW.** Mónica Montúfar's concept for the `consent-ledger-wp` plugin — a green seal holding a "C" with a carmín check badge — rebuilt with AGLAYA type (wordmark in Inter, eyebrow in Space Mono) and delivered as **outlines**: zero font dependency, renders identically on any machine. It is the set's **exception**: instead of the three mono glyph variants it ships a **colour isotipo** in two forms — `color` (white C, for dark surfaces) and `light` (dark C, for light surfaces). The lockup, stacked and wordmark all derive from that master pair.
 
 PULSE was removed from the set (telephone outbound, out of scope) — deleted, not archived, per the brand rule *eliminar > legacy*.
 

@@ -139,10 +139,11 @@ def get_accent(id: str) -> dict:
 
 
 @mcp.tool()
-def get_glyph(id: str, variant: str = "accent") -> dict:
-    """Resolve a product glyph SVG. variant: 'white' | 'accent' | 'fill'.
-    Errors with the reason when a product ships no glyph (e.g. the sacred
-    CONSENT FLOW ships none — it is never fabricated)."""
+def get_glyph(id: str, variant: Optional[str] = None) -> dict:
+    """Resolve a product glyph SVG. Variant keys are manifest-driven: most
+    products use 'white' | 'accent' | 'fill'; CONSENT FLOW is the exception
+    with a colour isotipo ('color' | 'light'). Omit `variant` for the default
+    ('accent' if present, else the first available)."""
     return _guard(brand.get_glyph, id, variant)
 
 
