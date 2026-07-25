@@ -25,7 +25,7 @@ Objetivo: **absorber, consolidar y sistematizar** esa identidad dentro del repo 
 | C | Forma sistematizada | Dir `products/` en el repo + manifiesto `products.json` + tokens de acento reales en `colors_and_type.css`; el MCP lee en vivo (espejo de `brand.py`). |
 | D | Specs de componente | **En scope**, pero como iteración limpia aparte (no colapsar con identidad de producto). Ambas cosas listas esta sesión. |
 | E | Dónde vive la identidad | **Dentro del repo.** `/Volumes/Chankete` es disco externo montable; el MCP no puede depender de él. Consecuencia: el volumen externo deja de ser autoritativo (como le pasó a aglaya.biz con los tokens). |
-| Legal | ¿1 o 2 productos? | **1 producto, 2 funciones** (escáner 21.179 + auditoría 21.719). Roster final = 6. |
+| Legal | ¿1 o 2 productos? | **1 producto, 2 funciones** (escáner 21.719 + auditoría 21.719). Roster final = 6. |
 
 ## 3. Roster final (6 productos)
 

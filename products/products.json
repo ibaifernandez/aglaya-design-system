@@ -90,7 +90,7 @@
       "sacred": false,
       "author": "Claude (Claude Design)",
       "accent": { "token": "--product-legal-reg-tech-accent", "hex": "#d1a63e", "oklch": "oklch(0.78 0.13 80)", "name": "Gold" },
-      "functions": ["escáner de cumplimiento (ley 21.179)", "auditoría (ley 21.719)"],
+      "functions": ["escáner de cumplimiento (ley 21.719)", "auditoría (ley 21.719)"],
       "glyphs": {
         "white": "products/legal-reg-tech/glyphs/legal-reg-tech-glyph-white.svg",
         "accent": "products/legal-reg-tech/glyphs/legal-reg-tech-glyph-accent.svg",
