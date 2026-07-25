@@ -35,12 +35,12 @@
     "semantic_hash": "3d4b9a17a82a3df6a397446364b719c4"
   },
   "README.md": {
-    "mtime": 1784931624.8849103,
+    "mtime": 1784938133.0189896,
     "ast_hash": "3814d6c5cc2cdd7943fe996370807ee4",
     "semantic_hash": ""
   },
   "SKILL.md": {
-    "mtime": 1784914018.0101726,
+    "mtime": 1784938133.0195827,
     "ast_hash": "8cc18a8659ec3f9e92b34e7400004f39",
     "semantic_hash": ""
   },
@@ -210,7 +210,7 @@
     "semantic_hash": "90fc88ab5de9279173a58de25075d5c7"
   },
   "aglaya-ds-mcp/brand.py": {
-    "mtime": 1784912551.983104,
+    "mtime": 1784938133.0209644,
     "ast_hash": "725123dd9dd3c49c2036358ba3235b09",
     "semantic_hash": ""
   },
@@ -220,12 +220,12 @@
     "semantic_hash": "8470d03ebd680b2d5f13ea3e1769d0a2"
   },
   "aglaya-ds-mcp/selftest.py": {
-    "mtime": 1784914050.9700541,
+    "mtime": 1784938133.0214481,
     "ast_hash": "78b08c79f7de07ab629c3ec178f49ab2",
     "semantic_hash": ""
   },
   "aglaya-ds-mcp/server.py": {
-    "mtime": 1784912555.7102387,
+    "mtime": 1784938133.02176,
     "ast_hash": "f778468e6ece8a8dc265388fae067282",
     "semantic_hash": ""
   },
@@ -235,7 +235,7 @@
     "semantic_hash": "de66bc25a8ed37c526e3b5f961a9c4c1"
   },
   "aglaya-ds-mcp/README.md": {
-    "mtime": 1784890979.000904,
+    "mtime": 1784938133.0202157,
     "ast_hash": "5c55dac41c73f02e88745692042d9b1c",
     "semantic_hash": ""
   },
@@ -265,187 +265,187 @@
     "semantic_hash": ""
   },
   "docs/superpowers/specs/2026-07-24-product-identity-system-design.md": {
-    "mtime": 1784937977.5577335,
+    "mtime": 1784938133.022857,
     "ast_hash": "677cb61ca938754ffb0296c49586b769",
     "semantic_hash": ""
   },
   "products/products.json": {
-    "mtime": 1784937975.8251073,
+    "mtime": 1784938133.033531,
     "ast_hash": "b9c615f69403057a138b214839461e98",
     "semantic_hash": ""
   },
   "products/crm/glyphs/crm-glyph-accent.svg": {
-    "mtime": 1784889516.5471401,
+    "mtime": 1784938133.0255344,
     "ast_hash": "98ad21b031ae976bdcf91c1e3e6ca493",
     "semantic_hash": ""
   },
   "products/crm/glyphs/crm-glyph-fill.svg": {
-    "mtime": 1784889516.77541,
+    "mtime": 1784938133.0257425,
     "ast_hash": "4bd399b27cd6b5befc3896361dd1fd2f",
     "semantic_hash": ""
   },
   "products/crm/glyphs/crm-glyph-white.svg": {
-    "mtime": 1784889516.78644,
+    "mtime": 1784938133.0263379,
     "ast_hash": "1eb664a952176b33250b3aace2a2721b",
     "semantic_hash": ""
   },
   "products/crm/lockups/aglaya-crm-lockup.svg": {
-    "mtime": 1784913608.7821672,
+    "mtime": 1784938133.0265863,
     "ast_hash": "cdf237d4f8cceac130053529a5af2ba9",
     "semantic_hash": ""
   },
   "products/crm/lockups/aglaya-crm-stacked.svg": {
-    "mtime": 1784913608.7824097,
+    "mtime": 1784938133.0267825,
     "ast_hash": "a15297a293d678b3b9febb2a4a68a789",
     "semantic_hash": ""
   },
   "products/kanban-desk/glyphs/kanban-desk-glyph-accent.svg": {
-    "mtime": 1784889516.544021,
+    "mtime": 1784938133.0281477,
     "ast_hash": "8ab9b7fd32e4b2f6bb8667189623db99",
     "semantic_hash": ""
   },
   "products/kanban-desk/glyphs/kanban-desk-glyph-fill.svg": {
-    "mtime": 1784889516.5525322,
+    "mtime": 1784938133.028388,
     "ast_hash": "60fb9d731fd30ae9f6cdfaa4c1fcb78e",
     "semantic_hash": ""
   },
   "products/kanban-desk/glyphs/kanban-desk-glyph-white.svg": {
-    "mtime": 1784889516.78157,
+    "mtime": 1784938133.0288017,
     "ast_hash": "7e4858acbbb59e260ab18d24dd65d603",
     "semantic_hash": ""
   },
   "products/kanban-desk/lockups/aglaya-kanban-desk-lockup.svg": {
-    "mtime": 1784908007.8826272,
+    "mtime": 1784938133.0293207,
     "ast_hash": "955a2c2d06696e9c5e4e6ee7dcc6ae82",
     "semantic_hash": ""
   },
   "products/kanban-desk/lockups/aglaya-kanban-desk-stacked.svg": {
-    "mtime": 1784908007.8827267,
+    "mtime": 1784938133.0295873,
     "ast_hash": "dddadc080b97231b917eb4916a55ca79",
     "semantic_hash": ""
   },
   "products/legal-reg-tech/glyphs/legal-reg-tech-glyph-accent.svg": {
-    "mtime": 1784913017.8582475,
+    "mtime": 1784938133.0298736,
     "ast_hash": "80c2eb2e7c8080c8b264cc1b83985d77",
     "semantic_hash": ""
   },
   "products/legal-reg-tech/glyphs/legal-reg-tech-glyph-fill.svg": {
-    "mtime": 1784913017.8728676,
+    "mtime": 1784938133.030106,
     "ast_hash": "63e930ae6220b97d0429237dd7cec351",
     "semantic_hash": ""
   },
   "products/legal-reg-tech/glyphs/legal-reg-tech-glyph-white.svg": {
-    "mtime": 1784913017.8659875,
+    "mtime": 1784938133.0305512,
     "ast_hash": "37d8822353435b5f3802680894e083e9",
     "semantic_hash": ""
   },
   "products/legal-reg-tech/lockups/aglaya-legal-reg-tech-lockup.svg": {
-    "mtime": 1784913017.878381,
+    "mtime": 1784938133.0308044,
     "ast_hash": "0a0239fc699b561ea2fb285b4991085c",
     "semantic_hash": ""
   },
   "products/legal-reg-tech/lockups/aglaya-legal-reg-tech-stacked.svg": {
-    "mtime": 1784908242.1215205,
+    "mtime": 1784938133.0311382,
     "ast_hash": "918fded68dadf6e78fcb0b9c2d73d958",
     "semantic_hash": ""
   },
   "products/outreach/glyphs/outreach-glyph-accent.svg": {
-    "mtime": 1784889516.5497396,
+    "mtime": 1784938133.0324101,
     "ast_hash": "ce5f43f2a98faa60f37004914a136ced",
     "semantic_hash": ""
   },
   "products/outreach/glyphs/outreach-glyph-fill.svg": {
-    "mtime": 1784889516.7786703,
+    "mtime": 1784938133.0326052,
     "ast_hash": "9553c15e68441de051223bdf42b267d5",
     "semantic_hash": ""
   },
   "products/outreach/glyphs/outreach-glyph-white.svg": {
-    "mtime": 1784889516.7901149,
+    "mtime": 1784938133.032806,
     "ast_hash": "2a7a626a6e1a66953accd55b5c771e70",
     "semantic_hash": ""
   },
   "products/outreach/lockups/aglaya-outreach-lockup.svg": {
-    "mtime": 1784913608.7826464,
+    "mtime": 1784938133.0330415,
     "ast_hash": "a4fd57db19249b6eceaa8f7a8a8d5419",
     "semantic_hash": ""
   },
   "products/outreach/lockups/aglaya-outreach-stacked.svg": {
-    "mtime": 1784913608.7832131,
+    "mtime": 1784938133.033274,
     "ast_hash": "fbb09ee88a80209bbabaaa5687ec2365",
     "semantic_hash": ""
   },
   "components/components.json": {
-    "mtime": 1784890224.541638,
+    "mtime": 1784938133.0225067,
     "ast_hash": "7f80134a4ddb6ffe2b7d7d09ddd2d0c4",
     "semantic_hash": ""
   },
   "preview/brand-product-identity.html": {
-    "mtime": 1784933589.9269426,
+    "mtime": 1784938133.0243473,
     "ast_hash": "b6493d053daa3a8e2a3d6bb28ecbe391",
     "semantic_hash": ""
   },
   "products/consent-flow/lockups/aglaya-consent-flow-lockup.svg": {
-    "mtime": 1784933485.5018115,
+    "mtime": 1784938133.0249977,
     "ast_hash": "bee255da76c704a729c51677d9138bd3",
     "semantic_hash": ""
   },
   "products/consent-flow/lockups/aglaya-consent-flow-stacked.svg": {
-    "mtime": 1784931150.9093332,
+    "mtime": 1784938133.0252576,
     "ast_hash": "06b0d5977dbebc787decbb379b1e228b",
     "semantic_hash": ""
   },
   "products/consent-flow/glyphs/consent-flow-glyph.svg": {
-    "mtime": 1784933485.5016298,
+    "mtime": 1784938133.0247092,
     "ast_hash": "ea5be5f421fcf03ab2a04cd2d09c178a",
     "semantic_hash": ""
   },
   "products/design-system/glyphs/design-system-glyph-accent.svg": {
-    "mtime": 1784919504.0856302,
+    "mtime": 1784938133.0270512,
     "ast_hash": "625598b183e8d8271dc848c3a08134af",
     "semantic_hash": ""
   },
   "products/design-system/glyphs/design-system-glyph-fill.svg": {
-    "mtime": 1784919504.0893612,
+    "mtime": 1784938133.0272975,
     "ast_hash": "81466b03c721fe1bba6bd9dbb01a8262",
     "semantic_hash": ""
   },
   "products/design-system/glyphs/design-system-glyph-white.svg": {
-    "mtime": 1784919504.0814877,
+    "mtime": 1784938133.0275056,
     "ast_hash": "4fbfee121025e9fa0dc74dd7d0ea9ab2",
     "semantic_hash": ""
   },
   "products/design-system/lockups/aglaya-design-system-lockup.svg": {
-    "mtime": 1784919387.7388508,
+    "mtime": 1784938133.0277503,
     "ast_hash": "2a615257d4d37bf8ee814882552c2bd3",
     "semantic_hash": ""
   },
   "products/design-system/lockups/aglaya-design-system-stacked.svg": {
-    "mtime": 1784913608.7840216,
+    "mtime": 1784938133.0279622,
     "ast_hash": "95bff56ed4202377bc4a21d3c3ff94d2",
     "semantic_hash": ""
   },
   "products/orchestrator/glyphs/orchestrator-glyph-accent.svg": {
-    "mtime": 1784889547.8107178,
+    "mtime": 1784938133.0314991,
     "ast_hash": "caec13bc546b112b29c9bf6e985b5fc5",
     "semantic_hash": ""
   },
   "products/orchestrator/glyphs/orchestrator-glyph-fill.svg": {
-    "mtime": 1784889554.854612,
+    "mtime": 1784938133.0316207,
     "ast_hash": "221c8f48cf94b39aca43562c0c8e6e35",
     "semantic_hash": ""
   },
   "products/orchestrator/glyphs/orchestrator-glyph-white.svg": {
-    "mtime": 1784889551.302733,
+    "mtime": 1784938133.0317519,
     "ast_hash": "526f54ebdeba2251786e28af35583ca6",
     "semantic_hash": ""
   },
   "products/orchestrator/lockups/aglaya-orchestrator-lockup.svg": {
-    "mtime": 1784913608.7833776,
+    "mtime": 1784938133.0319855,
     "ast_hash": "cda47e60c8ac0a774643d20bad832b98",
     "semantic_hash": ""
   },
   "products/orchestrator/lockups/aglaya-orchestrator-stacked.svg": {
-    "mtime": 1784913608.7835765,
+    "mtime": 1784938133.0321648,
     "ast_hash": "64b9be6f0e4719a990d00d37cddfeae5",
     "semantic_hash": ""
   }
