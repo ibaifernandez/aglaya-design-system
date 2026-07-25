@@ -37,10 +37,24 @@ async def main() -> int:
             print("== TOOLS REGISTERED ==")
             print(names, "\n")
 
+            expected = {
+                "get_token", "list_tokens", "get_voice_rules", "check_voice",
+                "is_allowed_word", "get_logo", "get_nonnegotiables",
+                "list_products", "get_product", "get_accent", "get_glyph",
+                "get_lockup", "get_product_voice",
+                "list_components", "get_component",
+            }
+            missing = expected - set(names)
+            if missing:
+                print("!! MISSING TOOLS:", sorted(missing))
+                return 1
+
             calls = [
                 ("get_token", {"name": "color-brand"}),
                 ("get_token", {"name": "--space-8"}),
+                ("get_token", {"name": "product-legal-reg-tech-accent"}),
                 ("list_tokens", {"category": "color"}),
+                ("list_tokens", {"category": "product"}),
                 ("get_voice_rules", {}),
                 ("check_voice", {"text": "Our solutions transform your business!"}),
                 ("is_allowed_word", {"term": "newsletter"}),
@@ -48,6 +62,16 @@ async def main() -> int:
                 ("get_logo", {"variant": "isotipo-rojo"}),
                 ("get_logo", {"variant": "logotipo-white"}),
                 ("get_nonnegotiables", {}),
+                ("get_nonnegotiables", {"scope": "product"}),
+                ("list_products", {}),
+                ("get_product", {"id": "legal-reg-tech"}),
+                ("get_accent", {"id": "orchestrator"}),
+                ("get_glyph", {"id": "design-system", "variant": "accent"}),
+                ("get_glyph", {"id": "kanban-desk", "variant": "fill"}),
+                ("get_lockup", {"id": "consent-flow", "layout": "stacked"}),
+                ("get_product_voice", {"id": "crm"}),
+                ("list_components", {}),
+                ("get_component", {"id": "button"}),
             ]
             for name, args in calls:
                 res = await session.call_tool(name, args)

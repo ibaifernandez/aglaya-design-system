@@ -50,6 +50,22 @@
   --color-brand-light:      #ff4d70;  /* Tint / decorative accent */
   --color-corporate-green:  #9fc243;  /* Eyebrow / code / annotation color */
 
+  /* ---------- PRODUCT ACCENTS ----------
+     Per-product identity colors. Two-level doctrine (see SKILL.md
+     '## Non-negotiables — producto'): the MASTER brand stays 3-color-rigid;
+     these accents are first-class ONLY on their own product's surface (allowed
+     on CTAs, no proportion cap) and never leak onto the aglaya.biz master.
+     Source of truth for the roster is products/products.json. */
+  --product-kanban-desk-accent:    #4a8fd6;  /* Cobalt  · oklch(0.72 0.13 250) */
+  --product-crm-accent:            #b073d8;  /* Violet  · oklch(0.72 0.13 300) */
+  --product-outreach-accent:       #4eb2ac;  /* Teal    · oklch(0.74 0.10 190) */
+  --product-consent-flow-accent:   #ae214d;  /* Carmín  · Mónica Montúfar — sacred */
+  --product-consent-flow-accent-2: #5b964d;  /* Verde secondary · Mónica — sacred */
+  --product-legal-reg-tech-accent: #d1a63e;  /* Gold    · oklch(0.78 0.13 80) */
+  --product-orchestrator-accent:   #909fb8;  /* Steel   · oklch(0.70 0.04 260) */
+  --product-design-system-accent:  #9fc243;  /* Corporate green · color-fuente / "applied logic" */
+  --product-design-system-accent:   #9fc243;  /* Corporate green � color-fuente / "applied logic" */
+
   /* ---------- SURFACE / BG ---------- */
   --color-bg:               #000000;  /* Pure black — default canvas */
   --color-bg-deep:          #040404;  /* Footer / extreme depth */

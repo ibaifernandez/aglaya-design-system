@@ -18,6 +18,7 @@ Keeping the core here means it is testable and reusable without the MCP SDK.
 
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 from typing import Optional
@@ -30,6 +31,8 @@ CSS_FILE = REPO_ROOT / "colors_and_type.css"
 README_FILE = REPO_ROOT / "README.md"
 SKILL_FILE = REPO_ROOT / "SKILL.md"
 ASSETS_DIR = REPO_ROOT / "assets"
+PRODUCTS_FILE = REPO_ROOT / "products" / "products.json"
+COMPONENTS_FILE = REPO_ROOT / "components" / "components.json"
 
 
 class BrandError(Exception):
@@ -56,6 +59,7 @@ _CATEGORIES: dict[str, tuple[str, ...]] = {
     "radius": ("radius-",),
     "motion": ("ease-", "dur-"),
     "shadow": ("shadow-", "glow-", "aura-"),
+    "product": ("product-",),
 }
 
 
@@ -405,12 +409,219 @@ def get_logo(variant: str, fmt: str = "svg") -> dict:
 
 
 # ────────────────────────────────────────────────────────────────────────────
+# PRODUCTS  (read live from products/products.json — the roster's single truth)
+# ────────────────────────────────────────────────────────────────────────────
+
+
+def _manifest() -> dict:
+    """Parse products/products.json live."""
+    raw = _read(PRODUCTS_FILE)
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError as e:
+        raise BrandError(f"products.json is not valid JSON: {e}")
+
+
+def _product(pid: str) -> dict:
+    """Resolve a product by id (slug) or display name, case-insensitive."""
+    key = pid.strip().lower()
+    products = _manifest().get("products", [])
+    for p in products:
+        if p.get("id") == key or p.get("name", "").lower() == key:
+            return p
+    known = ", ".join(p.get("id", "?") for p in products)
+    raise BrandError(f"unknown product '{pid}'. Known: {known}")
+
+
+def list_products() -> dict:
+    """Roster summary read live from the manifest."""
+    m = _manifest()
+    prods = [
+        {
+            "id": p["id"],
+            "name": p["name"],
+            "sacred": p.get("sacred", False),
+            "accent": p["accent"]["hex"],
+            "accent_token": p["accent"]["token"],
+            "functions": p.get("functions", []),
+        }
+        for p in m.get("products", [])
+    ]
+    return {
+        "model": m.get("model"),
+        "voice": m.get("voice"),
+        "count": len(prods),
+        "products": prods,
+        "removed": [r.get("id") for r in m.get("removed", [])],
+    }
+
+
+def get_product(pid: str) -> dict:
+    """Full manifest record for one product."""
+    return _product(pid)
+
+
+def get_accent(pid: str) -> dict:
+    """A product's accent: manifest values cross-checked against the live CSS
+    token (so the answer can never silently drift from colors_and_type.css)."""
+    p = _product(pid)
+    a = p["accent"]
+    out = {
+        "product": p["id"],
+        "token": a["token"],
+        "hex": a["hex"],
+        "oklch": a.get("oklch"),
+        "name": a.get("name"),
+    }
+    if "secondary" in a:
+        out["secondary"] = a["secondary"]
+    try:
+        out["css_value"] = get_token(a["token"])
+    except BrandError:
+        out["css_value"] = None
+        out["warning"] = f"{a['token']} not found in colors_and_type.css"
+    return out
+
+
+def get_glyph(pid: str, variant: Optional[str] = None) -> dict:
+    """Resolve a product glyph SVG path. Variant keys are manifest-driven and
+    vary by product: most use 'white'|'accent'|'fill'; CONSENT FLOW is the
+    set's exception with a colour isotipo ('color'|'light'). Omit `variant`
+    for the default ('accent' if present, else the first available key)."""
+    p = _product(pid)
+    glyphs = {k: val for k, val in (p.get("glyphs") or {}).items() if val}
+    if not glyphs:
+        reason = p.get("glyphs_absent_reason", "product ships no glyph")
+        raise BrandError(f"'{p['id']}' ships no glyph — {reason}")
+    if variant is None:
+        v = "accent" if "accent" in glyphs else next(iter(glyphs))
+    else:
+        v = variant.strip().lower()
+    if v not in glyphs:
+        raise BrandError(
+            f"'{p['id']}' has no '{v}' glyph. Available: {', '.join(glyphs)}"
+        )
+    path = glyphs[v]
+    full = REPO_ROOT / path
+    return {
+        "product": p["id"],
+        "variant": v,
+        "path": str(full),
+        "relative_path": path,
+        "exists": full.exists(),
+    }
+
+
+def get_lockup(pid: str, layout: str = "lockup") -> dict:
+    """Resolve a product lockup SVG path. layout: 'lockup' (horizontal),
+    'stacked', or any product-specific key (e.g. CONSENT FLOW's
+    'lockup-outlined', 'lockup-ondark')."""
+    p = _product(pid)
+    lay = layout.strip().lower()
+    lockups = p.get("lockups") or {}
+    if not lockups.get(lay):
+        avail = ", ".join(k for k, v in lockups.items() if v)
+        raise BrandError(f"'{p['id']}' has no '{lay}' lockup. Available: {avail}")
+    path = lockups[lay]
+    full = REPO_ROOT / path
+    return {
+        "product": p["id"],
+        "layout": lay,
+        "path": str(full),
+        "relative_path": path,
+        "exists": full.exists(),
+    }
+
+
+def get_product_voice(pid: str) -> dict:
+    """A product's voice. Single-voice doctrine: every product speaks the one
+    AGLAYA voice — this validates the id and returns the shared voice rules,
+    making explicit that per-product voice is intentional absence, not a gap."""
+    p = _product(pid)
+    return {
+        "product": p["id"],
+        "voice_model": "single",
+        "note": (
+            "Todos los productos hablan con la voz única AGLAYA — "
+            "no hay voz por producto (intencional, no un hueco)."
+        ),
+        "voice": get_voice_rules(),
+    }
+
+
+# ────────────────────────────────────────────────────────────────────────────
+# COMPONENTS  (read live from components/components.json)
+# ────────────────────────────────────────────────────────────────────────────
+
+
+def _components_manifest() -> dict:
+    raw = _read(COMPONENTS_FILE)
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError as e:
+        raise BrandError(f"components.json is not valid JSON: {e}")
+
+
+def list_components() -> dict:
+    """Component roster (button, card, input, badge…) with their variants,
+    read live from components/components.json."""
+    comps = _components_manifest().get("components", [])
+    return {
+        "count": len(comps),
+        "components": [
+            {
+                "id": c["id"],
+                "name": c["name"],
+                "variants": [v["name"] for v in c.get("variants", [])],
+            }
+            for c in comps
+        ],
+    }
+
+
+def get_component(cid: str) -> dict:
+    """Full spec for one component: token refs, per-variant/structural values,
+    states and rules. `cid` accepts the id ('button') or display name."""
+    key = cid.strip().lower()
+    comps = _components_manifest().get("components", [])
+    for c in comps:
+        if c.get("id") == key or c.get("name", "").lower() == key:
+            return c
+    known = ", ".join(c.get("id", "?") for c in comps)
+    raise BrandError(f"unknown component '{cid}'. Known: {known}")
+
+
+# ────────────────────────────────────────────────────────────────────────────
 # NON-NEGOTIABLES  (read live from SKILL.md)
 # ────────────────────────────────────────────────────────────────────────────
 
 
-def get_nonnegotiables() -> dict:
-    """The hard brand rules, read live from SKILL.md '## Non-negotiables'."""
+# scope -> the exact SKILL.md heading it maps to. Kept HERE (not in the caller)
+# so the em-dash heading string lives in one place and callers pass a plain word.
+_NONNEG_HEADINGS = {
+    "master": "Non-negotiables",
+    "product": "Non-negotiables — producto",
+}
+_NONNEG_SCOPE_ALIASES = {
+    "master": "master", "madre": "master", "casa": "master", "house": "master",
+    "product": "product", "producto": "product",
+}
+
+
+def get_nonnegotiables(scope: Optional[str] = None) -> dict:
+    """The hard brand rules, read live from SKILL.md.
+
+    scope: 'master' (default) -> the rigid marca-madre rules from
+    '## Non-negotiables'. 'product' -> the product-surface rules from
+    '## Non-negotiables — producto' (accent is first-class: CTA allowed, no
+    proportion cap; everything else inherited from master).
+    """
+    key = (scope or "master").strip().lower()
+    resolved = _NONNEG_SCOPE_ALIASES.get(key)
+    if resolved is None:
+        raise BrandError(
+            f"unknown scope '{scope}'. Use 'master' (default) or 'product'."
+        )
     md = _read(SKILL_FILE)
-    block = _section(md, "Non-negotiables")
-    return {"source": "SKILL.md", "rules": _bullets(block)}
+    block = _section(md, _NONNEG_HEADINGS[resolved])
+    return {"source": "SKILL.md", "scope": resolved, "rules": _bullets(block)}

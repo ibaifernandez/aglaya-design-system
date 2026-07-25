@@ -17,10 +17,14 @@ If the user invokes this skill without any other guidance, ask them what they wa
 - `README.md` — full brand guide (content voice, visual foundations, iconography, forbidden patterns, sample copy)
 - `colors_and_type.css` — all tokens as CSS custom properties + ready-to-use `t-*` semantic classes
 - `assets/` — logos (white / black / color) + favicons (SVG + PNG)
-- `preview/` — 22 design-system specimen cards (colors, type, spacing, components, brand)
+- `products/` — product identity (monolithic model): 6 products, each with glyphs (white/accent/fill) + lockups, plus `products.json` (the roster's single source of truth). Served live by the MCP.
+- `components/` — component specs (`components.json`: button/card/input/badge) served by the MCP.
+- `preview/` — design-system specimen cards (colors, type, spacing, components, brand, product identity)
 - `ui_kits/website/` — hi-fi React recreation of the marketing site. Start here for any web work.
 
 ## Non-negotiables
+
+Reglas de la **marca madre AGLAYA** (aglaya.biz, materiales de agencia, redes). Rígidas: se aplican a toda superficie AGLAYA, salvo donde una superficie de **producto** declare una excepción explícita en `## Non-negotiables — producto`.
 
 - `AGLAYA` always UPPERCASE.
 - Zero border-radius. Every corner is square.
@@ -29,3 +33,13 @@ If the user invokes this skill without any other guidance, ask them what they wa
 - Copy is terse and imperative. No "we believe", no "we're passionate about", no exclamation marks, no rhetorical questions.
 - Display type is Outfit Black, UPPERCASE, tight tracking. Body is Inter. Mono is Space Mono with extreme `letter-spacing: 0.3em–0.5em`.
 - Signature headline move: line 1 white, line 2 `color: var(--color-brand)`.
+
+## Non-negotiables — producto
+
+Una **superficie de producto** (KANBAN DESK, CRM, OUTREACH, CONSENT FLOW, LEGAL REG TECH, ORCHESTRATOR, y la propia DESIGN SYSTEM — ver `products/products.json`) hereda TODOS los no-negociables de la marca madre, con una única excepción: su color de acento es de primera clase.
+
+- Hereda todos los no-negociables de la marca madre **excepto la exclusividad de color** («Nothing else»).
+- El **acento del producto** (definido en `products/products.json` y como token en `colors_and_type.css`) es color de primera clase: **libre en CTA, sin tope de proporción**.
+- El rojo madre `#e8003d` no se reemplaza: coexiste con el acento en la superficie del producto. El acento identifica al producto; el rojo sigue siendo el rojo de la marca.
+- Todo lo demás sigue vigente sin cambios: radius 0, sin emoji / Lucide / Heroicons, tipografía (Outfit Black / Inter / Space Mono), headline de dos líneas, voz seca e imperativa.
+- La marca madre NO adopta acentos de producto: fuera de una superficie de producto, siguen los 3 colores y nada más.

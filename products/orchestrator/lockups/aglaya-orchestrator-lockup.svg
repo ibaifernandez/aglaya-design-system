@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 425 88" width="425" height="88" font-family="Outfit, sans-serif">
+  <g transform="translate(0, 6)">
+    <rect x="0.5" y="0.5" width="75" height="75" fill="none" stroke="rgba(255,255,255,0.16)"></rect>
+    <g transform="translate(9, 9) scale(0.604)"><line x1="48" y1="24" x2="48" y2="72" stroke="#909fb8" stroke-width="4"></line>
+    <line x1="24" y1="48" x2="72" y2="48" stroke="#909fb8" stroke-width="4"></line>
+    <rect x="42" y="10" width="12" height="12" fill="#909fb8"></rect>
+    <rect x="42" y="74" width="12" height="12" fill="#909fb8"></rect>
+    <rect x="10" y="42" width="12" height="12" fill="#909fb8"></rect>
+    <rect x="74" y="42" width="12" height="12" fill="#909fb8"></rect>
+    <rect x="40" y="40" width="16" height="16" fill="#909fb8"></rect></g>
+  </g>
+  <text x="98" y="30" fill="rgba(252,252,252,0.30)" font-family="'Space Mono', monospace" font-weight="700" font-size="13" letter-spacing="6.5">AGLAYA</text>
+  <text x="97" y="74" fill="#fcfcfc" font-weight="900" font-size="40" letter-spacing="-1.2">ORCHESTRATOR</text>
+</svg>

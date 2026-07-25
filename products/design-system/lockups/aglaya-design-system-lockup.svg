@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 415 88" width="415" height="88" font-family="Outfit, sans-serif">
+  <g transform="translate(0, 6)">
+    <rect x="0.5" y="0.5" width="75" height="75" fill="none" stroke="rgba(255,255,255,0.16)"></rect>
+    <g transform="translate(9, 9) scale(0.604)"><path d="M48,83 C33,71 13,55 13,35 C13,23 22,16 31,16 C39,16 45,22 48,30 C51,22 57,16 65,16 C74,16 83,23 83,35 C83,55 63,71 48,83 Z" fill="#9fc243"></path></g>
+  </g>
+  <text x="98" y="30" fill="rgba(252,252,252,0.30)" font-family="'Space Mono', monospace" font-weight="700" font-size="13" letter-spacing="6.5">AGLAYA</text>
+  <text x="97" y="74" fill="#fcfcfc" font-weight="900" font-size="40" letter-spacing="-1.2">DESIGN SYSTEM</text>
+</svg>

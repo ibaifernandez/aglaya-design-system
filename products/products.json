@@ -1,0 +1,148 @@
+{
+  "$schema_note": "Manifiesto canónico de identidad de producto AGLAYA. Fuente única de verdad del roster. El MCP aglaya-ds lo lee en vivo (list_products/get_product/get_accent/get_glyph/get_lockup). Rutas relativas a la raíz del repo.",
+  "model": "monolithic",
+  "model_note": "AGLAYA encabeza, el producto describe. La marca madre (aglaya.biz) no es submarca; los de abajo son productos que consumen de este repo.",
+  "voice": "single",
+  "voice_note": "Todos los productos hablan con la voz única AGLAYA (get_voice_rules). No hay voz por producto — es intencional, no un hueco.",
+  "glyph_variants": ["white", "accent", "fill"],
+  "lockup_layouts": ["lockup", "stacked"],
+  "products": [
+    {
+      "id": "kanban-desk",
+      "name": "KANBAN DESK",
+      "status": "active",
+      "sacred": false,
+      "author": "Claude (Claude Design)",
+      "accent": { "token": "--product-kanban-desk-accent", "hex": "#4a8fd6", "oklch": "oklch(0.72 0.13 250)", "name": "Cobalt" },
+      "functions": ["tablero kanban / gestión visual de trabajo"],
+      "glyphs": {
+        "white": "products/kanban-desk/glyphs/kanban-desk-glyph-white.svg",
+        "accent": "products/kanban-desk/glyphs/kanban-desk-glyph-accent.svg",
+        "fill": "products/kanban-desk/glyphs/kanban-desk-glyph-fill.svg"
+      },
+      "lockups": {
+        "lockup": "products/kanban-desk/lockups/aglaya-kanban-desk-lockup.svg",
+        "stacked": "products/kanban-desk/lockups/aglaya-kanban-desk-stacked.svg"
+      },
+      "notes": "Marca: 3 barras (columnas kanban). Lockups referencian Outfit/Space Mono por nombre."
+    },
+    {
+      "id": "crm",
+      "name": "CRM",
+      "status": "active",
+      "sacred": false,
+      "author": "Claude (Claude Design)",
+      "accent": { "token": "--product-crm-accent", "hex": "#b073d8", "oklch": "oklch(0.72 0.13 300)", "name": "Violet" },
+      "functions": ["gestión de relación con clientes"],
+      "glyphs": {
+        "white": "products/crm/glyphs/crm-glyph-white.svg",
+        "accent": "products/crm/glyphs/crm-glyph-accent.svg",
+        "fill": "products/crm/glyphs/crm-glyph-fill.svg"
+      },
+      "lockups": {
+        "lockup": "products/crm/lockups/aglaya-crm-lockup.svg",
+        "stacked": "products/crm/lockups/aglaya-crm-stacked.svg"
+      },
+      "notes": "Marca: línea + 3 nodos (pipeline / contactos)."
+    },
+    {
+      "id": "outreach",
+      "name": "OUTREACH",
+      "status": "active",
+      "sacred": false,
+      "author": "Claude (Claude Design)",
+      "accent": { "token": "--product-outreach-accent", "hex": "#4eb2ac", "oklch": "oklch(0.74 0.10 190)", "name": "Teal" },
+      "functions": ["prospección / envío saliente"],
+      "glyphs": {
+        "white": "products/outreach/glyphs/outreach-glyph-white.svg",
+        "accent": "products/outreach/glyphs/outreach-glyph-accent.svg",
+        "fill": "products/outreach/glyphs/outreach-glyph-fill.svg"
+      },
+      "lockups": {
+        "lockup": "products/outreach/lockups/aglaya-outreach-lockup.svg",
+        "stacked": "products/outreach/lockups/aglaya-outreach-stacked.svg"
+      },
+      "notes": "Marca: 2 chevrons (envío / dirección)."
+    },
+    {
+      "id": "consent-flow",
+      "name": "CONSENT FLOW",
+      "status": "active",
+      "sacred": false,
+      "author": "Mónica Montúfar (concepto) · AGLAYA (tipos + contornos)",
+      "product_ref": "plugin consent-ledger-wp",
+      "accent": { "token": "--product-consent-flow-accent", "hex": "#ae214d", "oklch": null, "name": "Carmín", "secondary": { "token": "--product-consent-flow-accent-2", "hex": "#5b964d", "name": "Verde" } },
+      "functions": ["registro de consentimiento (WordPress)"],
+      "glyphs": {
+        "color": "products/consent-flow/glyphs/consent-flow-glyph.svg"
+      },
+      "glyph_note": "Excepción del set: un ÚNICO isotipo a color (sello verde + C blanca + check carmín), no las 3 variantes mono (white/accent/fill) de los demás. La C es siempre blanca: el sello verde la encapsula y le da forma, así que funciona sobre cualquier fondo — no hay variante para fondo claro ni hace falta.",
+      "lockups": {
+        "lockup": "products/consent-flow/lockups/aglaya-consent-flow-lockup.svg",
+        "stacked": "products/consent-flow/lockups/aglaya-consent-flow-stacked.svg"
+      },
+      "notes": "Concepto de Mónica Montúfar (sello verde + C + check carmín), reconstruido con tipos AGLAYA (wordmark Inter, eyebrow Space Mono) y entregado en CONTORNOS — cero dependencia de fuentes, renderiza idéntico en cualquier máquina. Lockup master + isotipo exportados por el usuario; stacked y wordmark compuestos desde ellos."
+    },
+    {
+      "id": "legal-reg-tech",
+      "name": "LEGAL REG TECH",
+      "status": "active",
+      "sacred": false,
+      "author": "Claude (Claude Design)",
+      "accent": { "token": "--product-legal-reg-tech-accent", "hex": "#d1a63e", "oklch": "oklch(0.78 0.13 80)", "name": "Gold" },
+      "functions": ["escáner de cumplimiento (ley 21.719)", "auditoría (ley 21.719)"],
+      "glyphs": {
+        "white": "products/legal-reg-tech/glyphs/legal-reg-tech-glyph-white.svg",
+        "accent": "products/legal-reg-tech/glyphs/legal-reg-tech-glyph-accent.svg",
+        "fill": "products/legal-reg-tech/glyphs/legal-reg-tech-glyph-fill.svg"
+      },
+      "lockups": {
+        "lockup": "products/legal-reg-tech/lockups/aglaya-legal-reg-tech-lockup.svg",
+        "stacked": "products/legal-reg-tech/lockups/aglaya-legal-reg-tech-stacked.svg"
+      },
+      "notes": "Un producto, dos funciones (escáner + auditoría). Marca: check enmarcado (sello de auditoría / cumplimiento). Hue liberado por la baja de PULSE."
+    },
+    {
+      "id": "orchestrator",
+      "name": "ORCHESTRATOR",
+      "status": "active",
+      "sacred": false,
+      "author": "Claude (Claude Design)",
+      "accent": { "token": "--product-orchestrator-accent", "hex": "#909fb8", "oklch": "oklch(0.70 0.04 260)", "name": "Steel" },
+      "functions": ["orquestación / enrutado de la flota"],
+      "glyphs": {
+        "white": "products/orchestrator/glyphs/orchestrator-glyph-white.svg",
+        "accent": "products/orchestrator/glyphs/orchestrator-glyph-accent.svg",
+        "fill": "products/orchestrator/glyphs/orchestrator-glyph-fill.svg"
+      },
+      "lockups": {
+        "lockup": "products/orchestrator/lockups/aglaya-orchestrator-lockup.svg",
+        "stacked": "products/orchestrator/lockups/aglaya-orchestrator-stacked.svg"
+      },
+      "notes": "Marca: hub central + 4 satélites (enrutado). Acento steel desaturado a propósito — el director no compite en croma con lo que enruta."
+    },
+    {
+      "id": "design-system",
+      "name": "DESIGN SYSTEM",
+      "status": "active",
+      "sacred": false,
+      "is_house": true,
+      "author": "Claude (Claude Design)",
+      "accent": { "token": "--product-design-system-accent", "hex": "#9fc243", "oklch": null, "name": "Corporate Green" },
+      "functions": ["fuente canónica de la marca AGLAYA: tokens, tipografía, voz, logos"],
+      "glyphs": {
+        "white": "products/design-system/glyphs/design-system-glyph-white.svg",
+        "accent": "products/design-system/glyphs/design-system-glyph-accent.svg",
+        "fill": "products/design-system/glyphs/design-system-glyph-fill.svg"
+      },
+      "lockups": {
+        "lockup": "products/design-system/lockups/aglaya-design-system-lockup.svg",
+        "stacked": "products/design-system/lockups/aglaya-design-system-stacked.svg"
+      },
+      "notes": "La nave-fundación: este repo. No consume la marca, la DEFINE (is_house). Marca: rejilla 2×2 (tokens/swatches). Acento = verde corporativo (color-fuente / 'applied logic'). PROPUESTA — confirmar color y nombre."
+    }
+  ],
+  "removed": [
+    { "id": "pulse", "reason": "Fuera del set (outbound telefónico, no aplica). Eliminado — no archivado (regla de marca: eliminar > legacy)." }
+  ]
+}

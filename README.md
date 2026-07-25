@@ -99,6 +99,8 @@ Monospace labels behave as terminal output — `REF_ID:`, `LOGIC_NODE_001`, `EXC
 ### Palette
 Pure `#000000` black is the canvas. Not near-black. Not `#0a0a0a`. **Black.** Card surfaces step up in ~4-value increments (`#080808`, `#0c0c0c`, `#0f0f0f`) to create depth without ever introducing grey warmth. The only saturated color is **AGLAYA Red `#e8003d`** — used surgically for the logo accent, brand type spans, primary CTAs, focus rings, and the second line of two-line headlines. **Corporate Green `#9fc243`** is reserved for monospace eyebrows, code tags, and "applied logic" annotations — it never appears as a fill or button.
 
+**This palette governs the master brand** (`aglaya.biz`, agency materials, social). Product surfaces add exactly one first-class **product accent** each (KANBAN DESK cobalt, CRM violet, OUTREACH teal, CONSENT FLOW carmín, LEGAL REG TECH gold, ORCHESTRATOR steel, plus the DESIGN SYSTEM house itself in corporate green) — the single source is [`products/products.json`](products/products.json), served live by the MCP (`get_accent`, `list_products`). On its own product surface the accent is unrestricted — allowed on CTAs, no proportion cap — per the product tier of the non-negotiables (`get_nonnegotiables(scope="product")`). It never leaks onto the master, and the master never adopts a product accent: outside a product surface, the three colors above are still the whole palette.
+
 ### Typography
 - **Display: Outfit Black (900).** Always uppercase, tracking tighter than normal (`-0.02em` to `-0.04em`), leading `~0.94–1.1`. Headlines routinely hit `9rem+` at large viewports.
 - **Body: Inter 400–500.** Sentence case, generous leading (`1.6`), often set at `--color-muted` (45% white) against pure black — the contrast is intentionally softened on long-form to force scanability to the display type.
@@ -183,6 +185,32 @@ When you need an icon AGLAYA doesn't already have, draw a minimal line-stroke ve
 
 ---
 
+## Product Identity
+
+Model: **MONOLITHIC** — AGLAYA leads, the product describes. `aglaya.biz` is the master house, never a sub-brand; the products below are surfaces that consume from this repo. The single source of truth for the roster is [`products/products.json`](products/products.json), served live by the MCP (`list_products`, `get_product`, `get_accent`, `get_glyph`, `get_lockup`).
+
+**Roster (7) and accents.** Six products plus the DESIGN SYSTEM house itself (`is_house`), each carrying exactly one accent:
+
+| Product | Accent | Mark |
+| ------- | ------ | ---- |
+| KANBAN DESK | Cobalt `#4a8fd6` | three bars (columns) |
+| CRM | Violet `#b073d8` | line + three nodes |
+| OUTREACH | Teal `#4eb2ac` | two chevrons |
+| CONSENT FLOW | Carmín `#ae214d` (+ green `#5b964d`) | Mónica Montúfar's seal, AGLAYA type, outlined — colour isotipo (set exception) |
+| LEGAL REG TECH | Gold `#d1a63e` | framed check (audit seal) |
+| ORCHESTRATOR | Steel `#909fb8` | hub + four satellites |
+| DESIGN SYSTEM | Corporate green `#9fc243` | 2×2 token grid — the house itself (`is_house`) |
+
+**Two-level colour doctrine.** The 3-colour master palette (black / red / green) is rigid on the master brand. A **product surface** adds its accent as a first-class colour — allowed on CTAs, no proportion cap — per `get_nonnegotiables(scope="product")`. The accent never leaks onto the master; the master never adopts a product accent.
+
+**Taxonomy.** Each product ships a **glyph** on a 96×96 grid in three variants — `white`, `accent` (accent on transparent), `fill` (accent square, mark knocked out in black) — and two **lockups**: `lockup` (horizontal) and `stacked`. Lockups reference Outfit / Space Mono by name; the repo ships those fonts.
+
+**CONSENT FLOW.** Mónica Montúfar's concept for the `consent-ledger-wp` plugin — a green seal holding a "C" with a carmín check badge — rebuilt with AGLAYA type (wordmark in Inter, eyebrow in Space Mono) and delivered as **outlines**: zero font dependency, renders identically on any machine. It is the set's **exception**: instead of the three mono glyph variants it ships a single **colour isotipo**. The C is always white — the green seal encapsulates it and gives it its form, so it holds on any background; there is no light-surface variant and none is needed. Its CSS classes are namespaced per file (`cfg-`, `cfl-`, `cfs-`) so the assets stay correct when several are inlined into one page.
+
+PULSE was removed from the set (telephone outbound, out of scope) — deleted, not archived, per the brand rule *eliminar > legacy*.
+
+---
+
 ## Fonts
 
 All three brand families are loaded from local files in `fonts/` — zero external font requests.
@@ -222,7 +250,7 @@ Unzip the folder into your project. Any agent can read `SKILL.md` + `README.md` 
 The agent reads the tokens, copies assets, follows the voice rules, and ships pixel-consistent with the rest of the brand.
 
 ### Query the brand live (MCP)
-For projects that should read the brand **live** instead of copying it, this repo ships a sovereign MCP server in [`aglaya-ds-mcp/`](aglaya-ds-mcp/README.md). It exposes `get_token`, `list_tokens`, `get_voice_rules`, `check_voice`, `is_allowed_word`, `get_logo`, and `get_nonnegotiables` — each reading these canonical files live, so downstream surfaces (`aglaya.biz` included) consume the brand instead of duplicating it. The MCP is an optional, separable layer; the design-system folder stays runtime-free without it.
+For projects that should read the brand **live** instead of copying it, this repo ships a sovereign MCP server in [`aglaya-ds-mcp/`](aglaya-ds-mcp/README.md). It exposes `get_token`, `list_tokens`, `get_voice_rules`, `check_voice`, `is_allowed_word`, `get_logo`, and `get_nonnegotiables` (master + `scope="product"`), plus **product identity** (`list_products`, `get_product`, `get_accent`, `get_glyph`, `get_lockup`, `get_product_voice`) and **component specs** (`list_components`, `get_component`) — each reading these canonical files live, so downstream surfaces (`aglaya.biz` included) consume the brand instead of duplicating it. The MCP is an optional, separable layer; the design-system folder stays runtime-free without it.
 
 ### Use it in Figma / other tools
 - **Fonts:** install the `.otf` / `.ttf` files from `fonts/` into your OS font book.

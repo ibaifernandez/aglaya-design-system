@@ -1,9 +1,10 @@
 # AGLAYA Design System — Sovereign Brand MCP
 
 A small, **AGLAYA-owned** MCP server that lets any project consult the brand
-**live** — tokens, voice rules, protected vocabulary, logos — instead of
-hand-copying values. It is the query layer over the canonical design-system
-folder; the folder stays the single source of truth.
+**live** — tokens, voice rules, protected vocabulary, logos, product identity
+and component specs — instead of hand-copying values. It is the query layer
+over the canonical design-system folder; the folder stays the single source
+of truth.
 
 - **Sovereign.** Own code. The stdlib-only core (`brand.py`) has **zero**
   third-party dependencies and **zero** hardcoded brand values. The MCP SDK is
@@ -11,8 +12,8 @@ folder; the folder stays the single source of truth.
   This is **not** graphify's generic `--mcp`.
 - **Zero-copy, single source.** Every tool **reads the canonical files live**
   on each call. Change `colors_and_type.css` / `README.md` / `SKILL.md` /
-  `assets/` and the answers change with no code edit. (Proven by
-  `zerocopy_test.py`.)
+  `assets/` / `products/products.json` / `components/components.json` and the
+  answers change with no code edit. (Proven by `zerocopy_test.py`.)
 - **Separate layer.** The design-system folder remains runtime-free and
   droppable. This `aglaya-ds-mcp/` subfolder is optional and separable — drop
   the design system without it and nothing breaks.
@@ -27,7 +28,15 @@ folder; the folder stays the single source of truth.
 | `check_voice(text)` | `README.md` | off-brand findings + AGLAYA-correct replacement |
 | `is_allowed_word(term)` | `README.md` | allowed? + correct term if off-brand |
 | `get_logo(variant, fmt?)` | `assets/` | canonical file path for a logo variant |
-| `get_nonnegotiables()` | `SKILL.md` | the hard brand rules |
+| `get_nonnegotiables(scope?)` | `SKILL.md` | the hard brand rules — `scope='master'` (default) or `'product'` |
+| `list_products()` | `products/products.json` | the product roster: id, name, accent, functions, sacred flag |
+| `get_product(id)` | `products/products.json` | one product's full identity record |
+| `get_accent(id)` | `products.json` + `colors_and_type.css` | a product's accent, cross-checked against its live CSS token |
+| `get_glyph(id, variant?)` | `products/` | path to a product glyph SVG (`white`/`accent`/`fill`) |
+| `get_lockup(id, layout?)` | `products/` | path to a product lockup SVG (`lockup`/`stacked`/…) |
+| `get_product_voice(id)` | `README.md` | the single AGLAYA voice (per-product voice is intentional absence) |
+| `list_components()` | `components/components.json` | UI component roster + variants |
+| `get_component(id)` | `components/components.json` | one component's spec (token refs + structural values + states) |
 
 ## Setup (one-time bootstrap)
 
@@ -101,8 +110,26 @@ get_logo(<variant>, <fmt?>)
   -> {"variant": <v>, "format": <fmt>, "relative_path": <path under assets/>,
       "exists": <bool>}
 
-get_nonnegotiables()
-  -> {"source": "SKILL.md", "rules": [<rule>, ...]}             # live from SKILL.md
+get_nonnegotiables(<scope?>)
+  -> {"source": "SKILL.md", "scope": "master" | "product", "rules": [<rule>, ...]}
+
+list_products()
+  -> {"model": "monolithic", "voice": "single", "count": <n>,
+      "products": [{"id": <slug>, "name": <NAME>, "accent": <hex>,
+                    "accent_token": <--product-…>, "sacred": <bool>}, ...],
+      "removed": [<slug>, ...]}
+
+get_accent(<id>)
+  -> {"product": <slug>, "token": <--product-…>, "hex": <hex>,
+      "oklch": <str|null>, "css_value": <live from colors_and_type.css>}
+
+get_glyph(<id>, <variant?>) / get_lockup(<id>, <layout?>)
+  -> {"product": <slug>, "relative_path": <path under products/>, "exists": <bool>}
+     # raises with the manifest's reason when absent (e.g. sacred CONSENT FLOW has no glyph)
+
+get_component(<id>)
+  -> {"id": <slug>, "name": <Name>, "tokens": [<--token>, ...],
+      "variants": [{"name": <v>, "spec": {…}}, ...], "rules": [<rule>, ...]}
 ```
 
 > `check_voice` is a heuristic, not a parser. It matches surface patterns, so it
