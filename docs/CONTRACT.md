@@ -1,7 +1,7 @@
 # CONTRACT - AGLAYA Design System
 
 - **Propietario canónico:** este mismo repo.
-- **Registro en el atlas:** el registro de contratos inter-nave, repo `aglaya-orchestrator` → `atlas/contratos/README.md`, o pregúntalo sin saber dónde vive: `contrato("marca")`. Ahí vive la fila de este contrato: quién lo posee y quién lo consume. *(La ficha de la nave, `ficha("aglaya-design-system")`, es contexto — describe el diseño acordado, no lo que hay en disco.)* La fuente de la verdad es este repo y en cualquier caso, manda la _codebase_ del repo. En definitiva:
+- **Registro en el atlas:** el registro de contratos inter-nave lo custodia el capitán (repo `aglaya-orchestrator`) y se pide por la puerta: `contrato("marca")` del MCP `aglaya-atlas` — contesta citando su fuente. Ahí vive la fila de este contrato: quién lo posee y quién lo consume. La ficha de la nave, `ficha("aglaya-design-system")`, es contexto: describe el diseño acordado, no lo que hay en disco. *(No se escriben aquí rutas internas del atlas: caducan en cuanto el capitán reorganiza.)* La fuente de la verdad es este repo y en cualquier caso, manda la _codebase_ del repo. En definitiva:
 
 codebase → MCP que lee la codebase → docs del repo → ficha del atlas
 

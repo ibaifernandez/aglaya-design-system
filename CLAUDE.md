@@ -23,11 +23,14 @@
 Este repo es una **nave de la flota AGLAYA**. Existe un orquestador (el «capitán», repo `aglaya-orchestrator`). Qué es y qué no:
 
 - **Es enrutador**: sabe qué nave contesta cada pregunta y a quién preguntar cuando no está aquí.
-- **Es dueño del diseño**: los contratos inter-nave y la forma acordada de la flota los custodia él (`atlas/contratos/README.md`).
+- **Es enrutador**: sabe qué nave contesta cada pregunta y a quién preguntar cuando no está aquí.
+- **Es dueño del diseño**: los contratos inter-nave y la forma acordada de la flota los custodia él — se piden con `contrato("nombre")`.
 - **Es ejecutor de lo barato**: hace los pases y arreglos triviales que no merecen abrir un hilo por nave.
-- **NO es autoridad sobre el estado de este repo.** Su ficha de esta nave (`atlas/repos/aglaya-design-system/`) describe el diseño acordado, no lo que hay hoy en disco. Si su ficha y este repo se contradicen, **gana el repo** — y hay que avisarle.
+- **NO es autoridad sobre el estado de este repo.** Su ficha de esta nave — `ficha("aglaya-design-system")` — describe el diseño acordado, no lo que hay hoy en disco. Si su ficha y este repo se contradicen, **gana el repo** — y hay que avisarle.
 
 **Canal abierto:** MCP **`aglaya-atlas`**, montado en toda sesión de Claude de esta máquina. Contesta leyendo el atlas y citando `archivo:línea`. No hay que esperar un brief: se le pregunta.
+
+**Aquí no se escriben rutas internas del atlas.** El único puntero fijo es el nombre del repo del capitán (`aglaya-orchestrator`); todo lo demás se pregunta por la puerta: `ficha("aglaya-design-system")` para nuestra forma en la flota, `contrato("nombre")` para un contrato concreto, `donde_pregunto("tema")` cuando no se sabe a quién, `buscar("términos")` para lo demás. Los tres primeros contestan citando su fuente, así que no se pierde trazabilidad — se gana que no caduque. Una ruta del atlas copiada aquí se rompe la próxima vez que él reorganice, y nos enteramos tarde.
 
 ### Esta sección no lleva estado
 
