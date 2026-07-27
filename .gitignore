@@ -6,3 +6,7 @@ graphify-out/*
 !graphify-out/GRAPH_REPORT.md
 !graphify-out/manifest.json
 !graphify-out/cost.json
+
+# Caché de Python (la batería de punteros importa el guardián y lo genera)
+__pycache__/
+*.pyc
