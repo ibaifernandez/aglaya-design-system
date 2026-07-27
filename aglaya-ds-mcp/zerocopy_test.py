@@ -4,6 +4,7 @@ restore the file byte-for-byte. Run: ./.venv/bin/python zerocopy_test.py
 """
 
 import asyncio
+import re
 import sys
 from pathlib import Path
 
@@ -37,24 +38,33 @@ async def main() -> int:
                 before = _val(await session.call_tool("get_token", {"name": "color-brand"}))
                 print("1. before edit        get_token(color-brand) ->", before)
 
-                # mutate the canonical file mid-session (no restart)
-                edited = original.replace(
-                    "--color-brand:            #e8003d;",
-                    f"--color-brand:            {SENTINEL};",
-                    1,
+                # Mutate the canonical file mid-session (no restart). The old
+                # value comes from the call above, never typed here: a proof
+                # that hardcodes the red breaks the day the red moves, and it
+                # would be the last place anyone looks.
+                edited, hits = re.subn(
+                    r"(--color-brand\s*:\s*)[^;]+;",
+                    lambda m: m.group(1) + SENTINEL + ";",
+                    original,
+                    count=1,
                 )
-                assert edited != original, "sentinel replacement did not apply"
+                assert hits == 1, "no --color-brand declaration to mutate"
                 CSS.write_text(edited, encoding="utf-8")
                 print(f"2. edited CSS on disk (--color-brand -> {SENTINEL})")
 
                 after = _val(await session.call_tool("get_token", {"name": "color-brand"}))
                 print("3. after edit (SAME session) get_token(color-brand) ->", after)
 
-                ok = before == "#e8003d" and after == SENTINEL
+                # Live-read means: the answer tracked the file, and it was not
+                # already the sentinel by accident.
+                ok = before != SENTINEL and after == SENTINEL
     finally:
         CSS.write_text(original, encoding="utf-8")
-        restored = "--color-brand:            #e8003d;" in CSS.read_text(encoding="utf-8")
-        print("4. restored file byte-for-byte ->", restored and CSS.read_text(encoding="utf-8") == original)
+        vuelto = CSS.read_text(encoding="utf-8") == original
+        print("4. restored file byte-for-byte ->", vuelto)
+        if not vuelto:
+            print("   !! el CSS canónico NO quedó como estaba — revísalo antes de nada")
+            ok = False
 
     print("\nZERO-COPY PROOF:", "PASS ✓" if ok else "FAIL ✗")
     return 0 if ok else 1

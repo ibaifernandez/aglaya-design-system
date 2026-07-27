@@ -81,10 +81,12 @@ Then the tools are callable from any session: `get_token`, `check_voice`, etc.
 ## Response shapes
 
 **These show the shape of each answer, never the answer.** A README that prints
-`"value": "#e8003d"` is doing by hand exactly what this server exists to avoid —
-and the day someone edits the CSS, this file says the old colour with the
-confidence of a worked example. The whole point of the tool is that **only the
-call knows the value**. Run them; the shapes below tell you what you'll get back.
+the brand red under `"value"` is doing by hand exactly what this server exists
+to avoid — and the day someone edits the CSS, this file says the old colour
+with the confidence of a worked example. The whole point of the tool is that
+**only the call knows the value**. Run them; the shapes below tell you what
+you'll get back. (This paragraph used to name the red to make its point. A
+guard now reads it, so it makes the point without the copy.)
 
 ```text
 get_token("color-brand")

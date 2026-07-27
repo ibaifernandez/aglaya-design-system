@@ -97,7 +97,13 @@ Monospace labels behave as terminal output — `REF_ID:`, `LOGIC_NODE_001`, `EXC
 ## Visual Foundations
 
 ### Palette
-Pure `#000000` black is the canvas. Not near-black. Not `#0a0a0a`. **Black.** Card surfaces step up in ~4-value increments (`#080808`, `#0c0c0c`, `#0f0f0f`) to create depth without ever introducing grey warmth. The only saturated color is **AGLAYA Red `#e8003d`** — used surgically for the logo accent, brand type spans, primary CTAs, focus rings, and the second line of two-line headlines. **Corporate Green `#9fc243`** is reserved for monospace eyebrows, code tags, and "applied logic" annotations — it never appears as a fill or button.
+Pure black is the canvas — `--color-bg`. Not near-black. **Black.** Card surfaces step up in ~4-value increments (`--color-surface`, `--color-surface-2`, `--color-surface-3`) to create depth without ever introducing grey warmth. The only saturated color is **AGLAYA Red** (`--color-brand`) — used surgically for the logo accent, brand type spans, primary CTAs, focus rings, and the second line of two-line headlines. **Corporate Green** (`--color-corporate-green`) is reserved for monospace eyebrows, code tags, and "applied logic" annotations — it never appears as a fill or button.
+
+> The values are not written in this file, on purpose. They live in
+> `colors_and_type.css` and answer to `get_token` / `list_tokens("color")`.
+> This section used to spell out the black, the three surface steps, the red
+> and the green; the day any of them moves, a README that names them is
+> quietly wrong while looking like the canon. Ask for them.
 
 **This palette governs the master brand** (`aglaya.biz`, agency materials, social). Product surfaces add exactly one first-class **product accent** each (KANBAN DESK cobalt, CRM violet, OUTREACH teal, CONSENT FLOW carmín, LEGAL REG TECH gold, ORCHESTRATOR steel, plus the DESIGN SYSTEM house itself in corporate green) — the single source is [`products/products.json`](products/products.json), served live by the MCP (`get_accent`, `list_products`). On its own product surface the accent is unrestricted — allowed on CTAs, no proportion cap — per the product tier of the non-negotiables (`get_nonnegotiables(scope="product")`). It never leaks onto the master, and the master never adopts a product accent: outside a product surface, the three colors above are still the whole palette.
 
@@ -112,7 +118,7 @@ Headlines frequently split across lines with the **second line colored brand red
 No illustrations. No photography in chrome. No gradients-as-decoration. What you get instead:
 - **Scanlines** — `linear-gradient` striped overlays at `50%` stops, `2–4px` bands, opacity `0.02–0.07`, applied to hero and card hover states.
 - **Grid lines** — `60×60px` brand-red grid at `3%` opacity (`.bg-grid`).
-- **Reactive aura** — a 900px radial gradient of `rgba(232,0,61,0.10)` follows the mouse on `body::before` (desktop hover-capable only).
+- **Reactive aura** — a 900px radial gradient of the brand red at 10% (`--aura-brand`, derived from `--color-brand`) follows the mouse on `body::before` (desktop hover-capable only).
 - **Blurred orbs** — single `500×500px` brand-red blob at `blur(120px)`, `5%` opacity, one per hero section max. Used sparingly.
 - **Noise** — SVG `fractalNoise` turbulence at `1.5%` opacity, fixed to viewport.
 - **Marquee** — slowly-crawling UPPERCASE display text at `20%` white, rotated `-1deg`, used as a rhythm break between sections.
@@ -130,16 +136,16 @@ No illustrations. No photography in chrome. No gradients-as-decoration. What you
 
 Border colors:
 - Default: `rgba(255,255,255,0.05–0.08)` — whisper-thin separators.
-- Hover: `rgba(232,0,61,0.30–0.40)` — brand wash.
+- Hover: the brand red washed to 30–40% — `color-mix(in srgb, var(--color-brand) 40%, transparent)`, never a hand-written rgba.
 - Accent rule: `2px` solid `brand` on blockquotes, `1px` everywhere else.
 
 ### Shadows
-Essentially absent. The one exception is the primary CTA glow: `0 6px 25px rgba(232, 0, 61, 0.4)` on hover. Depth is created by surface stepping, never by shadow.
+Essentially absent. The one exception is the primary CTA glow on hover — the `--glow-brand` token, which derives its colour from `--color-brand` instead of repeating it. Depth is created by surface stepping, never by shadow.
 
 ### Cards
 Flat rectangles:
 ```
-background: #0c0c0c  (or #080808 / #050505)
+background: var(--color-surface-2)   /* or --color-surface / --color-bg-deep */
 border: 1px solid rgba(255,255,255,0.05)
 padding: 2.5rem (p-10)
 no radius, no shadow
@@ -162,7 +168,7 @@ Hover flips border to brand and grows an accent line along the bottom.
 Client logos render on `bg-[#eaeaea]/10` panels at `h-24` to `h-32`, `object-contain`. The live site has no lifestyle or stock photography. All product screenshots are captured and placed as dark flat panels. Treat imagery as **annotated technical evidence**, not atmosphere.
 
 ### Focus & accessibility
-- Focus ring: `outline: 2px solid #e8003d; outline-offset: 3px`.
+- Focus ring: `outline: 2px solid var(--color-brand); outline-offset: 3px`.
 - Skip link pinned to top-left, background brand red on focus.
 - `prefers-reduced-motion` is honored — marquee stops, reveals collapse to instant.
 
@@ -174,7 +180,7 @@ The site replaces the OS cursor with a 20px hollow ring + 4px white dot at `mix-
 ## Iconography
 
 - **No icon font.** No Lucide, no Heroicons, no FontAwesome. Icons are bespoke inline SVGs — in the live codebase they live in `src/components/icons/` (Languages, Mail, MessageCircle, MessageSquare, Send, User) or inlined directly into components (X, arrows, WhatsApp mark, hamburger). That `src/` tree is the external Astro repo, not part of this package.
-- **Stroke icons.** Pure strokes, `stroke-width: 2–4`, `stroke-linecap: round`, `stroke-linejoin: round`. Brand red `#e8003d` for attention, `currentColor` otherwise.
+- **Stroke icons.** Pure strokes, `stroke-width: 2–4`, `stroke-linecap: round`, `stroke-linejoin: round`. `var(--color-brand)` for attention, `currentColor` otherwise.
 - **Fill icons.** Only the WhatsApp glyph.
 - **Decorative squares.** `w-1 h-1` / `w-1.5 h-1.5` / `w-2 h-2` solid squares in `brand/40` are used as bullet points, list markers, and pulse indicators. This is the closest AGLAYA gets to a decorative element.
 - **Country flags** (SVG) used only in the language switcher, clipped to a round chip.
@@ -193,13 +199,13 @@ Model: **MONOLITHIC** — AGLAYA leads, the product describes. `aglaya.biz` is t
 
 | Product | Accent | Mark |
 | ------- | ------ | ---- |
-| KANBAN DESK | Cobalt `#4a8fd6` | three bars (columns) |
-| CRM | Violet `#b073d8` | line + three nodes |
-| OUTREACH | Teal `#4eb2ac` | two chevrons |
-| CONSENT FLOW | Carmín `#ae214d` (+ green `#5b964d`) | Mónica Montúfar's seal, AGLAYA type, outlined — colour isotipo (set exception) |
-| LEGAL REG TECH | Gold `#d1a63e` | framed check (audit seal) |
-| ORCHESTRATOR | Steel `#909fb8` | hub + four satellites |
-| DESIGN SYSTEM | Corporate green `#9fc243` | 2×2 token grid — the house itself (`is_house`) |
+| KANBAN DESK | Cobalt — `--product-kanban-desk-accent` | three bars (columns) |
+| CRM | Violet — `--product-crm-accent` | line + three nodes |
+| OUTREACH | Teal — `--product-outreach-accent` | two chevrons |
+| CONSENT FLOW | Carmín — `--product-consent-flow-accent` (+ green `--product-consent-flow-accent-2`) | Mónica Montúfar's seal, AGLAYA type, outlined — colour isotipo (set exception) |
+| LEGAL REG TECH | Gold — `--product-legal-reg-tech-accent` | framed check (audit seal) |
+| ORCHESTRATOR | Steel — `--product-orchestrator-accent` | hub + four satellites |
+| DESIGN SYSTEM | Corporate green — `--product-design-system-accent` | 2×2 token grid — the house itself (`is_house`) |
 
 **Two-level colour doctrine.** The 3-colour master palette (black / red / green) is rigid on the master brand. A **product surface** adds its accent as a first-class colour — allowed on CTAs, no proportion cap — per `get_nonnegotiables(scope="product")`. The accent never leaks onto the master; the master never adopts a product accent.
 

@@ -28,7 +28,7 @@ Reglas de la **marca madre AGLAYA** (aglaya.biz, materiales de agencia, redes). 
 
 - `AGLAYA` always UPPERCASE.
 - Zero border-radius. Every corner is square.
-- Black canvas (`#000`), red accent (`#e8003d`), green monospace (`#9fc243`). Nothing else.
+- Black canvas (`--color-bg`), red accent (`--color-brand`), green monospace (`--color-corporate-green`). Nothing else. Ask `get_token` for the values — a rule that carries its own hex stops being true the day the hex moves.
 - No emoji. No Lucide. No Heroicons. No gradients-as-decoration. No rounded corners except the custom cursor.
 - Copy is terse and imperative. No "we believe", no "we're passionate about", no exclamation marks, no rhetorical questions.
 - Display type is Outfit Black, UPPERCASE, tight tracking. Body is Inter. Mono is Space Mono with extreme `letter-spacing: 0.3em–0.5em`.
@@ -40,6 +40,6 @@ Una **superficie de producto** (KANBAN DESK, CRM, OUTREACH, CONSENT FLOW, LEGAL 
 
 - Hereda todos los no-negociables de la marca madre **excepto la exclusividad de color** («Nothing else»).
 - El **acento del producto** (definido en `products/products.json` y como token en `colors_and_type.css`) es color de primera clase: **libre en CTA, sin tope de proporción**.
-- El rojo madre `#e8003d` no se reemplaza: coexiste con el acento en la superficie del producto. El acento identifica al producto; el rojo sigue siendo el rojo de la marca.
+- El rojo madre (`--color-brand`) no se reemplaza: coexiste con el acento en la superficie del producto. El acento identifica al producto; el rojo sigue siendo el rojo de la marca.
 - Todo lo demás sigue vigente sin cambios: radius 0, sin emoji / Lucide / Heroicons, tipografía (Outfit Black / Inter / Space Mono), headline de dos líneas, voz seca e imperativa.
 - La marca madre NO adopta acentos de producto: fuera de una superficie de producto, siguen los 3 colores y nada más.

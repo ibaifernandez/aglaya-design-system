@@ -47,7 +47,10 @@ def get_token(name: str) -> dict:
     """Return the live value of a single design token from colors_and_type.css.
 
     `name` accepts 'color-brand' or '--color-brand'.
-    Example: get_token("color-brand") -> {"token": "--color-brand", "value": "#e8003d"}.
+    Shape: {"token": "--color-brand", "value": <live from the CSS>}.
+    The example deliberately shows no value: a docstring that prints the red
+    is the copy this tool exists to make unnecessary, and it would be read as
+    authoritative the day the red moves.
     """
     val = _guard(brand.get_token, name)
     if isinstance(val, dict):  # error

@@ -73,7 +73,7 @@
         "radius": "0"
       },
       "states": {
-        "hover": "border → var(--color-border-brand); la regla al pie crece a 100% y pasa a rgba(232,0,61,0.2); el título pasa a var(--color-brand)"
+        "hover": "border → var(--color-border-brand); la regla al pie crece a 100% y pasa a color-mix(in srgb, var(--color-brand) 20%, transparent); el título pasa a var(--color-brand)"
       },
       "rules": ["Radius 0.", "Eyebrow de índice en mono verde + punto rojo: la firma de tarjeta AGLAYA.", "Profundidad por superficie (surface-2), nunca por sombra difusa."]
     },
@@ -93,7 +93,7 @@
         "radius": "0"
       },
       "states": {
-        "focus": "border → rgba(232,0,61,0.5); background → rgba(232,0,61,0.03); color → var(--color-text); outline 2px solid rgba(232,0,61,0.9) con outline-offset 2px"
+        "focus": "border → color-mix(in srgb, var(--color-brand) 50%, transparent); background → color-mix(in srgb, var(--color-brand) 3%, transparent); color → var(--color-text); outline 2px solid color-mix(in srgb, var(--color-brand) 90%, transparent) con outline-offset 2px"
       },
       "rules": ["Radius 0.", "Borde de reposo más fuerte de lo normal (0.35) — el campo debe verse.", "Foco = anillo rojo de marca (accesible), no glow difuso.", "Label = eyebrow mono verde, como en card."]
     },
@@ -104,9 +104,9 @@
       "tokens": ["--color-corporate-green", "--color-brand", "--color-text", "--font-mono"],
       "variants": [
         {"name": "default", "spec": {"font": "var(--font-mono) 10px", "letter-spacing": "0.25em", "text-transform": "uppercase", "padding": "6px 12px", "border": "1px solid rgba(255,255,255,0.1)", "background": "rgba(255,255,255,0.05)", "color": "rgba(255,255,255,0.6)"}},
-        {"name": "brand", "spec": {"color": "var(--color-corporate-green)", "border": "1px solid rgba(232,0,61,0.2)", "background": "rgba(232,0,61,0.1)"}},
+        {"name": "brand", "spec": {"color": "var(--color-corporate-green)", "border": "1px solid color-mix(in srgb, var(--color-brand) 20%, transparent)", "background": "color-mix(in srgb, var(--color-brand) 10%, transparent)"}},
         {"name": "codetag", "spec": {"background": "var(--color-text)", "color": "#000", "border": "transparent", "letter-spacing": "0.18em"}},
-        {"name": "ok", "spec": {"color": "var(--color-corporate-green)", "border": "1px solid rgba(159,194,67,0.3)"}},
+        {"name": "ok", "spec": {"color": "var(--color-corporate-green)", "border": "1px solid color-mix(in srgb, var(--color-corporate-green) 30%, transparent)"}},
         {"name": "pill", "spec": {"font": "var(--font-mono) 9px", "letter-spacing": "0.3em", "adornment": "punto 6px var(--color-brand) que pulsa (opacity 0.4↔1, 1.5s)"}}
       ],
       "rules": ["Radius 0 (pill NO es redonda — es rectángulo mono).", "Space Mono uppercase, tracking ancho.", "Verde corporativo para estado/etiqueta; rojo solo como señal puntual (punto que pulsa)."]
