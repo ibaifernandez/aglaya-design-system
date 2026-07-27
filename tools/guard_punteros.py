@@ -42,7 +42,21 @@ ENLACE = re.compile(r"\[[^\]]*\]\(([^)\s]+)\)")
 
 # Una ruta interna del atlas del capitán. Deliberadamente sin exención de
 # acentos graves (ver el docstring).
-RUTA_ATLAS = re.compile(r"\batlas/[A-Za-z0-9_.\-]+(?:/[A-Za-z0-9_.\-]+)*")
+#
+# El lookbehind evita el falso positivo que más duele: `aglaya-atlas` es el
+# nombre del MCP y se cita a todas horas, así que `aglaya-atlas/mcp/...` no es
+# una ruta del atlas — es el servidor. Sin esto el guardián grita en la línea
+# que precisamente enseña a preguntar por la puerta, y un guardián que grita de
+# más lo desactiva el primero que lo sufra.
+RUTA_ATLAS = re.compile(r"(?<!aglaya-)\batlas/[A-Za-z0-9_.\-]+(?:/[A-Za-z0-9_.\-]+)*")
+
+# URLs, para decidir si una coincidencia va dentro de un enlace externo.
+URL = re.compile(r"https?://[^\s)\]`\"'<>]+")
+
+# El repo del capitán. Una URL a SU atlas caduca igual que una ruta suelta
+# —cuando reorganiza, GitHub devuelve 404— así que esa sí se vigila. Una URL
+# ajena que casualmente lleve `atlas/` en su ruta no es asunto nuestro.
+REPO_CAPITAN = "aglaya-orchestrator"
 
 
 def docs_versionados() -> list[Path] | None:
@@ -99,9 +113,17 @@ def main() -> int:
                     "el archivo no está donde el enlace dice; muévelo o corrige el enlace",
                     linea.strip(),
                 ))
-            for ruta in RUTA_ATLAS.findall(linea):
+            urls = [(m.start(), m.end(), m.group(0)) for m in URL.finditer(linea)]
+            for m in RUTA_ATLAS.finditer(linea):
+                dentro = next(
+                    (u for ini, fin, u in urls if ini <= m.start() and m.end() <= fin), None
+                )
+                # Una URL ajena que lleve `atlas/` no es cosa nuestra; una que
+                # apunte al repo del capitán sí, porque caduca igual.
+                if dentro is not None and REPO_CAPITAN not in dentro:
+                    continue
                 hallazgos.append((
-                    rel, n, "ruta-de-atlas", ruta,
+                    rel, n, "ruta-de-atlas", m.group(0),
                     "las rutas del capitán caducan cuando él reorganiza: pregunta por la "
                     "puerta (ficha, contrato, donde_pregunto, buscar)",
                     linea.strip(),

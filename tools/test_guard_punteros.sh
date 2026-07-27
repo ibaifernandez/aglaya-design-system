@@ -43,6 +43,22 @@ probar() { # regla | texto a inyectar | RED = debe fallar · GREEN = debe pasar
 echo "== 1. los punteros de hoy resuelven =="
 python3 "$GUARD" || { echo "  ya hay punteros rotos — arregla eso antes de probar el guardián"; exit 1; }
 
+echo "== 1b. ¿de verdad está mirando algo? =="
+# Un verde puede venir de que todo esté bien o de que no se haya inspeccionado
+# nada. Esto lo distingue: cuenta docs y enlaces de verdad vistos.
+python3 - <<'PY'
+import sys; sys.path.insert(0, "tools")
+import guard_punteros as g
+docs = g.docs_versionados() or []
+enlaces = sum(len(g.ENLACE.findall(d.read_text(encoding="utf-8"))) for d in docs)
+vigilado = any(d.name == "CLAUDE.md" for d in docs)
+print(f"  docs vigilados: {len(docs)} · enlaces inspeccionados: {enlaces} · ¿CLAUDE.md dentro?: {vigilado}")
+# Si el conjunto se encoge o CLAUDE.md sale del alcance, las sondas de abajo
+# pasarían en vacío: el sabotaje se inyecta justo en ese archivo.
+sys.exit(0 if (docs and enlaces and vigilado) else 1)
+PY
+[ $? -eq 0 ] || { echo "  el guardián no está mirando lo que la batería sabotea — las sondas serían vacías"; exit 1; }
+
 echo "== 2. un enlace a un archivo que no está debe ponerse rojo =="
 probar enlace-roto "Ver [el contrato](docs/CONTRATO.md) para el detalle."                    RED
 probar enlace-roto "Los tokens viven en [colors.css](colors.css)."                            RED
@@ -63,6 +79,13 @@ probar enlace-ancla     "Salta a [la doctrina](#reglas-duras)."                 
 probar enlace-glob      "Los specimens: [componentes](preview/components-*.html)."            GREEN
 probar atlas-en-prosa   "Aquí no se escriben rutas internas del atlas; se preguntan."         GREEN
 probar atlas-tool       "Se pide con \`contrato(\"marca\")\` al MCP \`aglaya-atlas\`."         GREEN
+
+echo "== 4b. lo que SE LE PARECE tampoco puede ponerse rojo =="
+echo "   (un guardián que grita de más lo desactiva el primero que lo sufra)"
+probar mcp-con-barra    "El servidor vive en \`aglaya-atlas/mcp/server.py\`."                  GREEN
+probar url-ajena        "Un mapa cualquiera: [x](https://ejemplo.com/atlas/mundial/2026)."    GREEN
+probar regex-del-patron "El guardián casa con \`atlas/[a-z]+\` — nombrarlo no es citarlo."     GREEN
+probar palabra-suelta   "El atlas del capitán se consulta por MCP, no por ruta."              GREEN
 
 echo "== 5. no encontrar docs no puede dar verde =="
 cp "$BK" "$DOC"
