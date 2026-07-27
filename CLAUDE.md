@@ -16,7 +16,7 @@
 - Los **no-negociables de marca** los sirve el MCP (`get_nonnegotiables`) desde `SKILL.md` — no los parafrasees: consúltalos.
 - **`ui_kits/` SÍ es marca AGLAYA** — es la composición canónica «así va todo junto», construida con los tokens de este repo. Cítala. Los que NO son marca son los **dummies de `aglaya-web`**, que viven en otro repo y tienen cada uno su propio sistema de diseño: **jamás cablear un dummy a esta marca.**
 - Regla de marca AGLAYA: **eliminar > legacy**. Lo obsoleto se borra, no se archiva.
-- `graphify-out/`: se versionan solo los esenciales (`graph.json`, `GRAPH_REPORT.md`, `manifest.json`, `cost.json`); el resto es regenerable.
+- `graphify-out/`: **no se versiona nada**, y los hooks de git de graphify están desinstalados. Decisión de flota: ningún repo guarda su grafo — nada de código lee uno, y un derivado guardado envejece con pinta de autoridad. Se corre a demanda (al entrar en un repo que no conoces, o al auditar) y no se mantiene. Sobre esta nave en concreto: la autoridad son sus archivos canónicos, que el MCP `aglaya-ds` lee en vivo; un grafo aquí sería una copia que caduca sin consumidor.
 
 ## AGLAYA · Flota — el capitán
 

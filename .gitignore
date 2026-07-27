@@ -1,11 +1,11 @@
 .DS_Store
 
-# ── Graphify output (commit graph + report only) ──────────
-graphify-out/*
-!graphify-out/graph.json
-!graphify-out/GRAPH_REPORT.md
-!graphify-out/manifest.json
-!graphify-out/cost.json
+# ── Graphify: derivado, nunca versionado ──────────────────
+# Decisión de flota (27-jul-2026): ningún repo versiona su grafo. Nada de
+# código lee uno, y un derivado guardado envejece con pinta de autoridad.
+# Se corre a demanda —al entrar en un repo que no conoces, o al auditar—
+# y no se mantiene. Los hooks de git de graphify están desinstalados.
+graphify-out/
 
 # Caché de Python (la batería de punteros importa el guardián y lo genera)
 __pycache__/
