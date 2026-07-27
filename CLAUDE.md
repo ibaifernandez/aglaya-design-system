@@ -23,7 +23,6 @@
 Este repo es una **nave de la flota AGLAYA**. Existe un orquestador (el «capitán», repo `aglaya-orchestrator`). Qué es y qué no:
 
 - **Es enrutador**: sabe qué nave contesta cada pregunta y a quién preguntar cuando no está aquí.
-- **Es enrutador**: sabe qué nave contesta cada pregunta y a quién preguntar cuando no está aquí.
 - **Es dueño del diseño**: los contratos inter-nave y la forma acordada de la flota los custodia él — se piden con `contrato("nombre")`.
 - **Es ejecutor de lo barato**: hace los pases y arreglos triviales que no merecen abrir un hilo por nave.
 - **NO es autoridad sobre el estado de este repo.** Su ficha de esta nave — `ficha("aglaya-design-system")` — describe el diseño acordado, no lo que hay hoy en disco. Si su ficha y este repo se contradicen, **gana el repo** — y hay que avisarle.
@@ -39,7 +38,7 @@ Cada pregunta se contesta yendo a mirar. La tercera columna es la que hace el tr
 | Pregunta | Se contesta con | NUNCA con |
 |---|---|---|
 | ¿En qué estado está este repo? (HEAD, rama, sucios, sin pushear) | `git status` / `git log` aquí mismo · `repo_estado` del MCP `aglaya-atlas`, que lo deriva de git | una línea de «último pase» ni un marcador de progreso escritos en este archivo · la ficha del atlas |
-| ¿El MCP `aglaya-ds` está montado y qué tools expone? | la lista de tools del servidor en la sesión actual · `python3 aglaya-ds-mcp/selftest.py` | un conteo de tools tecleado aquí · «el MCP está arriba» leído en un doc |
+| ¿El MCP `aglaya-ds` está montado y qué tools expone? | la lista de tools del servidor en la sesión actual · `cd aglaya-ds-mcp && ./.venv/bin/python selftest.py` (con el `python3` del sistema falla: el SDK vive en el venv) | un conteo de tools tecleado aquí · «el MCP está arriba» leído en un doc |
 | ¿Qué versión tiene el contrato de marca? | `git tag --list` · la cabecera de [`docs/CONTRACT.md`](docs/CONTRACT.md) | un número de versión tecleado en esta sección |
 | ¿Un token, un logo, los no-negociables? | MCP `aglaya-ds` (`get_token`, `get_logo`, `get_nonnegotiables`) sobre `colors_and_type.css` y `SKILL.md` | parafrasear el `README.md` de memoria |
 | ¿Qué contrato rige esta marca y quién la consume? | `contrato` y `quien_consume` del MCP `aglaya-atlas` | una lista de consumidores copiada aquí, que envejece a espaldas de todos |
@@ -58,11 +57,25 @@ Y **al guardián lo vigila su propia batería**: [`tools/test_guard_huella.sh`](
 
 **Y los punteros los vigila el segundo guardián.** [`tools/guard_punteros.py`](tools/guard_punteros.py) recorre los `.md` versionados (salvo `graphify-out/`, regenerable) y falla por dos motivos: un **enlace markdown a un archivo propio que no está donde dice** —la avería de reorganizar el repo y dejar el puntero atrás— y **una ruta interna del atlas del capitán**, que caduca en cuanto él reorganiza. Aquí los acentos graves **no eximen**, al revés que en el guardián de la huella: una ruta se escribe casi siempre entrecomillada, así que eximirlas lo dejaría sin nada que morder. Su batería es [`tools/test_guard_punteros.sh`](tools/test_guard_punteros.sh), que además comprueba lo legítimo (enlaces externos, anclas, globs) para que no dé rojos falsos, y que no encontrar docs salga rojo en vez de dar un verde vacío.
 
-Las cuatro cosas corren en CI ([`.github/workflows/huella.yml`](.github/workflows/huella.yml)) y a mano:
+**Y los valores los vigila el tercero.** [`tools/guard_valores.py`](tools/guard_valores.py) lee la paleta de `colors_and_type.css` **en vivo** y falla si uno de esos valores aparece copiado a mano en cualquier otro archivo versionado — en hexadecimal, con alfa, en forma corta o escrito como `rgb()`. Además cruza `products/products.json` contra los tokens del CSS, porque ese manifiesto es un segundo domicilio legítimo y desviarse en silencio sería mentir con cara de canon. **No lleva ni un valor dentro**: cambia el rojo y persigue el nuevo; añade un acento de producto y queda protegido sin tocarlo. No vigila el negro ni el blanco puros (genéricos, darían rojos falsos) ni los SVG de `assets/` y `products/`, que llevan el color pintado dentro: eso es el artefacto, no una cita, y si el color cambia hay que reexportarlos a mano. Los acentos graves **no eximen**, como en el de punteros. Su batería es [`tools/test_guard_valores.sh`](tools/test_guard_valores.sh).
+
+**Y el MCP se prueba a sí mismo.** [`aglaya-ds-mcp/selftest.py`](aglaya-ds-mcp/selftest.py) llama a cada tool declarando si debe responder o debe rechazar — la segunda mitad importa: sin ella, un servidor que nunca falla pasaría el test trivialmente. [`aglaya-ds-mcp/zerocopy_test.py`](aglaya-ds-mcp/zerocopy_test.py) edita el CSS canónico en caliente y comprueba que la respuesta cambia sin reiniciar. Y [`aglaya-ds-mcp/test_selftest.sh`](aglaya-ds-mcp/test_selftest.sh) rompe el servidor de tres formas para comprobar que el selftest se pone rojo — existe porque la versión anterior no podía: un rechazo viaja con `isError` en falso y colaba.
+
+Todo corre en CI ([`.github/workflows/huella.yml`](.github/workflows/huella.yml)) y a mano:
 
 ```
 python3 tools/guard_huella.py
 bash tools/test_guard_huella.sh
 python3 tools/guard_punteros.py
 bash tools/test_guard_punteros.sh
+python3 tools/guard_valores.py
+bash tools/test_guard_valores.sh
+```
+
+El MCP necesita su venv (ver [`aglaya-ds-mcp/README.md`](aglaya-ds-mcp/README.md)); con el `python3` del sistema falla por dependencias:
+
+```
+cd aglaya-ds-mcp && ./.venv/bin/python selftest.py
+cd aglaya-ds-mcp && ./.venv/bin/python zerocopy_test.py
+cd aglaya-ds-mcp && bash test_selftest.sh
 ```

@@ -1,14 +1,70 @@
-name: huella
+name: guardianes
+
+# Tres guardianes y el MCP. Cada guardián corre DOS veces: el guardián y su
+# batería de sabotaje. La batería no es ceremonia — un guardián puede correr y
+# dar verde estando roto, y así se cazaron un patrón ciego a las MAYÚSCULAS,
+# un precio que se colaba y un selftest que no podía ponerse rojo.
+
 on: [push, pull_request]
+
 jobs:
-  guard:
+  docs:
+    name: guardianes de docs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python3 tools/guard_huella.py
-      - run: bash tools/test_guard_huella.sh     # que el guardián muerda, no solo que corra
-      - run: python3 tools/guard_punteros.py
-      - run: bash tools/test_guard_punteros.sh   # ídem: sin batería no sabemos si protege
+
+      - name: huella de flota — sin afirmaciones de estado
+        run: python3 tools/guard_huella.py
+      - name: ¿la huella muerde?
+        run: bash tools/test_guard_huella.sh
+
+      - name: punteros — enlaces rotos y rutas del atlas
+        run: python3 tools/guard_punteros.py
+      - name: ¿los punteros muerden?
+        run: bash tools/test_guard_punteros.sh
+
+      - name: valores de marca — ninguno copiado fuera de su casa
+        run: python3 tools/guard_valores.py
+      - name: ¿los valores muerden?
+        run: bash tools/test_guard_valores.sh
+
+      - name: las baterías sabotean CLAUDE.md — que lo devuelvan como estaba
+        run: git diff --exit-code
+
+  mcp:
+    name: MCP aglaya-ds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: bootstrap del venv (el SDK es la única dependencia)
+        working-directory: aglaya-ds-mcp
+        run: |
+          python3 -m venv .venv
+          ./.venv/bin/python -m pip install -q --upgrade pip
+          ./.venv/bin/python -m pip install -q -e .
+
+      - name: selftest — todas las tools, con veredicto por llamada
+        working-directory: aglaya-ds-mcp
+        run: ./.venv/bin/python selftest.py
+
+      - name: ¿el selftest muerde?
+        working-directory: aglaya-ds-mcp
+        run: bash test_selftest.sh
+
+      - name: zero-copy — el token se lee en vivo, no se cachea
+        working-directory: aglaya-ds-mcp
+        run: ./.venv/bin/python zerocopy_test.py
+
+      - name: las pruebas tocan archivos canónicos — que los devuelvan
+        # zerocopy edita colors_and_type.css y test_selftest edita server.py;
+        # los dos prometen restaurar. Aquí se comprueba que cumplen, que es
+        # justo lo que nadie mira cuando el test sale verde.
+        run: git diff --exit-code

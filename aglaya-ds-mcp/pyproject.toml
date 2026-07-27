@@ -10,9 +10,17 @@ dependencies = [
 ]
 
 [tool.aglaya]
+# Los archivos canónicos que el core lee EN VIVO. Esta lista es documentación,
+# no configuración: nada la carga. La autoridad son las constantes de
+# `brand.py` (CSS_FILE, README_FILE, …), y se dejó atrás cuando el MCP aprendió
+# identidad de producto y componentes — una lista a mano que envejeció dentro
+# del repo que persigue justo eso.
 canonical_files = [
-    "../colors_and_type.css",
-    "../README.md",
-    "../SKILL.md",
-    "../assets/",
+    "../colors_and_type.css",        # tokens
+    "../README.md",                  # voz, vocabulario protegido
+    "../SKILL.md",                   # no-negociables (madre y producto)
+    "../assets/",                    # logos
+    "../products/products.json",     # roster e identidad de producto
+    "../products/",                  # glyphs y lockups por producto
+    "../components/components.json", # specs de componente
 ]
