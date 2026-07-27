@@ -54,9 +54,15 @@ Reglas que siguen vigentes:
 
 **Esto lo vigila un script.** [`tools/guard_huella.py`](tools/guard_huella.py) lee esta sección y falla si reaparece una fecha de pase, un marcador de progreso `N/N`, un conteo, una versión a mano, un precio, un sello de `verificado`, un «está `encendido`» o un valor de marca en hexadecimal copiado a mano. Solo vigila esta sección — el resto del archivo tiene versiones y conteos legítimos. Exime lo que va entre acentos graves, y solo el fragmento: si necesitas nombrar un patrón, entrecomíllalo; no ensanches la exención.
 
-Y **al guardián lo vigila su propia batería**: [`tools/test_guard_huella.sh`](tools/test_guard_huella.sh) sabotea este archivo con cada forma prohibida y comprueba que cada una se pone roja. Existe porque un guardián puede correr y dar verde estando roto — así se cazaron un patrón ciego a las MAYÚSCULAS y un precio que se colaba. Si tocas las reglas, corre la batería. Las dos cosas corren en CI ([`.github/workflows/huella.yml`](.github/workflows/huella.yml)) y a mano:
+Y **al guardián lo vigila su propia batería**: [`tools/test_guard_huella.sh`](tools/test_guard_huella.sh) sabotea este archivo con cada forma prohibida y comprueba que cada una se pone roja. Existe porque un guardián puede correr y dar verde estando roto — así se cazaron un patrón ciego a las MAYÚSCULAS y un precio que se colaba. Si tocas las reglas, corre la batería.
+
+**Y los punteros los vigila el segundo guardián.** [`tools/guard_punteros.py`](tools/guard_punteros.py) recorre los `.md` versionados (salvo `graphify-out/`, regenerable) y falla por dos motivos: un **enlace markdown a un archivo propio que no está donde dice** —la avería de reorganizar el repo y dejar el puntero atrás— y **una ruta interna del atlas del capitán**, que caduca en cuanto él reorganiza. Aquí los acentos graves **no eximen**, al revés que en el guardián de la huella: una ruta se escribe casi siempre entrecomillada, así que eximirlas lo dejaría sin nada que morder. Su batería es [`tools/test_guard_punteros.sh`](tools/test_guard_punteros.sh), que además comprueba lo legítimo (enlaces externos, anclas, globs) para que no dé rojos falsos, y que no encontrar docs salga rojo en vez de dar un verde vacío.
+
+Las cuatro cosas corren en CI ([`.github/workflows/huella.yml`](.github/workflows/huella.yml)) y a mano:
 
 ```
 python3 tools/guard_huella.py
 bash tools/test_guard_huella.sh
+python3 tools/guard_punteros.py
+bash tools/test_guard_punteros.sh
 ```

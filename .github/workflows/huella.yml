@@ -9,4 +9,6 @@ jobs:
         with:
           python-version: '3.11'
       - run: python3 tools/guard_huella.py
-      - run: bash tools/test_guard_huella.sh   # que el guardián muerda, no solo que corra
+      - run: bash tools/test_guard_huella.sh     # que el guardián muerda, no solo que corra
+      - run: python3 tools/guard_punteros.py
+      - run: bash tools/test_guard_punteros.sh   # ídem: sin batería no sabemos si protege
