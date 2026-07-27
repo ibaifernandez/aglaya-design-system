@@ -25,8 +25,8 @@ const DispatchForm = () => {
           placeholder="operator@company.com"
           style={{
             flex: 1, padding: '16px 18px',
-            background: focus ? 'rgba(232,0,61,0.03)' : 'rgba(255,255,255,0.03)',
-            border: `1px solid ${focus ? 'rgba(232,0,61,0.5)' : 'rgba(255,255,255,0.25)'}`,
+            background: focus ? 'color-mix(in srgb, var(--brand) 3%, transparent)' : 'rgba(255,255,255,0.03)',
+            border: `1px solid ${focus ? 'color-mix(in srgb, var(--brand) 50%, transparent)' : 'rgba(255,255,255,0.25)'}`,
             color: '#fff', fontFamily: 'var(--font-body)', fontSize: 15,
             outline: 'none', transition: 'all 0.3s var(--ease)',
           }}/>
@@ -86,7 +86,7 @@ const Footer = () => (
   <footer style={{
     position: 'relative', overflow: 'hidden',
     borderTop: '1px solid rgba(255,255,255,0.08)',
-    background: '#040404', padding: '80px 40px 40px',
+    background: 'var(--color-bg-deep)', padding: '80px 40px 40px',
   }}>
     <div className="bg-grid" style={{
       position: 'absolute', inset: 0, opacity: 0.15, pointerEvents: 'none',

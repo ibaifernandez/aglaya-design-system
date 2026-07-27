@@ -19,7 +19,7 @@ const ProblemCard = ({ i, title, body }) => {
         display: 'flex', flexDirection: 'column',
         padding: 32,
         background: 'var(--surface-2)',
-        border: `1px solid ${hover ? 'rgba(232,0,61,0.4)' : 'rgba(255,255,255,0.05)'}`,
+        border: `1px solid ${hover ? 'color-mix(in srgb, var(--brand) 40%, transparent)' : 'rgba(255,255,255,0.05)'}`,
         transition: 'border-color 0.5s var(--ease)',
       }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 24 }}>
@@ -29,7 +29,7 @@ const ProblemCard = ({ i, title, body }) => {
         }}>LOGIC_NODE_{String(i+1).padStart(3,'0')}</span>
         <span style={{
           width: 4, height: 4,
-          background: hover ? 'var(--brand)' : 'rgba(232,0,61,0.4)',
+          background: hover ? 'var(--brand)' : 'color-mix(in srgb, var(--brand) 40%, transparent)',
           transition: 'background 0.3s var(--ease)',
         }}/>
       </div>
@@ -47,7 +47,7 @@ const ProblemCard = ({ i, title, body }) => {
       <div style={{
         marginTop: 32, height: 1,
         width: hover ? '100%' : 32,
-        background: hover ? 'rgba(232,0,61,0.2)' : 'rgba(255,255,255,0.1)',
+        background: hover ? 'color-mix(in srgb, var(--brand) 20%, transparent)' : 'rgba(255,255,255,0.1)',
         transition: 'all 0.7s var(--ease)',
       }}/>
     </article>

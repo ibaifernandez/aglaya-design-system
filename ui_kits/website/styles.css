@@ -1,40 +1,32 @@
 /* AGLAYA UI Kit — Tailwind-equivalent utilities, scoped to the kit. */
-/* All three brand families (Outfit, Inter, Space Mono) loaded locally. */
 
-/* Space Mono */
-@font-face { font-family: 'Space Mono'; src: url('../../fonts/SpaceMono-Regular.ttf')    format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Space Mono'; src: url('../../fonts/SpaceMono-Italic.ttf')     format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
-@font-face { font-family: 'Space Mono'; src: url('../../fonts/SpaceMono-Bold.ttf')       format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Space Mono'; src: url('../../fonts/SpaceMono-BoldItalic.ttf') format('truetype'); font-weight: 700; font-style: italic; font-display: swap; }
+/* El canon, importado. NO se copia aquí ni un valor: este archivo tenía su
+   propio :root con el rojo, el verde y las superficies tecleados a mano, y ya
+   había derivado — su «brand light» era otro rojo distinto del canónico, y su
+   superficie base un tono que no existe en la hoja de tokens. Un kit que dice
+   consumir la marca y en realidad guarda una copia es la avería que este
+   sistema existe para no tener.
+   Las @font-face también salen de aquí: las url() de una hoja importada
+   resuelven contra ELLA, así que apuntan a /fonts/ sin que el kit las repita. */
+@import url('../../colors_and_type.css');
 
-/* Outfit */
-@font-face { font-family: 'Outfit'; src: url('../../fonts/Outfit-Variable.ttf') format('truetype-variations'); font-weight: 100 900; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Outfit'; src: url('../../fonts/Outfit-Regular.ttf')  format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Outfit'; src: url('../../fonts/Outfit-Bold.ttf')     format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Outfit'; src: url('../../fonts/Outfit-Black.ttf')    format('truetype'); font-weight: 900; font-style: normal; font-display: swap; }
 
-@font-face { font-family: 'Inter'; src: url('../../fonts/Inter-Regular.otf')    format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Inter'; src: url('../../fonts/Inter-Italic.otf')     format('opentype'); font-weight: 400; font-style: italic; font-display: swap; }
-@font-face { font-family: 'Inter'; src: url('../../fonts/Inter-Medium.otf')     format('opentype'); font-weight: 500; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Inter'; src: url('../../fonts/Inter-SemiBold.otf')   format('opentype'); font-weight: 600; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Inter'; src: url('../../fonts/Inter-Bold.otf')       format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Inter'; src: url('../../fonts/Inter-ExtraBold.otf')  format('opentype'); font-weight: 800; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Inter'; src: url('../../fonts/Inter-Black.otf')      format('opentype'); font-weight: 900; font-style: normal; font-display: swap; }
+
 
 :root {
-  --brand: #e8003d;
-  --brand-dark: #b5002f;
-  --brand-light: #ff2e66;
-  --green: #9fc243;
-  --muted: rgba(255,255,255,0.45);
-  --bg: #000000;
-  --surface-1: #050505;
-  --surface-2: #0c0c0c;
-  --surface-3: #0f0f0f;
-  --ease: cubic-bezier(0.16,1,0.3,1);
-  --font-display: 'Outfit', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
-  --font-mono: 'Space Mono', ui-monospace, monospace;
+  /* Alias del kit -> tokens canónicos. Este bloque es el ÚNICO punto donde el
+     kit y el canon se tocan: nombres cortos para las utilidades de abajo, cero
+     valores. Cambia colors_and_type.css y el kit cambia con él. */
+  --brand:       var(--color-brand);
+  --brand-dark:  var(--color-brand-dark);
+  --brand-light: var(--color-brand-light);
+  --green:       var(--color-corporate-green);
+  --muted:       var(--color-muted);
+  --bg:          var(--color-bg);
+  --surface-1:   var(--color-surface);
+  --surface-2:   var(--color-surface-2);
+  --surface-3:   var(--color-surface-3);
+  --ease:        var(--ease-out);
 }
 
 *, *::before, *::after { box-sizing: border-box; border-radius: 0; }
@@ -48,8 +40,8 @@ button { font: inherit; background: none; border: 0; color: inherit; cursor: poi
 
 .bg-grid {
   background-image:
-    linear-gradient(rgba(232,0,61,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(232,0,61,0.06) 1px, transparent 1px);
+    linear-gradient(color-mix(in srgb, var(--brand) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--brand) 6%, transparent) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 .bg-scanlines {

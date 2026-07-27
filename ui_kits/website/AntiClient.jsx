@@ -16,7 +16,7 @@ const ExclusionCard = ({ num, title, body }) => {
       style={{
         display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 32,
         padding: 40, background: 'var(--surface-1)',
-        border: `1px solid ${hover ? 'rgba(232,0,61,0.4)' : 'rgba(255,255,255,0.05)'}`,
+        border: `1px solid ${hover ? 'color-mix(in srgb, var(--brand) 40%, transparent)' : 'rgba(255,255,255,0.05)'}`,
         transition: 'border-color 0.3s var(--ease)',
       }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 520 }}>
@@ -43,7 +43,8 @@ const ExclusionCard = ({ num, title, body }) => {
         transition: 'border-color 0.3s var(--ease)',
       }}>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-             stroke="#e8003d" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+             style={{ stroke: 'var(--brand)' }}
+             strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
         </svg>
       </div>
@@ -83,7 +84,7 @@ const AntiClient = () => {
           <p style={{
             margin: 0, color: 'rgba(255,255,255,0.6)',
             fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.65,
-            borderLeft: '2px solid rgba(232,0,61,0.4)', paddingLeft: 32, maxWidth: 480,
+            borderLeft: '2px solid color-mix(in srgb, var(--brand) 40%, transparent)', paddingLeft: 32, maxWidth: 480,
           }}>
             AGLAYA is an engineering firm, not a creative boutique. We optimize for Infrastructure Sovereignty, not corporate comfort. If you are looking for a partner to validate your current inefficiencies, find a traditional agency. If you need to build a sovereign engine, let's talk.
           </p>
@@ -93,7 +94,7 @@ const AntiClient = () => {
             fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', opacity: 0.6,
           }}>
             <span>OPERATIONAL_INTEGRITY</span>
-            <div style={{ width: 48, height: 1, background: 'rgba(232,0,61,0.2)' }}/>
+            <div style={{ width: 48, height: 1, background: 'color-mix(in srgb, var(--brand) 20%, transparent)' }}/>
           </div>
           {left.map((e,i) => <ExclusionCard key={i} num={i+1} {...e}/>)}
         </div>
@@ -110,7 +111,7 @@ const AntiClient = () => {
               {[...Array(4)].map((_,i) => (
                 <span key={i} style={{
                   width: 8, height: 8, borderRadius: '50%',
-                  background: 'rgba(232,0,61,0.4)',
+                  background: 'color-mix(in srgb, var(--brand) 40%, transparent)',
                   animation: 'pulse 1.6s ease-in-out infinite',
                   animationDelay: `${i*0.2}s`,
                 }}/>

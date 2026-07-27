@@ -23,7 +23,7 @@ const SystemCard = ({ s, i }) => {
         display: 'flex', flexDirection: 'column',
         padding: 40,
         background: 'var(--surface-2)',
-        border: `1px solid ${hover ? 'rgba(232,0,61,0.3)' : 'rgba(255,255,255,0.05)'}`,
+        border: `1px solid ${hover ? 'color-mix(in srgb, var(--brand) 30%, transparent)' : 'rgba(255,255,255,0.05)'}`,
         transition: 'border-color 0.5s var(--ease)',
       }}>
       <span style={{
@@ -46,7 +46,7 @@ const SystemCard = ({ s, i }) => {
       <div style={{
         marginTop: 16, height: 1,
         width: hover ? '100%' : 48,
-        background: hover ? 'rgba(232,0,61,0.2)' : 'rgba(255,255,255,0.1)',
+        background: hover ? 'color-mix(in srgb, var(--brand) 20%, transparent)' : 'rgba(255,255,255,0.1)',
         transition: 'all 0.7s var(--ease)',
       }}/>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 20 }}>
@@ -61,7 +61,7 @@ const SystemCard = ({ s, i }) => {
               color: 'var(--muted)', fontFamily: 'var(--font-mono)',
               fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase',
             }}>
-              <span style={{ width: 6, height: 6, background: 'rgba(232,0,61,0.4)', flexShrink: 0 }}/>
+              <span style={{ width: 6, height: 6, background: 'color-mix(in srgb, var(--brand) 40%, transparent)', flexShrink: 0 }}/>
               {c}
             </li>
           ))}

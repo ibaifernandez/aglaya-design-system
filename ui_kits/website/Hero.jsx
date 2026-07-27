@@ -10,7 +10,7 @@ const Hero = () => (
     <div style={{
       position: 'absolute', top: '50%', left: '25%',
       width: 500, height: 500,
-      background: 'rgba(232,0,61,0.08)', filter: 'blur(120px)', borderRadius: '50%',
+      background: 'color-mix(in srgb, var(--brand) 8%, transparent)', filter: 'blur(120px)', borderRadius: '50%',
       transform: 'translateY(-50%)', pointerEvents: 'none',
     }}/>
 
