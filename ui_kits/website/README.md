@@ -1,6 +1,12 @@
 # AGLAYA · Website UI Kit
 
-Hi-fi recreation of the **AGLAYA.biz** marketing home, built from this design system's canonical tokens and brand rules. Every color, token, spacing value, and copy string comes from `colors_and_type.css` + the voice/visual rules in the root `README.md` — the site consumes these tokens, not the other way around.
+Hi-fi recreation of the **AGLAYA.biz** marketing home, built from this design system's canonical tokens and brand rules — the site consumes them, not the other way around.
+
+`styles.css` **imports** `colors_and_type.css`; its own `:root` is a table of short aliases (`--brand: var(--color-brand)`, …) and holds no values. Every brand colour — the red, its dark and light steps, the corporate green, the surface ramp, the easing curve — resolves to a canonical token, and alpha variants are derived with `color-mix` instead of a hand-written rgba. `tools/guard_valores.py` fails CI if a brand value is written by hand anywhere in the repo, so this paragraph is checked, not promised.
+
+What is **not** canonical, said plainly so the claim stays honest: the white-alpha scale used for hairline borders and secondary text (`rgba(255,255,255,…)`) is local to the kit. It is neutral chrome, not brand.
+
+This file used to open by claiming every value came from the canon. It did not: the kit kept its own copy of the palette, and that copy had already drifted to a different light red and an off-ramp surface tone. A README that asserts consumption is worth exactly nothing — check the imports.
 
 ## Files
 - `index.html` — composes the home view (Header → Hero → Problem → Systems → AntiClient → Footer)
