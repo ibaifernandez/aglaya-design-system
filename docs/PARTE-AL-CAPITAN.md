@@ -1,4 +1,4 @@
-# Parte al capitán — actualización de la ficha de esta nave
+# Parte al capitán — la inversión, y esta nave como primer caso
 
 > **Documento de un solo uso.** Cuando el capitán lo aplique, **bórralo**:
 > `eliminar > legacy`. No es un registro; el registro es el git log.
@@ -6,6 +6,86 @@
 > Escrito desde `aglaya-design-system` para `aglaya-orchestrator`. **Aquí no
 > se ha tocado nada de su repo** — este archivo es la propuesta, la decisión
 > es suya.
+
+---
+
+## −1 · La decisión de Ibai: cambia quién es la primera parada
+
+Esto no es un hallazgo de esta nave. Es **una decisión de diseño de flota**, y
+el diseño lo custodias tú. Se te traslada para que la sostengas, no para que
+la aceptes.
+
+**Antes:** se te preguntaba a ti primero y tú contestabas por las naves.
+**Ahora:** la nave es la autoridad sobre sí misma y tú **enrutas** hacia ella.
+
+Con dos sombreros que conviene no mezclar:
+
+| Dominio | Tu papel | Por qué |
+|---|---|---|
+| **Marca y flota** | Enrutador. **Cero estado.** | Gana el repo. Tú sabes a qué puerta llamar, no qué hay detrás. |
+| **Comercial** (precios, ofertas, GTM) | **Fuente autoritativa.** | Ahí no hay codebase que te contradiga: la decisión vive en ti. |
+
+**Lo que esto NO es: una degradación.** Pierdes una autoridad que nunca fue
+real —el estado ajeno— y conservas entera la que sí lo es: los contratos
+inter-nave, la forma acordada, y lo comercial, donde mandas sin discusión.
+
+### La corrección que hay que hacer al modelo
+
+La primera versión de esta idea era «cada nave te vuelca información y tú la
+curas». **Eso reintroduce el problema por la puerta de atrás:** volcado + curado
+= copia derivada con pinta de autoridad, que es exactamente lo que la flota
+lleva meses matando (grafos desversionados, rutas del atlas fuera de los docs,
+guardianes de huella).
+
+Lo que sí funciona ya está probado en esta nave: su MCP **no guarda nada**,
+lee los archivos canónicos en cada llamada. Sube ese patrón a la flota.
+
+> **La regla, en una línea: puedes custodiar acuerdos; nunca estado.**
+> Un acuerdo no caduca solo — lo cambias tú. El estado caduca mientras duermes.
+
+Para comunicación entre naves: **centralita que las presenta, no buzón que se
+queda la copia del mensaje.**
+
+### Por qué ahora
+
+Se te preguntó por el estado de cuatro repos y la respuesta fue que estaban
+perfectos. Al menos uno no lo estaba: tenía deuda de meses en disco.
+
+**No es un reproche a tu ficha** — la ficha nunca dijo que estuviera perfecto;
+describe diseño, y en eso acertaba. El fallo fue de reparto: preguntarte a ti
+por estado. Tu propia cabecera ya lo resolvía («gana el repo») y nadie la
+estaba usando.
+
+---
+
+## −0.5 · Esta nave como primer caso: qué significa «una nave preguntable»
+
+La inversión no se decreta, se demuestra. Esta es la primera y va sola; las
+demás no han empezado. Lo que aquí quedó montado, por si te sirve de patrón
+al enrutar a las siguientes:
+
+1. **Ningún documento afirma estado.** Lo vigila un guardián en CI. Donde
+   antes había un dato, ahora hay *con qué se contesta esa pregunta*.
+2. **Cada guardián tiene batería de sabotaje.** Un guardián puede correr y dar
+   verde estando roto — eso ya pasó aquí dos veces. La batería rompe el repo a
+   propósito y comprueba que se pone rojo.
+3. **La interfaz declarada está probada, y la prueba puede fallar.** El
+   selftest del MCP no podía ponerse rojo: certificaba. Ahora cada llamada
+   declara si debe responder o rechazar, y tiene su propia batería.
+4. **Los valores viven en un sitio y se comprueba mecánicamente.** No es una
+   norma escrita: es un guardián que lee la paleta en vivo y falla si aparece
+   copiada en cualquier archivo versionado.
+5. **CI hace el bootstrap desde cero.** Esto destapó que el comando de montaje
+   documentado **no funcionaba para nadie que clonase el repo**. Llevaba así
+   desde siempre, invisible porque el entorno local ya estaba hecho.
+
+> **El punto 5 es el que más te sirve como enrutador.** Si en el atlas hay
+> naves cuyo montaje «está documentado» pero nadie ha repetido desde cero,
+> ahí hay la misma avería esperando, y no se ve desde ningún documento.
+
+**Y una trampa que evitar:** no conviertas esta lista en una casilla que
+guardes por nave. Sería volcado con otro nombre. Es un patrón que cada nave
+demuestra corriendo, no un sello que tú registras.
 
 ---
 
