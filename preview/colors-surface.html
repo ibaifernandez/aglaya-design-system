@@ -24,23 +24,24 @@
   }
   .hex { color: rgba(255,255,255,0.45); font-size: 9px; letter-spacing: 0.12em; }
   .s1 { background: #000000; }
-  .s2 { background: #040404; }
-  .s3 { background: #080808; }
-  .s4 { background: #0c0c0c; }
-  .s5 { background: #0f0f0f; }
+  .s2 { background: var(--color-bg-deep); }
+  .s3 { background: var(--color-surface); }
+  .s4 { background: var(--color-surface-2); }
+  .s5 { background: var(--color-surface-3); }
   .s6 { background: rgba(255,255,255,0.03); }
   .s7 { background: rgba(255,255,255,0.05); }
 </style>
 </head>
 <body>
   <div class="row">
-    <div class="swatch s1"><span>BG</span><span class="hex">#000000</span></div>
-    <div class="swatch s2"><span>BG Deep</span><span class="hex">#040404</span></div>
-    <div class="swatch s3"><span>Surface</span><span class="hex">#080808</span></div>
-    <div class="swatch s4"><span>Surface 2</span><span class="hex">#0C0C0C</span></div>
-    <div class="swatch s5"><span>Surface 3</span><span class="hex">#0F0F0F</span></div>
+    <div class="swatch s1"><span>BG</span><span class="hex" data-token="--color-bg" data-case="upper"></span></div>
+    <div class="swatch s2"><span>BG Deep</span><span class="hex" data-token="--color-bg-deep" data-case="upper"></span></div>
+    <div class="swatch s3"><span>Surface</span><span class="hex" data-token="--color-surface" data-case="upper"></span></div>
+    <div class="swatch s4"><span>Surface 2</span><span class="hex" data-token="--color-surface-2" data-case="upper"></span></div>
+    <div class="swatch s5"><span>Surface 3</span><span class="hex" data-token="--color-surface-3" data-case="upper"></span></div>
     <div class="swatch s6"><span>Glass</span><span class="hex">wh/3%</span></div>
     <div class="swatch s7"><span>Glass+</span><span class="hex">wh/5%</span></div>
   </div>
+  <script src="./_tokens.js"></script>
 </body>
 </html>

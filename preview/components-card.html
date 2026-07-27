@@ -7,15 +7,15 @@
   html, body { margin: 0; padding: 0; background: #000; }
   body { padding: 24px; }
   .card {
-    background: #0c0c0c; border: 1px solid rgba(255,255,255,0.05);
+    background: var(--color-surface-2); border: 1px solid rgba(255,255,255,0.05);
     padding: 28px; position: relative; overflow: hidden;
   }
   .top { display: flex; justify-content: space-between; margin-bottom: 20px; }
   .idx {
     font-family: 'Space Mono', monospace; font-size: 9px;
-    letter-spacing: 0.4em; text-transform: uppercase; color: #9fc243; opacity: 0.7;
+    letter-spacing: 0.4em; text-transform: uppercase; color: var(--color-corporate-green); opacity: 0.7;
   }
-  .dot { width: 6px; height: 6px; background: #e8003d; }
+  .dot { width: 6px; height: 6px; background: var(--color-brand); }
   .title {
     font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 22px;
     letter-spacing: -0.02em; text-transform: uppercase; color: #fff;
@@ -26,9 +26,9 @@
     color: rgba(255,255,255,0.45);
   }
   .rule { margin-top: 20px; width: 32px; height: 1px; background: rgba(255,255,255,0.1); }
-  .card.hover { border-color: rgba(232,0,61,0.4); }
-  .card.hover .rule { width: 100%; background: rgba(232,0,61,0.2); }
-  .card.hover .title { color: #e8003d; }
+  .card.hover { border-color: color-mix(in srgb, var(--color-brand) 40%, transparent); }
+  .card.hover .rule { width: 100%; background: color-mix(in srgb, var(--color-brand) 20%, transparent); }
+  .card.hover .title { color: var(--color-brand); }
 </style>
 </head>
 <body>

@@ -14,16 +14,16 @@
     color: rgba(255,255,255,0.5);
   }
   .field.focus {
-    border-color: rgba(232,0,61,0.5);
-    background: rgba(232,0,61,0.03);
+    border-color: color-mix(in srgb, var(--color-brand) 50%, transparent);
+    background: color-mix(in srgb, var(--color-brand) 3%, transparent);
     color: #fff;
-    outline: 2px solid rgba(232,0,61,0.9);
+    outline: 2px solid color-mix(in srgb, var(--color-brand) 90%, transparent);
     outline-offset: 2px;
   }
   .area { min-height: 56px; }
   .label {
     font-family: 'Space Mono', monospace; font-size: 9px;
-    letter-spacing: 0.3em; color: #9fc243; text-transform: uppercase;
+    letter-spacing: 0.3em; color: var(--color-corporate-green); text-transform: uppercase;
     margin-bottom: 4px;
   }
 </style>

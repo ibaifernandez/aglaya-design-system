@@ -16,28 +16,29 @@
 </head>
 <body>
   <div class="row">
-    <div class="chip" style="background: #fcfcfc;"></div>
-    <div class="label"><span class="name">fg-1 / Text</span><span class="hex">#FCFCFC</span></div>
+    <div class="chip" style="background: var(--fg-1);"></div>
+    <div class="label"><span class="name">fg-1 / Text</span><span class="hex" data-token="--color-text" data-case="upper"></span></div>
   </div>
   <div class="row">
-    <div class="chip" style="background: rgba(252,252,252,0.45);"></div>
-    <div class="label"><span class="name">fg-2 / Muted</span><span class="hex">white 45%</span></div>
+    <div class="chip" style="background: var(--fg-2);"></div>
+    <div class="label"><span class="name">fg-2 / Muted</span><span class="hex" data-token="--color-muted"></span></div>
   </div>
   <div class="row">
-    <div class="chip" style="background: rgba(252,252,252,0.25);"></div>
-    <div class="label"><span class="name">fg-3 / Faint</span><span class="hex">white 25%</span></div>
+    <div class="chip" style="background: var(--fg-3);"></div>
+    <div class="label"><span class="name">fg-3 / Faint</span><span class="hex" data-token="--color-faint"></span></div>
   </div>
   <div class="row">
-    <div class="chip" style="background: #e8003d;"></div>
-    <div class="label"><span class="name">fg-brand</span><span class="hex">#E8003D</span></div>
+    <div class="chip" style="background: var(--fg-brand);"></div>
+    <div class="label"><span class="name">fg-brand</span><span class="hex" data-token="--color-brand" data-case="upper"></span></div>
   </div>
   <div class="row">
-    <div class="chip" style="background: #9fc243;"></div>
-    <div class="label"><span class="name">fg-eyebrow</span><span class="hex">#9FC243</span></div>
+    <div class="chip" style="background: var(--fg-eyebrow);"></div>
+    <div class="label"><span class="name">fg-eyebrow</span><span class="hex" data-token="--color-corporate-green" data-case="upper"></span></div>
   </div>
   <div class="row">
-    <div class="chip" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2);"></div>
-    <div class="label"><span class="name">border</span><span class="hex">white 8%</span></div>
+    <div class="chip" style="background: var(--color-border); border-color: var(--color-border-strong);"></div>
+    <div class="label"><span class="name">border</span><span class="hex" data-token="--color-border"></span></div>
   </div>
+  <script src="./_tokens.js"></script>
 </body>
 </html>

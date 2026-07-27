@@ -2,13 +2,14 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
 <style>
   html,body{margin:0;padding:0;background:#000}
   body{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.08);min-height:100vh}
   .c{display:flex;align-items:center;justify-content:center;padding:24px;position:relative}
   .white{background:#fff}
   .black{background:#000}
-  .brand{background:#e8003d}
+  .brand{background:var(--color-brand)}
   .label{position:absolute;bottom:8px;left:12px;font:10px/1 ui-monospace,monospace;letter-spacing:0.3em;text-transform:uppercase}
   .white .label{color:rgba(0,0,0,0.5)}
   .black .label{color:rgba(255,255,255,0.5)}
@@ -56,7 +57,7 @@
   <rect  x="387.96" y=".07" width="30.02" height="81.7"></rect>
   <polygon  points="153.74 192.32 96.43 57.1 64.63 131.04 32.47 130.87 88.15 0 105.03 .16 186.4 191.96 153.74 192.32"></polygon>
 </svg><span class="label">ON WHITE</span></div>
-  <div class="c white"><svg viewBox="0 0 1000 192.12" xmlns="http://www.w3.org/2000/svg" style="fill:#e8003d;width:80%;max-width:220px;display:block">
+  <div class="c white"><svg viewBox="0 0 1000 192.12" xmlns="http://www.w3.org/2000/svg" style="fill:var(--color-brand);width:80%;max-width:220px;display:block">
   
   <defs>
     

@@ -12,15 +12,15 @@
     padding: 6px 12px; border: 1px solid rgba(255,255,255,0.1);
     background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.6);
   }
-  .badge.brand { color: #9fc243; border-color: rgba(232,0,61,0.2); background: rgba(232,0,61,0.1); }
+  .badge.brand { color: var(--color-corporate-green); border-color: color-mix(in srgb, var(--color-brand) 20%, transparent); background: color-mix(in srgb, var(--color-brand) 10%, transparent); }
   .badge.codetag { background: #fff; color: #000; border-color: transparent; letter-spacing: 0.18em; }
-  .badge.ok { color: #9fc243; border-color: rgba(159,194,67,0.3); }
+  .badge.ok { color: var(--color-corporate-green); border-color: color-mix(in srgb, var(--color-corporate-green) 30%, transparent); }
   .pill {
     display: inline-flex; align-items: center; gap: 6px;
     font-family: 'Space Mono', monospace; font-size: 9px;
     letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.35);
   }
-  .pulse { width: 6px; height: 6px; background: #e8003d; animation: pulse 1.5s infinite; }
+  .pulse { width: 6px; height: 6px; background: var(--color-brand); animation: pulse 1.5s infinite; }
   @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
 </style>
 </head>
