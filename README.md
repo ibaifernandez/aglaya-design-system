@@ -17,7 +17,7 @@ Clients are **founders and ops leads at high-performance companies** — not ear
 | **Design tokens (canonical)** | `colors_and_type.css` | the single source of truth — everything else follows |
 | Historical origin | Astro + Tailwind v4, GitHub `ibaifernandez/aglaya.biz` | where the tokens were *first authored*; the site now **consumes** this package, it no longer defines the brand |
 | Logos (canonical) | `assets/` (SVG canonical + PNG derivatives) | white / black / brand-red variants |
-| Fonts | `fonts/` (31 files — Outfit, Inter, Space Mono) | all local, no CDN |
+| Fonts | `fonts/` (Outfit, Inter, Space Mono) | all local, no CDN |
 
 The tokens were first authored inside the live Astro codebase, but that codebase is **no longer authoritative**: this folder is now the canonical, sovereign definition of the brand, and `aglaya.biz` consumes it. This package depends on nothing upstream.
 
@@ -29,12 +29,22 @@ Root files:
 - **`README.md`** — this document
 - **`colors_and_type.css`** — all design tokens as CSS custom properties + semantic classes
 - **`SKILL.md`** — Agent Skill entry point
+- **`CLAUDE.md`** — repo instructions: reading order, hard rules, and the fleet section
 
 Folders:
 - **`assets/`** — logos (white / black / brand-red), favicons (SVG), PNG fallbacks
-- **`fonts/`** — 31 local font files (Outfit variable + statics, Inter 100–900 + italics, Space Mono)
-- **`preview/`** — 22 design-system specimen cards (colors, type, spacing, components, brand)
-- **`ui_kits/website/`** — full AGLAYA.biz homepage recreation using the tokens
+- **`fonts/`** — local font files (Outfit variable + statics, Inter 100–900 + italics, Space Mono) — no CDN
+- **`preview/`** — design-system specimen cards (colors, type, spacing, components, brand). They read their values from `colors_and_type.css` at paint time, so a specimen cannot show a value the canon no longer holds
+- **`products/`** — per-product identity: `products.json` (the roster) plus glyphs and lockups
+- **`components/`** — `components.json`, the component specs served by `get_component`
+- **`ui_kits/website/`** — full AGLAYA.biz homepage recreation. It imports `colors_and_type.css`; its own `:root` is aliases only, no values
+- **`aglaya-ds-mcp/`** — the `aglaya-ds` MCP server (read-only) and its tests
+- **`tools/`** — the guards that keep this repo honest, each with a sabotage battery
+- **`docs/`** — `CONTRACT.md`, the local brand contract
+
+Counts are deliberately absent: `ls` knows, and a number typed here is wrong the
+first time someone adds a file. This list said "22 specimen cards" while there
+were 23.
 
 ---
 
