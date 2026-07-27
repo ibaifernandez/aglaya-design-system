@@ -9,6 +9,19 @@ dependencies = [
     "mcp>=1.2.0",
 ]
 
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+# Layout plano con varios módulos sueltos: sin esta línea setuptools se niega
+# a adivinar cuál es el paquete y aborta con «Multiple top-level modules
+# discovered in a flat-layout». Es decir, el `pip install -e .` que manda el
+# README fallaba para cualquiera que clonase el repo. Salió a la luz el día
+# que CI empezó a hacer el bootstrap de verdad en vez de darlo por hecho.
+# Se declaran solo el core y el transporte: las pruebas no son el paquete.
+py-modules = ["brand", "server"]
+
 [tool.aglaya]
 # Los archivos canónicos que el core lee EN VIVO. Esta lista es documentación,
 # no configuración: nada la carga. La autoridad son las constantes de
