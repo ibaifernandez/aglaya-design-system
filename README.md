@@ -30,10 +30,11 @@ Root files:
 - **`colors_and_type.css`** — all design tokens as CSS custom properties + semantic classes
 - **`SKILL.md`** — Agent Skill entry point
 - **`CLAUDE.md`** — repo instructions: reading order, hard rules, and the fleet section
+- **`LICENSE`** — terms for AGLAYA's own material: all rights reserved. It does not cover the fonts, which are third-party under OFL 1.1 and keep their own terms
 
 Folders:
 - **`assets/`** — logos (white / black / brand-red), favicons (SVG), PNG fallbacks
-- **`fonts/`** — local font files (Outfit variable + statics, Inter 100–900 + italics, Space Mono) — no CDN
+- **`fonts/`** — local font files (Outfit variable + statics, Inter 100–900 + italics, Space Mono) — no CDN. Third-party, redistributed under SIL Open Font License 1.1; each family ships its licence beside it (`fonts/README.md`)
 - **`preview/`** — design-system specimen cards (colors, type, spacing, components, brand). They read their values from `colors_and_type.css` at paint time, so a specimen cannot show a value the canon no longer holds
 - **`products/`** — per-product identity: `products.json` (the roster) plus glyphs and lockups
 - **`components/`** — `components.json`, the component specs served by `get_component`

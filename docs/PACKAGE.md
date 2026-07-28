@@ -17,7 +17,8 @@ El paquete **`@aglaya/design-tokens`**, cuyo contenido es:
 | Qué | Qué es |
 | --- | --- |
 | `colors_and_type.css` | el canon, tal cual. No es una copia adaptada: es el mismo archivo que lee el MCP `aglaya-ds` y que vigilan los guardianes |
-| `fonts/` | las tres familias, locales. El CSS las carga con rutas relativas, así que resuelven dentro del paquete sin red |
+| `fonts/` | las tres familias, locales. El CSS las carga con rutas relativas, así que resuelven dentro del paquete sin red. **Son de terceros, bajo OFL 1.1**, y viajan con su licencia al lado — ver [`../fonts/README.md`](../fonts/README.md) |
+| `LICENSE` | los términos del material de AGLAYA. No cubre las tipografías ni puede cubrirlas |
 | `dist/tokens.json` · `dist/tokens.js` · `dist/tokens.d.ts` | las formas JSON/JS, **derivadas en la instalación** desde el CSS |
 | `bin/aglaya-tokens-version` | el comando que imprime cuántas versiones vas por detrás |
 
@@ -87,6 +88,8 @@ dos numeraciones que se contradigan.
 | Se **añade** un token, una clase `t-*`, una fuente o una vía de export | **menor** | nada de lo suyo cambia |
 | Se **renombra** o se **elimina** un token o una clase `t-*` | **MAYOR** | se le rompe el build |
 | Se elimina o cambia de forma una vía de `exports`, o sube el mínimo de Node | **MAYOR** | se le rompe el build |
+| Se **añaden** términos o avisos legales que antes no se entregaban (la licencia de una fuente, la licencia del repo) | **menor** | no se le rompe nada; cambia lo que legalmente puede hacer |
+| Se **retira** o se **restringe** una licencia ya publicada | **MAYOR** | puede perder el derecho a usar lo que ya venía usando |
 
 La regla que resume todo:
 
@@ -96,6 +99,21 @@ La regla que resume todo:
 
 Un mayor no se publica sin decir en el mensaje del tag qué nombres se movieron
 y a qué. Este repo no lleva CHANGELOG: el registro es el `git log`.
+
+### Licencias
+
+Lo que el consumidor recibe y bajo qué términos:
+
+- **Las tipografías son de terceros**, bajo SIL Open Font License 1.1, y cada
+  familia viaja con su archivo de licencia dentro de `fonts/`. La licencia de
+  este repo no las cubre ni puede cubrirlas. Detalle y procedencia:
+  [`../fonts/README.md`](../fonts/README.md).
+- **El resto del material es de AGLAYA**, con todos los derechos reservados —
+  ver [`../LICENSE`](../LICENSE). Que el repo sea público es el mecanismo de
+  entrega que necesita un CI ajeno, no una cesión de derechos.
+- **Ninguna familia entra en `fonts/` sin su licencia al lado.** Lo empareja
+  por nombre [`../tools/guard_paquete.py`](../tools/guard_paquete.py), así que
+  también protege a la familia que todavía no existe.
 
 ---
 

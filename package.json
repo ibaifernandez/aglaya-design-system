@@ -1,6 +1,6 @@
 {
   "name": "@aglaya/design-tokens",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "AGLAYA canonical design tokens. Consume, do not copy.",
   "keywords": [
     "aglaya",
@@ -35,6 +35,7 @@
     "bin/",
     "scripts/",
     "dist/",
+    "LICENSE",
     "docs/PACKAGE.md"
   ],
   "scripts": {

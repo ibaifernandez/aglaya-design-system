@@ -27,11 +27,21 @@ Cuatro formas de romperlo, las cuatro vigiladas:
    repo y lo que este paquete existe para cerrar fuera. Se genera al instalar
    o no se genera.
 
-Y una quinta que no es del paquete sino de su honestidad: el CSS que exporta
-tiene que ser **el canónico**, no una copia con otro nombre. Si algún día
-`./tokens.css` deja de apuntar a `colors_and_type.css`, el paquete puede
-publicar valores que el MCP no sirve, y ahí ya hay dos fuentes de la verdad
-con la misma cara.
+Y dos más que no son del paquete sino de su honestidad:
+
+**El CSS que exporta tiene que ser el canónico**, no una copia con otro nombre.
+Si algún día `./tokens.css` deja de apuntar a `colors_and_type.css`, el paquete
+puede publicar valores que el MCP no sirve, y ahí ya hay dos fuentes de la
+verdad con la misma cara.
+
+**Ninguna tipografía se redistribuye sin su licencia al lado.** Las tres
+familias de `fonts/` son de terceros bajo OFL 1.1, que exige que la licencia y
+el aviso de copyright viajen con los archivos. Este repo se hizo público y el
+paquete las redistribuyó sin ese archivo: la avería ya ocurrió. Aquí se empareja
+cada archivo de fuente con un `LICENSE-<Familia>.txt` en su mismo directorio, de
+modo que una cuarta familia sin licencia pone el CI rojo antes de llegar a
+nadie. Emparejar por nombre —no por una lista de familias escrita dentro— es lo
+que hace que proteja también a la familia que aún no existe.
 
 **No lleva ni un valor de marca dentro**, como el resto de guardianes: lee el
 manifiesto en cada ejecución.
@@ -51,6 +61,10 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 PKG = RAIZ / "package.json"
 CSS_CANONICO = "colors_and_type.css"
+FUENTES = RAIZ / "fonts"
+
+# Lo que cuenta como «font software» a efectos del OFL.
+EXT_FUENTE = {".otf", ".ttf", ".woff", ".woff2", ".ttc", ".otc"}
 
 # Directorios que el paquete fabrica al instalar y que por tanto NO tienen que
 # existir en un clon limpio. Cualquier otro objetivo declarado sí.
@@ -91,6 +105,26 @@ def rastreados() -> list[str] | None:
     return [l for l in salida.stdout.splitlines() if l]
 
 
+def fuentes() -> list[Path] | None:
+    """Los archivos de fuente que el paquete redistribuye.
+
+    None si el directorio no existe — el paquete no entrega tipografías y la
+    regla no aplica. Lista vacía significa otra cosa muy distinta (el
+    directorio está pero no se ve nada dentro) y arriba se trata como
+    «no se pudo comprobar»: un guardián de licencias que no encuentra fuentes
+    da el verde más tranquilizador y más falso que hay.
+    """
+    if not FUENTES.is_dir():
+        return None
+    return sorted(p for p in FUENTES.iterdir()
+                  if p.is_file() and p.suffix.lower() in EXT_FUENTE)
+
+
+def _familia(archivo: Path) -> str:
+    """`Inter-BoldItalic.otf` -> `Inter`. El nombre antes del primer guion."""
+    return archivo.stem.split("-")[0]
+
+
 def _es_construido(destino: str) -> bool:
     limpio = destino.lstrip("./")
     return any(limpio.startswith(d) for d in CONSTRUIDOS)
@@ -119,9 +153,26 @@ def _objetivos(pkg: dict) -> list[tuple[str, str]]:
     return fuera
 
 
-def revisar(pkg: dict, versionados: list[str]) -> list[tuple[str, str]]:
+def revisar(pkg: dict, versionados: list[str], tipografias: list[Path] | None) -> list[tuple[str, str]]:
     """[(regla, explicación)] — vacío si el paquete sobrevive a un clon ajeno."""
     fallos: list[tuple[str, str]] = []
+
+    # 0 · ninguna tipografía se redistribuye sin su licencia al lado.
+    # Se agrupa por familia: una familia sin licencia son sus 18 archivos, y
+    # 18 líneas iguales esconden el problema en vez de enseñarlo.
+    huerfanas: dict[str, list[Path]] = {}
+    for archivo in tipografias or []:
+        familia = _familia(archivo)
+        if not (archivo.parent / f"LICENSE-{familia}.txt").is_file():
+            huerfanas.setdefault(familia, []).append(archivo)
+    for familia, archivos in huerfanas.items():
+        fallos.append((
+            "fuente-sin-licencia",
+            f"la familia {familia!r} se redistribuye ({len(archivos)} archivo/s, "
+            f"p. ej. {archivos[0].relative_to(RAIZ)}) y falta "
+            f"fonts/LICENSE-{familia}.txt — el OFL exige que la licencia y el "
+            "aviso de copyright viajen con los archivos",
+        ))
 
     # 1 · ninguna dependencia atada a este disco
     for bloque in BLOQUES_DEPS:
@@ -229,6 +280,12 @@ def main() -> int:
         print("guard-paquete: NO SE PUDO COMPROBAR — git no contestó `ls-files`")
         return 2
 
+    tipografias = fuentes()
+    if tipografias is not None and not tipografias:
+        print("guard-paquete: NO SE PUDO COMPROBAR — existe fonts/ pero no se "
+              "vio ni un archivo de fuente; la regla de licencias pasaría en vacío")
+        return 2
+
     objetivos = _objetivos(pkg)
     if not objetivos:
         # Verde por no mirar: un manifiesto sin exports/files/bin no promete
@@ -237,10 +294,12 @@ def main() -> int:
               "ni exports ni files ni bin; no hay nada que verificar")
         return 2
 
-    fallos = revisar(pkg, versionados)
+    fallos = revisar(pkg, versionados, tipografias)
     if not fallos:
+        familias = sorted({_familia(f) for f in (tipografias or [])})
         print(f"guard-paquete: OK — {pkg.get('name')} v{pkg.get('version')}, "
-              f"{len(objetivos)} objetivo(s) declarados, ninguno atado a este disco.")
+              f"{len(objetivos)} objetivo(s) declarados, ninguno atado a este disco; "
+              f"{len(familias)} familia(s) tipográfica(s), todas con su licencia al lado.")
         return 0
 
     print(f"guard-paquete: {len(fallos)} problema(s) — el paquete no sobrevive a un clon ajeno\n")

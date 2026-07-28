@@ -140,6 +140,63 @@ sys.exit(0 if rc == 1 else 1)
 PY
 [ $? -eq 0 ] || fallos=$((fallos+1))
 
+echo "== 9b. una fuente redistribuida sin su licencia al lado =="
+echo "   (la avería real: el repo se hizo público y el paquete las llevaba sin licencia)"
+LIC="fonts/LICENSE-Inter.txt"
+LIC_BK="$(mktemp)"
+cp "$LIC" "$LIC_BK"
+rm -f "$LIC"
+salida=$(python3 "$GUARD" 2>&1); rc=$?
+if [ "$rc" -eq 1 ] && printf '%s' "$salida" | grep -q "\[fuente-sin-licencia\]"; then
+  echo "  ROJO  ok   fuente-sin-licencia   ← falta la licencia de Inter"
+else
+  echo "  ESCAPÓ     fuente-sin-licencia   ← falta la licencia de Inter (rc=$rc)"
+  fallos=$((fallos+1))
+fi
+cp "$LIC_BK" "$LIC"; rm -f "$LIC_BK"
+cmp -s "$LIC" fonts/LICENSE-Inter.txt || { echo "  NO restauré $LIC"; exit 1; }
+
+echo "== 9c. una familia NUEVA sin licencia también =="
+echo "   (empareja por nombre, así que protege a la familia que aún no existe)"
+python3 - <<'PY'
+import sys; sys.path.insert(0, "tools")
+from pathlib import Path
+import guard_paquete as g
+reales = g.fuentes() or []
+g.fuentes = lambda: reales + [g.FUENTES / "Recoleta-Regular.otf"]   # familia inventada
+rc = g.main()
+print("  ROJO  ok   fuente-sin-licencia (familia nueva)" if rc == 1
+      else f"  ESCAPÓ     fuente-sin-licencia (familia nueva) (rc={rc})")
+sys.exit(0 if rc == 1 else 1)
+PY
+[ $? -eq 0 ] || fallos=$((fallos+1))
+
+echo "== 9d. no ver ninguna fuente no puede dar verde =="
+echo "   (un guardián de licencias que no encuentra fuentes da el verde más falso que hay)"
+python3 - <<'PY'
+import sys; sys.path.insert(0, "tools")
+import guard_paquete as g
+g.fuentes = lambda: []                   # el directorio está, pero no se ve nada
+rc = g.main()
+print("  ROJO  ok   sin-fuentes (rc=2)" if rc == 2 else f"  ESCAPÓ     sin-fuentes (rc={rc})")
+sys.exit(0 if rc == 2 else 1)
+PY
+[ $? -eq 0 ] || fallos=$((fallos+1))
+
+echo "== 9e. la licencia y el README de fonts/ NO son fuentes =="
+python3 - <<'PY'
+import sys; sys.path.insert(0, "tools")
+import guard_paquete as g
+vistos = {p.name for p in (g.fuentes() or [])}
+intrusos = sorted(n for n in vistos if not n.lower().endswith(tuple(g.EXT_FUENTE)))
+familias = sorted({g._familia(p) for p in (g.fuentes() or [])})
+print(f"  familias detectadas: {', '.join(familias)}")
+if intrusos:
+    print(f"  ESCAPÓ  se colaron archivos que no son fuentes: {intrusos}")
+sys.exit(1 if intrusos else 0)
+PY
+[ $? -eq 0 ] || fallos=$((fallos+1))
+
 echo "== 10. sin manifiesto no se puede dar verde =="
 python3 - <<'PY'
 import sys; sys.path.insert(0, "tools")

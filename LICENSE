@@ -1,0 +1,92 @@
+AGLAYA Design System
+Copyright (c) 2026 AGLAYA — Ibai Fernández. All rights reserved.
+Todos los derechos reservados.
+
+===================================================================
+1. SCOPE / ALCANCE
+===================================================================
+
+This licence covers everything in this repository EXCEPT the font
+software under `fonts/`, which is third-party and covered by section 3.
+
+Covered material includes, without limitation: the design tokens in
+`colors_and_type.css`; the logos, isotypes, wordmarks, product glyphs
+and lockups under `assets/` and `products/`; the brand voice, rules and
+non-negotiables in `README.md`, `SKILL.md` and `docs/`; the component
+specifications; the preview specimens; the UI kit under `ui_kits/`; the
+MCP server under `aglaya-ds-mcp/`; and the tooling under `tools/`,
+`scripts/` and `bin/`.
+
+Esta licencia cubre todo el repositorio EXCEPTO las tipografías de
+`fonts/`, que son de terceros y se rigen por la sección 3.
+
+===================================================================
+2. RIGHTS GRANTED / DERECHOS CONCEDIDOS
+===================================================================
+
+None. No permission is granted to use, copy, modify, merge, publish,
+distribute, sublicense or sell the covered material, in whole or in
+part, by any party other than the copyright holder and the surfaces the
+copyright holder operates.
+
+Ninguno. Salvo el titular del copyright y las superficies que opera, no
+se concede permiso para usar, copiar, modificar, publicar, distribuir,
+sublicenciar ni vender este material.
+
+This repository is public for one operational reason: so that AGLAYA's
+own surfaces can install `@aglaya/design-tokens` from a continuous
+integration environment that clones only the consumer's repository and
+cannot hold credentials for this one. Public visibility is a delivery
+mechanism, not an invitation to reuse.
+
+Que el repositorio sea público es un mecanismo de entrega, no una
+invitación a reutilizarlo.
+
+===================================================================
+3. FONTS / TIPOGRAFÍAS — third-party, NOT covered by this licence
+===================================================================
+
+The font software under `fonts/` belongs to its respective authors and
+is redistributed under the SIL Open Font License, Version 1.1. This
+licence neither covers it nor may restrict it.
+
+  Inter        Copyright 2017-2019 The Inter project authors
+               fonts/LICENSE-Inter.txt
+  Outfit       Copyright 2021 The Outfit Project Authors
+               fonts/LICENSE-Outfit.txt
+  Space Mono   Copyright 2016 The Space Mono Project Authors
+               fonts/LICENSE-SpaceMono.txt
+
+Each licence text is distributed verbatim beside the font files, as the
+OFL requires. See `fonts/README.md`.
+
+===================================================================
+4. TRADEMARKS / MARCAS
+===================================================================
+
+AGLAYA, the AGLAYA wordmark, the isotype, the product names and their
+glyphs and lockups are trademarks of the copyright holder. Nothing in
+this repository grants any right to use them, and no such right arises
+from the repository being public.
+
+===================================================================
+5. NO WARRANTY / SIN GARANTÍA
+===================================================================
+
+The material is provided "as is", without warranty of any kind, express
+or implied. The copyright holder is not liable for any claim, damages or
+other liability arising from it or from its use.
+
+===================================================================
+6. PERMISSIONS / PERMISOS
+===================================================================
+
+Written permission for any use beyond section 2 may be requested from
+the copyright holder.
+
+-------------------------------------------------------------------
+Note on future terms: opening a licence is one commit; closing one is
+not, because a permission already published stays published for that
+version. These terms start closed on purpose. Under the versioning
+policy in docs/PACKAGE.md, withdrawing or narrowing a licence that has
+already shipped is a MAJOR release.
