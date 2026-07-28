@@ -39,8 +39,9 @@ Folders:
 - **`components/`** — `components.json`, the component specs served by `get_component`
 - **`ui_kits/website/`** — full AGLAYA.biz homepage recreation. It imports `colors_and_type.css`; its own `:root` is aliases only, no values
 - **`aglaya-ds-mcp/`** — the `aglaya-ds` MCP server (read-only) and its tests
-- **`tools/`** — the guards that keep this repo honest, each with a sabotage battery
-- **`docs/`** — `CONTRACT.md`, the local brand contract
+- **`tools/`** — the guards that keep this repo honest, each with a sabotage battery, plus the mutation test that separates consuming from copying
+- **`docs/`** — `CONTRACT.md`, the local brand contract, and `PACKAGE.md`, how other repos depend on it
+- **`package.json`** — the manifest for `@aglaya/design-tokens`; `scripts/` derives the JSON/JS token forms at install time and `bin/` ships the "how far behind are you" command. `dist/` is generated, never committed
 
 Counts are deliberately absent: `ls` knows, and a number typed here is wrong the
 first time someone adds a file. This list said "22 specimen cards" while there
@@ -264,6 +265,25 @@ Unzip the folder into your project. Any agent can read `SKILL.md` + `README.md` 
 > "Using the design system in `./aglaya-design-system/`, build a landing page for our new ROI audit product."
 
 The agent reads the tokens, copies assets, follows the voice rules, and ships pixel-consistent with the rest of the brand.
+
+### Depend on it from another repo (package)
+The tokens ship as a versioned package, `@aglaya/design-tokens`, pinned to a tag over `git+https` — the only shape that survives a foreign CI, which clones the consumer's repo and not this one.
+
+```bash
+npm install "git+https://github.com/ibaifernandez/aglaya-design-system.git#v1.1.0"
+```
+
+```css
+@import "@aglaya/design-tokens/tokens.css";
+```
+
+The package ships the canonical `colors_and_type.css` itself — not an adapted copy — plus the fonts it loads and JSON/JS token forms derived at install time. One command tells a consumer how far behind it is:
+
+```bash
+npx aglaya-tokens-version
+```
+
+Semver policy, the name-collision rule (consumers rename; there is no alias map), and the mutation test that proves a consumer is depending rather than copying: [`docs/PACKAGE.md`](docs/PACKAGE.md).
 
 ### Query the brand live (MCP)
 For projects that should read the brand **live** instead of copying it, this repo ships a sovereign MCP server in [`aglaya-ds-mcp/`](aglaya-ds-mcp/README.md). It exposes `get_token`, `list_tokens`, `get_voice_rules`, `check_voice`, `is_allowed_word`, `get_logo`, and `get_nonnegotiables` (master + `scope="product"`), plus **product identity** (`list_products`, `get_product`, `get_accent`, `get_glyph`, `get_lockup`, `get_product_voice`) and **component specs** (`list_components`, `get_component`) — each reading these canonical files live, so downstream surfaces (`aglaya.biz` included) consume the brand instead of duplicating it. The MCP is an optional, separable layer; the design-system folder stays runtime-free without it.

@@ -10,3 +10,12 @@ graphify-out/
 # Caché de Python (la batería de punteros importa el guardián y lo genera)
 __pycache__/
 *.pyc
+
+# ── El paquete: derivado, nunca versionado ────────────────
+# `dist/` lo fabrica scripts/build-tokens.mjs leyendo colors_and_type.css, y se
+# regenera en cada instalación (npm corre `prepare` también para dependencias
+# de git). Commitearlo sería abrir una segunda casa para cada valor de marca —
+# justo la avería que persigue tools/guard_valores.py. guard_paquete.py falla
+# si algún día aparece rastreado.
+dist/
+node_modules/

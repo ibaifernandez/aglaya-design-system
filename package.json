@@ -1,0 +1,48 @@
+{
+  "name": "@aglaya/design-tokens",
+  "version": "1.1.0",
+  "description": "AGLAYA canonical design tokens. Consume, do not copy.",
+  "keywords": [
+    "aglaya",
+    "design-tokens",
+    "design-system",
+    "brand"
+  ],
+  "license": "UNLICENSED",
+  "author": "AGLAYA",
+  "homepage": "https://github.com/ibaifernandez/aglaya-design-system#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibaifernandez/aglaya-design-system.git"
+  },
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": "./dist/tokens.js",
+    "./tokens.css": "./colors_and_type.css",
+    "./tokens.json": "./dist/tokens.json",
+    "./fonts/*": "./fonts/*",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "aglaya-tokens-version": "bin/aglaya-tokens-version.mjs"
+  },
+  "files": [
+    "colors_and_type.css",
+    "fonts/",
+    "bin/",
+    "scripts/",
+    "dist/",
+    "docs/PACKAGE.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build-tokens.mjs",
+    "prepare": "node scripts/build-tokens.mjs",
+    "tokens:version": "node bin/aglaya-tokens-version.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

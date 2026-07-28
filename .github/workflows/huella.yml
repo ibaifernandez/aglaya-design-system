@@ -32,6 +32,11 @@ jobs:
       - name: ¿los valores muerden?
         run: bash tools/test_guard_valores.sh
 
+      - name: paquete — instalable desde fuera de esta máquina
+        run: python3 tools/guard_paquete.py
+      - name: ¿el paquete muerde?
+        run: bash tools/test_guard_paquete.sh
+
       - name: las baterías sabotean CLAUDE.md — que lo devuelvan como estaba
         run: git diff --exit-code
 
@@ -67,4 +72,37 @@ jobs:
         # zerocopy edita colors_and_type.css y test_selftest edita server.py;
         # los dos prometen restaurar. Aquí se comprueba que cumplen, que es
         # justo lo que nadie mira cuando el test sale verde.
+        run: git diff --exit-code
+
+  paquete:
+    name: paquete @aglaya/design-tokens
+    runs-on: ubuntu-latest
+    steps:
+      # fetch-depth 0: la prueba de mutación clona ESTE repo a un temporal, y
+      # de un clon superficial no se puede clonar en todas las versiones de git.
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: el build deriva los tokens del CSS canónico
+        run: node scripts/build-tokens.mjs
+
+      - name: dist/ es derivado — ignorado, y el build no ensucia el árbol
+        # `check-ignore` falla si alguien saca dist/ del .gitignore; el segundo
+        # comando falla si el build tocó cualquier otra cosa. guard_paquete
+        # cubre el caso peor: que dist/ llegue a estar rastreado.
+        run: |
+          git check-ignore -q dist
+          test -z "$(git status --porcelain)"
+
+      - name: mutación — el consumidor consume, la copia no
+        # La única prueba que distingue consumir de copiar. Monta dos
+        # consumidores en un temporal: el que depende tiene que ver el cambio,
+        # el que copió NO. Sin el segundo, la prueba no demuestra nada.
+        run: bash tools/test_mutacion.sh
+
+      - name: la mutación clona a un temporal — este repo no se toca
         run: git diff --exit-code
