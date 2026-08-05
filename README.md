@@ -91,8 +91,31 @@ Used consistently across the site; treat these as protected brand vocabulary:
 | **Signal** | Data that matters. Used in place of "lead", "metric", "input". |
 | **Protocol** | A process. Always a protocol, never "process" or "steps". |
 | **Zero-filter** | Qualifier on diagnostics: findings arrive unsoftened. It claims something about how AGLAYA reports — which AGLAYA controls — never about how a system behaves. |
-| **Systemic alpha** | The compounding advantage of an owned system. |
 | **Dispatch** | The newsletter. Never "newsletter". |
+
+### Signature terms — castellano
+
+El mismo vocabulario para el copy en castellano. **Un nombre se queda, una idea
+se traduce:** una cabecera no es un concepto. Cada fila lleva su original inglés
+entre paréntesis para que el par se vea; los vetos son las palabras que un
+redactor español teclea sin pensar.
+
+Dos filas van sin veto a propósito. En inglés `control` y `process` se pueden
+vetar; en castellano «control de acceso» y «proceso de compra» son frases
+inocentes y corrientes, y un guardián que grita de más lo desactiva el primero
+que lo sufra — entonces no protege nada. Quedan sin veto hasta que el corrector
+sepa vetar frases en vez de palabras sueltas.
+
+| Término | Uso |
+| --- | --- |
+| **soberanía / soberano** (Sovereignty) | Lo que AGLAYA vende. Sin veto asociado: ver la nota de arriba. |
+| **sistemas** (Systems) | Lo que AGLAYA entrega. Nunca "soluciones", nunca "solución", nunca "herramientas", nunca "herramienta". |
+| **arquitectura / infraestructura** (Architecture / Infrastructure) | De qué está hecho el sistema. |
+| **verdad operativa** (Operational truth) | Lo que la auditoría saca a la superficie. |
+| **señal** (Signal) | El dato que importa. En vez de "lead", "leads", "métrica", "métricas". |
+| **protocolo** (Protocol) | Un proceso es siempre un protocolo. Sin veto asociado: ver la nota de arriba. |
+| **sin filtro** (Zero-filter) | Calificador en prosa castellana. El rótulo Zero-Filter Diagnostics no se traduce: es un nombre, no una idea. |
+| **Dispatch** | El boletín. No se traduce, y ese es justo el motivo: traducirlo lo convierte en la palabra vetada. Nunca "boletín", nunca "boletines". |
 
 ### Forbidden patterns
 - "We believe…" / "We're passionate about…" / "Our mission is…"

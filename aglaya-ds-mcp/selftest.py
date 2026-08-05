@@ -149,6 +149,29 @@ async def main() -> int:
                 )
                 print()
 
+            # El vocabulario protegido vive en DOS tablas del README, una por
+            # idioma, y su ENCABEZADO es el único anclaje. Renómbralo, o
+            # cámbiale la raya larga por un guion, y el castellano desaparece
+            # del MCP sin que nada se ponga rojo: get_voice_rules responde
+            # igual de contenta con media tabla, así que el veredicto ok/falla
+            # de arriba no lo caza. Se comprueba el CONTENIDO.
+            reglas = _payload(await session.call_tool("get_voice_rules", {}))
+            vocab = reglas.get("protected_vocabulary", []) if isinstance(reglas, dict) else []
+            idiomas = {t.get("lang") for t in vocab if isinstance(t, dict)}
+            for esperado in ("en", "es"):
+                if esperado not in idiomas:
+                    fallos.append(
+                        f"get_voice_rules no sirve vocabulario '{esperado}' — "
+                        "¿se renombró su tabla en el README?"
+                    )
+
+            # Y que la tabla se parsee no basta: sus vetos tienen que morder.
+            veto = _payload(await session.call_tool("is_allowed_word", {"term": "soluciones"}))
+            if not isinstance(veto, dict) or veto.get("allowed") is not False:
+                fallos.append("is_allowed_word('soluciones') debía vetarse y no lo hace")
+
+            print(f"== [contenido] vocabulario servido en: {sorted(i for i in idiomas if i)} ==\n")
+
     print("─" * 60)
     if fallos:
         print(f"SELFTEST: {len(fallos)} fallo(s)")

@@ -153,7 +153,9 @@ def _table_rows(block: str) -> list[tuple[str, str]]:
         cells = [c.strip() for c in s.strip("|").split("|")]
         if len(cells) < 2:
             continue
-        if set(cells[0]) <= {"-", " "} or cells[0].lower() in ("term", "source"):
+        if set(cells[0]) <= {"-", " "} or cells[0].lower() in (
+            "term", "source", "término",
+        ):
             continue  # separator / header
         rows.append((cells[0], cells[1]))
     return rows
@@ -163,30 +165,50 @@ def _strip_md(s: str) -> str:
     return re.sub(r"[*`_]", "", s).strip()
 
 
+# The vocabulary lives in one table per language. Two tables, one parser: the
+# Spanish one is not a translation layer bolted on, it is the same shape read
+# from its own section, so neither can drift without the other being visibly
+# out of date.
+_TERM_SECTIONS = (
+    ("en", "Signature terms"),
+    ("es", "Signature terms — castellano"),
+)
+
+# A cell that VETOES a synonym announces it — in either language. Spanish needs
+# its own triggers: a row written with "nunca" would otherwise parse as a term
+# carrying no vetoes at all, silently, which is the worst way to lose a rule.
+_VETO_TRIGGER = re.compile(
+    r"\b(?:not|never|in place of|nunca|jamás|jamas|en vez de|en lugar de)\b",
+    re.IGNORECASE,
+)
+
+
 def _signature_terms() -> list[dict]:
-    """Protected vocabulary from README '### Signature terms', with the
-    forbidden words each term REPLACES parsed live from its usage cell."""
+    """Protected vocabulary from the README's '### Signature terms' tables (one
+    per language), with the forbidden words each term REPLACES parsed live from
+    its cells."""
     md = _read(README_FILE)
-    block = _section(md, "Signature terms")
     terms = []
-    for term_cell, usage_cell in _table_rows(block):
-        # canonical term = first bolded/plain head, before any "(" or "/"
-        head = _strip_md(term_cell).split("(")[0].split("/")[0].strip()
-        # words this term replaces: any quoted synonym that appears in a cell
-        # carrying a negative trigger (not / never / in place of). Scans BOTH
-        # the term cell ('Systems (not "solutions", not "tools")') and the
-        # usage cell ('in place of "lead", "metric", "input"').
-        replaces = []
-        for cell in (term_cell, usage_cell):
-            if re.search(r"\b(?:not|never|in place of)\b", cell, re.IGNORECASE):
-                replaces += re.findall(r'"([^"]+)"', cell)
-        terms.append(
-            {
-                "term": head,
-                "usage": _strip_md(usage_cell),
-                "replaces": [r.lower() for r in replaces],
-            }
-        )
+    for lang, heading in _TERM_SECTIONS:
+        for term_cell, usage_cell in _table_rows(_section(md, heading)):
+            # canonical term = first bolded/plain head, before any "(" or "/"
+            head = _strip_md(term_cell).split("(")[0].split("/")[0].strip()
+            # words this term replaces: any quoted synonym in a cell carrying a
+            # negative trigger. Scans BOTH the term cell ('Systems (not
+            # "solutions", not "tools")') and the usage cell ('in place of
+            # "lead", "metric", "input"' / 'Nunca "soluciones"').
+            replaces = []
+            for cell in (term_cell, usage_cell):
+                if _VETO_TRIGGER.search(cell):
+                    replaces += re.findall(r'"([^"]+)"', cell)
+            terms.append(
+                {
+                    "term": head,
+                    "lang": lang,
+                    "usage": _strip_md(usage_cell),
+                    "replaces": [r.lower() for r in replaces],
+                }
+            )
     return terms
 
 
@@ -216,7 +238,7 @@ def get_voice_rules() -> dict:
         "pronouns": _bullets(_section(md, "Pronouns")),
         "casing": _bullets(_section(md, "Casing")),
         "protected_vocabulary": [
-            {"term": t["term"], "usage": t["usage"]} for t in sig
+            {"term": t["term"], "lang": t["lang"], "usage": t["usage"]} for t in sig
         ],
         "forbidden_patterns": _bullets(_section(md, "Forbidden patterns")),
     }
@@ -224,12 +246,30 @@ def get_voice_rules() -> dict:
 
 # words/phrases that are always wrong, mapped to the AGLAYA-correct term.
 # Built LIVE from the signature-terms table (never hardcoded here).
-def _replacement_map() -> dict[str, str]:
-    mapping: dict[str, str] = {}
+def _replacement_map() -> dict[str, list[dict]]:
+    """word -> the term(s) that replace it, one per language that vetoes it.
+
+    A LIST, not a single term: some words are vetoed in both tables ("lead" is
+    off-brand in English and in Spanish alike) and a flat dict silently kept
+    whichever table was read last — so an English writer asking about "lead"
+    was told to write "señal". The word is wrong in both languages; which
+    replacement applies depends on the copy, and that is the writer's to know.
+    """
+    mapping: dict[str, list[dict]] = {}
     for t in _signature_terms():
         for word in t["replaces"]:
-            mapping[word] = t["term"]
+            entry = {"term": t["term"], "lang": t["lang"]}
+            if entry not in mapping.setdefault(word, []):
+                mapping[word].append(entry)
     return mapping
+
+
+def _suggestion(terms: list[dict]) -> str:
+    """Human-readable replacement for a vetoed word, tagged by language when
+    more than one table claims it."""
+    if len(terms) == 1:
+        return f'"{terms[0]["term"]}"'
+    return " / ".join(f'"{t["term"]}" ({t["lang"]})' for t in terms)
 
 
 # emoji / forbidden pictographic-symbol ranges. Deliberately EXCLUDES U+2192
@@ -246,14 +286,15 @@ def check_voice(text: str) -> dict:
     low = text.lower()
 
     # 1) replacement terms (word-boundary, from signature table)
-    for wrong, right in _replacement_map().items():
+    for wrong, terms in _replacement_map().items():
         if re.search(r"\b" + re.escape(wrong) + r"\b", low):
             findings.append(
                 {
                     "type": "replace_term",
                     "match": wrong,
                     "message": f'"{wrong}" is off-brand',
-                    "suggestion": f'use "{right}"',
+                    "suggestion": f"use {_suggestion(terms)}",
+                    "correct_terms": terms,
                 }
             )
 
@@ -328,16 +369,22 @@ def is_allowed_word(term: str) -> dict:
                 "term": t,
                 "allowed": True,
                 "protected": True,
+                "lang": sig["lang"],
                 "note": f"protected brand term — {sig['usage']}",
             }
     repl = _replacement_map()
     if tl in repl:
+        terms = repl[tl]
         return {
             "term": t,
             "allowed": False,
             "protected": False,
-            "correct_term": repl[tl],
-            "note": f'off-brand — use "{repl[tl]}"',
+            # `correct_term` stays a plain string for consumers that already
+            # read it; `correct_terms` carries the language when a word is
+            # vetoed in more than one table.
+            "correct_term": terms[0]["term"],
+            "correct_terms": terms,
+            "note": f"off-brand — use {_suggestion(terms)}",
         }
     # A retired term is not neutral. Without this, `is_allowed_word` claimed a
     # word was "not forbidden" while `check_voice` flagged the same word — two
