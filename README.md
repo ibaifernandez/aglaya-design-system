@@ -55,6 +55,19 @@ were 23.
 ### Voice
 **Terse, imperative, technical.** Copy reads like a systems-engineering spec written by someone who doesn't care if you like them. The "uncomfortable" in the tagline is literal: AGLAYA doesn't soften bad news, doesn't hedge, doesn't over-explain.
 
+### Evidence
+
+Assertiveness is not a tone. It is what you can back. This section exists because
+_"doesn't soften bad news"_ was being read as a licence to assert, and it is not one.
+
+- **What the voice forbids is saying what the client wants to hear — not praise.** Praise that is earned gets said: if they read their own case correctly, say so. What never happens is letting the client dictate the diagnosis. If tooth 33 has to come out, it comes out; you don't fill the healthy 44 to keep them comfortable. When experience says the campaign they insist on will burn their sending reputation, that is what they get told.
+- **Blunt is not harsh, and gratuitously harsh is a third thing.** Refusing to adorn is the voice. Harshness is not. Harshness for free is its opposite.
+- **Claiming past the evidence is not conviction, it is swagger** — the same failure as selling the invincible, aimed the other way.
+- **Two things lower what may be claimed, each on its own, neither requiring the other:** the subject is legal (AGLAYA is not a law firm), or the text ships from an engine with no human in the loop. Bounding a claim there is not softening. It states what is known and what is not, which is the harder thing to write.
+
+Evidence governs both directions — what gets asserted and what gets praised.
+A claim that outruns its backing is off-brand no matter which way it points.
+
 ### Pronouns
 - **"You"** addresses the founder/operator directly: _"You own it."_, _"Stop renting your future."_
 - **"We"** for AGLAYA's own actions: _"We build it."_, _"We engineer your proprietary automation architecture."_

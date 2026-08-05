@@ -209,6 +209,10 @@ def get_voice_rules() -> dict:
     sig = _signature_terms()
     return {
         "voice": _strip_md(_section(md, "Voice")),
+        # Full section, not just its bullets: the rule is stated in the lead
+        # line ("Assertiveness is not a tone. It is what you can back."), and
+        # _bullets would drop exactly that.
+        "evidence": _strip_md(_section(md, "Evidence")),
         "pronouns": _bullets(_section(md, "Pronouns")),
         "casing": _bullets(_section(md, "Casing")),
         "protected_vocabulary": [

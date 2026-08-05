@@ -70,8 +70,9 @@ def list_tokens(category: Optional[str] = None) -> dict:
 
 @mcp.tool()
 def get_voice_rules() -> dict:
-    """Return the brand voice rules read live from README.md: tone, pronouns
-    (you/we), casing, protected vocabulary, and forbidden patterns."""
+    """Return the brand voice rules read live from README.md: tone, evidence
+    (how far a claim may go), pronouns (you/we), casing, protected vocabulary,
+    and forbidden patterns."""
     return _guard(brand.get_voice_rules)
 
 
