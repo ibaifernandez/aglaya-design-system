@@ -191,8 +191,22 @@ def _signature_terms() -> list[dict]:
     terms = []
     for lang, heading in _TERM_SECTIONS:
         for term_cell, usage_cell in _table_rows(_section(md, heading)):
-            # canonical term = first bolded/plain head, before any "(" or "/"
-            head = _strip_md(term_cell).split("(")[0].split("/")[0].strip()
+            # A cell may declare SEVERAL forms of the same term, split by "/"
+            # ("Sovereignty / Sovereign", "soberanía / soberano"). All of them
+            # are the protected term; only the first is canonical. Registering
+            # just the first is what made `is_allowed_word("soberano")` answer
+            # "neutral" about a protected word — the tool that exists so nobody
+            # improvises, staying silent on half the vocabulary.
+            #
+            # The parenthetical is dropped BEFORE splitting: it holds the
+            # English original ("(Architecture / Infrastructure)") and its
+            # slash is not a form separator.
+            forms = [
+                f.strip()
+                for f in _strip_md(term_cell).split("(")[0].split("/")
+                if f.strip()
+            ]
+            head = forms[0] if forms else ""
             # words this term replaces: any quoted synonym in a cell carrying a
             # negative trigger. Scans BOTH the term cell ('Systems (not
             # "solutions", not "tools")') and the usage cell ('in place of
@@ -204,6 +218,7 @@ def _signature_terms() -> list[dict]:
             terms.append(
                 {
                     "term": head,
+                    "forms": forms,
                     "lang": lang,
                     "usage": _strip_md(usage_cell),
                     "replaces": [r.lower() for r in replaces],
@@ -238,7 +253,13 @@ def get_voice_rules() -> dict:
         "pronouns": _bullets(_section(md, "Pronouns")),
         "casing": _bullets(_section(md, "Casing")),
         "protected_vocabulary": [
-            {"term": t["term"], "lang": t["lang"], "usage": t["usage"]} for t in sig
+            {
+                "term": t["term"],
+                "forms": t["forms"],
+                "lang": t["lang"],
+                "usage": t["usage"],
+            }
+            for t in sig
         ],
         "forbidden_patterns": _bullets(_section(md, "Forbidden patterns")),
     }
@@ -377,12 +398,16 @@ def is_allowed_word(term: str) -> dict:
     t = term.strip()
     tl = t.lower()
     for sig in _signature_terms():
-        if sig["term"].lower() == tl:
+        if tl in [f.lower() for f in sig["forms"]]:
             return {
                 "term": t,
                 "allowed": True,
                 "protected": True,
                 "lang": sig["lang"],
+                # Which form was asked for is not always the canonical one:
+                # "soberano" is protected, and its head is "soberanía".
+                "canonical": sig["term"],
+                "forms": sig["forms"],
                 "note": f"protected brand term — {sig['usage']}",
             }
     repl = _replacement_map()

@@ -170,7 +170,36 @@ async def main() -> int:
             if not isinstance(veto, dict) or veto.get("allowed") is not False:
                 fallos.append("is_allowed_word('soluciones') debía vetarse y no lo hace")
 
-            print(f"== [contenido] vocabulario servido en: {sorted(i for i in idiomas if i)} ==\n")
+            # Una fila puede declarar VARIAS formas del mismo término
+            # ("Sovereignty / Sovereign", "soberanía / soberano"), y la tool
+            # registraba solo la primera: preguntar por la segunda devolvía
+            # "neutral" sobre una palabra protegida. Se comprueban TODAS las
+            # formas de TODAS las filas, en los dos idiomas.
+            #
+            # Las formas se leen de lo que sirve el propio servidor, no de una
+            # lista tecleada aquí: una lista a mano se queda corta el día que
+            # alguien añada un par al README, y este archivo daría verde.
+            formas = 0
+            for entrada in vocab:
+                if not isinstance(entrada, dict):
+                    continue
+                for forma in entrada.get("forms", []):
+                    res_f = _payload(
+                        await session.call_tool("is_allowed_word", {"term": forma})
+                    )
+                    if not isinstance(res_f, dict) or not res_f.get("protected"):
+                        fallos.append(
+                            f"is_allowed_word({forma!r}) debía ser término protegido "
+                            f"y no lo es — ¿se registró solo la primera forma del par?"
+                        )
+                    formas += 1
+            if not formas:
+                fallos.append("ninguna forma de término protegido llegó a comprobarse")
+
+            print(
+                f"== [contenido] vocabulario servido en: {sorted(i for i in idiomas if i)}"
+                f" · {formas} forma(s) consultable(s) ==\n"
+            )
 
     print("─" * 60)
     if fallos:
