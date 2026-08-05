@@ -5,7 +5,7 @@ const SYSTEMS = [
     cases: ['Autonomous opportunity validation','Operational truth visualization','Automated consensus protocols'] },
   { name: 'Inevitable Logical Flow', tagline: 'Systems that execute the precise action based on user behavior.',
     cases: ['Purchase intent synchronization','Reactive authority deployment','Progressive credibility assets'] },
-  { name: 'Zero-Leak Architecture', tagline: 'Infrastructure where data integrity and performance are non-negotiable.',
+  { name: 'Integrity-First Architecture', tagline: 'Infrastructure where data integrity and performance are non-negotiable.',
     cases: ['Performance capture interfaces','Digital asset shielding','Real-time data consistency'] },
   { name: 'Algorithmic Sovereignty', tagline: 'Autonomous intelligence integrated into the core of business execution.',
     cases: ['Corporate memory deployment','Critical intelligence extraction','Cognitive load distribution'] },
@@ -73,7 +73,7 @@ const SystemCard = ({ s, i }) => {
 
 const MarqueeWords = () => (
   <div style={{ display: 'flex', alignItems: 'center', gap: 80, flexShrink: 0 }}>
-    {['Systemic Alchemy','/','Inevitable Logical Flow','/','Zero-Leak Architecture','/','Algorithmic Sovereignty','/','Zero-Filter Diagnostics','/'].map((w,i) => (
+    {['Systemic Alchemy','/','Inevitable Logical Flow','/','Integrity-First Architecture','/','Algorithmic Sovereignty','/','Zero-Filter Diagnostics','/'].map((w,i) => (
       <span key={i} style={{
         fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 40,
         textTransform: 'uppercase', letterSpacing: '-0.03em',

@@ -37,6 +37,7 @@ while claiming to be canonical.
 - Primary CTA has an offset border-shadow that snaps home on hover
 
 ## Known gaps
+- **The third architecture principle is named differently here than on the live site.** The site still carries the absolute-claim name this repo retired as a forbidden pattern; the kit carries `Integrity-First Architecture`, which says the same thing without promising a system cannot fail. Deliberate divergence, not drift: canon cannot ship a term it bans. The site is tracked to follow — this kit is the direction of travel, as always.
 - `Services`, `Proof`, `ROI Audit`, and `Contact` pages are NOT built — the kit covers the home-page sections only. Open an issue if more are needed.
 - Custom cursor is not reproduced (the live site swaps the OS cursor for a `mix-blend-mode: difference` ring). Intentional — it's distracting inside a component kit.
 - Reveal `IntersectionObserver` is simplified to an autoplay CSS fade-up.
