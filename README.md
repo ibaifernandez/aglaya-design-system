@@ -126,6 +126,22 @@ sepa vetar frases en vez de palabras sueltas.
 - Rhetorical questions used for sales warmth
 - "Zero-leak", and any absolute claim that a system will not fail — no leaks, no data loss, no logic errors. Retired from the protected vocabulary, not merely unblessed: software leaks, and software with AI in it leaks more. The word promises what nobody can back. Name the property that is actually true instead — zero external requests, local fonts, vendored dependencies — which says more and survives contact with reality.
 
+### What this voice does not cover
+
+These rules govern **tone and brand vocabulary**. They do not govern commercial or
+legal argument, and `check_voice` does not look at it: a text can come back clean
+here and still be unpublishable.
+
+The language rules that carry legal risk — how compliance may be claimed, whether a
+fine may be used as a selling argument, the exact wording a consent checkbox is
+allowed to use — are not brand rules and do not live in this repo. They live in the
+captain's commercial material (repo `aglaya-orchestrator`) and are asked for through
+the `aglaya-atlas` MCP, `verdad_comercial`.
+
+They are **named here, never copied**. A legal rule copied into this repo would go
+stale the day the contract moves, and nobody would find out — while it kept reading
+like canon. Passing the brand corrector is not permission to publish.
+
 ### Sample copy
 
 > **Hero.** _"The agency is dead. Long live the system."_

@@ -78,7 +78,9 @@ def get_voice_rules() -> dict:
 
 @mcp.tool()
 def check_voice(text: str) -> dict:
-    """Analyse `text` against the brand voice. Flags off-brand terms (with the
+    """Analyse `text` against the brand voice — tone and vocabulary ONLY, never
+    commercial or legal argument (the reply carries that scope note; a clean
+    result is not permission to publish). Flags off-brand terms (with the
     AGLAYA-correct replacement, e.g. "solutions" -> "systems", "newsletter" ->
     "Dispatch"), forbidden phrases, exclamation marks, emoji, and rhetorical
     warmth questions. Returns {clean, findings}."""

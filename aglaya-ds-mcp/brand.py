@@ -355,6 +355,19 @@ def check_voice(text: str) -> dict:
         "text": text,
         "clean": not [f for f in findings if not f.get("advisory")],
         "findings": findings,
+        # Travels with every answer on purpose. `clean: true` reads like a
+        # green light, and a text can violate every legal-language rule there
+        # is and still come back clean here — this checker never looked. The
+        # rules that carry legal risk are NAMED, never copied: a copy of them
+        # in this repo would go stale the day the contract moves and keep
+        # sounding authoritative.
+        "scope": (
+            "tone and brand vocabulary only — never commercial or legal "
+            "argument. A clean result is not permission to publish. The "
+            "language rules that carry legal risk live in the captain's "
+            "commercial material (repo aglaya-orchestrator); ask the "
+            "aglaya-atlas MCP for verdad_comercial."
+        ),
     }
 
 
