@@ -90,7 +90,7 @@ Used consistently across the site; treat these as protected brand vocabulary:
 | **Operational truth** | What the audit surfaces. |
 | **Signal** | Data that matters. Used in place of "lead", "metric", "input". |
 | **Protocol** | A process. Always a protocol, never "process" or "steps". |
-| **Zero-leak** / **Zero-filter** | Qualifiers on architecture and diagnostics. |
+| **Zero-filter** | Qualifier on diagnostics: findings arrive unsoftened. It claims something about how AGLAYA reports — which AGLAYA controls — never about how a system behaves. |
 | **Systemic alpha** | The compounding advantage of an owned system. |
 | **Dispatch** | The newsletter. Never "newsletter". |
 
@@ -101,6 +101,7 @@ Used consistently across the site; treat these as protected brand vocabulary:
 - Exclamation marks
 - Emoji in product copy (the codebase contains zero emoji)
 - Rhetorical questions used for sales warmth
+- "Zero-leak", and any absolute claim that a system will not fail — no leaks, no data loss, no logic errors. Retired from the protected vocabulary, not merely unblessed: software leaks, and software with AI in it leaks more. The word promises what nobody can back. Name the property that is actually true instead — zero external requests, local fonts, vendored dependencies — which says more and survives contact with reality.
 
 ### Sample copy
 

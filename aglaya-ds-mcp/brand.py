@@ -339,6 +339,18 @@ def is_allowed_word(term: str) -> dict:
             "correct_term": repl[tl],
             "note": f'off-brand — use "{repl[tl]}"',
         }
+    # A retired term is not neutral. Without this, `is_allowed_word` claimed a
+    # word was "not forbidden" while `check_voice` flagged the same word — two
+    # tools, two answers, and the cheaper one blessing what the other bans.
+    for phrase in _forbidden_phrases():
+        if phrase.lower() == tl:
+            return {
+                "term": t,
+                "allowed": False,
+                "protected": False,
+                "note": "forbidden pattern — README '### Forbidden patterns' "
+                        "says what to write instead",
+            }
     return {
         "term": t,
         "allowed": True,
