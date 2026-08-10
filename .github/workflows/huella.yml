@@ -4,6 +4,15 @@ name: guardianes
 # batería de sabotaje. La batería no es ceremonia — un guardián puede correr y
 # dar verde estando roto, y así se cazaron un patrón ciego a las MAYÚSCULAS,
 # un precio que se colaba y un selftest que no podía ponerse rojo.
+#
+# Los cuatro pasos que comprueban «el árbol quedó como estaba» usan la MISMA
+# forma, y es a propósito: `git status --porcelain` ve los archivos sin
+# rastrear y `git diff --exit-code` NO. Medido, no leído de la documentación:
+# en un repo con un archivo nuevo suelto, el primero sale 1 y el segundo sale
+# 0. Tres de los cuatro usaban la forma ciega, así que prometían más de lo que
+# medían — una prueba que CREARA un archivo pasaba inadvertida. Y se imprime lo
+# que ensució: un guardián que se pone rojo sin decir qué cuesta una pasada
+# entera averiguarlo.
 
 on: [push, pull_request]
 
@@ -38,7 +47,9 @@ jobs:
         run: bash tools/test_guard_paquete.sh
 
       - name: las baterías sabotean CLAUDE.md — que lo devuelvan como estaba
-        run: git diff --exit-code
+        run: |
+          sucio="$(git status --porcelain)"
+          test -z "$sucio" || { echo "El árbol quedó sucio:"; echo "$sucio"; exit 1; }
 
   mcp:
     name: MCP aglaya-ds
@@ -71,8 +82,11 @@ jobs:
       - name: las pruebas tocan archivos canónicos — que los devuelvan
         # zerocopy edita colors_and_type.css y test_selftest edita server.py;
         # los dos prometen restaurar. Aquí se comprueba que cumplen, que es
-        # justo lo que nadie mira cuando el test sale verde.
-        run: git diff --exit-code
+        # justo lo que nadie mira cuando el test sale verde. El bootstrap de
+        # arriba deja `aglaya_ds_mcp.egg-info/`: derivado, y por eso ignorado.
+        run: |
+          sucio="$(git status --porcelain)"
+          test -z "$sucio" || { echo "El árbol quedó sucio:"; echo "$sucio"; exit 1; }
 
   paquete:
     name: paquete @aglaya/design-tokens
@@ -96,7 +110,8 @@ jobs:
         # cubre el caso peor: que dist/ llegue a estar rastreado.
         run: |
           git check-ignore -q dist
-          test -z "$(git status --porcelain)"
+          sucio="$(git status --porcelain)"
+          test -z "$sucio" || { echo "El árbol quedó sucio:"; echo "$sucio"; exit 1; }
 
       - name: mutación — el consumidor consume, la copia no
         # La única prueba que distingue consumir de copiar. Monta dos
@@ -105,4 +120,6 @@ jobs:
         run: bash tools/test_mutacion.sh
 
       - name: la mutación clona a un temporal — este repo no se toca
-        run: git diff --exit-code
+        run: |
+          sucio="$(git status --porcelain)"
+          test -z "$sucio" || { echo "El árbol quedó sucio:"; echo "$sucio"; exit 1; }
