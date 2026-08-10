@@ -5,8 +5,17 @@ description = "AGLAYA Design System — sovereign brand MCP: live-reads tokens, 
 requires-python = ">=3.10"
 # Sovereign core: stdlib only. The MCP SDK is the sole third-party dependency,
 # and only the transport layer (server.py) touches it — brand.py has zero deps.
+#
+# El techo `<2` no es prudencia genérica: el SDK 2.0.0 ELIMINÓ
+# `mcp.server.fastmcp`, que es justo lo que importa `server.py`. Sin techo, CI
+# monta el venv desde cero, resuelve a la última publicada y el servidor muere
+# antes de contestar al `initialize` — el `Connection closed` que ve el cliente
+# es la sombra, no el fallo. En este disco no se reproducía porque el venv
+# quedó fijado en una 1.x: lo que hacía que funcionara era el entorno, no lo
+# declarado. Subir de este techo exige portar `server.py` a la superficie
+# nueva (`mcp.server.mcpserver`), no relajar la línea.
 dependencies = [
-    "mcp>=1.2.0",
+    "mcp>=1.2.0,<2",
 ]
 
 [build-system]
