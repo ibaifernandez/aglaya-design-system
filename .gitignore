@@ -19,3 +19,13 @@ __pycache__/
 # si algún día aparece rastreado.
 dist/
 node_modules/
+
+# ── El bootstrap del MCP: derivado, nunca versionado ──────
+# `pip install -e .` —el bootstrap que manda aglaya-ds-mcp/README.md y que corre
+# el job `mcp` de CI— hace que setuptools escriba `aglaya_ds_mcp.egg-info/` junto
+# a las fuentes. Son metadatos que se regeneran en cada instalación, de la misma
+# clase que `dist/`. Va primero que el afilado del paso de limpieza de abajo, y
+# ese orden importa: sin esta línea, ese paso se pondría rojo por el derivado de
+# su propio bootstrap. El comodín cubre también el `.egg-info` de cualquier
+# paquete que nazca aquí mañana.
+*.egg-info/
