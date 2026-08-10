@@ -29,3 +29,14 @@ node_modules/
 # su propio bootstrap. El comodín cubre también el `.egg-info` de cualquier
 # paquete que nazca aquí mañana.
 *.egg-info/
+
+# ── Claude: el enganche SÍ se versiona, el estado local NO ─
+# `.claude/settings.json` es el enganche de permisos y va commiteado: es lo que
+# hace que cualquier sesión de esta nave decida igual. Lo de abajo es estado de
+# esta máquina —permisos concedidos a mano, cerrojos, worktrees—; commitearlo
+# repartiría por la flota lo que se autorizó aquí una vez. Misma línea que
+# aglaya-kanban-desk, de donde se copió el enganche.
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+.claude/worktrees/
+.claude/handoffs/
