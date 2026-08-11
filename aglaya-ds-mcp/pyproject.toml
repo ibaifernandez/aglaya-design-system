@@ -6,16 +6,21 @@ requires-python = ">=3.10"
 # Sovereign core: stdlib only. The MCP SDK is the sole third-party dependency,
 # and only the transport layer (server.py) touches it — brand.py has zero deps.
 #
-# El techo `<2` no es prudencia genérica: el SDK 2.0.0 ELIMINÓ
-# `mcp.server.fastmcp`, que es justo lo que importa `server.py`. Sin techo, CI
-# monta el venv desde cero, resuelve a la última publicada y el servidor muere
-# antes de contestar al `initialize` — el `Connection closed` que ve el cliente
-# es la sombra, no el fallo. En este disco no se reproducía porque el venv
-# quedó fijado en una 1.x: lo que hacía que funcionara era el entorno, no lo
-# declarado. Subir de este techo exige portar `server.py` a la superficie
-# nueva (`mcp.server.mcpserver`), no relajar la línea.
+# Aquí hubo un techo `<2`, y el comentario que lo acompañaba decía que subirlo
+# exigía portar `server.py` primero, no relajar la línea. Eso es lo que se
+# hizo: el transporte pasó de `mcp.server.fastmcp` —superficie que la 2.0.0
+# ELIMINÓ— a `mcp.server.mcpserver`. El techo desaparece porque ya no defiende
+# nada.
+#
+# El suelo sube a `>=2`, y no es cosmético: `server.py` ya NO arranca con una
+# 1.x, así que un rango que la admitiera declararía soporte falso. El suelo es
+# la versión que de verdad hace falta, ni más abajo ni más arriba.
+#
+# La lección que dejó la avería sigue en pie y no la deroga este cambio: lo que
+# hace que esto funcione es lo declarado aquí, no el venv que cada máquina
+# tenga fijado. Se mide montando el venv desde cero, como hace CI.
 dependencies = [
-    "mcp>=1.2.0,<2",
+    "mcp>=2.0.0",
 ]
 
 [build-system]

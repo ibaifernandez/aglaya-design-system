@@ -27,11 +27,16 @@ from __future__ import annotations
 
 from typing import Optional
 
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 
 import brand
 
-mcp = FastMCP("aglaya-ds")
+# El nombre de esta variable NO es libre: `test_selftest.sh` sabotea este
+# archivo anclando en el texto literal «@mcp.tool()\ndef get_component» para
+# comprobar que el selftest muerde cuando una tool desaparece del registro.
+# Renombrarla deja esa batería sin ancla — se pondría roja avisando de que
+# server.py cambió, que es justo lo que se quiere, pero conviene saberlo antes.
+mcp = MCPServer("aglaya-ds")
 
 
 def _guard(fn, *args, **kwargs):
