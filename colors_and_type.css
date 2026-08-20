@@ -74,16 +74,28 @@
 
   /* ---------- FG / TEXT ---------- */
   --color-text:             #fcfcfc;  /* Primary foreground */
-  /* Secondary text. El alfa es 0.47 y no 0.45 por una razón medible: a 0.45
-     compone #717171 sobre --color-bg y da 4.30:1, que NO llega al 4.5:1 que
-     WCAG AA pide para texto normal. A 0.47 compone #767676 y da 4.62:1 (4.71:1
-     sobre --color-bg-deep). El salto es invisible a ojo y deliberadamente
-     pequeño: lo que estaba roto era el incumplimiento de un suelo, no el color.
-     Se supo porque un consumidor se encontró el gris ilegible y puso una
-     excepción local — o sea, dos verdades sobre el mismo gris de AGLAYA.
-     Si algún día se sube más, el mínimo sólido AAA sobre negro es #959595. */
-  --color-muted:            rgba(252, 252, 252, 0.47);
-  --color-faint:            rgba(252, 252, 252, 0.25);  /* Tertiary / captions */
+  /* Los tres registros de texto son legibles sobre --color-bg, y eso es un
+     SUELO DE MARCA, no una preferencia estética. Decisión de Ibai (12-ago-2026):
+     «los grises tienen que ser legibles sobre negro. Todos ellos.»
+
+       --color-text   #fcfcfc  sólido      20.47:1
+       --color-muted  #b5b5b5  alfa 0.72   10.24:1   (10.22:1 sobre -bg-deep)
+       --color-faint  #767676  alfa 0.47    4.62:1   ( 4.71:1 sobre -bg-deep)
+
+     Los dos alfas se movieron A LA VEZ y no por gusto: --color-faint estaba en
+     0.25, componía #3f3f3f y daba 1.99:1 — ni el 4.5 de texto normal ni el 3.0
+     de texto grande, siendo que su propio comentario lo declara texto. Y no se
+     podía arreglar solo: para llegar a 4.5 su alfa tenía que ser 0.47, que era
+     justo el de --color-muted, y los dos habrían colapsado en el mismo color.
+     Por eso sube la escala entera un peldaño en vez de parchearse un registro.
+
+     Se movieron VALORES y no nombres a propósito: docs/PACKAGE.md declara MAYOR
+     renombrar un token o cambiar la escalera --fg-*, y esto es un parche.
+
+     Antes de bajar cualquiera de estos alfas: se rompe el suelo, y quien
+     consuma la marca publicará texto que no se lee. */
+  --color-muted:            rgba(252, 252, 252, 0.72);
+  --color-faint:            rgba(252, 252, 252, 0.47);  /* Tertiary / captions */
   --color-accent:           #e2e2e2;  /* Technical silver */
 
   /* ---------- LINES / BORDERS ---------- */
