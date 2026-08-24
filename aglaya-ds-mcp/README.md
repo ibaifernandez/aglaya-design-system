@@ -127,7 +127,7 @@ get_accent(<id>)
 
 get_glyph(<id>, <variant?>) / get_lockup(<id>, <layout?>)
   -> {"product": <slug>, "relative_path": <path under products/>, "exists": <bool>}
-     # raises with the manifest's reason when absent (e.g. sacred CONSENT FLOW has no glyph)
+     # raises with the manifest's reason when absent (e.g. sacred ConsentFlow has no glyph)
 
 get_component(<id>)
   -> {"id": <slug>, "name": <Name>, "tokens": [<--token>, ...],

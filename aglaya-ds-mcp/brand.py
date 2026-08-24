@@ -586,7 +586,7 @@ def get_accent(pid: str) -> dict:
 
 def get_glyph(pid: str, variant: Optional[str] = None) -> dict:
     """Resolve a product glyph SVG path. Variant keys are manifest-driven and
-    vary by product: most use 'white'|'accent'|'fill'; CONSENT FLOW is the
+    vary by product: most use 'white'|'accent'|'fill'; ConsentFlow is the
     set's exception with a colour isotipo ('color'|'light'). Omit `variant`
     for the default ('accent' if present, else the first available key)."""
     p = _product(pid)
@@ -615,7 +615,7 @@ def get_glyph(pid: str, variant: Optional[str] = None) -> dict:
 
 def get_lockup(pid: str, layout: str = "lockup") -> dict:
     """Resolve a product lockup SVG path. layout: 'lockup' (horizontal),
-    'stacked', or any product-specific key (e.g. CONSENT FLOW's
+    'stacked', or any product-specific key (e.g. ConsentFlow's
     'lockup-outlined', 'lockup-ondark')."""
     p = _product(pid)
     lay = layout.strip().lower()
