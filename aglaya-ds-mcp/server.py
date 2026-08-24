@@ -152,7 +152,7 @@ def get_accent(id: str) -> dict:
 @mcp.tool()
 def get_glyph(id: str, variant: Optional[str] = None) -> dict:
     """Resolve a product glyph SVG. Variant keys are manifest-driven: most
-    products use 'white' | 'accent' | 'fill'; CONSENT FLOW is the exception
+    products use 'white' | 'accent' | 'fill'; ConsentFlow is the exception
     with a colour isotipo ('color' | 'light'). Omit `variant` for the default
     ('accent' if present, else the first available)."""
     return _guard(brand.get_glyph, id, variant)
@@ -161,7 +161,7 @@ def get_glyph(id: str, variant: Optional[str] = None) -> dict:
 @mcp.tool()
 def get_lockup(id: str, layout: str = "lockup") -> dict:
     """Resolve a product lockup SVG. layout: 'lockup' (horizontal) | 'stacked'
-    | product-specific ('lockup-outlined', 'lockup-ondark' for CONSENT FLOW)."""
+    | product-specific ('lockup-outlined', 'lockup-ondark' for ConsentFlow)."""
     return _guard(brand.get_lockup, id, layout)
 
 

@@ -170,7 +170,7 @@ Pure black is the canvas — `--color-bg`. Not near-black. **Black.** Card surfa
 > and the green; the day any of them moves, a README that names them is
 > quietly wrong while looking like the canon. Ask for them.
 
-**This palette governs the master brand** (`aglaya.biz`, agency materials, social). Product surfaces add exactly one first-class **product accent** each (KANBAN DESK cobalt, CRM violet, OUTREACH teal, CONSENT FLOW carmín, LEGAL REG TECH gold, ORCHESTRATOR steel, plus the DESIGN SYSTEM house itself in corporate green) — the single source is [`products/products.json`](products/products.json), served live by the MCP (`get_accent`, `list_products`). On its own product surface the accent is unrestricted — allowed on CTAs, no proportion cap — per the product tier of the non-negotiables (`get_nonnegotiables(scope="product")`). It never leaks onto the master, and the master never adopts a product accent: outside a product surface, the three colors above are still the whole palette.
+**This palette governs the master brand** (`aglaya.biz`, agency materials, social). Product surfaces add exactly one first-class **product accent** each (KANBAN DESK cobalt, CRM violet, OUTREACH teal, ConsentFlow carmín, LEGAL REG TECH gold, ORCHESTRATOR steel, plus the DESIGN SYSTEM house itself in corporate green) — the single source is [`products/products.json`](products/products.json), served live by the MCP (`get_accent`, `list_products`). On its own product surface the accent is unrestricted — allowed on CTAs, no proportion cap — per the product tier of the non-negotiables (`get_nonnegotiables(scope="product")`). It never leaks onto the master, and the master never adopts a product accent: outside a product surface, the three colors above are still the whole palette.
 
 ### Typography
 - **Display: Outfit Black (900).** Always uppercase, tracking tighter than normal (`-0.02em` to `-0.04em`), leading `~0.94–1.1`. Headlines routinely hit `9rem+` at large viewports.
@@ -267,7 +267,7 @@ Model: **MONOLITHIC** — AGLAYA leads, the product describes. `aglaya.biz` is t
 | KANBAN DESK | Cobalt — `--product-kanban-desk-accent` | three bars (columns) |
 | CRM | Violet — `--product-crm-accent` | line + three nodes |
 | OUTREACH | Teal — `--product-outreach-accent` | two chevrons |
-| CONSENT FLOW | Carmín — `--product-consent-flow-accent` (+ green `--product-consent-flow-accent-2`) | Mónica Montúfar's seal, AGLAYA type, outlined — colour isotipo (set exception) |
+| ConsentFlow | Carmín — `--product-consent-flow-accent` (+ green `--product-consent-flow-accent-2`) | Mónica Montúfar's seal, AGLAYA type, outlined — colour isotipo (set exception) |
 | LEGAL REG TECH | Gold — `--product-legal-reg-tech-accent` | framed check (audit seal) |
 | ORCHESTRATOR | Steel — `--product-orchestrator-accent` | hub + four satellites |
 | DESIGN SYSTEM | Corporate green — `--product-design-system-accent` | 2×2 token grid — the house itself (`is_house`) |
@@ -276,7 +276,7 @@ Model: **MONOLITHIC** — AGLAYA leads, the product describes. `aglaya.biz` is t
 
 **Taxonomy.** Each product ships a **glyph** on a 96×96 grid in three variants — `white`, `accent` (accent on transparent), `fill` (accent square, mark knocked out in black) — and two **lockups**: `lockup` (horizontal) and `stacked`. Lockups reference Outfit / Space Mono by name; the repo ships those fonts.
 
-**CONSENT FLOW.** Mónica Montúfar's concept for the `consent-ledger-wp` plugin — a green seal holding a "C" with a carmín check badge — rebuilt with AGLAYA type (wordmark in Inter, eyebrow in Space Mono) and delivered as **outlines**: zero font dependency, renders identically on any machine. It is the set's **exception**: instead of the three mono glyph variants it ships a single **colour isotipo**. The C is always white — the green seal encapsulates it and gives it its form, so it holds on any background; there is no light-surface variant and none is needed. Its CSS classes are namespaced per file (`cfg-`, `cfl-`, `cfs-`) so the assets stay correct when several are inlined into one page.
+**ConsentFlow.** Mónica Montúfar's concept for the `consent-ledger-wp` plugin — a green seal holding a "C" with a carmín check badge — rebuilt with AGLAYA type (wordmark in Inter, eyebrow in Space Mono) and delivered as **outlines**: zero font dependency, renders identically on any machine. It is the set's **exception**: instead of the three mono glyph variants it ships a single **colour isotipo**. The C is always white — the green seal encapsulates it and gives it its form, so it holds on any background; there is no light-surface variant and none is needed. Its CSS classes are namespaced per file (`cfg-`, `cfl-`, `cfs-`) so the assets stay correct when several are inlined into one page.
 
 PULSE was removed from the set (telephone outbound, out of scope) — deleted, not archived, per the brand rule *eliminar > legacy*.
 
