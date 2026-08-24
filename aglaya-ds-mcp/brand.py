@@ -250,6 +250,7 @@ def get_voice_rules() -> dict:
         # line ("Assertiveness is not a tone. It is what you can back."), and
         # _bullets would drop exactly that.
         "evidence": _strip_md(_section(md, "Evidence")),
+        "shape": _bullets(_section(md, "Shape")),
         "pronouns": _bullets(_section(md, "Pronouns")),
         "casing": _bullets(_section(md, "Casing")),
         "protected_vocabulary": [
@@ -262,6 +263,13 @@ def get_voice_rules() -> dict:
             for t in sig
         ],
         "forbidden_patterns": _bullets(_section(md, "Forbidden patterns")),
+        # Full section, not its items — same reason as `evidence`, and here it
+        # bites twice. The five checks are a NUMBERED list, which _bullets does
+        # not read (it only takes "- " and "* "), and the rule that closes the
+        # section — "se rebaja la frase, nunca se estira la evidencia" — is what
+        # makes the questions mean anything. Either omission would serve a
+        # checklist that looks complete and is not.
+        "final_check": _strip_md(_section(md, "Final check")),
     }
 
 
