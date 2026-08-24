@@ -165,6 +165,33 @@ async def main() -> int:
                         "¿se renombró su tabla en el README?"
                     )
 
+            # Mismo agujero, otras dos secciones: `shape` y `final_check` se
+            # anclan en su encabezado igual que el vocabulario. Si alguien
+            # traduce "### Shape" o "### Final check" al castellano —que es la
+            # tentación evidente, porque su contenido está en castellano—, el
+            # campo sale VACÍO y get_voice_rules sigue respondiendo "ok". El
+            # veredicto de arriba no lo caza: se comprueba el contenido.
+            if not reglas.get("shape"):
+                fallos.append(
+                    "get_voice_rules no sirve 'shape' — ¿se renombró "
+                    "'### Shape' en el README?"
+                )
+            final = reglas.get("final_check") or ""
+            if not final:
+                fallos.append(
+                    "get_voice_rules no sirve 'final_check' — ¿se renombró "
+                    "'### Final check' en el README?"
+                )
+            # Y que la sección llegue no basta: lo que la cierra es la regla,
+            # no las preguntas. Un parser que pasara a leer solo los items
+            # entregaría una lista con pinta de completa y sin la frase que le
+            # da sentido — y nada se pondría rojo.
+            elif "se rebaja la frase" not in final:
+                fallos.append(
+                    "'final_check' llega sin la regla que lo cierra "
+                    "('se rebaja la frase') — ¿se parsean solo los items?"
+                )
+
             # Y que la tabla se parsee no basta: sus vetos tienen que morder.
             veto = _payload(await session.call_tool("is_allowed_word", {"term": "soluciones"}))
             if not isinstance(veto, dict) or veto.get("allowed") is not False:

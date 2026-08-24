@@ -76,8 +76,9 @@ def list_tokens(category: Optional[str] = None) -> dict:
 @mcp.tool()
 def get_voice_rules() -> dict:
     """Return the brand voice rules read live from README.md: tone, evidence
-    (how far a claim may go), pronouns (you/we), casing, protected vocabulary,
-    and forbidden patterns."""
+    (how far a claim may go), shape (sentence-level writing rules), pronouns
+    (you/we), casing, protected vocabulary, forbidden patterns, and the final
+    check (the questions a text must answer before it ships)."""
     return _guard(brand.get_voice_rules)
 
 

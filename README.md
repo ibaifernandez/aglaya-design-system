@@ -81,6 +81,16 @@ La evidencia determina hasta dónde puede llegar la voz.
 
 > **AGLAYA sostiene la conclusión más clara que la evidencia le permite sostener: ni palabras de más para impresionar, ni de menos para agradar (o viceversa).**
 
+### Shape
+
+- Frases preferentemente cortas.
+- Una idea principal por párrafo.
+- Voz activa siempre que sea natural.
+- El punto tiene preferencia sobre la subordinación innecesaria.
+- Se empieza por la conclusión, el dato o el problema; no por calentamiento social.
+- Se explica lo necesario para entender y decidir. **No se demuestra inteligencia mediante longitud.**
+- Una orden se formula como orden cuando realmente existe una acción que ejecutar. El resto se afirma de forma declarativa.
+
 ### Pronouns
 
 - **«Tú»** para dirigirse directamente al fundador, operador o responsable que debe comprender o decidir algo: *«Tú lo posees.»*
@@ -162,6 +172,18 @@ aquí y **no la persigue `check_voice`**: se vería como regla y no lo sería.
 - Superlativos sin evidencia
 - Agresividad utilizada como sustituto de criterio
 - "Zero-leak", y cualquier promesa absoluta de que un sistema no fallará. **El software gotea —y el software con IA dentro gotea más—.** AGLAYA no promete invulnerabilidad, ausencia total de errores ni comportamiento perfecto cuando no puede demostrarlo. En lugar de una promesa absoluta se nombra la propiedad concreta que sí puede acreditarse: datos almacenados localmente; cero solicitudes externas; fuentes servidas localmente; dependencias versionadas; revisión humana obligatoria; evidencia trazable; comportamiento observado bajo unas condiciones determinadas. Cuanto más específica sea la afirmación, menos necesita parecer impresionante.
+
+### Final check
+
+Antes de publicar cualquier texto de AGLAYA, debe poder responderse «sí» a estas preguntas:
+
+1. **¿Es verdad?**
+2. **¿Podemos demostrar hasta dónde es verdad?**
+3. **¿Está dicho con la mayor claridad posible?**
+4. **¿Hemos añadido dureza, grandilocuencia o jerga que no aporta información?**
+5. **¿Un lector entiende qué ocurre, por qué importa y qué debe hacer después?**
+
+Si la evidencia y la frase entran en conflicto, **se rebaja la frase. Nunca se estira la evidencia.**
 
 ### What this voice does not cover
 
