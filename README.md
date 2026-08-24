@@ -52,45 +52,72 @@ were 23.
 
 ## Content Fundamentals
 
+> Los títulos de esta sección están en inglés a propósito y **no se traducen**:
+> `aglaya-ds-mcp/brand.py` los busca por texto exacto (`_section`) para servir el
+> canon por el MCP. El título es interfaz; el contenido es el canon. Traducir un
+> título dejaría a la flota entera sin esa regla, en silencio.
+
 ### Voice
-**Terse, imperative, technical.** Copy reads like a systems-engineering spec written by someone who doesn't care if you like them. The "uncomfortable" in the tagline is literal: AGLAYA doesn't soften bad news, doesn't hedge, doesn't over-explain.
+
+Breve, conciso, accionable, declarativo, técnico y preciso.
+
+A AGLAYA le importa más **decir correctamente qué ocurre** que caer bien a los receptores de su comunicación.
+
+«La Agencia Incómoda» del sobrenombre de AGLAYA es literal: **AGLAYA no suaviza malas noticias ni adorna conclusiones.** Tampoco utiliza cautelas rituales para evitar pronunciarse o suavizar el choque cuando la evidencia sí invita a hacerlo.
+
+Dicha incomodidad, no obstante, no consiste en ser agresivo. Consiste en **mantener el criterio incluso cuando agradar resulta lo más fácil e incluso comercialmente inteligente**.
 
 ### Evidence
 
-Assertiveness is not a tone. It is what you can back. This section exists because
-_"doesn't soften bad news"_ was being read as a licence to assert, and it is not one.
+> **Ser asertivo no es un tono. Es lo que se puede respaldar.**
 
-- **What the voice forbids is saying what the client wants to hear — not praise.** Praise that is earned gets said: if they read their own case correctly, say so. What never happens is letting the client dictate the diagnosis. If tooth 33 has to come out, it comes out; you don't fill the healthy 44 to keep them comfortable. When experience says the campaign they insist on will burn their sending reputation, that is what they get told.
-- **Blunt is not harsh, and gratuitously harsh is a third thing.** Refusing to adorn is the voice. Harshness is not. Harshness for free is its opposite.
-- **Claiming past the evidence is not conviction, it is swagger** — the same failure as selling the invincible, aimed the other way.
-- **Two things lower what may be claimed, each on its own, neither requiring the other:** the subject is legal (AGLAYA is not a law firm), or the text ships from an engine with no human in the loop. Bounding a claim there is not softening. It states what is known and what is not, which is the harder thing to write.
+La evidencia determina hasta dónde puede llegar la voz.
 
-Evidence governs both directions — what gets asserted and what gets praised.
-A claim that outruns its backing is off-brand no matter which way it points.
+- Lo que AGLAYA prohíbe es **decirle al cliente lo que quiere oír**, no elogiarle. El elogio merecido se dice. Lo que nunca ocurre es que el cliente dicte el diagnóstico. Metáfora odontológica: «*Si hay que sacar el premolar 44, se saca el premolar 44; no se empasta el incisivo 41 porque es lo que ha pedido el paciente*».
+- **Directo no es duro.** Es sin adornos, no ser duro con pura gratuidad.
+- **Afirmar más de lo que respalda la evidencia no es convicción, es fanfarronería.** Es el mismo fallo que vender algo como invencible, apuntando en la dirección contraria.
+- Cuando la evidencia permite una conclusión clara, se dice con claridad. Cuando no la permite, **la incertidumbre también se dice con claridad**.
+- Una inferencia es una inferencia y se presenta como tal. La ausencia de un problema concreto no implica que «todo está bien». Un dato desconocido no se rellena con diarrea verbal.
+
+> **AGLAYA sostiene la conclusión más clara que la evidencia le permite sostener: ni palabras de más para impresionar, ni de menos para agradar (o viceversa).**
 
 ### Pronouns
-- **"You"** addresses the founder/operator directly: _"You own it."_, _"Stop renting your future."_
-- **"We"** for AGLAYA's own actions: _"We build it."_, _"We engineer your proprietary automation architecture."_
-- **Never "our team"**, **"we believe"**, **"we're passionate about"**, or any filler phrase.
+
+- **«Tú»** para dirigirse directamente al fundador, operador o responsable que debe comprender o decidir algo: *«Tú lo posees.»*
+- **«Nosotros»** únicamente para acciones que realmente ejecuta AGLAYA: *«Lo construimos.»*
+- Evitar fórmulas impersonales cuando oculten quién hace qué.
+- Nunca usar como relleno: "Nuestro equipo…"; "Creemos que…"; "Nos apasiona…"; "Estamos encantados de…"; "Esperamos poder…".
 
 ### Casing
-- **`AGLAYA`** always uppercase.
-- **Display headlines & eyebrows** always UPPERCASE, tight tracking on display / ultra-wide on mono.
-- **Body copy** sentence case.
-- **Monospace labels** UPPERCASE with `tracking-[0.4em]` to `tracking-[0.5em]`.
+
+- **`AGLAYA`** siempre en mayúsculas.
+- Titulares y antetítulos de display: **MAYÚSCULAS**.
+- Cuerpo de texto: frase normal.
+- Etiquetas monoespaciadas: **MAYÚSCULAS**, con espaciado amplio.
+- Las mayúsculas son estructura visual, no una forma de gritar.
 
 ### Signature terms
 Used consistently across the site; treat these as protected brand vocabulary:
 
+**Regla de precisión** (canon, 24-ago-2026): no se fuerza el vocabulario de marca
+cuando hacerlo hace del significado de algo uno más difícil de comprender o
+digerir. Un *lead* puede llamarse lead cuando esa sea la entidad comercial
+exacta. Una métrica puede llamarse métrica. Un proceso puede llamarse proceso si
+no constituye realmente un protocolo. **La marca sirve a la verdad. La verdad no
+se deforma para servir a la marca.**
+
+Por eso `Signal` y `Protocol` ya no vetan esas palabras: abajo son preferencias,
+no prohibiciones. Lo que sigue vetado es lo que el canon prohíbe expresamente.
+
 | Term | Usage |
 | --- | --- |
-| **Sovereignty** / **Sovereign** | The thing AGLAYA sells. Not "ownership", not "control". |
-| **Systems** (not "solutions", not "tools") | The thing AGLAYA ships. |
+| **Sovereignty** / **Sovereign** | The thing AGLAYA sells. |
+| **Systems** (not "solutions", not "tools") | The thing AGLAYA ships. Preferred over the vetoed words when what is being described really is a system. |
 | **Architecture** / **Infrastructure** | What the system is made of. |
 | **Operational truth** | What the audit surfaces. |
-| **Signal** | Data that matters. Used in place of "lead", "metric", "input". |
-| **Protocol** | A process. Always a protocol, never "process" or "steps". |
-| **Zero-filter** | Qualifier on diagnostics: findings arrive unsoftened. It claims something about how AGLAYA reports — which AGLAYA controls — never about how a system behaves. |
+| **Signal** | Data that matters. Preferred over lead, metric or input — but per the precision rule, a lead may be called a lead when that is the exact commercial entity. |
+| **Protocol** | Preferred over process or steps when the thing really is a protocol. A process that is not a protocol may be called a process. |
+| **Zero-filter** | Qualifier on diagnostics: findings arrive unsoftened. It claims something about how AGLAYA reports — which AGLAYA controls — never about how a system behaves. That is why it survives the retirement of absolute promises and "Zero-leak" does not. |
 | **Dispatch** | The newsletter. Never "newsletter". |
 
 ### Signature terms — castellano
@@ -108,23 +135,33 @@ sepa vetar frases en vez de palabras sueltas.
 
 | Término | Uso |
 | --- | --- |
-| **soberanía / soberano** (Sovereignty) | Lo que AGLAYA vende. Sin veto asociado: ver la nota de arriba. |
+| **Autonomía / Autónomo** (Sovereignty) | Lo que AGLAYA vende. **La asimetría con la tabla inglesa es deliberada, no una errata**: en español «soberanía» parece aludir a política más que ninguna otra cosa. Cuando alguien puede hacer algo por su cuenta no es «soberano», es «autónomo». `Sovereignty` se queda en inglés; aquí no. Quien lo «arregle» estará deshaciendo una decisión de marca. |
 | **sistemas** (Systems) | Lo que AGLAYA entrega. Nunca "soluciones", nunca "solución", nunca "herramientas", nunca "herramienta". |
 | **arquitectura / infraestructura** (Architecture / Infrastructure) | De qué está hecho el sistema. |
 | **verdad operativa** (Operational truth) | Lo que la auditoría saca a la superficie. |
-| **señal** (Signal) | El dato que importa. En vez de "lead", "leads", "métrica", "métricas". |
-| **protocolo** (Protocol) | Un proceso es siempre un protocolo. Sin veto asociado: ver la nota de arriba. |
-| **sin filtro** (Zero-filter) | Calificador en prosa castellana. El rótulo Zero-Filter Diagnostics no se traduce: es un nombre, no una idea. |
+| **señal** (Signal) | El dato que importa. Preferido frente a lead o métrica — pero por la regla de precisión, un lead puede llamarse lead cuando esa sea la entidad comercial exacta, y una métrica puede llamarse métrica. |
+| **protocolo** (Protocol) | Preferido cuando la cosa es de verdad un protocolo. Un proceso que no lo sea puede llamarse proceso. |
+| **sin filtros** (Zero-filter) | Calificador sobre cómo AGLAYA informa: los hallazgos llegan sin suavizar. Afirma algo que AGLAYA controla —su propio reporte—, nunca cómo se comporta un sistema. Por eso sobrevive al retiro de las promesas absolutas y "Zero-leak" no. El rótulo Zero-Filter Diagnostics no se traduce: es un nombre, no una idea. |
 | **Dispatch** | El boletín. No se traduce, y ese es justo el motivo: traducirlo lo convierte en la palabra vetada. Nunca "boletín", nunca "boletines". |
 
 ### Forbidden patterns
-- "We believe…" / "We're passionate about…" / "Our mission is…"
-- "Solutions" (say systems)
-- "Partners" / "Journey" / "Transform your business"
-- Exclamation marks
+
+Las frases van **entre comillas dobles rectas** porque `brand.py` (`_forbidden_phrases`)
+solo persigue lo entrecomillado así. Una prohibición escrita sin comillas se lee
+aquí y **no la persigue `check_voice`**: se vería como regla y no lo sería.
+
+- "We believe…" / "We're passionate about…" / "Our mission is…" / "Creemos que…" / "Nos apasiona…" / "Nuestra misión es…"
+- "Estamos encantados…" / "Esperamos poder…"
+- "Solutions" / "Soluciones" cuando solo sustituye vagamente a sistemas
+- "Synergy" / "Sinergias"
+- "partner with you" / "trusted partner" / "Journey" / "Transform your business" / "Transforma tu negocio" — se veta **la frase, no la palabra**: un socio real puede llamarse partner, y por la regla de precisión la marca no prevalece sobre el término exacto. Lo que se persigue es el cliché, no el sustantivo.
+- "Innovador" / "Innovative" / "Revolucionario" / "Revolutionary" / "World-class" / "Best-in-class", o equivalentes sin prueba
+- Exclamation marks — signos de exclamación en copy de producto
 - Emoji in product copy (the codebase contains zero emoji)
-- Rhetorical questions used for sales warmth
-- "Zero-leak", and any absolute claim that a system will not fail — no leaks, no data loss, no logic errors. Retired from the protected vocabulary, not merely unblessed: software leaks, and software with AI in it leaks more. The word promises what nobody can back. Name the property that is actually true instead — zero external requests, local fonts, vendored dependencies — which says more and survives contact with reality.
+- Rhetorical questions used for sales warmth — preguntas retóricas utilizadas únicamente para fabricar cercanía comercial
+- Superlativos sin evidencia
+- Agresividad utilizada como sustituto de criterio
+- "Zero-leak", y cualquier promesa absoluta de que un sistema no fallará. **El software gotea —y el software con IA dentro gotea más—.** AGLAYA no promete invulnerabilidad, ausencia total de errores ni comportamiento perfecto cuando no puede demostrarlo. En lugar de una promesa absoluta se nombra la propiedad concreta que sí puede acreditarse: datos almacenados localmente; cero solicitudes externas; fuentes servidas localmente; dependencias versionadas; revisión humana obligatoria; evidencia trazable; comportamiento observado bajo unas condiciones determinadas. Cuanto más específica sea la afirmación, menos necesita parecer impresionante.
 
 ### What this voice does not cover
 
