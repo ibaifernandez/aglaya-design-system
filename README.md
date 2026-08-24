@@ -154,7 +154,7 @@ aquí y **no la persigue `check_voice`**: se vería como regla y no lo sería.
 - "Estamos encantados…" / "Esperamos poder…"
 - "Solutions" / "Soluciones" cuando solo sustituye vagamente a sistemas
 - "Synergy" / "Sinergias"
-- "Partners" / "Journey" / "Transform your business" / "Transforma tu negocio"
+- "partner with you" / "trusted partner" / "Journey" / "Transform your business" / "Transforma tu negocio" — se veta **la frase, no la palabra**: un socio real puede llamarse partner, y por la regla de precisión la marca no prevalece sobre el término exacto. Lo que se persigue es el cliché, no el sustantivo.
 - "Innovador" / "Innovative" / "Revolucionario" / "Revolutionary" / "World-class" / "Best-in-class", o equivalentes sin prueba
 - Exclamation marks — signos de exclamación en copy de producto
 - Emoji in product copy (the codebase contains zero emoji)

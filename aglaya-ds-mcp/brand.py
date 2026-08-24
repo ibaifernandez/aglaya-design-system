@@ -321,7 +321,13 @@ def check_voice(text: str) -> dict:
 
     # 2) forbidden phrases (word-boundary match, from forbidden-patterns list).
     # \b…\b avoids substring false positives (e.g. "solutions" inside
-    # "resolutions", "partners" inside "partnerships").
+    # "resolutions", "journey" inside "journeys").
+    #
+    # The example used to be "partners" inside "partnerships". It stopped being
+    # true the day the canon moved that veto from the word to the phrase
+    # ("partner with you", "trusted partner"): a real partner may be called a
+    # partner. An example that no longer happens is worse than none — it ages
+    # wearing the face of authority.
     for phrase in _forbidden_phrases():
         pl = phrase.lower()
         if (
