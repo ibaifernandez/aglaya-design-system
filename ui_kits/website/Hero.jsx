@@ -27,7 +27,11 @@ const Hero = () => (
         letterSpacing: '-0.04em', textTransform: 'uppercase',
       }}>
         <span style={{ display: 'block' }}>The agency is dead.</span>
-        <span style={{ display: 'block', color: 'var(--brand-ink)' }}>Long live the system.</span>
+        {/* Movimiento de firma (no-negociable): línea 1 blanca, línea 2 en el
+            rojo de marca. Va a --brand y NO a --brand-ink a propósito: es
+            display, y ahí el suelo de contraste es el del texto grande, que el
+            rojo pasa en los dos modos. --brand-ink es para texto corrido. */}
+        <span style={{ display: 'block', color: 'var(--brand)' }}>Long live the system.</span>
       </h1>
 
       <div style={{ maxWidth: 560, display: 'flex', flexDirection: 'column', gap: 48 }}>

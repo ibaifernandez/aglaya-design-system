@@ -38,6 +38,13 @@
      ese 4,50 del negro puro es el REDONDEO de 4,4985 — queda por debajo del
      umbral. Un número que redondea justo al límite hay que mirarlo entero.
 
+     PERO --brand-ink es para TEXTO CORRIDO, y el movimiento de firma NO pasa por
+     aquí: «línea 1 blanca, línea 2 en rojo» usa --brand directamente, en el Hero
+     y en la primitiva SectionHead. Es display, y ahí el suelo es el del texto
+     grande, que el rojo pasa en los dos modos. Si alguien ve ese --brand suelto
+     y lo «arregla» a --brand-ink, cambia un no-negociable de la marca por una
+     regla que no le aplica.
+
      Cero valores aquí: dos alias del canon, uno por modo. */
   --brand-ink:   var(--color-brand-light);
 }
