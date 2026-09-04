@@ -28,14 +28,25 @@
   --surface-3:   var(--color-surface-3);
   --ease:        var(--ease-out);
 
-  /* El rojo TIENE DOS PAPELES y en claro no valen el mismo valor.
-     Como relleno (`--brand`) sigue siendo el rojo de marca en los dos modos.
-     Como TINTA hay que distinguirlo: los no-negociables dicen que en modo claro
-     un acento no es tinta, y que la señal roja como tinta es --color-brand-dark.
-     Está medido: --color-brand da 4,06:1 sobre --color-surface-3 y falla; sobre
-     el blanco puro pasa, que es lo que lo hacía parecer válido.
+  /* El rojo TIENE DOS PAPELES y como tinta no vale en NINGÚN modo.
+     Como relleno (`--brand`) sigue siendo el rojo de marca en los dos.
+     Como TINTA lo dicen los no-negociables: en claro --color-brand-dark, en
+     oscuro --color-brand-light.
+
+     Este alias apuntaba a --color-brand en oscuro, porque se daba por bueno que
+     ahí sí valía. No vale: sobre los cinco fondos oscuros da de 4,50 a 4,11, y
+     ese 4,50 del negro puro es el REDONDEO de 4,4985 — queda por debajo del
+     umbral. Un número que redondea justo al límite hay que mirarlo entero.
+
+     PERO --brand-ink es para TEXTO CORRIDO, y el movimiento de firma NO pasa por
+     aquí: «línea 1 blanca, línea 2 en rojo» usa --brand directamente, en el Hero
+     y en la primitiva SectionHead. Es display, y ahí el suelo es el del texto
+     grande, que el rojo pasa en los dos modos. Si alguien ve ese --brand suelto
+     y lo «arregla» a --brand-ink, cambia un no-negociable de la marca por una
+     regla que no le aplica.
+
      Cero valores aquí: dos alias del canon, uno por modo. */
-  --brand-ink:   var(--color-brand);
+  --brand-ink:   var(--color-brand-light);
 }
 
 [data-theme="light"] {

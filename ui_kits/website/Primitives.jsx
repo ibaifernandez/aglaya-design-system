@@ -101,7 +101,10 @@ const SectionHeader = ({ eyebrow, line1, line2, maxWidth = 860 }) => (
       letterSpacing: '-0.03em', textTransform: 'uppercase',
     }}>
       <span style={{ display: 'block' }}>{line1}</span>
-      {line2 && <span style={{ display: 'block', color: 'var(--brand-ink)' }}>{line2}</span>}
+      {/* Mismo movimiento de firma que el Hero, aquí como primitiva. --brand y
+          no --brand-ink: es display (mínimo 2.2rem, peso 900), y el suelo del
+          texto grande lo pasa el rojo en los dos modos. */}
+      {line2 && <span style={{ display: 'block', color: 'var(--brand)' }}>{line2}</span>}
     </h2>
   </header>
 );

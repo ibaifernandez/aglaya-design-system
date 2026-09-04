@@ -34,8 +34,10 @@ Reglas de la **marca madre AGLAYA** (aglaya.biz, materiales de agencia, redes). 
 - Display type is Outfit Black, UPPERCASE, tight tracking. Body is Inter. Mono is Space Mono with extreme `letter-spacing: 0.3em–0.5em`.
 - Signature headline move: line 1 white, line 2 `color: var(--color-brand)`.
 - **En modo claro un acento no es tinta.** Es relleno, filete, punto o marca. Los acentos se eligieron para brillar sobre negro; sobre los fondos claros no llegan al suelo de texto. Cuando el acento es relleno, lo que tiene que pasar el umbral es el texto que va encima, no el acento.
-- **La señal roja como tinta en modo claro es `--color-brand-dark`, no `--color-brand`.** El rojo de marca solo aguanta sobre el blanco puro y se cae en cuanto hay una superficie gris debajo — una excepción que solo vale sobre un fondo no es una regla, es una trampa. Pregunta los valores a `get_token`.
-- **Sobre relleno `--color-brand`, la tinta es blanca.** En negro también pasa, pero raspando: la marca no rasca mínimos.
+- **`--color-brand` no es tinta de TEXTO CORRIDO en ningún modo.** Como tinta, en claro es `--color-brand-dark` y en oscuro `--color-brand-light`. Pregunta los valores a `get_token`.
+- **El titular de firma es la excepción, y no es una excepción arbitraria:** «línea 1 blanca, línea 2 en `--color-brand`» sigue vigente porque es **display**, y el suelo del texto grande es más bajo que el del corrido. Medido en los dos modos y sobre los cinco fondos de cada uno: el rojo va de 4,06 a 4,67, por encima de ese suelo en todos. **La regla de arriba y el movimiento de firma no se contradicen: hablan de tamaños distintos.**
+- **Sobre relleno `--color-brand`, la tinta es blanca.** La negra no llega: da el mismo contraste que el rojo sobre negro, y ése no alcanza el suelo de texto.
+- **Corrección, no reescritura:** estas dos reglas decían antes que el rojo solo fallaba como tinta **en modo claro**, y que en negro «pasaba raspando». Era falso, y el motivo importa más que el dato: el contraste del rojo sobre negro se venía citando como `4,50` —el umbral exacto— y es el **redondeo a dos decimales** de un valor que queda por debajo. Un número que se redondea justo al límite hay que mirarlo sin redondear.
 
 ## Non-negotiables — producto
 
