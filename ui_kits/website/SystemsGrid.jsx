@@ -23,16 +23,16 @@ const SystemCard = ({ s, i }) => {
         display: 'flex', flexDirection: 'column',
         padding: 40,
         background: 'var(--surface-2)',
-        border: `1px solid ${hover ? 'color-mix(in srgb, var(--brand) 30%, transparent)' : 'rgba(255,255,255,0.05)'}`,
+        border: `1px solid ${hover ? 'color-mix(in srgb, var(--brand) 30%, transparent)' : 'color-mix(in srgb, var(--color-text) 5%, transparent)'}`,
         transition: 'border-color 0.5s var(--ease)',
       }}>
       <span style={{
-        fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--brand)',
+        fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--brand-ink)',
         letterSpacing: '0.5em', textTransform: 'uppercase', marginBottom: 16,
       }}>ARCHITECTURE_PRINCIPLE_00{i+1}</span>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         <h3 style={{
-          margin: 0, color: hover ? 'var(--brand)' : '#fff',
+          margin: 0, color: hover ? 'var(--brand-ink)' : 'var(--color-text)',
           fontFamily: 'var(--font-display)', fontWeight: 900,
           fontSize: 'clamp(1.6rem, 2.2vw, 2.2rem)',
           letterSpacing: '-0.025em', textTransform: 'uppercase',
@@ -46,7 +46,7 @@ const SystemCard = ({ s, i }) => {
       <div style={{
         marginTop: 16, height: 1,
         width: hover ? '100%' : 48,
-        background: hover ? 'color-mix(in srgb, var(--brand) 20%, transparent)' : 'rgba(255,255,255,0.1)',
+        background: hover ? 'color-mix(in srgb, var(--brand) 20%, transparent)' : 'color-mix(in srgb, var(--color-text) 10%, transparent)',
         transition: 'all 0.7s var(--ease)',
       }}/>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 20 }}>
@@ -77,7 +77,7 @@ const MarqueeWords = () => (
       <span key={i} style={{
         fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 40,
         textTransform: 'uppercase', letterSpacing: '-0.03em',
-        color: w === '/' ? 'var(--brand)' : 'rgba(255,255,255,0.2)',
+        color: w === '/' ? 'var(--brand-ink)' : 'var(--color-faint)',
       }}>{w}</span>
     ))}
   </div>
@@ -85,8 +85,8 @@ const MarqueeWords = () => (
 
 const SystemsGrid = () => (
   <section id="systems" style={{
-    position: 'relative', padding: '80px 40px 0', background: '#000',
-    borderTop: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden',
+    position: 'relative', padding: '80px 40px 0', background: 'var(--color-bg)',
+    borderTop: '1px solid color-mix(in srgb, var(--color-text) 5%, transparent)', overflow: 'hidden',
   }}>
     <div style={{ maxWidth: 1280, margin: '0 auto' }}>
       <div style={{ marginBottom: 48 }}>
@@ -105,8 +105,8 @@ const SystemsGrid = () => (
 
     <div style={{
       marginTop: 96, transform: 'rotate(-1deg) translateY(40px)',
-      borderTop: '1px solid rgba(255,255,255,0.05)',
-      borderBottom: '1px solid rgba(255,255,255,0.05)',
+      borderTop: '1px solid color-mix(in srgb, var(--color-text) 5%, transparent)',
+      borderBottom: '1px solid color-mix(in srgb, var(--color-text) 5%, transparent)',
       background: 'var(--surface-1)', padding: '32px 0', overflow: 'hidden',
     }}>
       <div className="marquee-track" style={{

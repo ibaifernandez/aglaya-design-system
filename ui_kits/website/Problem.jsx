@@ -19,7 +19,7 @@ const ProblemCard = ({ i, title, body }) => {
         display: 'flex', flexDirection: 'column',
         padding: 32,
         background: 'var(--surface-2)',
-        border: `1px solid ${hover ? 'color-mix(in srgb, var(--brand) 40%, transparent)' : 'rgba(255,255,255,0.05)'}`,
+        border: `1px solid ${hover ? 'color-mix(in srgb, var(--brand) 40%, transparent)' : 'color-mix(in srgb, var(--color-text) 5%, transparent)'}`,
         transition: 'border-color 0.5s var(--ease)',
       }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 24 }}>
@@ -34,20 +34,20 @@ const ProblemCard = ({ i, title, body }) => {
         }}/>
       </div>
       <h3 style={{
-        margin: '0 0 16px', color: hover ? 'var(--brand)' : '#fff',
+        margin: '0 0 16px', color: hover ? 'var(--brand-ink)' : 'var(--color-text)',
         fontFamily: 'var(--font-display)', fontWeight: 900,
         fontSize: 24, letterSpacing: '-0.02em', textTransform: 'uppercase',
         transition: 'color 0.3s var(--ease)',
       }}>{title}</h3>
       <p style={{
-        margin: 0, color: hover ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.4)',
+        margin: 0, color: hover ? 'var(--color-muted)' : 'var(--color-faint)',
         fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.6,
         transition: 'color 0.5s var(--ease)',
       }}>{body}</p>
       <div style={{
         marginTop: 32, height: 1,
         width: hover ? '100%' : 32,
-        background: hover ? 'color-mix(in srgb, var(--brand) 20%, transparent)' : 'rgba(255,255,255,0.1)',
+        background: hover ? 'color-mix(in srgb, var(--brand) 20%, transparent)' : 'color-mix(in srgb, var(--color-text) 10%, transparent)',
         transition: 'all 0.7s var(--ease)',
       }}/>
     </article>
@@ -56,8 +56,8 @@ const ProblemCard = ({ i, title, body }) => {
 
 const Problem = () => (
   <section id="problem" style={{
-    padding: '80px 40px', borderTop: '1px solid rgba(255,255,255,0.05)',
-    background: '#000',
+    padding: '80px 40px', borderTop: '1px solid color-mix(in srgb, var(--color-text) 5%, transparent)',
+    background: 'var(--color-bg)',
   }}>
     <div style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 48 }}>
       <SectionHeader
@@ -74,7 +74,7 @@ const Problem = () => (
         marginTop: 40, opacity: 0.5,
       }}>
         <span style={{
-          fontFamily: 'var(--font-mono)', fontSize: 10, color: '#fff',
+          fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--color-text)',
           letterSpacing: '0.5em', textTransform: 'uppercase',
         }}>REF_ID: 001_SOVEREIGNTY_LOGIC</span>
         <div style={{ display: 'flex', gap: 4 }}>

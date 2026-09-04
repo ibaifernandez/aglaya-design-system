@@ -16,7 +16,7 @@ const ExclusionCard = ({ num, title, body }) => {
       style={{
         display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 32,
         padding: 40, background: 'var(--surface-1)',
-        border: `1px solid ${hover ? 'color-mix(in srgb, var(--brand) 40%, transparent)' : 'rgba(255,255,255,0.05)'}`,
+        border: `1px solid ${hover ? 'color-mix(in srgb, var(--brand) 40%, transparent)' : 'color-mix(in srgb, var(--color-text) 5%, transparent)'}`,
         transition: 'border-color 0.3s var(--ease)',
       }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 520 }}>
@@ -25,21 +25,21 @@ const ExclusionCard = ({ num, title, body }) => {
           letterSpacing: '0.5em', textTransform: 'uppercase', opacity: 0.55,
         }}>EXCLUSION_PRINCIPLE_{String(num).padStart(2,'0')}</span>
         <h3 style={{
-          margin: 0, color: hover ? 'var(--brand)' : '#fff',
+          margin: 0, color: hover ? 'var(--brand-ink)' : 'var(--color-text)',
           fontFamily: 'var(--font-display)', fontWeight: 900,
           fontSize: 'clamp(1.4rem, 2vw, 1.9rem)',
           letterSpacing: '-0.01em', textTransform: 'uppercase',
           transition: 'color 0.3s var(--ease)',
         }}>{title}</h3>
         <p style={{
-          margin: 0, color: 'rgba(255,255,255,0.55)', fontFamily: 'var(--font-body)',
+          margin: 0, color: 'var(--color-faint)', fontFamily: 'var(--font-body)',
           fontSize: 15, lineHeight: 1.55, maxWidth: 480,
         }}>{body}</p>
       </div>
       <div style={{
         width: 48, height: 48, flexShrink: 0, marginTop: 4,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        border: `1px solid ${hover ? 'var(--brand)' : 'rgba(255,255,255,0.1)'}`,
+        border: `1px solid ${hover ? 'var(--brand)' : 'color-mix(in srgb, var(--color-text) 10%, transparent)'}`,
         transition: 'border-color 0.3s var(--ease)',
       }}>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -57,9 +57,9 @@ const AntiClient = () => {
   const right = EXCLUSIONS.slice(2);
   return (
     <section id="anti-client" style={{
-      position: 'relative', padding: '96px 40px', background: '#000',
-      borderTop: '1px solid rgba(255,255,255,0.05)',
-      borderBottom: '1px solid rgba(255,255,255,0.05)',
+      position: 'relative', padding: '96px 40px', background: 'var(--color-bg)',
+      borderTop: '1px solid color-mix(in srgb, var(--color-text) 5%, transparent)',
+      borderBottom: '1px solid color-mix(in srgb, var(--color-text) 5%, transparent)',
       overflow: 'hidden',
     }}>
       {/* Huge BG text */}
@@ -82,7 +82,7 @@ const AntiClient = () => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           <SectionHeader eyebrow="Access Control" line1="Non-Negotiable Parameters."/>
           <p style={{
-            margin: 0, color: 'rgba(255,255,255,0.6)',
+            margin: 0, color: 'var(--color-muted)',
             fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.65,
             borderLeft: '2px solid color-mix(in srgb, var(--brand) 40%, transparent)', paddingLeft: 32, maxWidth: 480,
           }}>
@@ -105,7 +105,7 @@ const AntiClient = () => {
             <div style={{
               display: 'flex', alignItems: 'center', gap: 12,
               fontFamily: 'var(--font-mono)', fontSize: 10,
-              color: 'rgba(255,255,255,0.2)', letterSpacing: '0.3em', textTransform: 'uppercase',
+              color: 'var(--color-faint)', letterSpacing: '0.3em', textTransform: 'uppercase',
             }}>
               <span>INTEGRITY_CHECK: PASSED</span>
               {[...Array(4)].map((_,i) => (

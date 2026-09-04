@@ -21,13 +21,13 @@ const Hero = () => (
       <Eyebrow>We build systems that empower your business while you sleep</Eyebrow>
 
       <h1 style={{
-        margin: 0, color: '#fff',
+        margin: 0, color: 'var(--color-text)',
         fontFamily: 'var(--font-display)', fontWeight: 900,
         fontSize: 'clamp(3rem, 9vw, 9rem)', lineHeight: 0.94,
         letterSpacing: '-0.04em', textTransform: 'uppercase',
       }}>
         <span style={{ display: 'block' }}>The agency is dead.</span>
-        <span style={{ display: 'block', color: 'var(--brand)' }}>Long live the system.</span>
+        <span style={{ display: 'block', color: 'var(--brand-ink)' }}>Long live the system.</span>
       </h1>
 
       <div style={{ maxWidth: 560, display: 'flex', flexDirection: 'column', gap: 48 }}>
