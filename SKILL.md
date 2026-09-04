@@ -33,6 +33,9 @@ Reglas de la **marca madre AGLAYA** (aglaya.biz, materiales de agencia, redes). 
 - Copy is terse and imperative. No "we believe", no "we're passionate about", no exclamation marks, no rhetorical questions.
 - Display type is Outfit Black, UPPERCASE, tight tracking. Body is Inter. Mono is Space Mono with extreme `letter-spacing: 0.3em–0.5em`.
 - Signature headline move: line 1 white, line 2 `color: var(--color-brand)`.
+- **En modo claro un acento no es tinta.** Es relleno, filete, punto o marca. Los acentos se eligieron para brillar sobre negro; sobre los fondos claros no llegan al suelo de texto. Cuando el acento es relleno, lo que tiene que pasar el umbral es el texto que va encima, no el acento.
+- **La señal roja como tinta en modo claro es `--color-brand-dark`, no `--color-brand`.** El rojo de marca solo aguanta sobre el blanco puro y se cae en cuanto hay una superficie gris debajo — una excepción que solo vale sobre un fondo no es una regla, es una trampa. Pregunta los valores a `get_token`.
+- **Sobre relleno `--color-brand`, la tinta es blanca.** En negro también pasa, pero raspando: la marca no rasca mínimos.
 
 ## Non-negotiables — producto
 
@@ -43,3 +46,4 @@ Una **superficie de producto** (KANBAN DESK, CRM, OUTREACH, ConsentFlow, LEGAL R
 - El rojo madre (`--color-brand`) no se reemplaza: coexiste con el acento en la superficie del producto. El acento identifica al producto; el rojo sigue siendo el rojo de la marca.
 - Todo lo demás sigue vigente sin cambios: radius 0, sin emoji / Lucide / Heroicons, tipografía (Outfit Black / Inter / Space Mono), headline de dos líneas, voz seca e imperativa.
 - La marca madre NO adopta acentos de producto: fuera de una superficie de producto, siguen los 3 colores y nada más.
+- **En modo claro el acento de producto tampoco es tinta**, y eso no le quita ser de primera clase: sigue libre en CTA y sin tope de proporción **como relleno, filete, punto o marca**. Lo que cambia es que el texto no se pinta con él. Ninguno de los acentos de producto llega al suelo de texto sobre los fondos claros — se eligieron para brillar sobre negro.
