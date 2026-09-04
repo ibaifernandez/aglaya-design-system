@@ -35,4 +35,11 @@
   } else {
     pintar();
   }
+
+  // Se expone para que un specimen que cambie de modo pueda volver a pedir los
+  // valores. «En vivo» dejó de significar solo «al cargar» el día que la marca
+  // tuvo dos modos: sin esto, al alternar se verían los colores nuevos con los
+  // números viejos — que es exactamente la mentira que este archivo existe para
+  // impedir. Es aditivo: ningún specimen que no la llame nota nada.
+  window.pintarTokens = pintar;
 })();

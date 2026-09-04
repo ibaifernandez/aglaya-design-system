@@ -194,6 +194,80 @@
 }
 
 /* =========================================================
+   MODO CLARO — los MISMOS nombres, redefinidos por contexto
+   =========================================================
+
+   El oscuro de arriba es el defecto y NO se toca: sin activar nada, lo que se
+   sirve es byte a byte lo de siempre.
+
+   ACTIVACIÓN: `data-theme="light"` en el elemento que abarque lo que se quiera
+   en claro — `<html data-theme="light">` para el documento entero, o un
+   contenedor suelto para una sección.
+
+   NO se ata a `prefers-color-scheme` a propósito. Si se atara, todas las
+   superficies AGLAYA que ya existen cambiarían de aspecto solas en el navegador
+   de medio mundo sin que nadie lo hubiera decidido. El claro se PIDE.
+
+   Este bloque va DESPUÉS de `:root` y de él depende que gane: `:root` y
+   `[data-theme="light"]` tienen la misma especificidad (0,1,0), así que decide
+   el orden. Moverlo arriba desactiva el modo claro en silencio.
+
+   NO se crean tokens nuevos (`--color-bg-light` y compañía). El nombre del
+   token es la interfaz —por eso renombrar es MAYOR en docs/PACKAGE.md—, y con
+   nombres nuevos el switch sería imposible: quien cableara `--color-bg-light`
+   ya no podría alternar nada. Serían dos paletas, no dos modos.
+
+   `--fg-1/2/3` tampoco se tocan: son alias de estos tokens y la escalera
+   semántica se mueve sola. Duplicar la decisión en dos sitios es cómo se
+   separan.
+
+   Todos los valores de aquí están MEDIDOS, no reflejados por simetría. El
+   espejo directo suspende: reutilizar el alfa 0.47 del oscuro con tinta negra
+   da 3.59:1 sobre blanco. */
+[data-theme="light"] {
+  /* ---------- FONDOS ---------- */
+  /* Misma cadencia que la escalera oscura (pasos de 4), desde el blanco. */
+  --color-bg:               #ffffff;
+  --color-bg-deep:          #fbfbfb;
+  --color-surface:          #f7f7f7;
+  --color-surface-2:        #f3f3f3;
+  --color-surface-3:        #efefef;
+
+  /* ---------- TEXTO ---------- */
+  /* Alfas PROPIOS, no los del oscuro. Contraste en el PEOR de los cinco
+     fondos claros (--color-surface-3), no solo sobre el blanco:
+       --color-text   #000000  18.26:1
+       --color-muted  #474747   8.60:1
+       --color-faint  #6e6e6e   4.92:1
+     El alfa de faint es 0.57 y no 0.55 porque con 0.55 el peor caso queda en
+     4.57:1 — pasa por tres centésimas y se cae al primer retoque. La regla de
+     Ibai es que los grises se LEAN, no que rasquen el mínimo. */
+  /* Sólido, no `rgba(0,0,0,1)`: en oscuro este token también es sólido
+     (#fcfcfc) y un alfa de 1 no aporta nada. El valor compuesto es el mismo. */
+  --color-text:             #000000;
+  --color-muted:            rgba(0, 0, 0, 0.72);
+  --color-faint:            rgba(0, 0, 0, 0.57);
+
+  /* Plata técnica. En oscuro es #e2e2e2, casi tinta (14.80–16.21 sobre los
+     cinco fondos). Sobre blanco daría 1.30:1: invisible. El valor claro se
+     derivó igualando el contraste que produce hoy, no restando de 255 —
+     #1f1f1f da 14.33–16.48, misma presencia. (El espejo aritmético habría
+     dado #1d1d1d, casi lo mismo; coinciden, pero lo que vale es el método:
+     en los bordes de abajo la simetría SÍ falla.) */
+  --color-accent:           #1f1f1f;
+
+  /* ---------- BORDES ---------- */
+  /* No son texto, así que no les aplica el 4.5 — pero tienen que verse igual
+     de poco que hoy, que es su oficio. Los alfas NO son los del oscuro: se
+     buscó el que reproduce el mismo contraste sobre los fondos claros.
+       --color-border         oscuro 1.14–1.20  ->  claro 1.16–1.17  (0.07)
+       --color-border-strong  oscuro 1.66–1.82  ->  claro 1.73–1.74  (0.23)
+     Copiar 0.08 y 0.20 por simetría habría cambiado la sutileza. */
+  --color-border:           rgba(0, 0, 0, 0.07);
+  --color-border-strong:    rgba(0, 0, 0, 0.23);
+}
+
+/* =========================================================
    SEMANTIC TYPE PRIMITIVES
    Use these in prototypes / pages
    ========================================================= */
