@@ -27,10 +27,23 @@
   --surface-2:   var(--color-surface-2);
   --surface-3:   var(--color-surface-3);
   --ease:        var(--ease-out);
+
+  /* El rojo TIENE DOS PAPELES y en claro no valen el mismo valor.
+     Como relleno (`--brand`) sigue siendo el rojo de marca en los dos modos.
+     Como TINTA hay que distinguirlo: los no-negociables dicen que en modo claro
+     un acento no es tinta, y que la señal roja como tinta es --color-brand-dark.
+     Está medido: --color-brand da 4,06:1 sobre --color-surface-3 y falla; sobre
+     el blanco puro pasa, que es lo que lo hacía parecer válido.
+     Cero valores aquí: dos alias del canon, uno por modo. */
+  --brand-ink:   var(--color-brand);
+}
+
+[data-theme="light"] {
+  --brand-ink:   var(--color-brand-dark);
 }
 
 *, *::before, *::after { box-sizing: border-box; border-radius: 0; }
-html, body { margin: 0; padding: 0; background: var(--bg); color: #fff; font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--color-text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; background: none; border: 0; color: inherit; cursor: pointer; padding: 0; }
 
@@ -71,13 +84,13 @@ button { font: inherit; background: none; border: 0; color: inherit; cursor: poi
 }
 .t-body { font-family: var(--font-body); font-size: 1.125rem; line-height: 1.65; color: var(--muted); }
 
-.text-brand { color: var(--brand); }
+.text-brand { color: var(--brand-ink); }
 .text-green { color: var(--green); }
 .text-muted { color: var(--muted); }
-.text-white\/60 { color: rgba(255,255,255,0.6); }
-.text-white\/70 { color: rgba(255,255,255,0.7); }
-.text-white\/40 { color: rgba(255,255,255,0.4); }
-.text-white\/20 { color: rgba(255,255,255,0.2); }
+.text-white\/60 { color: var(--color-muted); }
+.text-white\/70 { color: var(--color-muted); }
+.text-white\/40 { color: var(--color-faint); }
+.text-white\/20 { color: var(--color-faint); }
 
 /* marquee */
 @keyframes marquee { 0% {transform: translateX(0)} 100% {transform: translateX(-50%)} }

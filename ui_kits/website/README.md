@@ -4,7 +4,13 @@ Hi-fi recreation of the **AGLAYA.biz** marketing home, built from this design sy
 
 `styles.css` **imports** `colors_and_type.css`; its own `:root` is a table of short aliases (`--brand: var(--color-brand)`, …) and holds no values. Every brand colour — the red, its dark and light steps, the corporate green, the surface ramp, the easing curve — resolves to a canonical token, and alpha variants are derived with `color-mix` instead of a hand-written rgba. `tools/guard_valores.py` fails CI if a brand value is written by hand anywhere in the repo, so this paragraph is checked, not promised.
 
-What is **not** canonical, said plainly so the claim stays honest: the white-alpha scale used for hairline borders and secondary text (`rgba(255,255,255,…)`) is local to the kit. It is neutral chrome, not brand.
+**There is no longer a local ink scale, and that paragraph used to say there was.** The kit carried its own white-alpha ramp for hairline borders and secondary text — twenty distinct alpha values written by hand — and this file called it neutral chrome rather than brand, which is what made it look harmless.
+
+It was not harmless. Twenty of those uses were **text that did not reach AA on black**, in the dark mode already in production; the worst, with nine uses, sat at 1.66:1. The composition that this system offers as «this is how it all goes together» was painting text nobody could read.
+
+It is gone. Text now resolves to the three canonical registers (`--color-text`, `--color-muted`, `--color-faint`); hairlines and veils use `color-mix` over `--color-text` at the same alpha, so the ink follows the mode and the subtlety does not change. Nothing here holds a colour value any more.
+
+`guard_valores.py` would **not** have caught any of it: pure white is exempt on purpose, or it would flag half the repo. That exemption is correct and stays — which is exactly why this paragraph has to be accurate instead of reassuring.
 
 This file used to open by claiming every value came from the canon. It did not: the kit kept its own copy of the palette, and that copy had already drifted to a different light red and an off-ramp surface tone. A README that asserts consumption is worth exactly nothing — check the imports.
 

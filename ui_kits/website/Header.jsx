@@ -5,7 +5,7 @@ const Header = () => {
     <header style={{
       position: 'sticky', top: 0, left: 0, width: '100%', zIndex: 50,
       background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(24px)',
-      borderBottom: '1px solid rgba(255,255,255,0.05)',
+      borderBottom: '1px solid color-mix(in srgb, var(--color-text) 5%, transparent)',
     }}>
       <div style={{
         maxWidth: 1280, margin: '0 auto', height: 80,
@@ -17,7 +17,7 @@ const Header = () => {
           style={{ display: 'flex', flexDirection: 'column', gap: 3, flexShrink: 0 }}>
           <img src="./assets/logo-white.svg" alt="" style={{ height: 24, width: 'auto' }}/>
           <span style={{
-            fontFamily: 'var(--font-mono)', fontSize: 7, color: '#fff',
+            fontFamily: 'var(--font-mono)', fontSize: 7, color: 'var(--color-text)',
             letterSpacing: '0.2em', textTransform: 'uppercase', textAlign: 'center',
           }}>The Uncomfortable AI·gency</span>
         </a>
@@ -42,7 +42,7 @@ const Header = () => {
           {/* Lang switcher */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, opacity: 0.7 }}>
             <span title="ES" style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.2em' }}>ES</span>
-            <span style={{ color: 'rgba(255,255,255,0.2)' }}>/</span>
+            <span style={{ color: 'var(--color-faint)' }}>/</span>
             <span title="PT" style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.2em' }}>PT</span>
           </div>
 
@@ -50,7 +50,7 @@ const Header = () => {
           <a href="#whatsapp" aria-label="WhatsApp"
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'var(--brand)', color: '#fff',
+              background: 'var(--brand)', color: '#ffffff' /* tinta sobre relleno rojo: blanca (tramo 3) */,
               padding: '8px 16px 8px 12px', borderRadius: 999,
               fontFamily: 'var(--font-display)', fontWeight: 900,
               fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase',
@@ -63,8 +63,8 @@ const Header = () => {
           <a href="#contact"
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)',
-              color: '#fff', padding: '10px 20px',
+              background: 'color-mix(in srgb, var(--color-text) 10%, transparent)', border: '1px solid color-mix(in srgb, var(--color-text) 20%, transparent)',
+              color: 'var(--color-text)', padding: '10px 20px',
               fontFamily: 'var(--font-display)', fontWeight: 900,
               fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase',
             }}>

@@ -15,7 +15,7 @@ const PrimaryButton = ({ children, href = '#', onClick }) => {
     <Tag href={href} onClick={onClick}
       style={{
         position: 'relative', display: 'inline-flex', alignItems: 'center', gap: 8,
-        background: 'var(--brand)', color: '#fff',
+        background: 'var(--brand)', color: '#ffffff' /* tinta sobre relleno rojo: blanca (tramo 3) */,
         padding: '20px 22px',
         fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 16,
         letterSpacing: '0.2em', textTransform: 'uppercase',
@@ -28,7 +28,7 @@ const PrimaryButton = ({ children, href = '#', onClick }) => {
       {children}
       <span className="s" style={{
         position: 'absolute', inset: 0,
-        border: '1px solid rgba(255,255,255,0.2)',
+        border: '1px solid color-mix(in srgb, var(--color-text) 20%, transparent)',
         transform: 'translate(4px,4px)', zIndex: -1,
         transition: 'transform 0.3s var(--ease)',
       }}/>
@@ -41,15 +41,15 @@ const GhostButton = ({ children, href = '#' }) => (
   <a href={href}
     style={{
       display: 'inline-flex', alignItems: 'center', gap: 8,
-      background: 'rgba(255,255,255,0.1)', color: '#fff',
-      border: '1px solid rgba(255,255,255,0.2)',
+      background: 'color-mix(in srgb, var(--color-text) 10%, transparent)', color: 'var(--color-text)',
+      border: '1px solid color-mix(in srgb, var(--color-text) 20%, transparent)',
       padding: '10px 20px',
       fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 12,
       letterSpacing: '0.2em', textTransform: 'uppercase',
       transition: 'background 0.3s var(--ease)',
     }}
-    onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
-    onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}>
+    onMouseEnter={e => e.currentTarget.style.background = 'color-mix(in srgb, var(--color-text) 20%, transparent)'}
+    onMouseLeave={e => e.currentTarget.style.background = 'color-mix(in srgb, var(--color-text) 10%, transparent)'}>
     {children}
     <BrandArrow size={12} />
   </a>
@@ -65,13 +65,13 @@ const MonoLink = ({ children, href = '#' }) => {
         display: 'inline-flex', alignItems: 'center', gap: 14,
         fontFamily: 'var(--font-mono)', fontSize: 12,
         letterSpacing: '0.3em', textTransform: 'uppercase',
-        color: hover ? '#fff' : 'var(--muted)',
+        color: hover ? 'var(--color-text)' : 'var(--muted)',
         transition: 'color 0.3s var(--ease)',
       }}>
       {children}
       <span style={{
         height: 1, width: hover ? 64 : 40,
-        background: hover ? 'var(--brand)' : 'rgba(255,255,255,0.2)',
+        background: hover ? 'var(--brand)' : 'color-mix(in srgb, var(--color-text) 20%, transparent)',
         transition: 'all 0.3s var(--ease)',
       }}/>
     </a>
@@ -101,7 +101,7 @@ const SectionHeader = ({ eyebrow, line1, line2, maxWidth = 860 }) => (
       letterSpacing: '-0.03em', textTransform: 'uppercase',
     }}>
       <span style={{ display: 'block' }}>{line1}</span>
-      {line2 && <span style={{ display: 'block', color: 'var(--brand)' }}>{line2}</span>}
+      {line2 && <span style={{ display: 'block', color: 'var(--brand-ink)' }}>{line2}</span>}
     </h2>
   </header>
 );

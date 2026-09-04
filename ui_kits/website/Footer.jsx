@@ -25,9 +25,9 @@ const DispatchForm = () => {
           placeholder="operator@company.com"
           style={{
             flex: 1, padding: '16px 18px',
-            background: focus ? 'color-mix(in srgb, var(--brand) 3%, transparent)' : 'rgba(255,255,255,0.03)',
-            border: `1px solid ${focus ? 'color-mix(in srgb, var(--brand) 50%, transparent)' : 'rgba(255,255,255,0.25)'}`,
-            color: '#fff', fontFamily: 'var(--font-body)', fontSize: 15,
+            background: focus ? 'color-mix(in srgb, var(--brand) 3%, transparent)' : 'color-mix(in srgb, var(--color-text) 3%, transparent)',
+            border: `1px solid ${focus ? 'color-mix(in srgb, var(--brand) 50%, transparent)' : 'color-mix(in srgb, var(--color-text) 25%, transparent)'}`,
+            color: 'var(--color-text)', fontFamily: 'var(--font-body)', fontSize: 15,
             outline: 'none', transition: 'all 0.3s var(--ease)',
           }}/>
         <PrimaryButton onClick={submit}>
@@ -35,7 +35,7 @@ const DispatchForm = () => {
         </PrimaryButton>
       </div>
       <p style={{
-        margin: 0, color: 'rgba(255,255,255,0.35)',
+        margin: 0, color: 'var(--color-faint)',
         fontFamily: 'var(--font-mono)', fontSize: 10,
         letterSpacing: '0.2em', textTransform: 'uppercase',
       }}>
@@ -56,20 +56,20 @@ const FooterLinkRow = ({ label, desc }) => (
     style={{
       display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
       gap: 20, padding: '20px 0',
-      borderTop: '1px solid rgba(255,255,255,0.08)',
+      borderTop: '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
     }}
     onMouseEnter={e => { e.currentTarget.querySelector('.lab').style.color = 'var(--brand-light)';
       e.currentTarget.querySelector('.go').style.color = 'var(--brand-light)'; }}
-    onMouseLeave={e => { e.currentTarget.querySelector('.lab').style.color = '#fff';
-      e.currentTarget.querySelector('.go').style.color = 'rgba(255,255,255,0.26)'; }}>
+    onMouseLeave={e => { e.currentTarget.querySelector('.lab').style.color = 'var(--color-text)';
+      e.currentTarget.querySelector('.go').style.color = 'var(--color-faint)'; }}>
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, minWidth: 0 }}>
       <span className="lab" style={{
-        color: '#fff', fontFamily: 'var(--font-display)', fontWeight: 900,
+        color: 'var(--color-text)', fontFamily: 'var(--font-display)', fontWeight: 900,
         fontSize: 18, letterSpacing: '0.04em', textTransform: 'uppercase',
         transition: 'color 0.3s var(--ease)',
       }}>{label}</span>
       <span style={{
-        color: 'rgba(255,255,255,0.46)',
+        color: 'var(--color-faint)',
         fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.5,
       }}>{desc}</span>
     </div>
@@ -77,7 +77,7 @@ const FooterLinkRow = ({ label, desc }) => (
       flexShrink: 0, marginTop: 4,
       fontFamily: 'var(--font-mono)', fontSize: 12,
       letterSpacing: '0.28em', textTransform: 'uppercase',
-      color: 'rgba(255,255,255,0.26)', transition: 'color 0.3s var(--ease)',
+      color: 'var(--color-faint)', transition: 'color 0.3s var(--ease)',
     }}>[GO]</span>
   </a>
 );
@@ -85,7 +85,7 @@ const FooterLinkRow = ({ label, desc }) => (
 const Footer = () => (
   <footer style={{
     position: 'relative', overflow: 'hidden',
-    borderTop: '1px solid rgba(255,255,255,0.08)',
+    borderTop: '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
     background: 'var(--color-bg-deep)', padding: '80px 40px 40px',
   }}>
     <div className="bg-grid" style={{
@@ -106,13 +106,13 @@ const Footer = () => (
               letterSpacing: '0.42em', textTransform: 'uppercase', color: 'var(--green)',
             }}>DISPATCH_NODE</span>
             <h2 style={{
-              margin: 0, color: '#fff', maxWidth: 640,
+              margin: 0, color: 'var(--color-text)', maxWidth: 640,
               fontFamily: 'var(--font-display)', fontWeight: 900,
               fontSize: 'clamp(2rem, 3.5vw, 3rem)',
               letterSpacing: '-0.02em', textTransform: 'uppercase', lineHeight: 0.94,
             }}>Weekly signal for operators who ship.</h2>
             <p style={{
-              margin: 0, color: 'rgba(255,255,255,0.62)', maxWidth: 520,
+              margin: 0, color: 'var(--color-muted)', maxWidth: 520,
               fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.6,
             }}>
               Architecture notes, automation protocols, and operational truths from the field.
@@ -121,7 +121,7 @@ const Footer = () => (
           </div>
           <div style={{
             maxWidth: 560,
-            border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.025)',
+            border: '1px solid color-mix(in srgb, var(--color-text) 10%, transparent)', background: 'color-mix(in srgb, var(--color-text) 2.5%, transparent)',
             padding: 28,
           }}>
             <DispatchForm/>
@@ -129,15 +129,15 @@ const Footer = () => (
         </div>
 
         <div style={{
-          border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)', padding: 28,
+          border: '1px solid color-mix(in srgb, var(--color-text) 10%, transparent)', background: 'color-mix(in srgb, var(--color-text) 2%, transparent)', padding: 28,
         }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
             <span style={{
               fontFamily: 'var(--font-mono)', fontSize: 10,
-              letterSpacing: '0.38em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)',
+              letterSpacing: '0.38em', textTransform: 'uppercase', color: 'var(--color-faint)',
             }}>PRIMARY_CHANNELS</span>
             <p style={{
-              margin: 0, color: 'rgba(255,255,255,0.52)', maxWidth: 320,
+              margin: 0, color: 'var(--color-faint)', maxWidth: 320,
               fontFamily: 'var(--font-body)', fontSize: 13, lineHeight: 1.6,
             }}>Three direct routes into the system. Pick the one that matches your current bottleneck.</p>
           </div>
@@ -147,16 +147,16 @@ const Footer = () => (
 
       <div style={{
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 24, gap: 24, flexWrap: 'wrap',
+        borderTop: '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)', paddingTop: 24, gap: 24, flexWrap: 'wrap',
       }}>
         <span style={{
           fontFamily: 'var(--font-mono)', fontSize: 10,
-          color: 'rgba(255,255,255,0.34)', letterSpacing: '0.24em', textTransform: 'uppercase',
+          color: 'var(--color-faint)', letterSpacing: '0.24em', textTransform: 'uppercase',
         }}>Sovereign systems. Zero platform dependency theatre.</span>
         <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
-          <a href="#" style={{ color: 'rgba(255,255,255,0.42)', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase' }}>Privacy</a>
-          <a href="#" style={{ color: 'rgba(255,255,255,0.42)', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase' }}>Cookies</a>
-          <span style={{ color: 'rgba(255,255,255,0.22)', fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase' }}>© {new Date().getFullYear()} AGLAYA</span>
+          <a href="#" style={{ color: 'var(--color-faint)', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase' }}>Privacy</a>
+          <a href="#" style={{ color: 'var(--color-faint)', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase' }}>Cookies</a>
+          <span style={{ color: 'var(--color-faint)', fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase' }}>© {new Date().getFullYear()} AGLAYA</span>
         </div>
       </div>
     </div>
