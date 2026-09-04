@@ -16,7 +16,7 @@ const DispatchForm = () => {
     <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
       <label style={{
         fontFamily: 'var(--font-mono)', fontSize: 9,
-        letterSpacing: '0.4em', color: 'var(--green)', textTransform: 'uppercase',
+        letterSpacing: '0.4em', color: 'var(--fg-eyebrow)', textTransform: 'uppercase',
       }}>CORPORATE_EMAIL</label>
       <div style={{ display: 'flex', gap: 12 }}>
         <input
@@ -103,7 +103,7 @@ const Footer = () => (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <span style={{
               fontFamily: 'var(--font-mono)', fontSize: 10,
-              letterSpacing: '0.42em', textTransform: 'uppercase', color: 'var(--green)',
+              letterSpacing: '0.42em', textTransform: 'uppercase', color: 'var(--fg-eyebrow)',
             }}>DISPATCH_NODE</span>
             <h2 style={{
               margin: 0, color: 'var(--color-text)', maxWidth: 640,

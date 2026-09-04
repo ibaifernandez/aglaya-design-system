@@ -24,7 +24,7 @@ const ProblemCard = ({ i, title, body }) => {
       }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 24 }}>
         <span style={{
-          fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--green)',
+          fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--fg-eyebrow)',
           textTransform: 'uppercase', letterSpacing: '0.4em', opacity: 0.7,
         }}>LOGIC_NODE_{String(i+1).padStart(3,'0')}</span>
         <span style={{
