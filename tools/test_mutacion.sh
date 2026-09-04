@@ -123,6 +123,22 @@ else
   fallos=$((fallos+1))
 fi
 
+# El paquete entrega la marca por DOS vías y hasta aquí solo se medía una. Lo de
+# arriba comprueba que el JSON exista, no que diga la verdad: con un build que
+# congelara un valor, el CSS seguiría al canon, el JSON no, y esta prueba daba
+# verde igual. Se comprobó saboteando el build, y escapaba.
+#
+# Así que el JSON se mide como el CSS: valor antes, valor después de mutar.
+json_de() { # archivo tokens.json | token -> el valor que entrega
+  node -e '
+    const t = require(process.argv[1]).tokens;
+    process.stdout.write(t[process.argv[2]] ?? "");
+  ' "$1" "$2" 2>/dev/null
+}
+A_JSON_ANTES="$(json_de "$INSTALADO/dist/tokens.json" "$TOKEN")"
+echo "  el JSON entrega el mismo valor que el canon: $([ "$A_JSON_ANTES" = "$ORIGINAL" ] && echo sí || echo NO)"
+[ "$A_JSON_ANTES" = "$ORIGINAL" ] || fallos=$((fallos+1))
+
 # Huella de los archivos FUENTE del consumidor. El lockfile queda fuera a
 # propósito: reescribirlo es lo que significa «reconstruir», y lo hace npm.
 huella() { find "$1/src" "$1/package.json" -type f -exec shasum {} \; | sort | shasum; }
@@ -147,6 +163,7 @@ echo "== 5. el consumidor A reconstruye sin tocar un archivo fuente suyo =="
   echo "  la reinstalación falló"; exit 2; }
 
 A_DESPUES="$(valor_de "$INSTALADO/colors_and_type.css" "$TOKEN")"
+A_JSON_DESPUES="$(json_de "$INSTALADO/dist/tokens.json" "$TOKEN")"
 B_DESPUES="$(valor_de "$B/src/tokens-copia.css" "$TOKEN")"
 A_HUELLA_DESPUES="$(huella "$A")"
 
@@ -162,6 +179,16 @@ if [ "$A_DESPUES" = "$MUTADO" ] && [ "$A_DESPUES" != "$A_ANTES" ]; then
   echo "  CONSUME  ok   A: el valor entregado cambió con el canon"
 else
   echo "  COPIA    ESCAPÓ   A: el valor NO cambió — el paquete entrega algo congelado"
+  fallos=$((fallos+1))
+fi
+
+# La misma pregunta sobre la OTRA vía. El paquete entrega el CSS y el JSON, y
+# uno puede seguir al canon mientras el otro sirve algo congelado: son dos
+# derivaciones distintas. Medir solo el CSS dejaba media puerta sin vigilar.
+if [ "$A_JSON_DESPUES" = "$MUTADO" ] && [ "$A_JSON_DESPUES" != "$A_JSON_ANTES" ]; then
+  echo "  CONSUME  ok   A: el JSON derivado también cambió con el canon"
+else
+  echo "  COPIA    ESCAPÓ   A: el JSON NO cambió — el build entrega algo congelado"
   fallos=$((fallos+1))
 fi
 
