@@ -78,12 +78,21 @@ const MonoLink = ({ children, href = '#' }) => {
   );
 };
 
-// Eyebrow — green monospace with brand-red rule
+// Eyebrow — el filete y la letra cambian de papel según el modo.
+//
+// En OSCURO es lo de siempre: filete rojo, letra verde.
+// En CLARO el verde deja de ser tinta y pasa a ser marca — filete verde, letra
+// en gris. El verde no se lee sobre los fondos claros (1,78 en el peor) y el
+// canon no tiene un verde oscuro, así que se aplica la misma regla que ya rige
+// para el rojo: un acento es señal, no tinta.
+//
+// Ninguno de los dos lleva valor: `--fg-eyebrow` lo redefine el canon por modo,
+// y `--eyebrow-rule` es un alias del kit que hace lo propio con el filete.
 const Eyebrow = ({ children }) => (
   <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-    <div style={{ width: 32, height: 1, background: 'var(--brand)' }}/>
+    <div style={{ width: 32, height: 1, background: 'var(--eyebrow-rule)' }}/>
     <span style={{
-      color: 'var(--green)', fontFamily: 'var(--font-mono)',
+      color: 'var(--fg-eyebrow)', fontFamily: 'var(--font-mono)',
       fontSize: 12, fontWeight: 900,
       letterSpacing: '0.5em', textTransform: 'uppercase',
     }}>{children}</span>

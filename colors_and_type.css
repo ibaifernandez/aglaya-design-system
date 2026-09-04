@@ -265,6 +265,37 @@
      Copiar 0.08 y 0.20 por simetría habría cambiado la sutileza. */
   --color-border:           rgba(0, 0, 0, 0.07);
   --color-border-strong:    rgba(0, 0, 0, 0.23);
+
+  /* ---------- EYEBROW ---------- */
+  /* En claro el verde deja de ser TINTA y pasa a ser MARCA: filete verde
+     delante, texto en gris. Decisión de Ibai (3-sep-2026) tomada sobre las
+     variantes renderizadas, no sobre una descripción.
+
+     El motivo es el mismo que ya rige para el rojo: un acento es señal, no
+     tinta. Y aquí no había alternativa barata — el canon no tiene un verde
+     oscuro, así que conservarlo como letra habría costado un color de marca
+     nuevo y permanente. `--color-corporate-green` como tinta sobre los cinco
+     fondos claros da 2,04 · 1,98 · 1,91 · 1,84 · 1,78: no falla por poco.
+
+     El gris es el registro `--color-muted` de este mismo modo (9,29:1). No se
+     escribe su valor: se apunta al token, para que siga al canon si se mueve.
+
+     EN OSCURO NO CAMBIA NADA: allí `--fg-eyebrow` sigue siendo el verde. */
+  --fg-eyebrow:             var(--color-muted);
+}
+
+/* El filete verde que sustituye a la letra verde. Va en `.t-eyebrow`, que es
+   donde el canon centraliza el eyebrow, para que la marca se ponga una vez y la
+   hereden todos los usos. Solo en claro: en oscuro el eyebrow ya es verde y
+   añadirle un filete cambiaría un aspecto que nadie pidió tocar. */
+[data-theme="light"] .t-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 2rem;
+  height: 1px;
+  margin-right: 1rem;
+  vertical-align: middle;
+  background: var(--color-corporate-green);
 }
 
 /* =========================================================

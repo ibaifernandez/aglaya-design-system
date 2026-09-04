@@ -21,7 +21,7 @@ const ExclusionCard = ({ num, title, body }) => {
       }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 520 }}>
         <span style={{
-          fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--green)',
+          fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--fg-eyebrow)',
           letterSpacing: '0.5em', textTransform: 'uppercase', opacity: 0.55,
         }}>EXCLUSION_PRINCIPLE_{String(num).padStart(2,'0')}</span>
         <h3 style={{
@@ -90,7 +90,7 @@ const AntiClient = () => {
           </p>
           <div style={{
             display: 'flex', alignItems: 'center', gap: 16,
-            color: 'var(--green)', fontFamily: 'var(--font-mono)',
+            color: 'var(--fg-eyebrow)', fontFamily: 'var(--font-mono)',
             fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', opacity: 0.6,
           }}>
             <span>OPERATIONAL_INTEGRITY</span>
