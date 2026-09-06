@@ -75,18 +75,37 @@ GENERICOS = {"#000", "#000000", "#fff", "#ffffff"}
 # servidor no puedan discrepar sobre qué cuenta como token.
 ROOT = re.compile(r":root\s*\{(.*?)\}", re.DOTALL)
 DECL = re.compile(r"--([a-zA-Z0-9-]+)\s*:\s*([^;]+);")
-HEX = re.compile(r"#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3}(?:[0-9a-fA-F]{2})?)?\b")
+SIN_COMENTARIOS = re.compile(r"/\*[\s\S]*?\*/")
 
 
-def paleta() -> dict[str, list[str]] | None:
-    """{valor hex -> [tokens que lo declaran]}, leído en vivo del CSS canónico."""
+def declaraciones_root():
+    """Las declaraciones VIVAS de :root, ya sin comentarios.
+
+    El filtrado está aquí y no en cada sitio que parsea porque este archivo
+    recorta el CSS en DOS puntos, y dos copias del mismo recorte divergen: es la
+    misma razón por la que este guardián comparte forma con el MCP.
+
+    Sin quitar comentarios, una declaración aparcada dentro de :root cuenta como
+    viva y el guardián vigila un valor que ya no es de nadie. El fallo solo
+    aparece si la comentada va DESPUÉS de la viva — antes, gana la viva y pasa
+    desapercibido.
+    """
     if not CSS.is_file():
         return None
     m = ROOT.search(CSS.read_text(encoding="utf-8"))
     if not m:
         return None
+    return DECL.findall(SIN_COMENTARIOS.sub("", m.group(1)))
+HEX = re.compile(r"#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3}(?:[0-9a-fA-F]{2})?)?\b")
+
+
+def paleta() -> dict[str, list[str]] | None:
+    """{valor hex -> [tokens que lo declaran]}, leído en vivo del CSS canónico."""
+    decls = declaraciones_root()
+    if decls is None:
+        return None
     out: dict[str, list[str]] = {}
-    for nombre, valor in DECL.findall(m.group(1)):
+    for nombre, valor in decls:
         for h in HEX.findall(valor):
             h = h.lower()
             if h in GENERICOS:
@@ -163,10 +182,8 @@ def cruzar_manifiesto(valores: dict[str, list[str]]) -> list[tuple]:
                  "el MCP no puede servir identidad de producto con el manifiesto roto", "")]
 
     css_tokens = {}
-    m = ROOT.search(CSS.read_text(encoding="utf-8"))
-    if m:
-        for nombre, valor in DECL.findall(m.group(1)):
-            css_tokens[f"--{nombre}"] = valor.strip()
+    for nombre, valor in (declaraciones_root() or []):
+        css_tokens[f"--{nombre}"] = valor.strip()
 
     lineas = MANIFIESTO.read_text(encoding="utf-8").splitlines()
 

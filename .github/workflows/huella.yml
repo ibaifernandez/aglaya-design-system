@@ -79,6 +79,12 @@ jobs:
         working-directory: aglaya-ds-mcp
         run: ./.venv/bin/python zerocopy_test.py
 
+      # Va en este job y no en `docs` porque necesita los TRES entornos a la vez:
+      # Node, el venv del MCP y el python3 del sistema. Aquí es donde el venv ya
+      # está montado.
+      - name: los tres parsers coinciden y ninguno sirve lo comentado
+        run: bash tools/test_parsers_comentarios.sh
+
       - name: las pruebas tocan archivos canónicos — que los devuelvan
         # zerocopy edita colors_and_type.css y test_selftest edita server.py;
         # los dos prometen restaurar. Aquí se comprueba que cumplen, que es

@@ -51,6 +51,22 @@ def _read(path: Path) -> str:
 
 _TOKEN_RE = re.compile(r"--([a-zA-Z0-9-]+)\s*:\s*([^;]+);")
 
+# Los comentarios se quitan ANTES de partir las declaraciones. Sin esto, una
+# declaración comentada dentro de :root —un valor viejo que alguien aparcó— se
+# lee como viva, y este servidor la sirve a un agente como el valor canónico de
+# la marca.
+#
+# El fallo solo aparece si la comentada va DESPUÉS de la viva: el diccionario se
+# sobrescribe y manda la última. Al revés pasa desapercibido, así que una prueba
+# que ponga el comentario antes da verde sin demostrar nada.
+#
+# Y lo que lo hacía grave: `scripts/build-tokens.mjs` SÍ filtra comentarios. Sin
+# este filtro, el paquete y el MCP dirían cosas distintas sobre el mismo token —
+# una nave que instale recibiría el valor vivo y otra que pregunte aquí, el
+# muerto. Dos verdades sobre un valor de marca es justo lo que esta nave existe
+# para impedir.
+_SIN_COMENTARIOS = re.compile(r"/\*[\s\S]*?\*/")
+
 # category -> ordered prefixes that classify a token by its name
 _CATEGORIES: dict[str, tuple[str, ...]] = {
     "color": ("color-", "fg-"),
@@ -67,7 +83,7 @@ def _all_tokens() -> dict[str, str]:
     """Parse every custom property inside the first :root { … } block."""
     css = _read(CSS_FILE)
     root = re.search(r":root\s*\{(.*?)\}", css, re.DOTALL)
-    scope = root.group(1) if root else css
+    scope = _SIN_COMENTARIOS.sub("", root.group(1) if root else css)
     out: dict[str, str] = {}
     for name, value in _TOKEN_RE.findall(scope):
         out[name] = re.sub(r"\s+", " ", value).strip()
