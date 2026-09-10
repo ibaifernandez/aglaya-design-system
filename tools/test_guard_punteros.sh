@@ -128,6 +128,28 @@ probar_en import-del-paquete "colors_and_type.css" "/* import '@aglaya/design-to
 probar_en ruta-absoluta     "colors_and_type.css" "/* ejemplo: /ABS/PATH/repo/server.py */"   GREEN
 probar_en repo-ajeno        "colors_and_type.css" "/* el capitán: aglaya-orchestrator/docs/x.md */" GREEN
 
+echo "== 4e. sobre un CLON LIMPIO, que es lo que ve la CI =="
+echo "   (en el disco de quien trabaja hay ficheros ignorados que en un clon no están)"
+# Este bloque existe por un fallo real: `.gitignore` lista
+# `.claude/settings.local.json`, que aquí existe y en un clon no, así que el
+# guardián daba VERDE en local y ROJO en la CI. Medir sobre el árbol de trabajo
+# no es medir lo que se publica.
+CLON="$(mktemp -d)"
+if git clone -q --depth 1 "file://$PWD" "$CLON/repo" 2>/dev/null; then
+  salida=$(cd "$CLON/repo" && python3 tools/guard_punteros.py 2>&1); rc=$?
+  if [ "$rc" -eq 0 ]; then
+    echo "  VERDE ok   clon-limpio   ← $(printf '%s' "$salida" | tail -1)"
+  else
+    echo "  FALSO ROJO clon-limpio   ← el guardián muerde en un clon y no aquí"
+    printf '%s\n' "$salida" | head -6
+    fallos=$((fallos+1))
+  fi
+else
+  echo "  NO SE PUDO clon-limpio   ← no pude clonar (¿git?); no cuenta como verde"
+  fallos=$((fallos+1))
+fi
+rm -rf "$CLON"
+
 echo "== 5. no encontrar docs no puede dar verde =="
 cp "$BK" "$DOC"
 python3 - <<'PY'

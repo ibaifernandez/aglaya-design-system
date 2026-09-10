@@ -73,6 +73,15 @@ RAIZ = Path(__file__).resolve().parent.parent
 EXCLUIDOS = ("graphify-out/", "tools/", ".claude/", "package.json")
 EXCLUIDOS_CONTIENE = ("/vendor/",)
 
+# Los ficheros de patrones de exclusión enumeran rutas que POR DEFINICIÓN
+# pueden no existir: para eso están. `.gitignore` lista
+# `.claude/settings.local.json`, que en el disco de quien trabaja existe y en un
+# clon limpio no — así que este guardián daba verde en local y rojo en la CI.
+# Lo cacé por la CI, no midiendo: había medido sobre un árbol con los ficheros
+# ignorados presentes, que no es el árbol que ve un clon.
+EXCLUIDOS_NOMBRE = {".gitignore", ".npmignore", ".dockerignore", ".graphifyignore",
+                    ".eslintignore", ".prettierignore"}
+
 # Lo que lleva dentro un puntero escrito por una persona. Los binarios y los
 # artefactos quedan fuera: una fuente o un PNG no citan rutas.
 BINARIOS = {".svg", ".png", ".ttf", ".woff", ".woff2", ".ico", ".jpg", ".jpeg", ".zip"}
@@ -132,6 +141,8 @@ def docs_versionados() -> list[Path] | None:
         if not linea or linea.startswith(EXCLUIDOS):
             continue
         if any(t in f"/{linea}" for t in EXCLUIDOS_CONTIENE):
+            continue
+        if Path(linea).name in EXCLUIDOS_NOMBRE:
             continue
         ruta = RAIZ / linea
         if Path(linea).suffix.lower() in BINARIOS:
