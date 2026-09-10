@@ -51,8 +51,9 @@
   --color-corporate-green:  #9fc243;  /* Eyebrow / code / annotation color */
 
   /* ---------- PRODUCT ACCENTS ----------
-     Per-product identity colors. Two-level doctrine (see SKILL.md
-     '## Non-negotiables — producto'): the MASTER brand stays 3-color-rigid;
+     Per-product identity colors. Two-level doctrine — README.md
+     '## Non-negotiables — producto', served live by the MCP as
+     get_nonnegotiables(scope="product"): the MASTER brand stays 3-color-rigid;
      these accents are first-class ONLY on their own product's surface (allowed
      on CTAs, no proportion cap) and never leak onto the aglaya.biz master.
      Source of truth for the roster is products/products.json. */

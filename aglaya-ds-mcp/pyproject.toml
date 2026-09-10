@@ -44,8 +44,7 @@ py-modules = ["brand", "server"]
 # del repo que persigue justo eso.
 canonical_files = [
     "../colors_and_type.css",        # tokens
-    "../README.md",                  # voz, vocabulario protegido
-    "../SKILL.md",                   # no-negociables (madre y producto)
+    "../README.md",                  # voz, vocabulario protegido, no-negociables
     "../assets/",                    # logos
     "../products/products.json",     # roster e identidad de producto
     "../products/",                  # glyphs y lockups por producto
