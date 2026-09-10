@@ -12,7 +12,7 @@ software under `fonts/`, which is third-party and covered by section 3.
 Covered material includes, without limitation: the design tokens in
 `colors_and_type.css`; the logos, isotypes, wordmarks, product glyphs
 and lockups under `assets/` and `products/`; the brand voice, rules and
-non-negotiables in `README.md`, `SKILL.md` and `docs/`; the component
+non-negotiables in `README.md` and `docs/`; the component
 specifications; the preview specimens; the UI kit under `ui_kits/`; the
 MCP server under `aglaya-ds-mcp/`; and the tooling under `tools/`,
 `scripts/` and `bin/`.
