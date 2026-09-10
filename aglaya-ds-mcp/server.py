@@ -113,7 +113,7 @@ def get_logo(variant: str, fmt: str = "svg") -> dict:
 
 @mcp.tool()
 def get_nonnegotiables(scope: Optional[str] = None) -> dict:
-    """The hard brand rules read live from SKILL.md.
+    """The hard brand rules read live from README.md.
 
     scope: 'master' (default) — the rigid marca-madre rules: AGLAYA uppercase,
     zero radius, 3 colors only, no emoji / Lucide / Heroicons, two-line headline
