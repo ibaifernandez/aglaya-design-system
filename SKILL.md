@@ -31,7 +31,7 @@ Reglas de la **marca madre AGLAYA** (aglaya.biz, materiales de agencia, redes). 
 - Black canvas (`--color-bg`), red accent (`--color-brand`), green monospace (`--color-corporate-green`). Nothing else. Ask `get_token` for the values — a rule that carries its own hex stops being true the day the hex moves.
 - No emoji. No Lucide. No Heroicons. No gradients-as-decoration. No rounded corners except the custom cursor.
 - Copy is terse and imperative. No "we believe", no "we're passionate about", no exclamation marks, no rhetorical questions.
-- Display type is Outfit Black, UPPERCASE, tight tracking. Body is Inter. Mono is Space Mono with extreme `letter-spacing: 0.3em–0.5em`.
+- Display type is Outfit Black, UPPERCASE, tight tracking. Body is Inter. Mono is Space Mono with extreme `letter-spacing: var(--tracking-widest)` to `var(--tracking-ultra)`.
 - Signature headline move: line 1 white, line 2 `color: var(--color-brand)`.
 - **En modo claro un acento no es tinta.** Es relleno, filete, punto o marca. Los acentos se eligieron para brillar sobre negro; sobre los fondos claros no llegan al suelo de texto. Cuando el acento es relleno, lo que tiene que pasar el umbral es el texto que va encima, no el acento.
 - **`--color-brand` no es tinta de TEXTO CORRIDO en ningún modo.** Como tinta, en claro es `--color-brand-dark` y en oscuro `--color-brand-light`. Pregunta los valores a `get_token`.

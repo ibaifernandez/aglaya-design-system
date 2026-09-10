@@ -7,6 +7,48 @@ viejo — y lo peor es dónde suele estar: en los specimens, que son justo lo qu
 alguien abre para ver «cuál es el rojo». Una copia en un sitio así no es un
 descuido: es una segunda fuente de la verdad que nadie declaró.
 
+QUÉ CUBRE Y QUÉ NO — léelo antes de darlo por vigilado
+------------------------------------------------------
+Este guardián se llamó «de valores» cuando solo perseguía colores, y el nombre
+prometía el canon entero. Una guarda que promete más de lo que cumple es peor
+que una pequeña y declarada, porque quien la aplica cree haber comprobado. Así
+que la cobertura se declara aquí, token a token, y no se deduce del nombre.
+
+El criterio de admisión de una familia es uno solo y está **medido**, no
+razonado: que su literal sea AUTO-IDENTIFICABLE — que en este repo no pueda
+significar otra cosa.
+
+VIGILADAS:
+  · color        hex, y también rgb()/rgba() — `rgba(252,252,252,.72)` es
+                 `--color-muted` y hasta hoy no lo veía nadie. Incluye los
+                 valores de los MODOS (`[data-theme="light"]`), que redefinen
+                 los mismos tokens con otros valores.
+  · tracking     unidad `em`. Medido: las 94 apariciones de un valor `em`
+                 fuera del canon son letter-spacing. Ninguna otra cosa.
+  · font         por el NOMBRE DE FAMILIA, no por el valor entero. El valor
+                 entero solo caza 7 de 54 copias: las pilas de fallback
+                 difieren (`'Space Mono', monospace` contra el canónico
+                 `'Space Mono', ui-monospace, monospace`). Perseguir el valor
+                 completo habría dado la familia por cubierta cazando un
+                 octavo — la misma enfermedad que este bloque documenta.
+  · dur          unidad `ms`.   · ease  `cubic-bezier(...)`.
+  · bp, radius   unidad `px`.
+
+NO VIGILADAS, y por qué:
+  · space, layout, text, bp-max, layout-max — unidad `rem`. El mismo literal
+    significa legítimamente cosas distintas: `--space-12` vale `3rem` y
+    `clamp(3rem, 9vw, 9rem)` es un tamaño de letra, no un espaciado. Separarlos
+    exige saber en qué propiedad CSS cae el valor, y eso es un parser de CSS
+    — en un repo que ya tiene tres y una doctrina de no añadir el cuarto.
+    Vigilarlas sin eso daría el rojo falso que desactiva un guardián.
+  · radius-none/sm/md/lg (`0`), tracking-normal (`0`), space-0 (`0`),
+    shadow-none (`none`) — el literal no identifica nada. Perseguir «0» es
+    perseguir todos los archivos.
+  · text-*, glow-*, aura-*, fg-*, color-border-brand — compuestos de otros
+    tokens (`var(--font-display)`, `color-mix(... var(--color-brand) ...)`).
+    Sus partes ya están vigiladas por el token al que apuntan; el compuesto no
+    añade un valor nuevo que copiar.
+
 Dos formas, las dos vistas en este repo:
 
 1. **valor-copiado** — un valor declarado en `colors_and_type.css` escrito a
@@ -76,6 +118,13 @@ GENERICOS = {"#000", "#000000", "#fff", "#ffffff"}
 ROOT = re.compile(r":root\s*\{(.*?)\}", re.DOTALL)
 DECL = re.compile(r"--([a-zA-Z0-9-]+)\s*:\s*([^;]+);")
 SIN_COMENTARIOS = re.compile(r"/\*[\s\S]*?\*/")
+
+# Los modos de color redefinen los MISMOS tokens con otros valores. Si no se
+# leen, media paleta queda sin vigilar: `rgba(0,0,0,.72)` es `--color-muted` en
+# claro y hasta hoy no lo perseguía nadie. Mismo recorte que usa el paquete
+# (`scripts/build-tokens.mjs`, constante MODOS), por la misma razón por la que
+# este guardián comparte forma con el MCP: tres recortes que divergen mienten.
+MODOS = {"light": re.compile(r'\[data-theme="light"\]\s*\{(.*?)\n\}', re.DOTALL)}
 
 
 def declaraciones_root():
@@ -149,6 +198,129 @@ def sondas(valores: dict[str, list[str]]) -> list[tuple[re.Pattern, str, str]]:
                     re.compile(re.escape(corto) + r"(?![0-9a-fA-F])", re.IGNORECASE),
                     corto, tokens[0], pista,
                 ))
+    return fuera
+
+
+# ── Las familias que no son un hex ──────────────────────────────────────────
+#
+# Cada sonda de aquí abajo entra porque su literal es AUTO-IDENTIFICABLE en este
+# repo, comprobado contándolo. Lo que no lo es, no entra — y el porqué está en
+# el docstring, familia por familia, para que nadie lo dé por vigilado.
+
+# Un valor con unidad. `rem` NO está: el mismo `3rem` es un espaciado y un
+# tamaño de letra, y distinguirlos exige saber en qué propiedad cae.
+UNIDAD = re.compile(r"^-?(?:\d+\.?\d*|\.\d+)(em|ms|px)$")
+CUBIC = re.compile(r"^cubic-bezier\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)$")
+FUNC_RGB = re.compile(r"^rgba?\(\s*(\d+)\s*[,\s]\s*(\d+)\s*[,\s]\s*(\d+)\s*(?:[,/]\s*([\d.%]+)\s*)?\)$")
+FAMILIA = re.compile(r"^\s*['\"]([^'\"]+)['\"]")
+
+
+def _anclada(literal: str) -> re.Pattern:
+    """El literal, sin dejar que se lo trague un número más largo.
+
+    Es la diferencia entre `5rem` y el `5rem` que vive dentro de `0.5rem`. Sin
+    esto, `--space-20` gritaba en cada `0.5rem` del specimen de espaciados: un
+    rojo falso por coincidencia de substring, que es cómo se desactiva una
+    guarda el primer día.
+
+    La cola NO puede rechazar un punto a secas: `1280px.` al final de una frase
+    es puntuación, no un número más largo. Rechazarlo dejaba escapar toda copia
+    escrita en prosa — que es justo donde más engaña, porque parece verificada.
+    Lo cazó la batería, no la lectura: dos escapes de nueve.
+    """
+    return re.compile(r"(?<![\w.%-])" + re.escape(literal) + r"(?![\w%]|\.\d)")
+
+
+def _alfas(alfa: str) -> list[str]:
+    """Todas las grafías del MISMO alfa: `0.20`, `.20`, `0.2`, `.2`, `20%`.
+
+    El alfa es lo único que separa `--color-border` de `--color-border-strong`
+    —los dos son blanco— así que la sonda tiene que exigirlo. Y si lo exige por
+    su grafía literal, una copia escrita `0.2` en vez de `0.20` se le escapa
+    siendo el mismo color. Se comparan como números, no como texto.
+    """
+    try:
+        n = float(alfa.rstrip("%")) / (100 if alfa.endswith("%") else 1)
+    except ValueError:
+        return [alfa]
+    corto = f"{n:g}"                       # 0.20 -> 0.2 · 0.08 -> 0.08
+    fuera = {alfa, corto, corto.lstrip("0") or "0"}
+    if alfa.startswith("0."):
+        fuera.add(alfa[1:])
+    pct = n * 100
+    fuera.add(f"{pct:g}%")
+    return sorted(fuera, key=len, reverse=True)   # la más larga primero
+
+
+def declaraciones_modos() -> list[tuple[str, str]]:
+    """Las declaraciones de los bloques de modo, ya sin comentarios."""
+    if not CSS.is_file():
+        return []
+    css = CSS.read_text(encoding="utf-8")
+    fuera = []
+    for patron in MODOS.values():
+        m = patron.search(css)
+        if m:
+            fuera += DECL.findall(SIN_COMENTARIOS.sub("", m.group(1)))
+    return fuera
+
+
+def sondas_familias() -> list[tuple[re.Pattern, str, str, str]]:
+    """Sondas de los tokens que no se declaran con un hex."""
+    decls = declaraciones_root()
+    if decls is None:
+        return []
+
+    # Un valor puede tener más de un token, igual que el verde es a la vez
+    # corporativo y acento de DESIGN SYSTEM. Se nombra el primero y se citan los
+    # otros: elegir por el consumidor sería adivinar su intención.
+    duenos: dict[str, list[str]] = {}
+    for nombre, valor in decls + declaraciones_modos():
+        duenos.setdefault(valor.strip(), []).append(f"--{nombre}")
+
+    fuera = []
+    vistos = set()
+    for valor, tokens in duenos.items():
+        pista = tokens[0]
+        if len(tokens) > 1:
+            pista += "  [también: " + ", ".join(dict.fromkeys(tokens[1:])) + "]"
+
+        def añadir(patron, etiqueta):
+            clave = (patron.pattern, tokens[0])
+            if clave not in vistos:
+                vistos.add(clave)
+                fuera.append((patron, etiqueta, tokens[0], pista))
+
+        if UNIDAD.match(valor):
+            añadir(_anclada(valor), valor)
+            continue
+
+        m = CUBIC.match(valor)
+        if m:
+            a, b, c, d = m.groups()
+            añadir(re.compile(
+                rf"cubic-bezier\(\s*{re.escape(a)}\s*,\s*{re.escape(b)}\s*,"
+                rf"\s*{re.escape(c)}\s*,\s*{re.escape(d)}\s*\)"), valor)
+            continue
+
+        m = FUNC_RGB.match(valor)
+        if m:
+            r, g, b, alfa = m.groups()
+            # El mismo color escrito con coma o con espacio, y con el alfa
+            # escrito `0.72` o `.72`. Sin el alfa no se distingue un borde de
+            # otro: es lo único que separa --color-border de --color-text.
+            cola = ""
+            if alfa:
+                cola = rf"\s*[,/]\s*(?:{'|'.join(re.escape(a) for a in _alfas(alfa))})(?![\d%])"
+            añadir(re.compile(rf"rgba?\(\s*{r}\s*[,\s]\s*{g}\s*[,\s]\s*{b}{cola}"), valor)
+            continue
+
+        m = FAMILIA.match(valor)
+        if m and any(t.startswith("--font-") for t in tokens):
+            # Por el NOMBRE de la familia, no por la pila entera: las copias
+            # cambian el fallback y el valor completo solo caza un octavo.
+            nombre = m.group(1)
+            añadir(re.compile(rf"['\"]{re.escape(nombre)}['\"]"), f"'{nombre}'")
     return fuera
 
 
@@ -241,7 +413,7 @@ def main() -> int:
               "  para no dar un verde vacío.", file=sys.stderr)
         return 2
 
-    pruebas = sondas(valores)
+    pruebas = sondas(valores) + sondas_familias()
     hallazgos = []
     for f in docs:
         rel = f.relative_to(RAIZ)
@@ -250,22 +422,37 @@ def main() -> int:
         except (UnicodeDecodeError, OSError):
             continue
         for n, linea in enumerate(texto.splitlines(), 1):
+            # Una vez por línea y sonda: el parte tiene que caber en una
+            # pantalla o nadie lo lee entero.
+            encontrados = []
             for patron, etiqueta, token, pista in pruebas:
-                if patron.search(linea):
-                    hallazgos.append((
-                        rel, n, "valor-copiado", etiqueta,
-                        f"es el valor de {pista} — consúmelo por token: `var({token})` "
-                        "en CSS, `get_token` por MCP",
-                        linea.strip()[:120],
-                    ))
-                    # Una vez por línea y sonda: el parte tiene que caber en una
-                    # pantalla o nadie lo lee entero.
+                m = patron.search(linea)
+                if m:
+                    encontrados.append((m.span(), etiqueta, token, pista))
+
+            for span, etiqueta, token, pista in encontrados:
+                # La copia más específica gana a la que vive dentro de ella.
+                # `rgba(252,252,252,0.72)` es --color-muted, y el triplete sin
+                # alfa que contiene es --color-text: si se reportan los dos, la
+                # misma línea recibe dos consejos y el genérico es el
+                # EQUIVOCADO — consumir --color-text pierde el 0.72 y pinta
+                # otro color. Un guardián que enseña mal es peor que ninguno.
+                if any(otro != span and otro[0] <= span[0] and span[1] <= otro[1]
+                       for otro, *_ in encontrados):
+                    continue
+                hallazgos.append((
+                    rel, n, "valor-copiado", etiqueta,
+                    f"es el valor de {pista} — consúmelo por token: `var({token})` "
+                    "en CSS, `get_token` por MCP",
+                    linea.strip()[:120],
+                ))
 
     hallazgos += cruzar_manifiesto(valores)
 
     if not hallazgos:
-        print(f"guard-valores: OK — {len(valores)} valor(es) de marca vigilados en "
-              f"{len(docs)} archivo(s); ninguno copiado a mano.")
+        print(f"guard-valores: OK — {len(pruebas)} sonda(s) sobre {len(valores)} color(es) "
+              f"y las familias auto-identificables del canon, en {len(docs)} archivo(s); "
+              "ninguno copiado a mano.")
         return 0
 
     print(f"guard-valores: {len(hallazgos)} valor(es) de marca fuera de su casa\n", file=sys.stderr)

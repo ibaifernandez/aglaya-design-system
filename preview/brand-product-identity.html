@@ -1,17 +1,17 @@
 <!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
-<style>html,body{margin:0;background:#000;color:var(--color-text)}body{font-family:'Space Mono',monospace;padding:40px 44px}
+<style>html,body{margin:0;background:#000;color:var(--color-text)}body{font-family: var(--font-mono);padding:40px 44px}
 .eyebrow{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--color-corporate-green)}
-h1{font-family:'Outfit',sans-serif;font-weight:900;text-transform:uppercase;font-size:34px;letter-spacing:-1px;margin:6px 0}
+h1{font-family: var(--font-display);font-weight:900;text-transform:uppercase;font-size:34px;letter-spacing:-1px;margin:6px 0}
 .prod{border-top:1px solid rgba(255,255,255,.12);padding:26px 0}.hd{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.sw{width:12px;height:12px}.name{font-family:'Outfit',sans-serif;font-weight:900;font-size:28px;letter-spacing:-1px}
+.sw{width:12px;height:12px}.name{font-family: var(--font-display);font-weight:900;font-size:28px;letter-spacing:-1px}
 .meta{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:color-mix(in srgb, var(--color-text) 40%, transparent)}
 .grid{display:flex;gap:28px;align-items:flex-end;flex-wrap:wrap}.cell{display:flex;flex-direction:column;gap:8px;align-items:center}
 .lbl{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--color-text) 40%, transparent)}
-.gbox{width:80px;height:80px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.08)}
+.gbox{width:80px;height:80px;display:flex;align-items:center;justify-content:center;border:1px solid var(--color-border)}
 .gbox svg{width:76px;height:76px}
-.lbox{padding:12px 16px;display:flex;align-items:center;min-height:56px;background:var(--color-surface-2);border:1px solid rgba(255,255,255,.08)}
-.lbox svg{height:46px;width:auto}.absent{font-size:10px;color:color-mix(in srgb, var(--color-text) 30%, transparent);border:1px dashed rgba(255,255,255,.2);padding:26px 10px}
-.note{font-family:'Inter',sans-serif;font-size:11px;color:color-mix(in srgb, var(--color-text) 40%, transparent);margin-top:12px;max-width:82ch;line-height:1.5}</style></head><body>
+.lbox{padding:12px 16px;display:flex;align-items:center;min-height:56px;background:var(--color-surface-2);border:1px solid var(--color-border)}
+.lbox svg{height:46px;width:auto}.absent{font-size:10px;color:color-mix(in srgb, var(--color-text) 30%, transparent);border:1px dashed var(--color-border-strong);padding:26px 10px}
+.note{font-family: var(--font-body);font-size:11px;color:color-mix(in srgb, var(--color-text) 40%, transparent);margin-top:12px;max-width:82ch;line-height:1.5}</style></head><body>
 <div class="eyebrow">AGLAYA · DESIGN SYSTEM</div><h1>Product Identity — 7 naves</h1>
 <div class="prod"><div class="hd"><span class="sw" style="background:var(--product-kanban-desk-accent)"></span><span class="name">KANBAN DESK</span><span class="meta">kanban-desk · var(--product-kanban-desk-accent)</span></div><div class="grid">
 <div class="cell"><div class="gbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
@@ -273,11 +273,11 @@ h1{font-family:'Outfit',sans-serif;font-weight:900;text-transform:uppercase;font
     <g transform="translate(9, 9) scale(0.604)"><rect x="12" y="12" width="72" height="72" fill="none" stroke="var(--product-legal-reg-tech-accent)" stroke-width="8"></rect>
     <polyline points="28,51 42,64 68,32" fill="none" stroke="var(--product-legal-reg-tech-accent)" stroke-width="9" stroke-linecap="butt" stroke-linejoin="miter"></polyline></g>
   </g>
-  <text x="98" y="30" fill="color-mix(in srgb, var(--color-text) 30%, transparent)" font-family="'Space Mono', monospace" font-weight="700" font-size="13" letter-spacing="6.5">AGLAYA</text>
+  <text x="98" y="30" fill="color-mix(in srgb, var(--color-text) 30%, transparent)" font-family="var(--font-mono)" font-weight="700" font-size="13" letter-spacing="6.5">AGLAYA</text>
   <text x="97" y="74" fill="var(--color-text)" font-weight="900" font-size="40" letter-spacing="-1.2">LEGAL REG TECH</text>
 </svg></div><div class="lbl">lockup</div></div>
 <div class="cell"><div class="lbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" width="280" height="60" font-family="Outfit, sans-serif">
-  <text x="0" y="14" fill="color-mix(in srgb, var(--color-text) 30%, transparent)" font-family="'Space Mono', monospace" font-weight="700" font-size="11" letter-spacing="5.5">AGLAYA</text>
+  <text x="0" y="14" fill="color-mix(in srgb, var(--color-text) 30%, transparent)" font-family="var(--font-mono)" font-weight="700" font-size="11" letter-spacing="5.5">AGLAYA</text>
   <text x="-1" y="52" fill="var(--color-text)" font-weight="900" font-size="34" letter-spacing="-1">LEGAL REG TECH</text>
 </svg></div><div class="lbl">stacked</div></div>
 </div>
@@ -322,11 +322,11 @@ h1{font-family:'Outfit',sans-serif;font-weight:900;text-transform:uppercase;font
     <rect x="74" y="42" width="12" height="12" fill="var(--product-orchestrator-accent)"></rect>
     <rect x="40" y="40" width="16" height="16" fill="var(--product-orchestrator-accent)"></rect></g>
   </g>
-  <text x="98" y="30" fill="color-mix(in srgb, var(--color-text) 30%, transparent)" font-family="'Space Mono', monospace" font-weight="700" font-size="13" letter-spacing="6.5">AGLAYA</text>
+  <text x="98" y="30" fill="color-mix(in srgb, var(--color-text) 30%, transparent)" font-family="var(--font-mono)" font-weight="700" font-size="13" letter-spacing="6.5">AGLAYA</text>
   <text x="97" y="74" fill="var(--color-text)" font-weight="900" font-size="40" letter-spacing="-1.2">ORCHESTRATOR</text>
 </svg></div><div class="lbl">lockup</div></div>
 <div class="cell"><div class="lbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" width="280" height="60" font-family="Outfit, sans-serif">
-  <text x="0" y="14" fill="color-mix(in srgb, var(--color-text) 30%, transparent)" font-family="'Space Mono', monospace" font-weight="700" font-size="11" letter-spacing="5.5">AGLAYA</text>
+  <text x="0" y="14" fill="color-mix(in srgb, var(--color-text) 30%, transparent)" font-family="var(--font-mono)" font-weight="700" font-size="11" letter-spacing="5.5">AGLAYA</text>
   <text x="-1" y="52" fill="var(--color-text)" font-weight="900" font-size="34" letter-spacing="-1">ORCHESTRATOR</text>
 </svg></div><div class="lbl">stacked</div></div>
 </div>
@@ -356,11 +356,11 @@ h1{font-family:'Outfit',sans-serif;font-weight:900;text-transform:uppercase;font
     <rect x="0.5" y="0.5" width="75" height="75" fill="none" stroke="rgba(255,255,255,0.16)"></rect>
     <g transform="translate(9, 9) scale(0.604)"><path d="M48,83 C33,71 13,55 13,35 C13,23 22,16 31,16 C39,16 45,22 48,30 C51,22 57,16 65,16 C74,16 83,23 83,35 C83,55 63,71 48,83 Z" fill="var(--color-corporate-green)"></path></g>
   </g>
-  <text x="98" y="30" fill="color-mix(in srgb, var(--color-text) 30%, transparent)" font-family="'Space Mono', monospace" font-weight="700" font-size="13" letter-spacing="6.5">AGLAYA</text>
+  <text x="98" y="30" fill="color-mix(in srgb, var(--color-text) 30%, transparent)" font-family="var(--font-mono)" font-weight="700" font-size="13" letter-spacing="6.5">AGLAYA</text>
   <text x="97" y="74" fill="var(--color-text)" font-weight="900" font-size="40" letter-spacing="-1.2">DESIGN SYSTEM</text>
 </svg></div><div class="lbl">lockup</div></div>
 <div class="cell"><div class="lbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 271 60" width="271" height="60" font-family="Outfit, sans-serif">
-  <text x="0" y="14" fill="color-mix(in srgb, var(--color-text) 30%, transparent)" font-family="'Space Mono', monospace" font-weight="700" font-size="11" letter-spacing="5.5">AGLAYA</text>
+  <text x="0" y="14" fill="color-mix(in srgb, var(--color-text) 30%, transparent)" font-family="var(--font-mono)" font-weight="700" font-size="11" letter-spacing="5.5">AGLAYA</text>
   <text x="-1" y="52" fill="var(--color-text)" font-weight="900" font-size="34" letter-spacing="-1">DESIGN SYSTEM</text>
 </svg></div><div class="lbl">stacked</div></div>
 </div>

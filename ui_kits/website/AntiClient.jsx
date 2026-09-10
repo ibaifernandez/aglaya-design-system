@@ -22,7 +22,7 @@ const ExclusionCard = ({ num, title, body }) => {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 520 }}>
         <span style={{
           fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--fg-eyebrow)',
-          letterSpacing: '0.5em', textTransform: 'uppercase', opacity: 0.55,
+          letterSpacing: 'var(--tracking-ultra)', textTransform: 'uppercase', opacity: 0.55,
         }}>EXCLUSION_PRINCIPLE_{String(num).padStart(2,'0')}</span>
         <h3 style={{
           margin: 0, color: hover ? 'var(--brand-ink)' : 'var(--color-text)',
@@ -105,7 +105,7 @@ const AntiClient = () => {
             <div style={{
               display: 'flex', alignItems: 'center', gap: 12,
               fontFamily: 'var(--font-mono)', fontSize: 10,
-              color: 'var(--color-faint)', letterSpacing: '0.3em', textTransform: 'uppercase',
+              color: 'var(--color-faint)', letterSpacing: 'var(--tracking-widest)', textTransform: 'uppercase',
             }}>
               <span>INTEGRITY_CHECK: PASSED</span>
               {[...Array(4)].map((_,i) => (
