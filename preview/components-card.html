@@ -11,10 +11,9 @@
     padding: 28px; position: relative; overflow: hidden;
   }
   .top { display: flex; justify-content: space-between; margin-bottom: 20px; }
-  .idx {
-    font-family: var(--font-mono); font-size: 9px;
-    letter-spacing: 0.4em; text-transform: uppercase; color: var(--color-corporate-green); opacity: 0.7;
-  }
+  /* No reimplementa el eyebrow: cita `.t-eyebrow` del canon y solo ajusta
+     la composición. Un specimen que se lo reinventa enseña a reinventarlo. */
+  .idx { font-size: 9px; font-weight: 400; opacity: 0.7; }
   .dot { width: 6px; height: 6px; background: var(--color-brand); }
   .title {
     font-family: var(--font-display); font-weight: 900; font-size: 22px;
@@ -34,7 +33,7 @@
 <body>
   <div class="card hover">
     <div class="top">
-      <span class="idx">LOGIC_NODE_001</span>
+      <span class="t-eyebrow idx">LOGIC_NODE_001</span>
       <span class="dot"></span>
     </div>
     <h3 class="title">The Rental Trap</h3>

@@ -23,10 +23,8 @@ const ProblemCard = ({ i, title, body }) => {
         transition: 'border-color 0.5s var(--ease)',
       }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 24 }}>
-        <span style={{
-          fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--fg-eyebrow)',
-          textTransform: 'uppercase', letterSpacing: '0.4em', opacity: 0.7,
-        }}>LOGIC_NODE_{String(i+1).padStart(3,'0')}</span>
+        <span className="t-eyebrow" style={{ fontSize: 9, fontWeight: 400, opacity: 0.7 }}
+        >LOGIC_NODE_{String(i+1).padStart(3,'0')}</span>
         <span style={{
           width: 4, height: 4,
           background: hover ? 'var(--brand)' : 'color-mix(in srgb, var(--brand) 40%, transparent)',

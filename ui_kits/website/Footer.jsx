@@ -14,10 +14,7 @@ const DispatchForm = () => {
 
   return (
     <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-      <label style={{
-        fontFamily: 'var(--font-mono)', fontSize: 9,
-        letterSpacing: '0.4em', color: 'var(--fg-eyebrow)', textTransform: 'uppercase',
-      }}>CORPORATE_EMAIL</label>
+      <label className="t-eyebrow" style={{ fontSize: 9, fontWeight: 400 }}>CORPORATE_EMAIL</label>
       <div style={{ display: 'flex', gap: 12 }}>
         <input
           type="email" value={email} onChange={e => setEmail(e.target.value)}
@@ -101,10 +98,7 @@ const Footer = () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
           <img src="./assets/logo-white.svg" alt="AGLAYA" style={{ height: 24, width: 'auto' }}/>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <span style={{
-              fontFamily: 'var(--font-mono)', fontSize: 10,
-              letterSpacing: '0.42em', textTransform: 'uppercase', color: 'var(--fg-eyebrow)',
-            }}>DISPATCH_NODE</span>
+            <span className="t-eyebrow" style={{ fontSize: 10, fontWeight: 400 }}>DISPATCH_NODE</span>
             <h2 style={{
               margin: 0, color: 'var(--color-text)', maxWidth: 640,
               fontFamily: 'var(--font-display)', fontWeight: 900,

@@ -65,7 +65,7 @@
         "background": "var(--color-surface-2)",
         "border": "1px solid rgba(255,255,255,0.05)",
         "padding": "28px",
-        "index_eyebrow": "var(--font-mono) 9px, tracking 0.4em, uppercase, var(--color-corporate-green) @0.7 (ej: LOGIC_NODE_001)",
+        "index_eyebrow": "clase `.t-eyebrow` del canon (colors_and_type.css) — de ahí salen familia, tracking var(--tracking-ultra), caja, color por modo y el filete verde del modo claro. Encima solo composición: font-size 9px, font-weight 400, opacity 0.7 (ej: LOGIC_NODE_001). No lo reimplementes: cítala. El peso va aparte a propósito: la clase declara 900 y las superficies vienen pintando 400, y cuál manda no está decidido.",
         "dot": "6px×6px var(--color-brand), esquina superior derecha",
         "title": "var(--font-display) 900 22px, tracking var(--tracking-tight), uppercase, var(--color-text)",
         "body": "var(--font-body) 13px, line-height 1.55, var(--color-muted)",
@@ -95,7 +95,7 @@
       "states": {
         "focus": "border → color-mix(in srgb, var(--color-brand) 50%, transparent); background → color-mix(in srgb, var(--color-brand) 3%, transparent); color → var(--color-text); outline 2px solid color-mix(in srgb, var(--color-brand) 90%, transparent) con outline-offset 2px"
       },
-      "rules": ["Radius 0.", "Borde de reposo más fuerte de lo normal (0.35) — el campo debe verse.", "Foco = anillo rojo de marca (accesible), no glow difuso.", "Label = eyebrow mono verde, como en card."]
+      "rules": ["Radius 0.", "Borde de reposo más fuerte de lo normal (0.35) — el campo debe verse.", "Foco = anillo rojo de marca (accesible), no glow difuso.", "Label = eyebrow: clase `.t-eyebrow` del canon, no una copia de la de card."]
     },
     {
       "id": "badge",

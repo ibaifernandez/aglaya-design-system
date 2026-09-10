@@ -82,21 +82,31 @@ button { font: inherit; background: none; border: 0; color: inherit; cursor: poi
 }
 
 /* typographic presets */
-.t-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px; font-weight: 900;
-  letter-spacing: var(--tracking-ultra); text-transform: uppercase;
-  /* `--fg-eyebrow` y no `--green`: el canon redefine ese token por modo, así
-     que el eyebrow sigue al canon en vez de tener su propio verde. Con `--green`
-     esta clase pintaba letra verde también en claro, donde no se lee. */
-  color: var(--fg-eyebrow);
-}
-.t-codetag {
-  font-family: var(--font-mono);
-  font-size: 9px; letter-spacing: 0.4em;
-  text-transform: uppercase; color: var(--fg-eyebrow);
-  opacity: 0.7;
-}
+
+/* `.t-eyebrow` NO se redefine aquí. La define el canon (colors_and_type.css),
+   que este archivo importa arriba, y con ella vienen el filete verde del modo
+   claro —`[data-theme="light"] .t-eyebrow::before`— y el color por modo. Esta
+   hoja tenía su propia copia de la clase, y una copia de la clase canónica es
+   una segunda verdad sobre qué es un eyebrow: la que este kit vea gana sobre la
+   del canon por orden de cascada, y el canon deja de mandar sin que nadie se
+   entere. Tamaño y peso son composición y se ponen en el sitio que los pide;
+   la identidad —familia, tracking, caja, color por modo y el filete— viene de
+   la definición.
+
+   Por qué el PESO se pone en cada sitio y no se hereda: `--text-eyebrow`
+   declara `900`, y todas estas superficies venían pintando `400`. Adoptar el
+   900 de golpe cambiaría a Space Mono Bold cada eyebrow del kit — un cambio de
+   aspecto que NADIE decidió: lo aprobado fue el número del tracking. Además
+   Space Mono solo trae 400 y 700, así que ese `900` no lo puede honrar la
+   propia tipografía de la marca. Es la misma pregunta que el tracking (¿manda
+   el canon o mandan las superficies?) sin haberse hecho todavía, y no se
+   contesta de rebote al arreglar otra cosa. */
+/* `.t-codetag` tampoco se redefine aquí, y este caso era peor que el del
+   eyebrow: el canon define `.t-codetag` como un chip de fondo claro y texto
+   negro, y esta hoja usaba EL MISMO NOMBRE para un eyebrow verde con tracking.
+   Mismo selector, dos elementos distintos, y ganaba el del kit. Comprobado
+   antes de retirarla: no la aplicaba nadie en todo el árbol — era una copia
+   muerta que solo servía para tapar la del canon. */
 .t-display-xl {
   font-family: var(--font-display);
   font-weight: 900; text-transform: uppercase;
