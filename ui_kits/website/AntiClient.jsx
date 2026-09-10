@@ -20,10 +20,8 @@ const ExclusionCard = ({ num, title, body }) => {
         transition: 'border-color 0.3s var(--ease)',
       }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 520 }}>
-        <span style={{
-          fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--fg-eyebrow)',
-          letterSpacing: 'var(--tracking-ultra)', textTransform: 'uppercase', opacity: 0.55,
-        }}>EXCLUSION_PRINCIPLE_{String(num).padStart(2,'0')}</span>
+        <span className="t-eyebrow" style={{ fontSize: 9, fontWeight: 400, opacity: 0.55 }}
+        >EXCLUSION_PRINCIPLE_{String(num).padStart(2,'0')}</span>
         <h3 style={{
           margin: 0, color: hover ? 'var(--brand-ink)' : 'var(--color-text)',
           fontFamily: 'var(--font-display)', fontWeight: 900,
@@ -88,10 +86,12 @@ const AntiClient = () => {
           }}>
             AGLAYA is an engineering firm, not a creative boutique. We optimize for Infrastructure Sovereignty, not corporate comfort. If you are looking for a partner to validate your current inefficiencies, find a traditional agency. If you need to build a sovereign engine, let's talk.
           </p>
-          <div style={{
+          {/* Cita la definición del canon en vez de reimplementarla: de ahí
+              vienen familia, peso, tracking, caja, color por modo y el filete
+              verde del modo claro. Aquí solo queda la composición. */}
+          <div className="t-eyebrow" style={{
             display: 'flex', alignItems: 'center', gap: 16,
-            color: 'var(--fg-eyebrow)', fontFamily: 'var(--font-mono)',
-            fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', opacity: 0.6,
+            fontSize: 10, fontWeight: 400, opacity: 0.6,
           }}>
             <span>OPERATIONAL_INTEGRITY</span>
             <div style={{ width: 48, height: 1, background: 'color-mix(in srgb, var(--brand) 20%, transparent)' }}/>

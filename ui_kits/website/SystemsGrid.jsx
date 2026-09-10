@@ -50,10 +50,7 @@ const SystemCard = ({ s, i }) => {
         transition: 'all 0.7s var(--ease)',
       }}/>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 20 }}>
-        <span style={{
-          fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--fg-eyebrow)',
-          letterSpacing: 'var(--tracking-ultra)', textTransform: 'uppercase',
-        }}>APPLIED_LOGIC:</span>
+        <span className="t-eyebrow" style={{ fontSize: 9, fontWeight: 400 }}>APPLIED_LOGIC:</span>
         <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
           {s.cases.map(c => (
             <li key={c} style={{
