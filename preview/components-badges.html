@@ -7,7 +7,7 @@
   html, body { margin: 0; padding: 0; background: #000; color: #fff; }
   body { padding: 24px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; min-height: 100vh; }
   .badge {
-    font-family: 'Space Mono', monospace; font-size: 10px;
+    font-family: var(--font-mono); font-size: 10px;
     letter-spacing: 0.25em; text-transform: uppercase;
     padding: 6px 12px; border: 1px solid rgba(255,255,255,0.1);
     background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.6);
@@ -17,8 +17,8 @@
   .badge.ok { color: var(--color-corporate-green); border-color: color-mix(in srgb, var(--color-corporate-green) 30%, transparent); }
   .pill {
     display: inline-flex; align-items: center; gap: 6px;
-    font-family: 'Space Mono', monospace; font-size: 9px;
-    letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.35);
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: var(--tracking-widest); text-transform: uppercase; color: rgba(255,255,255,0.35);
   }
   .pulse { width: 6px; height: 6px; background: var(--color-brand); animation: pulse 1.5s infinite; }
   @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }

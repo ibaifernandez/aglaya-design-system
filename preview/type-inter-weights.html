@@ -5,16 +5,16 @@
 <link rel="stylesheet" href="../colors_and_type.css">
 <style>
   html, body { margin: 0; padding: 0; background: #000; color: #fff; }
-  body { padding: 20px 24px; font-family: 'Inter', sans-serif; }
+  body { padding: 20px 24px; font-family: var(--font-body); }
   h4 {
-    margin: 0 0 14px; font-family: 'Space Mono', monospace; font-size: 10px;
+    margin: 0 0 14px; font-family: var(--font-mono); font-size: 10px;
     letter-spacing: 0.35em; text-transform: uppercase; color: var(--color-corporate-green);
   }
   .row { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
   .label {
     width: 80px; flex-shrink: 0;
-    font-family: 'Space Mono', monospace; font-size: 9px;
-    letter-spacing: 0.2em; text-transform: uppercase;
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: var(--tracking-wider); text-transform: uppercase;
     color: rgba(255,255,255,0.4);
   }
   .spec { font-size: 19px; color: var(--color-text); letter-spacing: -0.01em; }

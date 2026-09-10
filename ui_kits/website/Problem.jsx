@@ -36,7 +36,7 @@ const ProblemCard = ({ i, title, body }) => {
       <h3 style={{
         margin: '0 0 16px', color: hover ? 'var(--brand-ink)' : 'var(--color-text)',
         fontFamily: 'var(--font-display)', fontWeight: 900,
-        fontSize: 24, letterSpacing: '-0.02em', textTransform: 'uppercase',
+        fontSize: 24, letterSpacing: 'var(--tracking-tight)', textTransform: 'uppercase',
         transition: 'color 0.3s var(--ease)',
       }}>{title}</h3>
       <p style={{
@@ -75,7 +75,7 @@ const Problem = () => (
       }}>
         <span style={{
           fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--color-text)',
-          letterSpacing: '0.5em', textTransform: 'uppercase',
+          letterSpacing: 'var(--tracking-ultra)', textTransform: 'uppercase',
         }}>REF_ID: 001_SOVEREIGNTY_LOGIC</span>
         <div style={{ display: 'flex', gap: 4 }}>
           {[...Array(5)].map((_,i) => <div key={i} style={{ width: 6, height: 6, background: 'var(--green)' }}/>)}

@@ -18,7 +18,7 @@ const PrimaryButton = ({ children, href = '#', onClick }) => {
         background: 'var(--brand)', color: '#ffffff' /* tinta sobre relleno rojo: blanca (tramo 3) */,
         padding: '20px 22px',
         fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 16,
-        letterSpacing: '0.2em', textTransform: 'uppercase',
+        letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase',
         transition: 'transform 0.3s var(--ease), background 0.3s var(--ease)',
       }}
       onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.02)';
@@ -45,7 +45,7 @@ const GhostButton = ({ children, href = '#' }) => (
       border: '1px solid color-mix(in srgb, var(--color-text) 20%, transparent)',
       padding: '10px 20px',
       fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 12,
-      letterSpacing: '0.2em', textTransform: 'uppercase',
+      letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase',
       transition: 'background 0.3s var(--ease)',
     }}
     onMouseEnter={e => e.currentTarget.style.background = 'color-mix(in srgb, var(--color-text) 20%, transparent)'}
@@ -64,7 +64,7 @@ const MonoLink = ({ children, href = '#' }) => {
       style={{
         display: 'inline-flex', alignItems: 'center', gap: 14,
         fontFamily: 'var(--font-mono)', fontSize: 12,
-        letterSpacing: '0.3em', textTransform: 'uppercase',
+        letterSpacing: 'var(--tracking-widest)', textTransform: 'uppercase',
         color: hover ? 'var(--color-text)' : 'var(--muted)',
         transition: 'color 0.3s var(--ease)',
       }}>
@@ -94,7 +94,7 @@ const Eyebrow = ({ children }) => (
     <span style={{
       color: 'var(--fg-eyebrow)', fontFamily: 'var(--font-mono)',
       fontSize: 12, fontWeight: 900,
-      letterSpacing: '0.5em', textTransform: 'uppercase',
+      letterSpacing: 'var(--tracking-ultra)', textTransform: 'uppercase',
     }}>{children}</span>
   </div>
 );

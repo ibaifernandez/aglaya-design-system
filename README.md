@@ -232,9 +232,9 @@ Pure black is the canvas — `--color-bg`. Not near-black. **Black.** Card surfa
 **This palette governs the master brand** (`aglaya.biz`, agency materials, social). Product surfaces add exactly one first-class **product accent** each (KANBAN DESK cobalt, CRM violet, OUTREACH teal, ConsentFlow carmín, LEGAL REG TECH gold, ORCHESTRATOR steel, plus the DESIGN SYSTEM house itself in corporate green) — the single source is [`products/products.json`](products/products.json), served live by the MCP (`get_accent`, `list_products`). On its own product surface the accent is unrestricted — allowed on CTAs, no proportion cap — per the product tier of the non-negotiables (`get_nonnegotiables(scope="product")`). It never leaks onto the master, and the master never adopts a product accent: outside a product surface, the three colors above are still the whole palette.
 
 ### Typography
-- **Display: Outfit Black (900).** Always uppercase, tracking tighter than normal (`-0.02em` to `-0.04em`), leading `~0.94–1.1`. Headlines routinely hit `9rem+` at large viewports.
-- **Body: Inter 400–500.** Sentence case, generous leading (`1.6`), often set at `--color-muted` (45% white) against pure black — the contrast is intentionally softened on long-form to force scanability to the display type.
-- **Mono: Space Mono 400/700.** UPPERCASE, extreme tracking (`0.3em–0.5em`), used for eyebrows, codetags, annotations, and terminal-style status strings.
+- **Display: Outfit Black (900).** Always uppercase, tracking tighter than normal (`var(--tracking-tight)` to `var(--tracking-tightest)`), leading `~0.94–1.1`. Headlines routinely hit `9rem+` at large viewports.
+- **Body: Inter 400–500.** Sentence case, generous leading (`1.6`), often set at `var(--color-muted)` against pure black — the contrast is intentionally softened on long-form to force scanability to the display type.
+- **Mono: Space Mono 400/700.** UPPERCASE, extreme tracking (`var(--tracking-widest)` to `var(--tracking-ultra)`), used for eyebrows, codetags, annotations, and terminal-style status strings.
 
 Headlines frequently split across lines with the **second line colored brand red** (`heading2Class="text-brand"` in `SectionHeader`). This is the signature headline move.
 
@@ -248,8 +248,8 @@ No illustrations. No photography in chrome. No gradients-as-decoration. What you
 - **Marquee** — slowly-crawling UPPERCASE display text at `20%` white, rotated `-1deg`, used as a rhythm break between sections.
 
 ### Animation
-- **Easing: `cubic-bezier(0.16, 1, 0.3, 1)`** (the "Apple" out-expo). Used on every hover, reveal, and transition. Never `ease`, never `linear` except for marquees.
-- **Durations:** `150ms` (micro), `300ms` (default), `500–700ms` (section reveals / card hovers).
+- **Easing: `var(--ease-out)`** (the "Apple" out-expo). Used on every hover, reveal, and transition. Never `ease`, never `linear` except for marquees.
+- **Durations:** `var(--dur-fast)` (micro), `var(--dur-base)` (default), `var(--dur-slow)`–`var(--dur-slower)` (section reveals / card hovers).
 - **Reveals:** `fade-up` (30px translate) and `fade-in` triggered by `IntersectionObserver` on `[data-animate]` elements. Staggered with `100–800ms` delays.
 - **Hover on cards:** border `white/5 → brand/30–40`, accent line grows from `12px` to full-width `brand/20`, background scanline opacity increases.
 - **Press states:** buttons `scale(0.95–0.98)` + slight `translateY(-1px)` on hover.
@@ -277,7 +277,7 @@ no radius, no shadow
 Hover flips border to brand and grows an accent line along the bottom.
 
 ### Layout
-- **Max content width:** `max-w-7xl` (80rem / 1280px), horizontally centered.
+- **Max content width:** `max-w-7xl` (`var(--layout-max)`), horizontally centered.
 - **Side gutters:** `px-6` mobile → `px-10` tablet → `px-20` desktop.
 - **Section vertical rhythm:** `py-20` to `py-24`, separated by `border-t border-white/5` (never a hard rule).
 - **Grid:** 12-col via Tailwind, but layouts favor explicit flex columns. 3-up on desktop for principle/case grids.

@@ -37,7 +37,7 @@ const DispatchForm = () => {
       <p style={{
         margin: 0, color: 'var(--color-faint)',
         fontFamily: 'var(--font-mono)', fontSize: 10,
-        letterSpacing: '0.2em', textTransform: 'uppercase',
+        letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase',
       }}>
         {state === 'synced' ? 'DATA_SYNCHRONIZED. DISPATCH_NODE_ACTIVE.' : 'Zero filler. Weekly signal, not noise.'}
       </p>
@@ -109,7 +109,7 @@ const Footer = () => (
               margin: 0, color: 'var(--color-text)', maxWidth: 640,
               fontFamily: 'var(--font-display)', fontWeight: 900,
               fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-              letterSpacing: '-0.02em', textTransform: 'uppercase', lineHeight: 0.94,
+              letterSpacing: 'var(--tracking-tight)', textTransform: 'uppercase', lineHeight: 0.94,
             }}>Weekly signal for operators who ship.</h2>
             <p style={{
               margin: 0, color: 'var(--color-muted)', maxWidth: 520,
@@ -156,7 +156,7 @@ const Footer = () => (
         <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
           <a href="#" style={{ color: 'var(--color-faint)', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase' }}>Privacy</a>
           <a href="#" style={{ color: 'var(--color-faint)', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase' }}>Cookies</a>
-          <span style={{ color: 'var(--color-faint)', fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase' }}>© {new Date().getFullYear()} AGLAYA</span>
+          <span style={{ color: 'var(--color-faint)', fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase' }}>© {new Date().getFullYear()} AGLAYA</span>
         </div>
       </div>
     </div>

@@ -24,7 +24,7 @@ const Hero = () => (
         margin: 0, color: 'var(--color-text)',
         fontFamily: 'var(--font-display)', fontWeight: 900,
         fontSize: 'clamp(3rem, 9vw, 9rem)', lineHeight: 0.94,
-        letterSpacing: '-0.04em', textTransform: 'uppercase',
+        letterSpacing: 'var(--tracking-tightest)', textTransform: 'uppercase',
       }}>
         <span style={{ display: 'block' }}>The agency is dead.</span>
         {/* Movimiento de firma (no-negociable): línea 1 blanca, línea 2 en el

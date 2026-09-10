@@ -85,7 +85,7 @@ button { font: inherit; background: none; border: 0; color: inherit; cursor: poi
 .t-eyebrow {
   font-family: var(--font-mono);
   font-size: 11px; font-weight: 900;
-  letter-spacing: 0.5em; text-transform: uppercase;
+  letter-spacing: var(--tracking-ultra); text-transform: uppercase;
   /* `--fg-eyebrow` y no `--green`: el canon redefine ese token por modo, así
      que el eyebrow sigue al canon en vez de tener su propio verde. Con `--green`
      esta clase pintaba letra verde también en claro, donde no se lee. */
@@ -100,7 +100,7 @@ button { font: inherit; background: none; border: 0; color: inherit; cursor: poi
 .t-display-xl {
   font-family: var(--font-display);
   font-weight: 900; text-transform: uppercase;
-  letter-spacing: -0.04em; line-height: 0.94;
+  letter-spacing: var(--tracking-tightest); line-height: 0.94;
   font-size: clamp(3rem, 9vw, 9rem);
 }
 .t-body { font-family: var(--font-body); font-size: 1.125rem; line-height: 1.65; color: var(--muted); }

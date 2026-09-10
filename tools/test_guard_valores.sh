@@ -104,6 +104,38 @@ probar numeros-sueltos   "Medidas del grid: 232, 0, 61 — píxeles, no un color
 probar hex-mas-largo     "Un identificador cualquiera: #e8003dab3f."                       GREEN
 probar nombre-del-token  "Los acentos viven en --product-kanban-desk-accent."              GREEN
 
+echo "== 6c. las familias que NO son color: una copia de cada una debe morder =="
+echo "   (el guardián se llamaba «de valores» y solo perseguía colores)"
+probar valor-copiado "Eyebrow: \`letter-spacing: 0.3em\` y a correr."                      RED
+probar valor-copiado "Titular con tracking apretado: -0.04em."                             RED
+probar valor-copiado "La display es \`font-family: 'Outfit', sans-serif\`."                RED
+probar valor-copiado "El cuerpo: font-family: 'Inter', sans-serif;"                        RED
+probar valor-copiado "La mono va con 'Space Mono', monospace."                             RED
+probar valor-copiado "Hover a 150ms, reveals a 700ms."                                     RED
+probar valor-copiado "Curva: cubic-bezier(0.16, 1, 0.3, 1) en todo."                       RED
+probar valor-copiado "Escritorio a partir de 1280px."                                      RED
+probar valor-copiado "La píldora va \`border-radius: 9999px\`."                            RED
+
+echo "== 6d. el color que NO es hex: rgb()/rgba() y los valores del MODO CLARO =="
+echo "   (media paleta vivía fuera del alcance: --color-muted es un rgba, no un hex)"
+probar valor-copiado "Gris de apoyo: rgba(252, 252, 252, 0.72)."                           RED
+probar valor-copiado "Borde fino: rgba(255,255,255,0.08)."                                 RED
+probar valor-copiado "Y con el alfa escrito corto: rgba(255,255,255,.2)."                  RED
+probar valor-copiado "Y en porcentaje: rgb(255 255 255 / 8%)."                             RED
+probar valor-copiado "El gris del modo CLARO: rgba(0, 0, 0, 0.72)."                        RED
+
+echo "== 6e. lo que se le PARECE a estas familias tampoco puede ponerse rojo =="
+echo "   (cada familia entra con su control legítimo, o la guarda grita de más)"
+probar por-token-tracking "Se pide por token: \`letter-spacing: var(--tracking-widest)\`."  GREEN
+probar por-token-font     "La display es \`var(--font-display)\`, no la pila a mano."       GREEN
+probar em-fuera-de-escala "Un tracking que no está en la escala: 0.4em."                    GREEN
+probar alfa-distinto      "Otro blanco translúcido: rgba(255,255,255,0.5)."                 GREEN
+probar rem-no-vigilado    "Un espaciado de 3rem — \`rem\` no se vigila a propósito."        GREEN
+probar substring-ms       "Una duración larga de verdad: 1150ms."                           GREEN
+probar substring-px       "Un lienzo enorme: 11280px de ancho."                             GREEN
+probar cero-no-identifica "Radios a 0 y tracking a 0: el literal no identifica nada."       GREEN
+probar familia-sin-comilla "Se menciona Outfit en prosa, sin comillas: es el nombre."       GREEN
+
 echo "== 7. el manifiesto de productos no puede desviarse en silencio =="
 cp "$BK" "$DOC"
 python3 - <<'PY'

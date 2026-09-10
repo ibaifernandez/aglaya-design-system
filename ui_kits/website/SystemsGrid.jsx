@@ -28,7 +28,7 @@ const SystemCard = ({ s, i }) => {
       }}>
       <span style={{
         fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--brand-ink)',
-        letterSpacing: '0.5em', textTransform: 'uppercase', marginBottom: 16,
+        letterSpacing: 'var(--tracking-ultra)', textTransform: 'uppercase', marginBottom: 16,
       }}>ARCHITECTURE_PRINCIPLE_00{i+1}</span>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         <h3 style={{
@@ -52,7 +52,7 @@ const SystemCard = ({ s, i }) => {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 20 }}>
         <span style={{
           fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--fg-eyebrow)',
-          letterSpacing: '0.5em', textTransform: 'uppercase',
+          letterSpacing: 'var(--tracking-ultra)', textTransform: 'uppercase',
         }}>APPLIED_LOGIC:</span>
         <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
           {s.cases.map(c => (
