@@ -6,15 +6,14 @@
 
 ## Orden de lectura
 
-1. [`README.md`](README.md) — el canon: tokens, tipografía, voz, no-negociables.
-2. [`SKILL.md`](SKILL.md) — la skill de marca (fuente de los no-negociables que sirve el MCP).
-3. [`docs/CONTRACT.md`](docs/CONTRACT.md) — **el contrato de marca local**: quién manda, en qué orden, cómo se consume y quién NO puede consumir. Versión: la del tag (`git tag --list`), no una tecleada aquí.
-4. [`docs/PACKAGE.md`](docs/PACKAGE.md) — **cómo se depende de esta marca desde otro repo**: el paquete `@aglaya/design-tokens`, la política de semver (qué es parche, qué menor, qué mayor) y la decisión sobre los nombres que chocan.
-5. `aglaya-ds-mcp/` — el **servidor MCP `aglaya-ds`**, read-only. Es la vía programática de consumo de marca para toda la flota. Qué tools expone hoy: la sesión que lo tenga montado, o `aglaya-ds-mcp/server.py`.
+1. [`README.md`](README.md) — el canon: tokens, tipografía, voz y los **no-negociables**, que el MCP sirve leyéndolos de ahí en vivo.
+2. [`docs/CONTRACT.md`](docs/CONTRACT.md) — **el contrato de marca local**: quién manda, en qué orden, cómo se consume y quién NO puede consumir. Versión: la del tag (`git tag --list`), no una tecleada aquí.
+3. [`docs/PACKAGE.md`](docs/PACKAGE.md) — **cómo se depende de esta marca desde otro repo**: el paquete `@aglaya/design-tokens`, la política de semver (qué es parche, qué menor, qué mayor) y la decisión sobre los nombres que chocan.
+4. `aglaya-ds-mcp/` — el **servidor MCP `aglaya-ds`**, read-only. Es la vía programática de consumo de marca para toda la flota. Qué tools expone hoy: la sesión que lo tenga montado, o `aglaya-ds-mcp/server.py`.
 
 ## Reglas duras
 
-- Los **no-negociables de marca** los sirve el MCP (`get_nonnegotiables`) desde `SKILL.md` — no los parafrasees: consúltalos.
+- Los **no-negociables de marca** los sirve el MCP (`get_nonnegotiables`) desde [`README.md`](README.md) — no los parafrasees: consúltalos. Vivían en un `SKILL.md` con frontmatter de skill invocable que no estaba instalada en ninguna parte: **una skill sin instalar no la lee ningún asistente**, así que aquello no era una vía de consumo por mucho que el contrato la contara. No se reinstala: una skill recita y el MCP lee la fuente en cada llamada.
 - **`ui_kits/` SÍ es marca AGLAYA** — es la composición canónica «así va todo junto», construida con los tokens de este repo. Cítala. Los que NO son marca son los **dummies de `aglaya-web`**, que viven en otro repo y tienen cada uno su propio sistema de diseño: **jamás cablear un dummy a esta marca.**
 - Regla de marca AGLAYA: **eliminar > legacy**. Lo obsoleto se borra, no se archiva.
 - **Los tokens se publican.** Este repo no solo declara la marca: la entrega como paquete versionado, y otros repos dependen de él. Consecuencia operativa, aceptada a propósito: **cambiar un token en el CSS ya no basta** — hasta que no hay tag no existe para nadie, y un token roto aquí puede romper el build de un consumidor. El nivel de versión no se elige a ojo: lo fija [`docs/PACKAGE.md`](docs/PACKAGE.md), donde **renombrar o quitar un token es MAYOR** porque el nombre de un token es la interfaz.
@@ -45,7 +44,7 @@ Cada pregunta se contesta yendo a mirar. La tercera columna es la que hace el tr
 | ¿Qué versión tiene el contrato de marca? | `git tag --list` · la cabecera de [`docs/CONTRACT.md`](docs/CONTRACT.md) | un número de versión tecleado en esta sección |
 | ¿Cómo depende otro repo de esta marca? | [`docs/PACKAGE.md`](docs/PACKAGE.md) — el paquete, la política de semver y la regla de los nombres que chocan | copiarle el CSS al consumidor · inventar allí un token que aquí no existe |
 | ¿Cuánto va por detrás un consumidor? | `npx aglaya-tokens-version` desde el repo del consumidor (`--strict` para cerrarle el CI) | mirar a ojo dos archivos · un número de versión tecleado en esta sección |
-| ¿Un token, un logo, los no-negociables? | MCP `aglaya-ds` (`get_token`, `get_logo`, `get_nonnegotiables`) sobre `colors_and_type.css` y `SKILL.md` | parafrasear el `README.md` de memoria |
+| ¿Un token, un logo, los no-negociables? | MCP `aglaya-ds` (`get_token`, `get_logo`, `get_nonnegotiables`) sobre `colors_and_type.css` y `README.md` | parafrasear el `README.md` de memoria |
 | ¿Qué contrato rige esta marca y quién la consume? | `contrato` y `quien_consume` del MCP `aglaya-atlas` | una lista de consumidores copiada aquí, que envejece a espaldas de todos |
 | ¿Precios, ofertas, GTM? | `verdad_comercial` del MCP `aglaya-atlas` | una cifra escrita en este repo |
 | ¿Un servicio de la flota responde ahora mismo? | el panel del proveedor · `servicios` y `flags` del MCP `aglaya-atlas` | un doc que diga que está arriba · la salida truncada de un comando |

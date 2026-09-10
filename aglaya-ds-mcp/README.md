@@ -11,7 +11,7 @@ of truth.
   the only external package, and only the transport (`server.py`) touches it.
   This is **not** graphify's generic `--mcp`.
 - **Zero-copy, single source.** Every tool **reads the canonical files live**
-  on each call. Change `colors_and_type.css` / `README.md` / `SKILL.md` /
+  on each call. Change `colors_and_type.css` / `README.md` /
   `assets/` / `products/products.json` / `components/components.json` and the
   answers change with no code edit. (Proven by `zerocopy_test.py`.)
 - **Separate layer.** The design-system folder remains runtime-free and
@@ -28,7 +28,7 @@ of truth.
 | `check_voice(text)` | `README.md` | off-brand findings + AGLAYA-correct replacement |
 | `is_allowed_word(term)` | `README.md` | allowed? + correct term if off-brand |
 | `get_logo(variant, fmt?)` | `assets/` | canonical file path for a logo variant |
-| `get_nonnegotiables(scope?)` | `SKILL.md` | the hard brand rules — `scope='master'` (default) or `'product'` |
+| `get_nonnegotiables(scope?)` | `README.md` | the hard brand rules — `scope='master'` (default) or `'product'` |
 | `list_products()` | `products/products.json` | the product roster: id, name, accent, functions, sacred flag |
 | `get_product(id)` | `products/products.json` | one product's full identity record |
 | `get_accent(id)` | `products.json` + `colors_and_type.css` | a product's accent, cross-checked against its live CSS token |
@@ -113,7 +113,7 @@ get_logo(<variant>, <fmt?>)
       "exists": <bool>}
 
 get_nonnegotiables(<scope?>)
-  -> {"source": "SKILL.md", "scope": "master" | "product", "rules": [<rule>, ...]}
+  -> {"source": "README.md", "scope": "master" | "product", "rules": [<rule>, ...]}
 
 list_products()
   -> {"model": "monolithic", "voice": "single", "count": <n>,

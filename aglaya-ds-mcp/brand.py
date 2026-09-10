@@ -4,12 +4,12 @@ This module is the SOVEREIGN CORE of the brand MCP. It has ZERO third-party
 dependencies (stdlib only) and holds ZERO hardcoded brand values: every token,
 rule, vocabulary term and logo path is read LIVE from the canonical files in the
 design-system folder each time it is requested. Change `colors_and_type.css`,
-`README.md`, `SKILL.md` or `assets/` and the answers change with no code edit.
+`README.md` or `assets/` and the answers change with no code edit.
 
 Canonical files (resolved relative to the repo root = this file's grandparent):
   - colors_and_type.css : design tokens (the single source of truth)
-  - README.md           : voice rules, protected vocabulary, forbidden patterns
-  - SKILL.md            : the hard non-negotiables
+  - README.md           : voice rules, protected vocabulary, forbidden patterns,
+                          and the hard non-negotiables
   - assets/             : canonical logo SVG/PNG
 
 The MCP server (`server.py`) is a thin transport layer over these functions.
@@ -29,7 +29,6 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 
 CSS_FILE = REPO_ROOT / "colors_and_type.css"
 README_FILE = REPO_ROOT / "README.md"
-SKILL_FILE = REPO_ROOT / "SKILL.md"
 ASSETS_DIR = REPO_ROOT / "assets"
 PRODUCTS_FILE = REPO_ROOT / "products" / "products.json"
 COMPONENTS_FILE = REPO_ROOT / "components" / "components.json"
@@ -723,11 +722,18 @@ def get_component(cid: str) -> dict:
 
 
 # ────────────────────────────────────────────────────────────────────────────
-# NON-NEGOTIABLES  (read live from SKILL.md)
+# NON-NEGOTIABLES  (read live from README.md)
 # ────────────────────────────────────────────────────────────────────────────
+#
+# Vivían en un `SKILL.md` con frontmatter de skill invocable que NO estaba
+# instalada en ninguna parte — ni en `~/.claude/skills` ni en el `.claude` de
+# ninguna nave. Un manifiesto de skill sin instalar no lo lee ningún asistente,
+# y mientras existía el contrato de esta nave anunciaba «tres formas de
+# consumir» cuando había dos. Las reglas se mudaron al canon, que es donde el
+# propio orden de lectura del repo ya decía que estaban.
 
 
-# scope -> the exact SKILL.md heading it maps to. Kept HERE (not in the caller)
+# scope -> the exact README.md heading it maps to. Kept HERE (not in the caller)
 # so the em-dash heading string lives in one place and callers pass a plain word.
 _NONNEG_HEADINGS = {
     "master": "Non-negotiables",
@@ -740,7 +746,7 @@ _NONNEG_SCOPE_ALIASES = {
 
 
 def get_nonnegotiables(scope: Optional[str] = None) -> dict:
-    """The hard brand rules, read live from SKILL.md.
+    """The hard brand rules, read live from README.md.
 
     scope: 'master' (default) -> the rigid marca-madre rules from
     '## Non-negotiables'. 'product' -> the product-surface rules from
@@ -753,6 +759,6 @@ def get_nonnegotiables(scope: Optional[str] = None) -> dict:
         raise BrandError(
             f"unknown scope '{scope}'. Use 'master' (default) or 'product'."
         )
-    md = _read(SKILL_FILE)
+    md = _read(README_FILE)
     block = _section(md, _NONNEG_HEADINGS[resolved])
-    return {"source": "SKILL.md", "scope": resolved, "rules": _bullets(block)}
+    return {"source": "README.md", "scope": resolved, "rules": _bullets(block)}
