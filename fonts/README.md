@@ -20,6 +20,13 @@ entrega. Los archivos de licencia son copia **verbatim** de la que publica cada
 proyecto, sin una línea añadida — modificar un texto de licencia sería
 exactamente lo que no se puede hacer.
 
+**Por eso las dos atribuciones de una familia pueden no coincidir, y es
+esperado.** Inter es el caso: su binario declara `2017-2019` y su licencia,
+`2016`. Son dos fuentes distintas y cada una es correcta en su sitio. **Ninguna
+se alinea con la otra**: la columna sigue al binario y el fichero de licencia no
+se toca. Alinear la columna con la licencia ya se hizo una vez y publicó en
+v1.3.3 una atribución que contradecía el binario; hubo que deshacerlo en v1.3.4.
+
 Inter trae una variante conocida en el cuerpo del OFL (`PERMISSION AND
 CONDITIONS` donde SIL escribe `PERMISSION & CONDITIONS`); el resto del texto es
 idéntico al canónico de SIL en las tres.
