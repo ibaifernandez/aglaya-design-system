@@ -10,7 +10,7 @@ puede cubrir**: son de sus autores y mantienen sus propios términos.
 
 | Familia | Uso en la marca | Copyright, según el propio binario | Licencia |
 | --- | --- | --- | --- |
-| **Inter** | body | Copyright 2017-2019 The Inter project authors | [`LICENSE-Inter.txt`](LICENSE-Inter.txt) |
+| **Inter** | body | Copyright (c) 2016 The Inter Project Authors | [`LICENSE-Inter.txt`](LICENSE-Inter.txt) |
 | **Outfit** | display | Copyright 2021 The Outfit Project Authors | [`LICENSE-Outfit.txt`](LICENSE-Outfit.txt) |
 | **Space Mono** | labels, eyebrows | Copyright 2016 The Space Mono Project Authors | [`LICENSE-SpaceMono.txt`](LICENSE-SpaceMono.txt) |
 
