@@ -36,7 +36,7 @@ Dependencia a un **tag por `git+https`**. El repo es público: sin token, sin
 llave SSH.
 
 ```bash
-npm install "git+https://github.com/ibaifernandez/aglaya-design-system.git#v1.3.5"
+npm install "git+https://github.com/ibaifernandez/aglaya-design-system.git#v1.3.6"
 ```
 
 Sustituye el tag por el último publicado — `npx aglaya-tokens-version` te dice
