@@ -4,11 +4,11 @@ This module is the SOVEREIGN CORE of the brand MCP. It has ZERO third-party
 dependencies (stdlib only) and holds ZERO hardcoded brand values: every token,
 rule, vocabulary term and logo path is read LIVE from the canonical files in the
 design-system folder each time it is requested. Change `colors_and_type.css`,
-`README.md` or `assets/` and the answers change with no code edit.
+`docs/BRAND-RULES.md` or `assets/` and the answers change with no code edit.
 
 Canonical files (resolved relative to the repo root = this file's grandparent):
   - colors_and_type.css : design tokens (the single source of truth)
-  - README.md           : voice rules, protected vocabulary, forbidden patterns,
+  - docs/BRAND-RULES.md : voice rules, protected vocabulary, forbidden patterns,
                           and the hard non-negotiables
   - assets/             : canonical logo SVG/PNG
 
@@ -28,7 +28,10 @@ from typing import Optional
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 CSS_FILE = REPO_ROOT / "colors_and_type.css"
-README_FILE = REPO_ROOT / "README.md"
+# Las reglas de marca (voz y no-negociables). Vivían en el README, y lo sacaron
+# de ahí para que la portada pública del repo se lea en un solo idioma: el
+# canon está en castellano a propósito y el MCP lo lee por su título exacto.
+RULES_FILE = REPO_ROOT / "docs" / "BRAND-RULES.md"
 ASSETS_DIR = REPO_ROOT / "assets"
 PRODUCTS_FILE = REPO_ROOT / "products" / "products.json"
 COMPONENTS_FILE = REPO_ROOT / "components" / "components.json"
@@ -133,7 +136,7 @@ def list_tokens(category: Optional[str] = None) -> dict:
 
 
 # ────────────────────────────────────────────────────────────────────────────
-# VOICE  (read live from README.md)
+# VOICE  (read live from docs/BRAND-RULES.md)
 # ────────────────────────────────────────────────────────────────────────────
 
 
@@ -199,10 +202,10 @@ _VETO_TRIGGER = re.compile(
 
 
 def _signature_terms() -> list[dict]:
-    """Protected vocabulary from the README's '### Signature terms' tables (one
+    """Protected vocabulary from docs/BRAND-RULES.md '### Signature terms' tables (one
     per language), with the forbidden words each term REPLACES parsed live from
     its cells."""
-    md = _read(README_FILE)
+    md = _read(RULES_FILE)
     terms = []
     for lang, heading in _TERM_SECTIONS:
         for term_cell, usage_cell in _table_rows(_section(md, heading)):
@@ -243,8 +246,8 @@ def _signature_terms() -> list[dict]:
 
 
 def _forbidden_phrases() -> list[str]:
-    """Quoted forbidden phrases from README '### Forbidden patterns'."""
-    md = _read(README_FILE)
+    """Quoted forbidden phrases from docs/BRAND-RULES.md '### Forbidden patterns'."""
+    md = _read(RULES_FILE)
     block = _section(md, "Forbidden patterns")
     phrases = []
     for bullet in _bullets(block):
@@ -256,8 +259,8 @@ def _forbidden_phrases() -> list[str]:
 
 
 def get_voice_rules() -> dict:
-    """Structured voice rules read live from README '## Content Fundamentals'."""
-    md = _read(README_FILE)
+    """Structured voice rules read live from docs/BRAND-RULES.md '## Content Fundamentals'."""
+    md = _read(RULES_FILE)
     sig = _signature_terms()
     return {
         "voice": _strip_md(_section(md, "Voice")),
@@ -462,7 +465,7 @@ def is_allowed_word(term: str) -> dict:
                 "term": t,
                 "allowed": False,
                 "protected": False,
-                "note": "forbidden pattern — README '### Forbidden patterns' "
+                "note": "forbidden pattern — docs/BRAND-RULES.md '### Forbidden patterns' "
                         "says what to write instead",
             }
     return {
@@ -722,7 +725,7 @@ def get_component(cid: str) -> dict:
 
 
 # ────────────────────────────────────────────────────────────────────────────
-# NON-NEGOTIABLES  (read live from README.md)
+# NON-NEGOTIABLES  (read live from docs/BRAND-RULES.md)
 # ────────────────────────────────────────────────────────────────────────────
 #
 # Vivían en un `SKILL.md` con frontmatter de skill invocable que NO estaba
@@ -733,7 +736,7 @@ def get_component(cid: str) -> dict:
 # propio orden de lectura del repo ya decía que estaban.
 
 
-# scope -> the exact README.md heading it maps to. Kept HERE (not in the caller)
+# scope -> the exact docs/BRAND-RULES.md heading it maps to. Kept HERE (not in the caller)
 # so the em-dash heading string lives in one place and callers pass a plain word.
 _NONNEG_HEADINGS = {
     "master": "Non-negotiables",
@@ -746,7 +749,7 @@ _NONNEG_SCOPE_ALIASES = {
 
 
 def get_nonnegotiables(scope: Optional[str] = None) -> dict:
-    """The hard brand rules, read live from README.md.
+    """The hard brand rules, read live from docs/BRAND-RULES.md.
 
     scope: 'master' (default) -> the rigid marca-madre rules from
     '## Non-negotiables'. 'product' -> the product-surface rules from
@@ -759,6 +762,6 @@ def get_nonnegotiables(scope: Optional[str] = None) -> dict:
         raise BrandError(
             f"unknown scope '{scope}'. Use 'master' (default) or 'product'."
         )
-    md = _read(README_FILE)
+    md = _read(RULES_FILE)
     block = _section(md, _NONNEG_HEADINGS[resolved])
-    return {"source": "README.md", "scope": resolved, "rules": _bullets(block)}
+    return {"source": "docs/BRAND-RULES.md", "scope": resolved, "rules": _bullets(block)}
