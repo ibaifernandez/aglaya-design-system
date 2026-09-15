@@ -101,6 +101,52 @@ def _es_error(payload) -> bool:
     return isinstance(payload, str) and '"error"' in payload
 
 
+def titulos_del_canon() -> list[str]:
+    """Todo título que `brand.py` busca en el canon tiene que traer contenido.
+
+    Por qué existe. Las comprobaciones de contenido de `main` cubrían tres
+    títulos —las dos tablas de vocabulario, `Shape` y `Final check`— y había
+    once. Renombrar `## Non-negotiables` dejaba al MCP sirviendo CERO
+    no-negociables a la flota y este archivo salía con exit 0. Igual con
+    `Forbidden patterns`, `Voice`, `Evidence`, `Pronouns`, `Casing` y el bloque
+    de producto. La cabecera de `docs/BRAND-RULES.md` prometía que el selftest
+    lo cazaba; en siete de once, no.
+
+    La lista NO se teclea aquí: se lee de `brand.py`, que es quien busca los
+    títulos. Una lista a mano se queda corta el día que el servidor lea un
+    título más, y ese sería justo el que nadie vigila.
+    """
+    import re
+    sys.path.insert(0, str(HERE))
+    import brand
+
+    fuente = (HERE / "brand.py").read_text(encoding="utf-8")
+    literales = re.findall(r'_section\(md,\s*"([^"]+)"\)', fuente)
+    titulos = sorted(
+        set(literales)
+        | {t for _, t in brand._TERM_SECTIONS}
+        | set(brand._NONNEG_HEADINGS.values())
+    )
+
+    fallos = []
+    # Un verde por no haber encontrado nada que comprobar sería el peor verde:
+    # si la derivación se rompe, esto tiene que fallar, no aprobar en vacío.
+    if not literales or len(titulos) < 3:
+        return [f"no pude derivar los títulos del canon desde brand.py ({titulos})"]
+
+    canon = brand._read(brand.RULES_FILE)
+    rel = brand.RULES_FILE.relative_to(brand.REPO_ROOT)
+    vacios = [t for t in titulos if not brand._section(canon, t)]
+    for t in vacios:
+        fallos.append(
+            f"el título {t!r} no trae contenido en {rel} — ¿se renombró o se "
+            "borró? El MCP lo serviría vacío a toda la flota"
+        )
+    print(f"== [canon] {len(titulos) - len(vacios)}/{len(titulos)} títulos con contenido "
+          f"en {rel} (derivados de brand.py) ==\n")
+    return fallos
+
+
 async def main() -> int:
     params = StdioServerParameters(
         command=sys.executable, args=[str(HERE / "server.py")]
@@ -149,7 +195,7 @@ async def main() -> int:
                 )
                 print()
 
-            # El vocabulario protegido vive en DOS tablas del README, una por
+            # El vocabulario protegido vive en DOS tablas de docs/BRAND-RULES.md, una por
             # idioma, y su ENCABEZADO es el único anclaje. Renómbralo, o
             # cámbiale la raya larga por un guion, y el castellano desaparece
             # del MCP sin que nada se ponga rojo: get_voice_rules responde
@@ -162,7 +208,7 @@ async def main() -> int:
                 if esperado not in idiomas:
                     fallos.append(
                         f"get_voice_rules no sirve vocabulario '{esperado}' — "
-                        "¿se renombró su tabla en el README?"
+                        "¿se renombró su tabla en docs/BRAND-RULES.md?"
                     )
 
             # Mismo agujero, otras dos secciones: `shape` y `final_check` se
@@ -174,13 +220,13 @@ async def main() -> int:
             if not reglas.get("shape"):
                 fallos.append(
                     "get_voice_rules no sirve 'shape' — ¿se renombró "
-                    "'### Shape' en el README?"
+                    "'### Shape' en docs/BRAND-RULES.md?"
                 )
             final = reglas.get("final_check") or ""
             if not final:
                 fallos.append(
                     "get_voice_rules no sirve 'final_check' — ¿se renombró "
-                    "'### Final check' en el README?"
+                    "'### Final check' en docs/BRAND-RULES.md?"
                 )
             # Y que la sección llegue no basta: lo que la cierra es la regla,
             # no las preguntas. Un parser que pasara a leer solo los items
@@ -205,7 +251,7 @@ async def main() -> int:
             #
             # Las formas se leen de lo que sirve el propio servidor, no de una
             # lista tecleada aquí: una lista a mano se queda corta el día que
-            # alguien añada un par al README, y este archivo daría verde.
+            # alguien añada un par a docs/BRAND-RULES.md, y este archivo daría verde.
             formas = 0
             for entrada in vocab:
                 if not isinstance(entrada, dict):
@@ -227,6 +273,8 @@ async def main() -> int:
                 f"== [contenido] vocabulario servido en: {sorted(i for i in idiomas if i)}"
                 f" · {formas} forma(s) consultable(s) ==\n"
             )
+
+    fallos += titulos_del_canon()
 
     print("─" * 60)
     if fallos:
