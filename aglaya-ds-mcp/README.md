@@ -11,7 +11,7 @@ of truth.
   the only external package, and only the transport (`server.py`) touches it.
   This is **not** graphify's generic `--mcp`.
 - **Zero-copy, single source.** Every tool **reads the canonical files live**
-  on each call. Change `colors_and_type.css` / `README.md` /
+  on each call. Change `colors_and_type.css` / `docs/BRAND-RULES.md` /
   `assets/` / `products/products.json` / `components/components.json` and the
   answers change with no code edit. (Proven by `zerocopy_test.py`.)
 - **Separate layer.** The design-system folder remains runtime-free and
@@ -26,9 +26,9 @@ of truth.
 | `list_tokens(category?)` | `colors_and_type.css` | all tokens, or one category — call it with no argument to see which categories exist |
 | `get_voice_rules()` | `docs/BRAND-RULES.md` | tone, pronouns, casing, protected vocabulary, forbidden patterns |
 | `check_voice(text)` | `docs/BRAND-RULES.md` | off-brand findings + AGLAYA-correct replacement |
-| `is_allowed_word(term)` | `README.md` | allowed? + correct term if off-brand |
+| `is_allowed_word(term)` | `docs/BRAND-RULES.md` | allowed? + correct term if off-brand |
 | `get_logo(variant, fmt?)` | `assets/` | canonical file path for a logo variant |
-| `get_nonnegotiables(scope?)` | `README.md` | the hard brand rules — `scope='master'` (default) or `'product'` |
+| `get_nonnegotiables(scope?)` | `docs/BRAND-RULES.md` | the hard brand rules — `scope='master'` (default) or `'product'` |
 | `list_products()` | `products/products.json` | the product roster: id, name, accent, functions, sacred flag |
 | `get_product(id)` | `products/products.json` | one product's full identity record |
 | `get_accent(id)` | `products.json` + `colors_and_type.css` | a product's accent, cross-checked against its live CSS token |
@@ -113,7 +113,7 @@ get_logo(<variant>, <fmt?>)
       "exists": <bool>}
 
 get_nonnegotiables(<scope?>)
-  -> {"source": "README.md", "scope": "master" | "product", "rules": [<rule>, ...]}
+  -> {"source": "docs/BRAND-RULES.md", "scope": "master" | "product", "rules": [<rule>, ...]}
 
 list_products()
   -> {"model": "monolithic", "voice": "single", "count": <n>,
@@ -136,7 +136,7 @@ get_component(<id>)
 
 > `check_voice` is a heuristic, not a parser. It matches surface patterns, so it
 > can miss a violation or flag a clean phrase. Safety net, never final judge — if
-> a finding looks wrong, read the rule it cites in `README.md` and decide there.
+> a finding looks wrong, read the rule it cites in `docs/BRAND-RULES.md` and decide there.
 > No worked example of a known weakness lives here on purpose: the last one
 > named a false positive that had been fixed for weeks, and a doc that teaches
 > distrust of a working tool is worse than one that says nothing.
