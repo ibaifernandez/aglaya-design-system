@@ -51,7 +51,7 @@
   --color-corporate-green:  #9fc243;  /* Eyebrow / code / annotation color */
 
   /* ---------- PRODUCT ACCENTS ----------
-     Per-product identity colors. Two-level doctrine — README.md
+     Per-product identity colors. Two-level doctrine — docs/BRAND-RULES.md
      '## Non-negotiables — producto', served live by the MCP as
      get_nonnegotiables(scope="product"): the MASTER brand stays 3-color-rigid;
      these accents are first-class ONLY on their own product's surface (allowed

@@ -24,8 +24,8 @@ of truth.
 | ---- | ----- | ------- |
 | `get_token(name)` | `colors_and_type.css` | value of one token (`color-brand` or `--color-brand`) |
 | `list_tokens(category?)` | `colors_and_type.css` | all tokens, or one category — call it with no argument to see which categories exist |
-| `get_voice_rules()` | `README.md` | tone, pronouns, casing, protected vocabulary, forbidden patterns |
-| `check_voice(text)` | `README.md` | off-brand findings + AGLAYA-correct replacement |
+| `get_voice_rules()` | `docs/BRAND-RULES.md` | tone, pronouns, casing, protected vocabulary, forbidden patterns |
+| `check_voice(text)` | `docs/BRAND-RULES.md` | off-brand findings + AGLAYA-correct replacement |
 | `is_allowed_word(term)` | `README.md` | allowed? + correct term if off-brand |
 | `get_logo(variant, fmt?)` | `assets/` | canonical file path for a logo variant |
 | `get_nonnegotiables(scope?)` | `README.md` | the hard brand rules — `scope='master'` (default) or `'product'` |
@@ -34,7 +34,7 @@ of truth.
 | `get_accent(id)` | `products.json` + `colors_and_type.css` | a product's accent, cross-checked against its live CSS token |
 | `get_glyph(id, variant?)` | `products/` | path to a product glyph SVG (`white`/`accent`/`fill`) |
 | `get_lockup(id, layout?)` | `products/` | path to a product lockup SVG (`lockup`/`stacked`/…) |
-| `get_product_voice(id)` | `README.md` | the single AGLAYA voice (per-product voice is intentional absence) |
+| `get_product_voice(id)` | `docs/BRAND-RULES.md` | the single AGLAYA voice (per-product voice is intentional absence) |
 | `list_components()` | `components/components.json` | UI component roster + variants |
 | `get_component(id)` | `components/components.json` | one component's spec (token refs + structural values + states) |
 
@@ -98,7 +98,7 @@ list_tokens("motion")
 get_voice_rules()
   -> {"voice": <tone paragraph>,
       "protected_vocabulary": [{"term": <t>, "usage": <rule>}, ...],
-      "forbidden_patterns": [<pattern>, ...]}                  # all live from README.md
+      "forbidden_patterns": [<pattern>, ...]}                  # all live from docs/BRAND-RULES.md
 
 check_voice(<text>)
   -> {"clean": <bool>, "findings": [

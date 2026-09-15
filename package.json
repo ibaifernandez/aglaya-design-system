@@ -36,7 +36,8 @@
     "scripts/",
     "dist/",
     "LICENSE",
-    "docs/PACKAGE.md"
+    "docs/PACKAGE.md",
+    "docs/BRAND-RULES.md"
   ],
   "scripts": {
     "build": "node scripts/build-tokens.mjs",
