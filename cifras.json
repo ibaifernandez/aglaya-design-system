@@ -1,0 +1,34 @@
+{
+  "contrato": "cifras-publicas",
+  "version": 1,
+  "nave": "aglaya-design-system",
+  "commit": "41af9075742320f3bc7691d1cca9733ce448bf1f",
+  "medido_el": "2026-09-16T15:03:10Z",
+  "ejecucion": "https://github.com/ibaifernandez/aglaya-design-system/actions/runs/35112613371",
+  "cifras": {
+    "version": {
+      "valor": "1.3.6",
+      "fuente": "package.json"
+    },
+    "tokens": {
+      "valor": 87,
+      "unidad": "tokens",
+      "fuente": "node scripts/build-tokens.mjs (job `paquete` de esta ejecución)"
+    },
+    "herramientas_mcp": {
+      "valor": 15,
+      "unidad": "herramientas",
+      "fuente": "aglaya-ds-mcp/selftest.py: lista TOOLS REGISTERED del servidor (job `mcp`)"
+    },
+    "llamadas_autotest": {
+      "valor": 32,
+      "unidad": "llamadas",
+      "fuente": "aglaya-ds-mcp/selftest.py: línea SELFTEST: N llamadas (job `mcp`)"
+    },
+    "sabotajes_autotest": {
+      "valor": 3,
+      "unidad": "sabotajes",
+      "fuente": "aglaya-ds-mcp/test_selftest.sh: líneas «ROJO  ok» (job `mcp`)"
+    }
+  }
+}
