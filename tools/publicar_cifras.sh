@@ -16,6 +16,8 @@
 #   herramientas_mcp    ← lista TOOLS REGISTERED de `selftest.py` (job `mcp`):
 #                         el registro vivo del servidor, no un conteo tecleado
 #   llamadas_autotest   ← línea `SELFTEST: N llamadas` de `selftest.py` (job `mcp`)
+#   llamadas_contestan  ← cabeceras `== [ok] ` de `selftest.py`: las que DEBÍAN contestar
+#   llamadas_niegan     ← cabeceras `== [rechaza] ` de `selftest.py`: las que DEBÍAN negarse
 #   sabotajes_autotest  ← líneas `ROJO  ok` de `test_selftest.sh` (job `mcp`)
 #
 # LA REGLA QUE MÁS IMPORTA: una cifra que llega 0, vacía o sin forma NO SE
@@ -25,12 +27,18 @@
 # forma, el conteo da 0 — y un 0 publicado sería exactamente la cifra podrida
 # con fecha que este contrato existe para impedir.
 #
+# Y el desglose tiene que CUADRAR: contestan + niegan = llamadas. Si no suma, el
+# lector está contando cabeceras que no son llamadas o se le escapan algunas, y
+# no se publica. `llamadas_niegan` en 0 tampoco: un selftest sin rechazos es el
+# que pasaría un servidor que nunca falla.
+#
 # CÓMO NO DEJA LA RAMA A MEDIAS. Todo se valida ANTES de tocar git. Después se
 # arma un commit completo en un directorio aparte y se publica con UN push, sin
 # forzar: si otra ejecución publicó en medio, este falla en vez de pisarla.
 #
 # Entradas (entorno):
-#   CIFRAS_TOKENS, CIFRAS_HERRAMIENTAS, CIFRAS_LLAMADAS, CIFRAS_SABOTAJES
+#   CIFRAS_TOKENS, CIFRAS_HERRAMIENTAS, CIFRAS_LLAMADAS, CIFRAS_CONTESTAN,
+#   CIFRAS_NIEGAN, CIFRAS_SABOTAJES
 #   CIFRAS_COMMIT      sha completo de main que se midió
 #   CIFRAS_EJECUCION   URL de la ejecución de CI
 # Costuras para la batería (sin red):
@@ -58,6 +66,8 @@ version="$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['vers
 tokens="${CIFRAS_TOKENS:-}"
 herramientas="${CIFRAS_HERRAMIENTAS:-}"
 llamadas="${CIFRAS_LLAMADAS:-}"
+contestan="${CIFRAS_CONTESTAN:-}"
+niegan="${CIFRAS_NIEGAN:-}"
 sabotajes="${CIFRAS_SABOTAJES:-}"
 commit="${CIFRAS_COMMIT:-}"
 ejecucion="${CIFRAS_EJECUCION:-}"
@@ -71,6 +81,10 @@ positivo() { [[ "$2" =~ ^[0-9]+$ ]] && [ "$2" -gt 0 ] \
 positivo tokens             "$tokens"
 positivo herramientas_mcp   "$herramientas"
 positivo llamadas_autotest  "$llamadas"
+positivo llamadas_contestan "$contestan"
+positivo llamadas_niegan    "$niegan"
+[ $((contestan + niegan)) -eq "$llamadas" ] \
+  || falla 1 "el desglose no cuadra: contestan $contestan + niegan $niegan ≠ llamadas $llamadas"
 positivo sabotajes_autotest "$sabotajes"
 [[ "$commit" =~ ^[0-9a-f]{40}$ ]]                    || falla 1 "commit «$commit» no es un sha completo"
 [[ "$ejecucion" =~ ^https://[^[:space:]]+$ ]]         || falla 1 "ejecucion «$ejecucion» no es una URL"
@@ -82,7 +96,7 @@ TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
 VERSION="$version" TOKENS="$tokens" HERRAMIENTAS="$herramientas" LLAMADAS="$llamadas" \
-SABOTAJES="$sabotajes" COMMIT="$commit" EJECUCION="$ejecucion" MEDIDO="$medido_el" \
+CONTESTAN="$contestan" NIEGAN="$niegan" SABOTAJES="$sabotajes" COMMIT="$commit" EJECUCION="$ejecucion" MEDIDO="$medido_el" \
 python3 - > "$TMP/cifras.json" <<'PY' || falla 2 "no pude construir cifras.json"
 import json, os
 e = os.environ
@@ -101,6 +115,10 @@ print(json.dumps({
                              "fuente": "aglaya-ds-mcp/selftest.py: lista TOOLS REGISTERED del servidor (job `mcp`)"},
         "llamadas_autotest": {"valor": int(e["LLAMADAS"]), "unidad": "llamadas",
                               "fuente": "aglaya-ds-mcp/selftest.py: línea SELFTEST: N llamadas (job `mcp`)"},
+        "llamadas_contestan": {"valor": int(e["CONTESTAN"]), "unidad": "llamadas",
+                               "fuente": "aglaya-ds-mcp/selftest.py: cabeceras «== [ok] », las que deben contestar (job `mcp`)"},
+        "llamadas_niegan": {"valor": int(e["NIEGAN"]), "unidad": "llamadas",
+                            "fuente": "aglaya-ds-mcp/selftest.py: cabeceras «== [rechaza] », las que deben negarse (job `mcp`)"},
         "sabotajes_autotest": {"valor": int(e["SABOTAJES"]), "unidad": "sabotajes",
                                "fuente": "aglaya-ds-mcp/test_selftest.sh: líneas «ROJO  ok» (job `mcp`)"},
     },

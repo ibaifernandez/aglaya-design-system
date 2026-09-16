@@ -8,6 +8,8 @@ lector saca de ella el número.
     medir_cifras.py tokens       <salida de node scripts/build-tokens.mjs>
     medir_cifras.py herramientas <salida de aglaya-ds-mcp/selftest.py>
     medir_cifras.py llamadas     <salida de aglaya-ds-mcp/selftest.py>
+    medir_cifras.py contestan    <salida de aglaya-ds-mcp/selftest.py>
+    medir_cifras.py niegan       <salida de aglaya-ds-mcp/selftest.py>
     medir_cifras.py sabotajes    <salida de aglaya-ds-mcp/test_selftest.sh>
 
 TOLERANTE A PROPÓSITO: si no encuentra lo que busca imprime VACÍO y sale 0. Un
@@ -50,6 +52,25 @@ def llamadas(texto: str) -> str:
     return m[-1] if m else ""
 
 
+def _veredictos(texto: str, marca: str) -> str:
+    # Cada llamada del selftest imprime `== [ok] …` si debía contestar y
+    # `== [rechaza] …` si debía negarse. Las cabeceras `[contenido]` y `[canon]`
+    # también empiezan por `== [`, pero NO son llamadas: por eso se exige la
+    # marca exacta seguida de espacio. Y solo cuenta un selftest en VERDE: en un
+    # rojo aparecen `[FALLO]` y la cifra no vale.
+    if not llamadas(texto):
+        return ""
+    return str(len(re.findall(rf"^== \[{marca}\] ", texto, re.M)))
+
+
+def contestan(texto: str) -> str:
+    return _veredictos(texto, "ok")
+
+
+def niegan(texto: str) -> str:
+    return _veredictos(texto, "rechaza")
+
+
 def sabotajes(texto: str) -> str:
     # test_selftest.sh no imprime un total, así que se cuentan las líneas. Y
     # solo si la batería terminó sin escapes: con un escape, la cifra no vale.
@@ -59,7 +80,8 @@ def sabotajes(texto: str) -> str:
 
 
 LECTORES = {"tokens": tokens, "herramientas": herramientas,
-            "llamadas": llamadas, "sabotajes": sabotajes}
+            "llamadas": llamadas, "contestan": contestan, "niegan": niegan,
+            "sabotajes": sabotajes}
 
 
 def main(argv: list[str]) -> int:

@@ -70,6 +70,8 @@ jobs:
     outputs:
       herramientas: ${{ steps.medir.outputs.herramientas }}
       llamadas: ${{ steps.medir.outputs.llamadas }}
+      contestan: ${{ steps.medir.outputs.contestan }}
+      niegan: ${{ steps.medir.outputs.niegan }}
       sabotajes: ${{ steps.medir.outputs.sabotajes }}
     steps:
       - uses: actions/checkout@v5
@@ -99,7 +101,7 @@ jobs:
       - name: medir cifras públicas del MCP (de la salida de arriba)
         id: medir
         run: |
-          for k in herramientas llamadas; do
+          for k in herramientas llamadas contestan niegan; do
             echo "$k=$(python3 tools/medir_cifras.py $k "$RUNNER_TEMP/selftest.log")" >> "$GITHUB_OUTPUT"
           done
           echo "sabotajes=$(python3 tools/medir_cifras.py sabotajes "$RUNNER_TEMP/test_selftest.log")" >> "$GITHUB_OUTPUT"
@@ -209,6 +211,8 @@ jobs:
           CIFRAS_TOKENS: ${{ needs.paquete.outputs.tokens }}
           CIFRAS_HERRAMIENTAS: ${{ needs.mcp.outputs.herramientas }}
           CIFRAS_LLAMADAS: ${{ needs.mcp.outputs.llamadas }}
+          CIFRAS_CONTESTAN: ${{ needs.mcp.outputs.contestan }}
+          CIFRAS_NIEGAN: ${{ needs.mcp.outputs.niegan }}
           CIFRAS_SABOTAJES: ${{ needs.mcp.outputs.sabotajes }}
           CIFRAS_COMMIT: ${{ github.sha }}
           CIFRAS_EJECUCION: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

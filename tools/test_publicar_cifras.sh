@@ -4,7 +4,8 @@
 # Lo que tiene que garantizar el contrato `cifras-publicas`, y lo que se rompe
 # en silencio si no se prueba:
 #   · una cifra 0, vacía o sin forma NO se publica (sale rojo y no escribe nada)
-#   · lo publicado es JSON válido, con las cinco claves y sus tipos
+#   · lo publicado es JSON válido, con las siete claves y sus tipos
+#   · el desglose de llamadas cuadra: contestan + niegan = llamadas, o no se publica
 #   · la primera publicación crea una rama HUÉRFANA que solo lleva cifras.json
 #   · la segunda añade un commit encima, SIN forzar
 #   · un intento rechazado deja la rama exactamente como estaba
@@ -25,7 +26,7 @@ escapo() { echo "  ESCAPÓ   $1"; fallos=$((fallos+1)); }
 
 SHA="0123456789abcdef0123456789abcdef01234567"
 URL="https://github.com/ibaifernandez/aglaya-design-system/actions/runs/1"
-base() { env CIFRAS_TOKENS=87 CIFRAS_HERRAMIENTAS=15 CIFRAS_LLAMADAS=32 CIFRAS_SABOTAJES=3 \
+base() { env CIFRAS_TOKENS=87 CIFRAS_HERRAMIENTAS=15 CIFRAS_LLAMADAS=32 CIFRAS_CONTESTAN=23 CIFRAS_NIEGAN=9 CIFRAS_SABOTAJES=3 \
              CIFRAS_COMMIT="$SHA" CIFRAS_EJECUCION="$URL" CIFRAS_MEDIDO_EL=2026-09-16T10:00:00Z "$@"; }
 
 echo "== 1. con cifras sanas se construye un JSON válido =="
@@ -35,15 +36,19 @@ import json, sys
 d = json.load(open(sys.argv[1]))
 assert d["contrato"] == "cifras-publicas" and d["version"] == 1 and d["nave"] == "aglaya-design-system"
 c = d["cifras"]
-assert set(c) == {"version", "tokens", "herramientas_mcp", "llamadas_autotest", "sabotajes_autotest"}, set(c)
+assert set(c) == {"version", "tokens", "herramientas_mcp", "llamadas_autotest",
+                  "llamadas_contestan", "llamadas_niegan", "sabotajes_autotest"}, set(c)
+assert c["llamadas_contestan"]["valor"] + c["llamadas_niegan"]["valor"] == c["llamadas_autotest"]["valor"]
 assert isinstance(c["version"]["valor"], str)
-for k in ("tokens", "herramientas_mcp", "llamadas_autotest", "sabotajes_autotest"):
+for k in ("tokens", "herramientas_mcp", "llamadas_autotest", "llamadas_contestan", "llamadas_niegan", "sabotajes_autotest"):
     assert isinstance(c[k]["valor"], int) and c[k]["valor"] > 0 and c[k]["fuente"] and c[k]["unidad"], k
 PY
-then ok "JSON válido, cinco claves, enteros > 0 con fuente y unidad"; else escapo "el JSON sano no salió bien (rc=$rc)"; fi
+then ok "JSON válido, siete claves, enteros > 0 con fuente y unidad, desglose que cuadra"; else escapo "el JSON sano no salió bien (rc=$rc)"; fi
 
 echo "== 2. una cifra mala no se publica, ni deja fichero =="
 for caso in "CIFRAS_TOKENS=0" "CIFRAS_HERRAMIENTAS=0" "CIFRAS_LLAMADAS=0" "CIFRAS_SABOTAJES=0" \
+            "CIFRAS_NIEGAN=0" "CIFRAS_CONTESTAN=0" "CIFRAS_NIEGAN=" \
+            "CIFRAS_CONTESTAN=22" "CIFRAS_NIEGAN=11" "CIFRAS_LLAMADAS=34" \
             "CIFRAS_TOKENS=" "CIFRAS_SABOTAJES=" "CIFRAS_LLAMADAS=treinta" \
             "CIFRAS_COMMIT=abc123" "CIFRAS_EJECUCION=no-es-url" "CIFRAS_MEDIDO_EL=ayer"; do
   rm -f "$T/malo.json"
@@ -84,9 +89,15 @@ done
 printf '  ROJO  ok   uno\n  ESCAPÓ     dos\nSABOTAJE: 1 escape(s)\n' > "$T/escape.log"
 v="$(python3 "$LEE" sabotajes "$T/escape.log")"
 [ -z "$v" ] && ok "sabotajes con un escape no se cuenta" || escapo "sabotajes contó «$v» con un escape"
+printf '== [ok] a ==\n== [contenido] x ==\n== [canon] 11/11 ==\n== [rechaza] b ==\n== [rechaza] c ==\nSELFTEST: 3 llamadas, todas con el veredicto esperado ✓\n' > "$T/verde.log"
+v="$(python3 "$LEE" contestan "$T/verde.log")/$(python3 "$LEE" niegan "$T/verde.log")"
+[ "$v" = "1/2" ] && ok "contestan/niegan no cuentan [contenido] ni [canon]" || escapo "contestan/niegan contó «$v» (esperaba 1/2)"
 printf 'SELFTEST: 2 fallo(s)\n' > "$T/rojo.log"
 v="$(python3 "$LEE" llamadas "$T/rojo.log")"
 [ -z "$v" ] && ok "llamadas de un selftest en rojo no se cuenta" || escapo "llamadas contó «$v» en rojo"
+printf '== [ok] a ==\n== [FALLO] b ==\n== [rechaza] c ==\nSELFTEST: 1 fallo(s)\n' > "$T/rojo2.log"
+v="$(python3 "$LEE" contestan "$T/rojo2.log")$(python3 "$LEE" niegan "$T/rojo2.log")"
+[ -z "$v" ] && ok "contestan/niegan de un selftest en rojo no se cuentan" || escapo "contestan/niegan contó «$v» en rojo"
 
 echo
 if [ "$fallos" -eq 0 ]; then echo "CIFRAS: todo mordió (0 escapes)"; else echo "CIFRAS: $fallos escape(s)"; fi
