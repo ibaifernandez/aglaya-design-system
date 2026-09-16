@@ -23,7 +23,7 @@ nunca las teclee. **Dueño del formato:** `aglaya-orchestrator`. Se pide con
 | Solo desde una ejecución **en verde** sobre `main`, en un job que depende de los que miden | `if: push && refs/heads/main` · `needs: [docs, mcp, paquete]` |
 | Cada valor sale de la salida de un comando **de esa misma ejecución** | los jobs `paquete` y `mcp` guardan la salida de sus comandos y [`tools/medir_cifras.py`](../../tools/medir_cifras.py) saca el número, que viaja como *output* del job |
 | `contents: write` solo en ese job | `permissions: contents: read` arriba del workflow; `write` declarado solo en `publicar-cifras` |
-| Solo cifras que la nave acepta publicar | las cinco de abajo. Nada de clientes ni de datos de terceros: son cifras del propio sistema |
+| Solo cifras que la nave acepta publicar | las siete de abajo. Nada de clientes ni de datos de terceros: son cifras del propio sistema |
 
 ### Las cifras que publica
 
@@ -33,13 +33,17 @@ nunca las teclee. **Dueño del formato:** `aglaya-orchestrator`. Se pide con
 | `tokens` | salida de `node scripts/build-tokens.mjs` |
 | `herramientas_mcp` | lista `TOOLS REGISTERED` que imprime `aglaya-ds-mcp/selftest.py`: el registro vivo del servidor |
 | `llamadas_autotest` | línea `SELFTEST: N llamadas` de `aglaya-ds-mcp/selftest.py`, que solo existe si el selftest sale en verde |
+| `llamadas_contestan` | cabeceras `== [ok] ` de `aglaya-ds-mcp/selftest.py`: las llamadas que deben contestar. No cuenta `[contenido]` ni `[canon]` |
+| `llamadas_niegan` | cabeceras `== [rechaza] ` de `aglaya-ds-mcp/selftest.py`: las que deben negarse. Si sale 0 no se publica, porque un selftest sin rechazos lo pasaría un servidor que nunca falla |
 | `sabotajes_autotest` | líneas `ROJO  ok` de `aglaya-ds-mcp/test_selftest.sh`, contadas solo si la batería termina sin escapes |
 
 ### Una medición mala no se convierte en cifra publicada
 
 `tools/publicar_cifras.sh` **no publica** un recuento que llegue en 0, vacío o
 sin forma, ni un `commit`, una `ejecucion` o un `medido_el` mal formados: sale en
-rojo y no escribe nada. La rama se queda con la última medición buena. Lo fija
+rojo y no escribe nada. Tampoco publica si el desglose no cuadra
+(`llamadas_contestan + llamadas_niegan ≠ llamadas_autotest`). La rama se queda con
+la última medición buena. Lo fija
 [`tools/test_publicar_cifras.sh`](../../tools/test_publicar_cifras.sh), que corre
 en el job `docs` y publica contra un repositorio desnudo para comprobar tres
 cosas: que la primera publicación crea una rama huérfana, que la segunda se
