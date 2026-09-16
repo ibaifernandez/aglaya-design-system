@@ -1,6 +1,6 @@
 name: guardianes
 
-# Tres guardianes y el MCP. Cada guardián corre DOS veces: el guardián y su
+# Cuatro guardianes y el MCP. Cada guardián corre DOS veces: el guardián y su
 # batería de sabotaje. La batería no es ceremonia — un guardián puede correr y
 # dar verde estando roto, y así se cazaron un patrón ciego a las MAYÚSCULAS,
 # un precio que se colaba y un selftest que no podía ponerse rojo.
@@ -15,6 +15,13 @@ name: guardianes
 # entera averiguarlo.
 
 on: [push, pull_request]
+
+# Lectura para todos por defecto. El único job que escribe es `publicar-cifras`,
+# y lo declara él solo (contrato `cifras-publicas` v1). Hoy el repositorio ya
+# tiene «read» como permiso por defecto, pero eso es configuración que cambia
+# fuera de este fichero: declararlo aquí es lo que lo garantiza.
+permissions:
+  contents: read
 
 jobs:
   docs:
@@ -46,6 +53,9 @@ jobs:
       - name: ¿el paquete muerde?
         run: bash tools/test_guard_paquete.sh
 
+      - name: ¿la publicación de cifras muerde? (cifra 0 o vacía no se publica)
+        run: bash tools/test_publicar_cifras.sh
+
       - name: las baterías sabotean CLAUDE.md — que lo devuelvan como estaba
         run: |
           sucio="$(git status --porcelain)"
@@ -54,6 +64,13 @@ jobs:
   mcp:
     name: MCP aglaya-ds
     runs-on: ubuntu-latest
+    # Tres cifras públicas salen de la salida de ESTE job, en esta ejecución.
+    # Si el selftest o su batería salen rojos, el job cae antes de medir y no
+    # hay cifra; `publicar-cifras` no publica sin ellas.
+    outputs:
+      herramientas: ${{ steps.medir.outputs.herramientas }}
+      llamadas: ${{ steps.medir.outputs.llamadas }}
+      sabotajes: ${{ steps.medir.outputs.sabotajes }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
@@ -69,11 +86,24 @@ jobs:
 
       - name: selftest — todas las tools, con veredicto por llamada
         working-directory: aglaya-ds-mcp
-        run: ./.venv/bin/python selftest.py
+        run: |
+          set -o pipefail
+          ./.venv/bin/python selftest.py | tee "$RUNNER_TEMP/selftest.log"
 
       - name: ¿el selftest muerde?
         working-directory: aglaya-ds-mcp
-        run: bash test_selftest.sh
+        run: |
+          set -o pipefail
+          bash test_selftest.sh | tee "$RUNNER_TEMP/test_selftest.log"
+
+      - name: medir cifras públicas del MCP (de la salida de arriba)
+        id: medir
+        run: |
+          for k in herramientas llamadas; do
+            echo "$k=$(python3 tools/medir_cifras.py $k "$RUNNER_TEMP/selftest.log")" >> "$GITHUB_OUTPUT"
+          done
+          echo "sabotajes=$(python3 tools/medir_cifras.py sabotajes "$RUNNER_TEMP/test_selftest.log")" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
 
       - name: zero-copy — el token se lee en vivo, no se cachea
         working-directory: aglaya-ds-mcp
@@ -97,6 +127,9 @@ jobs:
   paquete:
     name: paquete @aglaya/design-tokens
     runs-on: ubuntu-latest
+    # El recuento de tokens de ESTE build, para `publicar-cifras`.
+    outputs:
+      tokens: ${{ steps.medir.outputs.tokens }}
     steps:
       # fetch-depth 0: la prueba de mutación clona ESTE repo a un temporal, y
       # de un clon superficial no se puede clonar en todas las versiones de git.
@@ -118,7 +151,13 @@ jobs:
           node-version: '20'
 
       - name: el build deriva los tokens del CSS canónico
-        run: node scripts/build-tokens.mjs
+        run: |
+          set -o pipefail
+          node scripts/build-tokens.mjs | tee "$RUNNER_TEMP/build-tokens.log"
+
+      - name: medir cifra pública (tokens, de la salida del build)
+        id: medir
+        run: echo "tokens=$(python3 tools/medir_cifras.py tokens "$RUNNER_TEMP/build-tokens.log")" | tee -a "$GITHUB_OUTPUT"
 
       - name: dist/ es derivado — ignorado, y el build no ensucia el árbol
         # `check-ignore` falla si alguien saca dist/ del .gitignore; el segundo
@@ -139,3 +178,38 @@ jobs:
         run: |
           sucio="$(git status --porcelain)"
           test -z "$sucio" || { echo "El árbol quedó sucio:"; echo "$sucio"; exit 1; }
+
+  publicar-cifras:
+    # Contrato `cifras-publicas` v1 (formato del capitán: `contrato("cifras-publicas")`
+    # del MCP `aglaya-atlas`). Deja `cifras.json` en la rama huérfana `cifras`.
+    #
+    # Solo en un push a main y solo si TODOS los jobs que miden salieron en
+    # verde: `needs` hace que un rojo en cualquiera de ellos lo salte, y entonces
+    # queda en la rama la última medición verde, con su fecha, que sigue siendo
+    # verdad. Es el único job con permiso de escritura.
+    #
+    # Empujar a `cifras` no vuelve a disparar este workflow: la rama huérfana no
+    # contiene `.github/`, y GitHub no lanza ejecuciones por pushes hechos con el
+    # GITHUB_TOKEN. Lo segundo no se da por bueno por leerlo: se midió con la
+    # primera publicación real, y el resultado está en la tarjeta `4b5faa4c`.
+    name: publicar cifras (cifras-publicas v1)
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [docs, mcp, paquete]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: publicar-cifras
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: publicar en la rama `cifras`
+        env:
+          CIFRAS_TOKENS: ${{ needs.paquete.outputs.tokens }}
+          CIFRAS_HERRAMIENTAS: ${{ needs.mcp.outputs.herramientas }}
+          CIFRAS_LLAMADAS: ${{ needs.mcp.outputs.llamadas }}
+          CIFRAS_SABOTAJES: ${{ needs.mcp.outputs.sabotajes }}
+          CIFRAS_COMMIT: ${{ github.sha }}
+          CIFRAS_EJECUCION: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: bash tools/publicar_cifras.sh
