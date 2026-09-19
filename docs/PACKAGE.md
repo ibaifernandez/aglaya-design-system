@@ -197,16 +197,44 @@ esta por construcción — por eso es la única que decide.
 El cambio de token va primero; la publicación es lo que lo hace existir para
 los demás.
 
-```bash
-npm version patch --no-git-tag-version
-```
-
-```bash
-git commit -am "release: tokens v1.1.1" && git tag v1.1.1 && git push origin main --tags
-```
-
 Antes de publicar, la nave entera tiene que estar verde — los guardianes, sus
 baterías, el MCP y la prueba de mutación (ver [`../CLAUDE.md`](../CLAUDE.md)).
+
+**A `main` no se sube nada directamente, tampoco una release.** `main` solo
+acepta cambios por PR. Por eso la release va en dos pasos, y el tag se pone
+**después** del merge, sobre el commit que ya está en `origin/main`.
+
+**1 · Una rama y su PR** con el cambio de versión. En el mismo commit se suben
+las dos instrucciones de instalación (la de [`../README.md`](../README.md) y la
+de «Cómo se depende» en este fichero) al tag nuevo: si no, salen viejas en cuanto se
+publica.
+
+```bash
+git switch -c release/v1.1.1 origin/main
+npm version patch --no-git-tag-version
+git commit -am "release: tokens v1.1.1"
+git push -u origin release/v1.1.1
+gh pr create --fill
+```
+
+**2 · Después del merge, el tag.** Se busca el commit que puso esa versión en
+`package.json` y se etiqueta ese. Así funciona igual con los tres métodos de
+merge (merge, squash y rebase): el commit de merge no lleva la versión si el PR
+entró por squash o por rebase, porque entonces no existe.
+
+```bash
+git fetch origin
+git tag v1.1.1 "$(git log -1 --format=%H -S'"version": "1.1.1"' origin/main -- package.json)"
+git push origin v1.1.1
+```
+
+Antes de dar la release por publicada, estas dos comprobaciones tienen que
+pasar:
+
+```bash
+git show v1.1.1:package.json | grep '"version": "1.1.1"'
+git merge-base --is-ancestor v1.1.1 origin/main && echo "en main"
+```
 
 ---
 
