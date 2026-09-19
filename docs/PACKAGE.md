@@ -222,18 +222,23 @@ gh pr create --fill
 merge (merge, squash y rebase): el commit de merge no lleva la versión si el PR
 entró por squash o por rebase, porque entonces no existe.
 
+Se toma el **más antiguo** de los commits que tocan esa versión (`--reverse` y
+`head -1`), no el último: si ya entró otra release detrás, el último es el que
+**quitó** la versión, y el tag saldría con el `package.json` equivocado.
+
 ```bash
 git fetch origin
-git tag v1.1.1 "$(git log -1 --format=%H -S'"version": "1.1.1"' origin/main -- package.json)"
-git push origin v1.1.1
+git tag v1.1.1 "$(git log --reverse --format=%H -S'"version": "1.1.1"' origin/main -- package.json | head -1)"
 ```
 
-Antes de dar la release por publicada, estas dos comprobaciones tienen que
-pasar:
+**Las comprobaciones van antes del push, porque el push es lo que publica.** Si
+una falla, no se sube nada: se borra el tag local con `git tag -d v1.1.1` y se
+mira por qué.
 
 ```bash
-git show v1.1.1:package.json | grep '"version": "1.1.1"'
-git merge-base --is-ancestor v1.1.1 origin/main && echo "en main"
+git show v1.1.1:package.json | grep -q '"version": "1.1.1"' \
+  && git merge-base --is-ancestor v1.1.1 origin/main \
+  && git push origin v1.1.1
 ```
 
 ---
