@@ -5,14 +5,14 @@
       "id": "button",
       "name": "Button",
       "specimen": "preview/components-buttons.html",
-      "tokens": ["--color-brand", "--color-text", "--color-border-strong", "--color-muted", "--font-display", "--font-mono"],
+      "tokens": ["--color-brand", "--fg-on-brand", "--color-text", "--color-border-strong", "--color-muted", "--font-display", "--font-mono"],
       "variants": [
         {
           "name": "primary",
           "use": "La ÚNICA llamada a la acción fuerte. Roja.",
           "spec": {
             "background": "var(--color-brand)",
-            "color": "var(--color-text)",
+            "color": "var(--fg-on-brand)",
             "border": "none",
             "padding": "18px 22px",
             "font": "var(--font-display) 900 13px",

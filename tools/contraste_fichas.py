@@ -194,11 +194,26 @@ def _parejas() -> list:
     return parejas
 
 
-def _es_token_no_cromatico(valor: str, tokens: dict) -> bool:
-    """¿Es un token que existe y cuyo valor no es un color? Una tipografía o un
-    tracking viajan en la misma cadena que los colores y no forman pareja."""
+def _es_token_no_cromatico(valor: str, tokens: dict, visto=()) -> bool:
+    """¿Es un token que existe y cuyo valor NO INTENTA ser un color? Una
+    tipografía o un tracking viajan en la misma cadena que los colores y no
+    forman pareja.
+
+    Lo que decide es la FORMA del valor final, no que este guion sepa leerlo.
+    Antes bastaba con que `_rgb` fallara: un token de color escrito en una forma
+    desconocida —`--color-muted: hsl(0 0% 71%)`— se daba por «no cromático» y su
+    pareja desaparecía sin aviso. Medido por el vigilante sobre `bbee786`: de 22
+    parejas se pasaba a 19, con 0 avisos y el mismo `rc`. Ahora ese caso se
+    imprime, que es lo único que un instrumento no puede dejar de hacer.
+    """
     m = re.fullmatch(r"var\((--[\w-]+)\)", valor.strip())
-    return bool(m) and m.group(1) in tokens and _rgb(tokens[m.group(1)], tokens) is None
+    if not m or m.group(1) not in tokens or m.group(1) in visto:
+        return False
+    destino = tokens[m.group(1)].strip()
+    if re.fullmatch(r"var\(--[\w-]+\)", destino):
+        return _es_token_no_cromatico(destino, tokens, visto + (m.group(1),))
+    # Huele a color y no se deja leer -> hay una pareja sin medir, y se dice.
+    return not _INICIO_COLOR.search(destino)
 
 
 def main() -> int:
