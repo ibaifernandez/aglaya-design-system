@@ -122,22 +122,47 @@ def _contraste(tinta: tuple, fondo: tuple) -> float:
     return (a + 0.05) / (b + 0.05)
 
 
-_COLOR_SUELTO = re.compile(
-    r"var\(--[\w-]+\)|color-mix\(in srgb,[^)]*\)[^,)]*\)?|#[0-9a-fA-F]{3,6}"
-    r"|rgba?\([^)]*\)"
+# Toda la familia de funciones de color de CSS, no solo las que hoy usa el
+# mapa de fichas. Con `var|color-mix|rgba?` a secas, un `hsl()` escrito en una
+# ficha no se extraía siquiera — y entonces no había pareja que reportar como
+# sin medir: desaparecía un paso antes que `badge/brand`. Las funciones que no
+# son de color (`translate()`, `clamp()`) quedan fuera a propósito: la prosa de
+# las specs las nombra y no forman pareja.
+_INICIO_COLOR = re.compile(
+    r"\b(?:var|rgba?|hsla?|hwb|lab|lch|oklab|oklch|color|color-mix)\(|#[0-9a-fA-F]{3,6}"
 )
 
 
 def _colores_en(texto: str) -> list:
-    """Los colores que nombra una cadena de spec, también dentro de la prosa."""
+    """Los colores que nombra una cadena de spec, también dentro de la prosa.
+
+    Los paréntesis se cuentan, no se recortan con una regex. Una regex de
+    `[^)]*` corta `color-mix(in srgb, var(--color-brand) 10%, transparent)` en
+    el primer `)` —el del `var()`— y devuelve un valor que ya no resuelve. Eso
+    hizo desaparecer la ficha `badge/brand` de la salida entera: ni ok ni BAJO,
+    y en claro daba 1.72.
+    """
     fuera = []
-    for bruto in _COLOR_SUELTO.findall(texto):
-        # color-mix se recorta mal con una regex simple cuando anida var():
-        # se rescata el paréntesis que falta.
-        if bruto.startswith("color-mix") and bruto.count("(") > bruto.count(")"):
-            bruto += ")" * (bruto.count("(") - bruto.count(")"))
-        fuera.append(bruto)
-    return fuera
+    i = 0
+    while True:
+        m = _INICIO_COLOR.search(texto, i)
+        if not m:
+            return fuera
+        if m.group().startswith("#"):
+            fuera.append(m.group())
+            i = m.end()
+            continue
+        profundidad, j = 0, m.end() - 1
+        while j < len(texto):
+            if texto[j] == "(":
+                profundidad += 1
+            elif texto[j] == ")":
+                profundidad -= 1
+                if profundidad == 0:
+                    break
+            j += 1
+        fuera.append(texto[m.start() : j + 1])
+        i = j + 1
 
 
 def _parejas() -> list:
@@ -169,16 +194,42 @@ def _parejas() -> list:
     return parejas
 
 
+def _es_token_no_cromatico(valor: str, tokens: dict) -> bool:
+    """¿Es un token que existe y cuyo valor no es un color? Una tipografía o un
+    tracking viajan en la misma cadena que los colores y no forman pareja."""
+    m = re.fullmatch(r"var\((--[\w-]+)\)", valor.strip())
+    return bool(m) and m.group(1) in tokens and _rgb(tokens[m.group(1)], tokens) is None
+
+
 def main() -> int:
     todas = "--todas" in sys.argv
     modos = _bloques()
     bajos = []
+    sin_resolver = []
     print(f"suelo: {SUELO} · valores leídos en vivo de {CSS.relative_to(RAIZ)}\n")
     for ruta, tinta, fondo in _parejas():
         for modo, tokens in modos.items():
             cf = _rgb(fondo, tokens)
             ct = _rgb(tinta, tokens)
             if not cf or not ct:
+                # Nada se salta callando. Un valor que no resuelve es de una de
+                # dos clases, y solo una es inocente:
+                #   · un token que EXISTE y no es color (`var(--font-mono)`,
+                #     `var(--tracking-widest)`) — la spec los nombra al lado de
+                #     los colores y no hay pareja que medir;
+                #   · cualquier otra cosa — una forma que este guion no
+                #     entiende, y entonces hay una pareja SIN MEDIR.
+                # La segunda se imprime y hace que esto no salga con 0. Antes se
+                # hacía `continue` con las dos, y así desapareció `badge/brand`,
+                # que en claro daba 1.72.
+                for valor, papel in ((tinta, "tinta"), (fondo, "fondo")):
+                    if _rgb(valor, tokens):
+                        continue
+                    if _es_token_no_cromatico(valor, tokens):
+                        continue
+                    sin_resolver.append((ruta, modo, papel, valor))
+                    print(f"  SIN RESOLVER {modo:6}  {ruta}")
+                    print(f"         {papel} {valor} — este guion no sabe leer esa forma")
                 continue
             # El fondo con alfa se compone sobre el lienzo del modo.
             lienzo = _rgb("var(--color-bg)", tokens)
@@ -194,8 +245,11 @@ def main() -> int:
                 print(f"  {'ok ' if ok else 'BAJO'} {modo:6} {r:6.2f}  {ruta}")
                 print(f"         tinta {tinta} sobre fondo {fondo}")
     print()
+    if sin_resolver:
+        print(f"FICHAS: {len(sin_resolver)} valor(es) sin medir — hay parejas sin comprobar")
     if bajos:
         print(f"FICHAS: {len(bajos)} pareja(s) por debajo de {SUELO}")
+    if bajos or sin_resolver:
         return 1
     print(f"FICHAS: todas las parejas llegan a {SUELO} en los dos modos")
     return 0

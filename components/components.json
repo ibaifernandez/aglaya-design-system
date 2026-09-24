@@ -104,7 +104,7 @@
       "tokens": ["--color-corporate-green", "--color-brand", "--color-text", "--font-mono"],
       "variants": [
         {"name": "default", "spec": {"font": "var(--font-mono) 10px", "letter-spacing": "0.25em", "text-transform": "uppercase", "padding": "6px 12px", "border": "1px solid var(--color-border)", "background": "var(--color-surface-2)", "color": "var(--color-muted)"}},
-        {"name": "brand", "spec": {"color": "var(--color-corporate-green)", "border": "1px solid color-mix(in srgb, var(--color-brand) 20%, transparent)", "background": "color-mix(in srgb, var(--color-brand) 10%, transparent)"}},
+        {"name": "brand", "spec": {"color": "var(--fg-eyebrow)", "border": "1px solid color-mix(in srgb, var(--color-brand) 20%, transparent)", "background": "color-mix(in srgb, var(--color-brand) 10%, transparent)"}},
         {"name": "codetag", "spec": {"background": "var(--color-text)", "color": "var(--color-bg)", "border": "transparent", "letter-spacing": "0.18em"}},
         {"name": "ok", "spec": {"color": "var(--fg-eyebrow)", "border": "1px solid color-mix(in srgb, var(--color-corporate-green) 30%, transparent)"}},
         {"name": "pill", "spec": {"font": "var(--font-mono) 9px", "letter-spacing": "var(--tracking-widest)", "adornment": "punto 6px var(--color-brand) que pulsa (opacity 0.4↔1, 1.5s)"}}
