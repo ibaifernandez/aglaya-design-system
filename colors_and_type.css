@@ -112,8 +112,33 @@
   --fg-1: var(--color-text);
   --fg-2: var(--color-muted);
   --fg-3: var(--color-faint);
-  --fg-brand: var(--color-brand);
+  /* TINTA de marca — NO es --color-brand. El canon lo dice desde que se midió:
+     el rojo sobre los cinco fondos oscuros va de 4,4985 a 4,1062, y ese primer
+     número es el que se venía citando redondeado como «4,50». Como tinta, en
+     oscuro es --color-brand-light (6,55–5,98) y en claro --color-brand-dark
+     (6,99–6,08). El alias apuntaba al rojo prohibido, y por eso el kit tuvo que
+     inventarse el suyo: una nave rehaciendo una decisión que ya estaba tomada.
+     El movimiento de firma («línea 1 blanca, línea 2 en rojo») NO pasa por aquí:
+     es display, y usa --color-brand directamente. */
+  --fg-brand: var(--color-brand-light);
   --fg-eyebrow: var(--color-corporate-green);
+
+  /* TINTA SOBRE RELLENO. No giran con el modo, y eso es lo que las hace útiles:
+     el relleno es el mismo color en los dos modos, así que la tinta que se lee
+     encima también. Un token que gire aquí pinta negro sobre el rojo en claro,
+     que es justo lo que el canon prohíbe.
+
+       --fg-on-brand   sobre --color-brand:  blanco 4,5501 · negro 4,4985
+       --fg-on-accent  sobre los ocho acentos de producto: el negro pasa en
+                       siete (5,91–10,27) y el blanco no (1,99–3,46).
+                       La excepción es el carmín de ConsentFlow (#ae214d):
+                       blanco 6,5512 · negro 3,1244, y por eso lleva
+                       --fg-on-brand. Está nombrada en docs/BRAND-RULES.md.
+
+     Los dos valen lo mismo en los dos bloques a propósito: se declaran en los
+     dos para que quien lea el bloque claro no crea que falta uno. */
+  --fg-on-brand:  #fcfcfc;
+  --fg-on-accent: #000000;
 
   /* ---------- TYPE FAMILIES ---------- */
   --font-display: 'Outfit', 'Inter', sans-serif;
@@ -283,6 +308,17 @@
 
      EN OSCURO NO CAMBIA NADA: allí `--fg-eyebrow` sigue siendo el verde. */
   --fg-eyebrow:             var(--color-muted);
+
+  /* ---------- TINTA DE MARCA ---------- */
+  /* El rojo como tinta, en este modo, es el oscuro: 6,99–6,08 sobre los cinco
+     fondos claros. El claro daría 3,21–2,79 y no llega. */
+  --fg-brand:               var(--color-brand-dark);
+
+  /* Las tintas sobre relleno NO giran: el relleno es el mismo color en los dos
+     modos. Se repiten aquí con su valor, no para cambiarlo, sino para que no
+     parezca que este bloque se olvidó de ellas. */
+  --fg-on-brand:            #fcfcfc;
+  --fg-on-accent:           #000000;
 }
 
 /* El filete verde que sustituye a la letra verde. Va en `.t-eyebrow`, que es

@@ -45,8 +45,11 @@
      y lo «arregla» a --brand-ink, cambia un no-negociable de la marca por una
      regla que no le aplica.
 
-     Cero valores aquí: dos alias del canon, uno por modo. */
-  --brand-ink:   var(--color-brand-light);
+     Cero valores aquí, y ya ni siquiera un alias propio: el canon publica
+     --fg-brand con exactamente esta regla, así que el kit lo cita. Este alias
+     nació porque --fg-brand valía el rojo prohibido; arreglado el canon, el kit
+     deja de tener tinta propia. */
+  --brand-ink:   var(--fg-brand);
 
   /* El filete del eyebrow. En oscuro es rojo, como siempre. En claro pasa a
      verde, porque ahí el verde deja de ser la letra y se convierte en la marca
@@ -56,7 +59,7 @@
 }
 
 [data-theme="light"] {
-  --brand-ink:    var(--color-brand-dark);
+  /* --brand-ink NO se repite aquí: --fg-brand ya gira solo en el canon. */
   --eyebrow-rule: var(--color-corporate-green);
 }
 

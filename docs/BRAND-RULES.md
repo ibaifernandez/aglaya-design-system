@@ -31,7 +31,7 @@ Reglas de la **marca madre AGLAYA** (aglaya.biz, materiales de agencia, redes). 
 - **En modo claro un acento no es tinta.** Es relleno, filete, punto o marca. Los acentos se eligieron para brillar sobre negro; sobre los fondos claros no llegan al suelo de texto. Cuando el acento es relleno, lo que tiene que pasar el umbral es el texto que va encima, no el acento.
 - **`--color-brand` no es tinta de TEXTO CORRIDO en ningún modo.** Como tinta, en claro es `--color-brand-dark` y en oscuro `--color-brand-light`. Pregunta los valores a `get_token`.
 - **El titular de firma es la excepción, y no es una excepción arbitraria:** «línea 1 blanca, línea 2 en `--color-brand`» sigue vigente porque es **display**, y el suelo del texto grande es más bajo que el del corrido. Medido en los dos modos y sobre los cinco fondos de cada uno: el rojo va de 4,06 a 4,67, por encima de ese suelo en todos. **La regla de arriba y el movimiento de firma no se contradicen: hablan de tamaños distintos.**
-- **Sobre relleno `--color-brand`, la tinta es blanca.** La negra no llega: da el mismo contraste que el rojo sobre negro, y ése no alcanza el suelo de texto.
+- **Sobre relleno `--color-brand`, la tinta es blanca.** La negra no llega: da el mismo contraste que el rojo sobre negro, y ése no alcanza el suelo de texto. La tinta tiene nombre: **`--fg-on-brand`**, y no gira con el modo — el relleno es el mismo rojo en los dos, así que la tinta también. Medido: blanca 4,5501 · negra 4,4985.
 - **En modo claro el eyebrow lleva el verde como marca, no como letra:** filete `--color-corporate-green` delante, texto en `--fg-eyebrow`, que en ese modo es el gris del canon. En oscuro sigue siendo letra verde con filete rojo. El verde no tiene pareja oscura en la paleta —a diferencia del rojo— y conservarlo como tinta habría costado un color de marca nuevo y permanente.
 - **Corrección, no reescritura:** estas dos reglas decían antes que el rojo solo fallaba como tinta **en modo claro**, y que en negro «pasaba raspando». Era falso, y el motivo importa más que el dato: el contraste del rojo sobre negro se venía citando como `4,50` —el umbral exacto— y es el **redondeo a dos decimales** de un valor que queda por debajo. Un número que se redondea justo al límite hay que mirarlo sin redondear.
 
@@ -44,7 +44,21 @@ Una **superficie de producto** (KANBAN DESK, CRM, OUTREACH, ConsentFlow, LEGAL R
 - El rojo madre (`--color-brand`) no se reemplaza: coexiste con el acento en la superficie del producto. El acento identifica al producto; el rojo sigue siendo el rojo de la marca.
 - Todo lo demás sigue vigente sin cambios: radius 0, sin emoji / Lucide / Heroicons, tipografía (Outfit Black / Inter / Space Mono), headline de dos líneas, voz seca e imperativa.
 - La marca madre NO adopta acentos de producto: fuera de una superficie de producto, siguen los 3 colores y nada más.
-- **En modo claro el acento de producto tampoco es tinta**, y eso no le quita ser de primera clase: sigue libre en CTA y sin tope de proporción **como relleno, filete, punto o marca**. Lo que cambia es que el texto no se pinta con él. Ninguno de los acentos de producto llega al suelo de texto sobre los fondos claros — se eligieron para brillar sobre negro.
+- **En modo claro el acento de producto tampoco es tinta**, y eso no le quita ser de primera clase: sigue libre en CTA y sin tope de proporción **como relleno, filete, punto o marca**. Lo que cambia es que el texto no se pinta con él.
+- **Sobre relleno de acento de producto, la tinta es negra: `--fg-on-accent`.** Tampoco gira con el modo, por lo mismo que la de marca. **Una sola excepción, y es el carmín de ConsentFlow (`--product-consent-flow-accent`), que lleva `--fg-on-brand`.** Medido acento a acento, blanca contra negra:
+
+  | Relleno | `--fg-on-brand` (blanca) | `--fg-on-accent` (negra) |
+  |---|---|---|
+  | `--product-kanban-desk-accent` | 3,3061 | **6,1912** |
+  | `--product-crm-accent` | 3,2543 | **6,2899** |
+  | `--product-outreach-accent` | 2,4698 | **8,2878** |
+  | `--product-consent-flow-accent` | **6,5512** | 3,1244 |
+  | `--product-consent-flow-accent-2` | 3,4608 | **5,9145** |
+  | `--product-legal-reg-tech-accent` | 2,2164 | **9,2351** |
+  | `--product-orchestrator-accent` | 2,6117 | **7,8373** |
+  | `--product-design-system-accent` | 1,9927 | **10,2719** |
+
+- **Corrección, no reescritura:** esta sección decía antes que «ninguno de los acentos de producto llega al suelo de texto sobre los fondos claros». Es falso, y del revés. Medido el carmín de ConsentFlow **como tinta** sobre los cinco fondos de cada modo: en claro da 6,7212 · 6,4952 · 6,2738 · 6,0572 · 5,8453 —pasa los cinco—, y en oscuro 3,1244 · 3,0504 · 2,9797 · 2,9104 · 2,8520 —no llega en ninguno—. Lo que sigue en pie es la regla: **el acento no se usa como tinta**, ni en claro ni en oscuro. Lo que era falso es el motivo que se daba, y un motivo falso se cae el día que alguien lo comprueba.
 
 ---
 

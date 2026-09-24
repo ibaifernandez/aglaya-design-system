@@ -56,6 +56,14 @@ jobs:
       - name: ¿la publicación de cifras muerde? (cifra 0 o vacía no se publica)
         run: bash tools/test_publicar_cifras.sh
 
+      # Las fichas que el MCP sirve a la flota, medidas en LOS DOS MODOS contra
+      # los valores del CSS en vivo. Entra aquí ahora y no antes porque hasta
+      # esta tarjeta salía en rojo por una pareja que necesitaba un token que no
+      # existía. Falla también si hay un valor que no sabe leer: una puerta que
+      # se queda ciega sin decirlo es peor que no tener puerta.
+      - name: fichas de componente — contraste en claro y en oscuro
+        run: python3 tools/contraste_fichas.py
+
       - name: las baterías sabotean CLAUDE.md — que lo devuelvan como estaba
         run: |
           sucio="$(git status --porcelain)"
