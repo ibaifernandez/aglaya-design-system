@@ -1,0 +1,19 @@
+escala del canon: 7 valores · fuera de escala: 40 usos, 18 valores distintos, en 22 ficheros
+    7 x    0.18em  components/components.json:108, preview/colors-semantic.html:15, preview/colors-semantic.html:20, preview/components-badges.html:16, ui_kits/website/Footer.jsx:151, ui_kits/website/Footer.jsx:152, ui_kits/website/Header.jsx:34
+    5 x   -0.01em  preview/brand-iconography.html:9, preview/components-comparison.html:24, preview/spacing-borders.html:18, preview/type-inter-weights.html:20, ui_kits/website/AntiClient.jsx:29
+    4 x    0.25em  components/components.json:106, preview/colors-brand.html:20, preview/components-badges.html:11, preview/spacing-radii-shadows.html:11
+    4 x    0.15em  preview/colors-brand.html:25, preview/spacing-scale.html:12, preview/type-spacemono-weights.html:20, preview/type-spacemono-weights.html:34
+    4 x   -0.03em  preview/type-display.html:12, preview/type-headline-signature.html:9, ui_kits/website/Primitives.jsx:110, ui_kits/website/SystemsGrid.jsx:76
+    3 x    0.35em  preview/type-inter-weights.html:11, preview/type-outfit-weights.html:11, preview/type-spacemono-weights.html:11
+    2 x    0.04em  colors_and_type.css:313, ui_kits/website/Footer.jsx:65
+    1 x      .4em  preview/brand-product-identity.html:3
+    1 x     .16em  preview/brand-product-identity.html:7
+    1 x    0.22em  preview/colors-surface.html:20
+    1 x    0.12em  preview/colors-surface.html:25
+    1 x    0.32em  preview/components-comparison.html:25
+    1 x   -0.05em  ui_kits/website/AntiClient.jsx:71
+    1 x    0.28em  ui_kits/website/Footer.jsx:76
+    1 x    0.38em  ui_kits/website/Footer.jsx:131
+    1 x    0.24em  ui_kits/website/Footer.jsx:148
+    1 x  -0.025em  ui_kits/website/SystemsGrid.jsx:38
+    1 x    0.08em  ui_kits/website/SystemsGrid.jsx:59

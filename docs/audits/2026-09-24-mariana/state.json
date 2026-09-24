@@ -1,0 +1,64 @@
+{
+  "audit_id": "aglaya-design-system-2026-09-24-mariana",
+  "started_at": "2026-09-24T17:33:17Z",
+  "mode": "report",
+  "mode_reason": "Sin --mode. El skill declara 'report' como defecto, y la regla de Ibai es ver opciones antes de que se toque obra.",
+  "repo_commit_at_start": "17d95cc60d265f3be7c099a18e4504f54af1267b",
+  "cooldown_verdict": "FRESH",
+  "tooling_survey": {
+    "present": [
+      "npm",
+      "node",
+      "pip-audit"
+    ],
+    "absent": [
+      "axe",
+      "radon",
+      "eslint",
+      "semgrep",
+      "trivy",
+      "lighthouse"
+    ]
+  },
+  "stack_archetype": "cli-library",
+  "stack_notes": "Paquete npm de tokens (@aglaya/design-tokens) + servidor MCP local por stdio (Python) + paginas de muestra estaticas (preview/, ui_kits/). Sin base de datos, sin autenticacion, sin despliegue web.",
+  "fase_completed": [
+    "0",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ],
+  "fase_in_progress": null,
+  "findings_count_by_fase": {
+    "A": 27,
+    "B": 10,
+    "C": 4,
+    "D": 11
+  },
+  "critical_mitigated": [],
+  "auto_ok": true,
+  "auto_ok_reason": "Ibai (2026-09-24): encadenar todas las fases sin pedir OK; al terminar decide qué se hace con el informe. Sin commit.",
+  "paused_at": "2026-09-24T17:57:25Z",
+  "paused_reason": "Ibai pide pausar para reiniciar Claude.",
+  "evidence_dir": "evidencia/",
+  "commit": "NO — al terminar decide Ibai qué se hace con el informe",
+  "finished_at": "2026-09-24T21:03:20Z",
+  "totals": {
+    "findings": 52,
+    "proven": 45,
+    "unverifiable": 7,
+    "high": 6,
+    "medium": 17,
+    "low": 21,
+    "info": 1,
+    "priorities": {
+      "P0": 1,
+      "P1": 6,
+      "P2": 16,
+      "P3": 22
+    }
+  },
+  "repo_commit_at_end": "17d95cc60d265f3be7c099a18e4504f54af1267b"
+}

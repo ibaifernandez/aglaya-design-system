@@ -1,0 +1,33 @@
+# Mutación B-08 — un '}' dentro de un comentario de :root (clon limpio de 17d95cc, en un temporal; el repo no se toca)
+mutación aplicada y comprobada con cmp
+## MCP (brand.py)
+list_tokens() -> 1 tokens
+## paquete (node scripts/build-tokens.mjs)
+Error: el modo 'light' declara tokens que no existen en :root: --color-bg, --color-bg-deep, --color-surface, --color-surface-2, --color-surface-3, --color-text, --color-muted, --color-faint, --color-accent, --color-border, --color-border-strong, --fg-eyebrow
+exit=
+## guardián (python3 tools/guard_valores.py)
+guard-valores: 8 valor(es) de marca fuera de su casa
+
+  products/products.json:16  [manifiesto-desincronizado]  → 'kanban-desk: --product-kanban-desk-accent'
+      el acento declara un token que no existe en colors_and_type.css
+(CSS restaurado)
+
+# Mutación B-09 — renombrar la URL de una fuente en el CSS
+[Inter-Regular.otf -> Inter-Regularr.otf] aplicada (cmp)
+  guard_punteros exit=0
+  guard_paquete exit=0
+  guard_valores exit=0
+  guard_huella exit=0
+[SpaceMono-Regular.ttf -> SpaceMono-Regularr.ttf] aplicada (cmp)
+  guard_punteros exit=1
+  guard_paquete exit=0
+  guard_valores exit=0
+  guard_huella exit=0
+(CSS restaurado)
+
+## (medido aparte) exit de build-tokens.mjs con la mutación B-08: 1 — el CSS quedó restaurado
+
+# B-07 — python3 sobre la ruta de un script de hook que no existe
+python3: can't open file '/private/tmp/no-existe-hook-permiso.py': [Errno 2] No such file or directory
+exit=
+exit=2  (medido sin tubería: el shell de esta sesión es zsh, donde ${PIPESTATUS[0]} no existe y la línea anterior salió vacía)
