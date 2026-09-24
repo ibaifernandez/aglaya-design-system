@@ -1,0 +1,35 @@
+== components.json — specs de color, en los dos modos ==
+oscuro button.primary texto (--color-text) sobre --color-brand [:14-15]        4.5501  umbral 4.5: PASA
+oscuro button.ghost texto sobre su fondo, pagina --color-bg [:30-31]          17.0509  umbral 4.5: PASA
+oscuro input texto rgba(.5) sobre su fondo, pagina --color-bg [:86,:90]        5.3169  umbral 4.5: PASA
+oscuro input borde rgba(.35) contra --color-bg (1.4.11) [:87]                  3.0096  umbral 3: PASA
+oscuro input label --color-corporate-green 9px [:92]                          10.2719  umbral 4.5: PASA
+oscuro badge.default texto rgba(.6) sobre rgba(.05) [:106]                     7.2751  umbral 4.5: PASA
+oscuro badge.brand texto green sobre brand 10% [:107]                          9.8809  umbral 4.5: PASA
+oscuro badge.codetag #000 sobre var(--color-text) [:108]                      20.4689  umbral 4.5: PASA
+oscuro badge.ok texto green [:109]                                            10.2719  umbral 4.5: PASA
+oscuro card.body --color-muted sobre --color-surface-2 [:65,:71]               9.9481  umbral 4.5: PASA
+oscuro button.link --color-muted [:47]                                        10.2917  umbral 4.5: PASA
+
+claro  button.primary texto (--color-text) sobre --color-brand [:14-15]        4.4985  umbral 4.5: FALLA
+claro  button.ghost texto sobre su fondo, pagina --color-bg [:30-31]          21.0000  umbral 4.5: PASA
+claro  input texto rgba(.5) sobre su fondo, pagina --color-bg [:86,:90]        1.0000  umbral 4.5: FALLA
+claro  input borde rgba(.35) contra --color-bg (1.4.11) [:87]                  1.0000  umbral 3: FALLA
+claro  input label --color-corporate-green 9px [:92]                           2.0444  umbral 4.5: FALLA
+claro  badge.default texto rgba(.6) sobre rgba(.05) [:106]                     1.0000  umbral 4.5: FALLA
+claro  badge.brand texto green sobre brand 10% [:107]                          1.7168  umbral 4.5: FALLA
+claro  badge.codetag #000 sobre var(--color-text) [:108]                       1.0000  umbral 4.5: FALLA
+claro  badge.ok texto green [:109]                                             2.0444  umbral 4.5: FALLA
+claro  card.body --color-muted sobre --color-surface-2 [:65,:71]               8.7721  umbral 4.5: PASA
+claro  button.link --color-muted [:47]                                         9.2329  umbral 4.5: PASA
+
+== ui_kits/website — composiciones con opacidad o tinta roja (oscuro, el modo del kit) ==
+oscuro Header nav :hover --brand 13px/700 sobre negro [Header.jsx:29]          4.4985  umbral 4.5: FALLA
+oscuro Problem eyebrow 9px opacity .7 sobre --surface-2 [Problem.jsx:26]       5.1147  umbral 4.5: PASA
+oscuro AntiClient eyebrow 9px opacity .55 sobre --surface-1 [AntiClient.jsx:23]  3.5476  umbral 4.5: FALLA
+oscuro AntiClient OPERATIONAL_INTEGRITY 10px opacity .6 [AntiClient.jsx:92-94]  4.0384  umbral 4.5: FALLA
+oscuro Problem REF_ID 10px en contenedor opacity .5 [Problem.jsx:72-75]        5.1727  umbral 4.5: PASA
+oscuro SystemCard etiqueta --brand-ink 10px sobre --surface-2 [SystemsGrid.jsx:30]  6.0991  umbral 4.5: PASA
+oscuro ExclusionCard cuerpo --color-faint 15px sobre --surface-1 [AntiClient.jsx:33]  4.7105  umbral 4.5: PASA
+oscuro Footer PRIMARY_CHANNELS --color-faint sobre bg-deep+2% [Footer.jsx:131-134]  4.7179  umbral 4.5: PASA
+oscuro Footer input placeholder? (no: color --color-text) — referencia         4.7440  umbral 4.5: PASA

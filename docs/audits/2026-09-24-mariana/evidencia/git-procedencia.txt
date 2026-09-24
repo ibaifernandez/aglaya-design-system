@@ -1,0 +1,12 @@
+# git show -s d74d06e (commit en main)
+author=github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+committer=github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+date=Wed Sep 16 07:55:43 2026 -0300
+firma=N
+asunto=ci(cifras): publicar las cifras de la nave en la rama `cifras` (cifras-publicas v1)
+
+# PR que lo trajo a main
+41af907 Merge pull request #29 from ibaifernandez/agente/cifras-publicas
+
+# ¿hay más commits en main con autor bot?
+1

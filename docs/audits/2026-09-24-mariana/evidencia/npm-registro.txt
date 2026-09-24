@@ -1,0 +1,15 @@
+# npm view aglaya-tokens-version
+npm ERR! code E404
+npm ERR! 404 Not Found - GET https://registry.npmjs.org/aglaya-tokens-version - Not found
+
+# npm view @aglaya/design-tokens
+npm ERR! code E404
+npm ERR! 404 Not Found - GET https://registry.npmjs.org/@aglaya%2fdesign-tokens - Not found
+
+# el ámbito @aglaya del registro ya tiene un paquete de otra organización
+name = '@aglaya/eslint-config'
+repository.url = 'git://github.com/AglayaInnovation/chassis-frontend.git#main'
+
+# npm-exec.md (docs de npm instaladas)
+28:If any requested packages are not present in the local project dependencies, then a prompt is printed, which can be suppressed by providing either `--yes` or `--no`.
+29:When standard input is not a TTY or a CI environment is detected, `--yes` is assumed.

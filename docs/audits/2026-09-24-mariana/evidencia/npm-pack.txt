@@ -1,0 +1,3 @@
+npm pack --dry-run (clon limpio de 17d95cc): @aglaya/design-tokens 1.3.6
+tarball gz: 2930961 B | sin comprimir: 5123888 B | ficheros: 46
+fonts/: 35 ficheros, 5029499 B

@@ -1,0 +1,75 @@
+== 1. Tinta de token sobre los cinco fondos de cada modo ==
+oscuro color-text                                           min 18.6839  max 20.4689  texto4.5:PASA  grande3:PASA
+oscuro color-muted                                          min  9.8381  max 10.2917  texto4.5:PASA  grande3:PASA
+oscuro color-faint                                          min  4.6523  max  4.7471  texto4.5:PASA  grande3:PASA
+oscuro color-accent                                         min 14.7968  max 16.2105  texto4.5:PASA  grande3:PASA
+oscuro fg-brand                                             min  4.1062  max  4.4985  texto4.5:FALLA  grande3:PASA
+oscuro color-brand                                          min  4.1062  max  4.4985  texto4.5:FALLA  grande3:PASA
+oscuro color-brand-dark                                     min  2.7437  max  3.0058  texto4.5:FALLA  grande3:FALLA
+oscuro color-brand-light                                    min  5.9765  max  6.5475  texto4.5:PASA  grande3:PASA
+oscuro color-corporate-green                                min  9.3762  max 10.2719  texto4.5:PASA  grande3:PASA
+oscuro fg-eyebrow                                           min  9.3762  max 10.2719  texto4.5:PASA  grande3:PASA
+oscuro product-consent-flow-accent                          min  2.8520  max  3.1244  texto4.5:FALLA  grande3:FALLA
+oscuro product-consent-flow-accent-2                        min  5.3987  max  5.9145  texto4.5:PASA  grande3:PASA
+oscuro product-crm-accent                                   min  5.7414  max  6.2899  texto4.5:PASA  grande3:PASA
+oscuro product-design-system-accent                         min  9.3762  max 10.2719  texto4.5:PASA  grande3:PASA
+oscuro product-kanban-desk-accent                           min  5.6512  max  6.1912  texto4.5:PASA  grande3:PASA
+oscuro product-legal-reg-tech-accent                        min  8.4297  max  9.2351  texto4.5:PASA  grande3:PASA
+oscuro product-orchestrator-accent                          min  7.1538  max  7.8373  texto4.5:PASA  grande3:PASA
+oscuro product-outreach-accent                              min  7.5651  max  8.2878  texto4.5:PASA  grande3:PASA
+
+claro  color-text                                           min 18.2631  max 21.0000  texto4.5:PASA  grande3:PASA
+claro  color-muted                                          min  8.6151  max  9.2329  texto4.5:PASA  grande3:PASA
+claro  color-faint                                          min  4.9361  max  5.1251  texto4.5:PASA  grande3:PASA
+claro  color-accent                                         min 14.3348  max 16.4830  texto4.5:PASA  grande3:PASA
+claro  fg-brand                                             min  4.0598  max  4.6682  texto4.5:FALLA  grande3:PASA
+claro  color-brand                                          min  4.0598  max  4.6682  texto4.5:FALLA  grande3:PASA
+claro  color-brand-dark                                     min  6.0760  max  6.9865  texto4.5:PASA  grande3:PASA
+claro  color-brand-light                                    min  2.7893  max  3.2073  texto4.5:FALLA  grande3:FALLA
+claro  color-corporate-green                                min  1.7780  max  2.0444  texto4.5:FALLA  grande3:FALLA
+claro  fg-eyebrow                                           min  8.6151  max  9.2329  texto4.5:PASA  grande3:PASA
+claro  product-consent-flow-accent                          min  5.8453  max  6.7212  texto4.5:PASA  grande3:PASA
+claro  product-consent-flow-accent-2                        min  3.0878  max  3.5506  texto4.5:FALLA  grande3:PASA
+claro  product-crm-accent                                   min  2.9036  max  3.3387  texto4.5:FALLA  grande3:FALLA
+claro  product-design-system-accent                         min  1.7780  max  2.0444  texto4.5:FALLA  grande3:FALLA
+claro  product-kanban-desk-accent                           min  2.9499  max  3.3919  texto4.5:FALLA  grande3:FALLA
+claro  product-legal-reg-tech-accent                        min  1.9776  max  2.2739  texto4.5:FALLA  grande3:FALLA
+claro  product-orchestrator-accent                          min  2.3303  max  2.6795  texto4.5:FALLA  grande3:FALLA
+claro  product-outreach-accent                              min  2.2036  max  2.5338  texto4.5:FALLA  grande3:FALLA
+
+== 2. Tinta sobre relleno ==
+oscuro --color-text sobre relleno --color-brand              4.5501  texto4.5:PASA  grande3/no-texto3:PASA
+oscuro blanco puro sobre relleno --color-brand               4.6682  texto4.5:PASA  grande3/no-texto3:PASA
+oscuro negro puro sobre relleno --color-brand                4.4985  texto4.5:FALLA  grande3/no-texto3:PASA
+oscuro blanco puro sobre relleno --color-brand-light         3.2073  texto4.5:FALLA  grande3/no-texto3:PASA
+oscuro blanco puro sobre relleno --color-brand-dark          6.9865  texto4.5:PASA  grande3/no-texto3:PASA
+
+claro  --color-text sobre relleno --color-brand              4.4985  texto4.5:FALLA  grande3/no-texto3:PASA
+claro  blanco puro sobre relleno --color-brand               4.6682  texto4.5:PASA  grande3/no-texto3:PASA
+claro  negro puro sobre relleno --color-brand                4.4985  texto4.5:FALLA  grande3/no-texto3:PASA
+claro  blanco puro sobre relleno --color-brand-light         3.2073  texto4.5:FALLA  grande3/no-texto3:PASA
+claro  blanco puro sobre relleno --color-brand-dark          6.9865  texto4.5:PASA  grande3/no-texto3:PASA
+
+-      negro puro sobre relleno --product-consent-flow-accent  3.1244  texto4.5:FALLA  grande3/no-texto3:PASA
+-      blanco puro sobre relleno --product-consent-flow-accent  6.7212  texto4.5:PASA  grande3/no-texto3:PASA
+-      negro puro sobre relleno --product-consent-flow-accent-2  5.9145  texto4.5:PASA  grande3/no-texto3:PASA
+-      blanco puro sobre relleno --product-consent-flow-accent-2  3.5506  texto4.5:FALLA  grande3/no-texto3:PASA
+-      negro puro sobre relleno --product-crm-accent         6.2899  texto4.5:PASA  grande3/no-texto3:PASA
+-      blanco puro sobre relleno --product-crm-accent        3.3387  texto4.5:FALLA  grande3/no-texto3:PASA
+-      negro puro sobre relleno --product-design-system-accent 10.2719  texto4.5:PASA  grande3/no-texto3:PASA
+-      blanco puro sobre relleno --product-design-system-accent  2.0444  texto4.5:FALLA  grande3/no-texto3:FALLA
+-      negro puro sobre relleno --product-kanban-desk-accent  6.1912  texto4.5:PASA  grande3/no-texto3:PASA
+-      blanco puro sobre relleno --product-kanban-desk-accent  3.3919  texto4.5:FALLA  grande3/no-texto3:PASA
+-      negro puro sobre relleno --product-legal-reg-tech-accent  9.2351  texto4.5:PASA  grande3/no-texto3:PASA
+-      blanco puro sobre relleno --product-legal-reg-tech-accent  2.2739  texto4.5:FALLA  grande3/no-texto3:FALLA
+-      negro puro sobre relleno --product-orchestrator-accent  7.8373  texto4.5:PASA  grande3/no-texto3:PASA
+-      blanco puro sobre relleno --product-orchestrator-accent  2.6795  texto4.5:FALLA  grande3/no-texto3:FALLA
+-      negro puro sobre relleno --product-outreach-accent    8.2878  texto4.5:PASA  grande3/no-texto3:PASA
+-      blanco puro sobre relleno --product-outreach-accent   2.5338  texto4.5:FALLA  grande3/no-texto3:FALLA
+
+== 3. No-texto (1.4.11, suelo 3:1): anillo de foco --color-brand ==
+oscuro foco --color-brand contra fondos                      min  4.1062  max  4.4985  3:PASA
+claro  foco --color-brand contra fondos                      min  4.0598  max  4.6682  3:PASA
+
+== 4. ::selection — blanco sobre --color-brand ==
+ambos  ::selection (color #fff, fondo --color-brand)         4.6682  texto4.5:PASA  grande3/no-texto3:PASA

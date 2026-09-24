@@ -1,0 +1,2538 @@
+{
+  "schema_version": "3.0",
+  "audit_id": "aglaya-design-system-2026-09-24-mariana",
+  "started_at": "2026-09-24T17:33:17Z",
+  "finished_at": "2026-09-24T21:00:40Z",
+  "auditor": "mariana-audit skill v3",
+  "mode": "report",
+  "repo": {
+    "path": "/Users/AGLAYA/Local Sites/aglaya-design-system",
+    "remote": "https://github.com/ibaifernandez/aglaya-design-system",
+    "commit_at_start": "17d95cc60d265f3be7c099a18e4504f54af1267b",
+    "commit_at_end": "17d95cc60d265f3be7c099a18e4504f54af1267b"
+  },
+  "tooling_survey": {
+    "present": [
+      "npm",
+      "node",
+      "pip-audit"
+    ],
+    "absent": [
+      "axe",
+      "radon",
+      "eslint",
+      "semgrep",
+      "trivy",
+      "lighthouse"
+    ],
+    "note": "Las herramientas ausentes producen hallazgos UNVERIFIABLE / NV_TOOL. No se instaló nada."
+  },
+  "scope": {
+    "stack_archetype": "cli-library",
+    "dimensions": {
+      "A_producto": {
+        "applicable": true,
+        "reason": "a11y del canon servido, del kit y de preview/; rendimiento del paquete; SEO no aplica"
+      },
+      "B_backend": {
+        "applicable": true,
+        "reason": "seguridad de suministro, MCP local por stdio y arquitectura; sin base de datos ni auth"
+      },
+      "C_legal": {
+        "applicable": true,
+        "reason": "solo propiedad intelectual; no se tratan datos personales"
+      },
+      "D_ops": {
+        "applicable": true,
+        "reason": "CI, ajustes del repo, entrega por tag y docs; sin servicio vivo"
+      }
+    }
+  },
+  "calibracion": [
+    "Regla de reducción 2: preview/ y ui_kits/ no se sirven a ningún usuario (Pages 404, sin despliegue).",
+    "Latente: ningún consumidor usa el token (quien_lee, 10/10 naves).",
+    "Rendimiento, marca y copyright no tienen tabla en el rubric: se dice con qué tabla se mide cada uno o va como INFO."
+  ],
+  "fases_completed": [
+    "0",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ],
+  "summary": {
+    "critical_total": 0,
+    "critical_mitigated_during_audit": 0,
+    "critical_open": 0,
+    "high": 6,
+    "medium": 17,
+    "low": 21,
+    "info": 1,
+    "no_verificable": 7,
+    "confidence_breakdown": {
+      "proven": 45,
+      "unverifiable": 7,
+      "dropped_no_evidence": 0
+    },
+    "evidence_source": {
+      "tool-external": 19,
+      "code-read": 26
+    },
+    "priorities": {
+      "P0": 1,
+      "P1": 6,
+      "P2": 16,
+      "P3": 22
+    }
+  },
+  "regression_delta": {
+    "previous_audit_id": null,
+    "new": 52,
+    "fixed": 0,
+    "regressed": 0,
+    "unchanged": 0,
+    "escalated": 0,
+    "deescalated": 0
+  },
+  "findings": [
+    {
+      "id": "A-01",
+      "fase": "A",
+      "dimension": "accessibility",
+      "title": "El token de texto --fg-brand es el rojo, que no llega al mínimo de texto normal en ningún modo",
+      "severity": "MEDIUM",
+      "severity_base": "HIGH",
+      "severity_reduction": "Latente: ningún consumidor usa el token (quien_lee, 10/10 naves).",
+      "severity_metadata": {
+        "criterio": "WCAG 2.1 · 1.4.3 · AA · baja visión"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "colors_and_type.css",
+          "line": "115",
+          "note": "--fg-brand apunta a --color-brand"
+        },
+        {
+          "type": "tool-external",
+          "file": "docs/BRAND-RULES.md",
+          "line": "32",
+          "note": "el canon prohíbe el rojo como tinta de texto corrido"
+        },
+        {
+          "type": "tool-external",
+          "file": "colors_and_type.css",
+          "line": "228-286",
+          "note": "el modo claro no redefine --fg-brand"
+        },
+        {
+          "type": "tool-external",
+          "file": "ui_kits/website/styles.css",
+          "line": "31-49",
+          "note": "el kit inventa --brand-ink"
+        },
+        {
+          "type": "tool-external",
+          "file": "docs/PACKAGE.md",
+          "line": "176-178",
+          "note": "un token que falta se pide aquí"
+        },
+        {
+          "type": "tool-external",
+          "file": "evidencia/contraste-tokens.txt",
+          "line": null,
+          "note": "oscuro 4.1062–4.4985 · claro 4.0598–4.6682"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.5,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "A-02",
+      "fase": "A",
+      "dimension": "accessibility",
+      "title": "Las fichas de componente fallan en modo claro: 8 de 11 pares, 3 de ellos invisibles",
+      "severity": "HIGH",
+      "severity_base": "HIGH",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "WCAG 2.1 · 1.4.3 AA + 1.4.11 AA · baja visión"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "components/components.json",
+          "line": "14-15",
+          "note": "primary: --color-text sobre --color-brand"
+        },
+        {
+          "type": "tool-external",
+          "file": "components/components.json",
+          "line": "86-92",
+          "note": "input: tinta y borde blancos, etiqueta verde"
+        },
+        {
+          "type": "tool-external",
+          "file": "components/components.json",
+          "line": "106-109",
+          "note": "badges: default, brand, codetag, ok"
+        },
+        {
+          "type": "tool-external",
+          "file": "colors_and_type.css",
+          "line": "248",
+          "note": "--color-text es negro en claro"
+        },
+        {
+          "type": "tool-external",
+          "file": "docs/BRAND-RULES.md",
+          "line": "31",
+          "note": "en claro un acento no es tinta"
+        },
+        {
+          "type": "tool-external",
+          "file": "docs/BRAND-RULES.md",
+          "line": "34",
+          "note": "sobre relleno rojo, tinta blanca"
+        },
+        {
+          "type": "tool-external",
+          "file": "evidencia/contraste-usos.txt",
+          "line": null,
+          "note": "claro: 4.4985 · 1.0 · 1.0 · 2.0444 · 1.0 · 1.7168 · 1.0 · 2.0444"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 2,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P1",
+      "sprint": "Sprint 1"
+    },
+    {
+      "id": "A-03",
+      "fase": "A",
+      "dimension": "accessibility",
+      "title": "El canon no dice qué tinta va sobre el relleno de un acento de producto; la regla del rojo falla en 7 de 8",
+      "severity": "MEDIUM",
+      "severity_base": "MEDIUM",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "WCAG 1.4.3 (latente) · rubric docs: API sin documentar"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "docs/BRAND-RULES.md",
+          "line": "43",
+          "note": "acento libre en CTA"
+        },
+        {
+          "type": "tool-external",
+          "file": "docs/BRAND-RULES.md",
+          "line": "34",
+          "note": "blanco sobre relleno rojo"
+        },
+        {
+          "type": "tool-external",
+          "file": "evidencia/contraste-tokens.txt",
+          "line": null,
+          "note": "blanco sobre acentos: 2.04–3.55 en 7 de 8; negro pasa salvo carmín 3.1244"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 1,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "A-04",
+      "fase": "A",
+      "dimension": "canon",
+      "title": "El canon afirma algo falso sobre el carmín de ConsentFlow (pasa en claro, falla en oscuro)",
+      "severity": "MEDIUM",
+      "severity_base": "MEDIUM",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "exactitud de un canon servido por get_nonnegotiables(scope=product)"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "docs/BRAND-RULES.md",
+          "line": "47",
+          "note": "«ninguno de los acentos… llega al suelo de texto sobre los fondos claros»"
+        },
+        {
+          "type": "tool-external",
+          "file": "evidencia/contraste-tokens.txt",
+          "line": null,
+          "note": "carmín: claro 5.8453–6.7212 · oscuro 2.8520–3.1244"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.5,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "A-05",
+      "fase": "A",
+      "dimension": "accessibility",
+      "title": "Marquesina y puntos que laten sin forma de pararlos, y sin prefers-reduced-motion",
+      "severity": "HIGH",
+      "severity_base": "CRITICAL",
+      "severity_reduction": "Regla de reducción 2: preview/ y ui_kits/ no se sirven a ningún usuario (Pages 404, sin despliegue).",
+      "severity_metadata": {
+        "criterio": "WCAG 2.1 · 2.2.2 · A (y 2.3.3 AAA) · déficit de atención, vestibular"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/styles.css",
+          "line": "128",
+          "note": "animación infinita de 80 s"
+        },
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/SystemsGrid.jsx",
+          "line": "109-113",
+          "note": "la marquesina"
+        },
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/AntiClient.jsx",
+          "line": "115",
+          "note": "puntos con pulso infinito"
+        },
+        {
+          "type": "code-read",
+          "file": "README.md",
+          "line": "145",
+          "note": "la portada promete lo contrario"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 1,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P1",
+      "sprint": "Sprint 1"
+    },
+    {
+      "id": "A-06",
+      "fase": "A",
+      "dimension": "accessibility",
+      "title": "La etiqueta del formulario Dispatch no está asociada a su campo",
+      "severity": "HIGH",
+      "severity_base": "CRITICAL",
+      "severity_reduction": "Regla de reducción 2: preview/ y ui_kits/ no se sirven a ningún usuario (Pages 404, sin despliegue).",
+      "severity_metadata": {
+        "criterio": "WCAG 2.1 · 1.3.1 · A · lector de pantalla"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/Footer.jsx",
+          "line": "17-29",
+          "note": "label sin htmlFor; input sin id ni aria"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.25,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P1",
+      "sprint": "Sprint 1"
+    },
+    {
+      "id": "A-07",
+      "fase": "A",
+      "dimension": "accessibility",
+      "title": "PrimaryButton siempre es un enlace a #, incluso como envío; el clic salta la validación",
+      "severity": "HIGH",
+      "severity_base": "CRITICAL",
+      "severity_reduction": "Regla de reducción 2: preview/ y ui_kits/ no se sirven a ningún usuario (Pages 404, sin despliegue).",
+      "severity_metadata": {
+        "criterio": "WCAG 2.1 · 4.1.2 A + 3.3.1 A"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/Primitives.jsx",
+          "line": "12-15",
+          "note": "href '#' por defecto: la rama button nunca se usa"
+        },
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/Footer.jsx",
+          "line": "8-13",
+          "note": "vacío se ignora sin aviso; inválido acaba en SYNCED"
+        },
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/Footer.jsx",
+          "line": "30",
+          "note": "usado como envío"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 1,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P1",
+      "sprint": "Sprint 1"
+    },
+    {
+      "id": "A-08",
+      "fase": "A",
+      "dimension": "accessibility",
+      "title": "Los mensajes de estado del formulario no se anuncian",
+      "severity": "MEDIUM",
+      "severity_base": "HIGH",
+      "severity_reduction": "Regla de reducción 2: preview/ y ui_kits/ no se sirven a ningún usuario (Pages 404, sin despliegue).",
+      "severity_metadata": {
+        "criterio": "WCAG 2.1 · 4.1.3 · AA"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/Footer.jsx",
+          "line": "31",
+          "note": "SYNCING / SYNCED"
+        },
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/Footer.jsx",
+          "line": "39",
+          "note": "DATA_SYNCHRONIZED"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.25,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "A-09",
+      "fase": "A",
+      "dimension": "accessibility",
+      "title": "Tres textos pequeños del kit por debajo del mínimo",
+      "severity": "MEDIUM",
+      "severity_base": "HIGH",
+      "severity_reduction": "Regla de reducción 2: preview/ y ui_kits/ no se sirven a ningún usuario (Pages 404, sin despliegue).",
+      "severity_metadata": {
+        "criterio": "WCAG 2.1 · 1.4.3 · AA"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "ui_kits/website/Header.jsx",
+          "line": "29",
+          "note": "hover del nav en rojo, 13px/700: 4.4985"
+        },
+        {
+          "type": "tool-external",
+          "file": "ui_kits/website/AntiClient.jsx",
+          "line": "23",
+          "note": "eyebrow con opacidad 0,55: 3.5476"
+        },
+        {
+          "type": "tool-external",
+          "file": "ui_kits/website/AntiClient.jsx",
+          "line": "92-94",
+          "note": "opacidad 0,6: 4.0384"
+        },
+        {
+          "type": "tool-external",
+          "file": "evidencia/contraste-usos.txt",
+          "line": null,
+          "note": null
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.5,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "A-10",
+      "fase": "A",
+      "dimension": "accessibility",
+      "title": "El input del kit quita el anillo de foco que pide la spec",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "WCAG 2.4.7 (debilitado, no falla) · deriva de spec"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/Footer.jsx",
+          "line": "28",
+          "note": "outline none"
+        },
+        {
+          "type": "code-read",
+          "file": "components/components.json",
+          "line": "96",
+          "note": "anillo rojo en foco"
+        },
+        {
+          "type": "code-read",
+          "file": "components/components.json",
+          "line": "98",
+          "note": "foco accesible"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.25,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "A-11",
+      "fase": "A",
+      "dimension": "accessibility",
+      "title": "El kit no tiene ni una regla responsive; a 320 px el texto de las tarjetas queda recortado",
+      "severity": "MEDIUM",
+      "severity_base": "HIGH",
+      "severity_reduction": "Regla de reducción 2: preview/ y ui_kits/ no se sirven a ningún usuario (Pages 404, sin despliegue).",
+      "severity_metadata": {
+        "criterio": "WCAG 2.1 · 1.4.10 · AA"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/Problem.jsx",
+          "line": "66",
+          "note": "repeat(3, 1fr) fijo"
+        },
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/Problem.jsx",
+          "line": "18",
+          "note": "overflow hidden"
+        },
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/AntiClient.jsx",
+          "line": "78",
+          "note": "dos columnas fijas"
+        },
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/Footer.jsx",
+          "line": "96",
+          "note": "dos columnas fijas"
+        },
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/Header.jsx",
+          "line": "10-14",
+          "note": "cabecera en una fila sin salto"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 3,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "A-12",
+      "fase": "A",
+      "dimension": "accessibility",
+      "title": "Las 23 páginas de preview/ sin idioma, título ni viewport",
+      "severity": "HIGH",
+      "severity_base": "CRITICAL",
+      "severity_reduction": "Regla de reducción 2: preview/ y ui_kits/ no se sirven a ningún usuario (Pages 404, sin despliegue).",
+      "severity_metadata": {
+        "criterio": "WCAG 2.1 · 3.1.1 A + 2.4.2 A"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "preview/colors-semantic.html",
+          "line": "2",
+          "note": "<html> sin lang; sin <title> ni viewport — mismo patrón en 23/23"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.5,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P1",
+      "sprint": "Sprint 1"
+    },
+    {
+      "id": "A-13",
+      "fase": "A",
+      "dimension": "accessibility",
+      "title": "12 de 23 páginas de muestra con texto por debajo del mínimo",
+      "severity": "MEDIUM",
+      "severity_base": "HIGH",
+      "severity_reduction": "Regla de reducción 2: preview/ y ui_kits/ no se sirven a ningún usuario (Pages 404, sin despliegue).",
+      "severity_metadata": {
+        "criterio": "WCAG 2.1 · 1.4.3 · AA"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "preview/components-buttons.html",
+          "line": "29",
+          "note": "4.4129"
+        },
+        {
+          "type": "tool-external",
+          "file": "preview/components-badges.html",
+          "line": "21",
+          "note": "3.0096"
+        },
+        {
+          "type": "tool-external",
+          "file": "preview/colors-surface.html",
+          "line": "25",
+          "note": "4.41–4.48"
+        },
+        {
+          "type": "tool-external",
+          "file": "preview/colors-brand.html",
+          "line": "31",
+          "note": "3.2073"
+        },
+        {
+          "type": "tool-external",
+          "file": "preview/spacing-scale.html",
+          "line": "12",
+          "note": "3.6574"
+        },
+        {
+          "type": "tool-external",
+          "file": "preview/type-mono.html",
+          "line": "12",
+          "note": "4.4129"
+        },
+        {
+          "type": "tool-external",
+          "file": "preview/spacing-radii-shadows.html",
+          "line": "14",
+          "note": "4.4985"
+        },
+        {
+          "type": "tool-external",
+          "file": "preview/brand-logo-variants.html",
+          "line": "16",
+          "note": "3.0460"
+        },
+        {
+          "type": "tool-external",
+          "file": "preview/brand-product-identity.html",
+          "line": "9",
+          "note": "3.5919"
+        },
+        {
+          "type": "tool-external",
+          "file": "evidencia/contraste-preview.txt",
+          "line": null,
+          "note": null
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 1,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "A-14",
+      "fase": "A",
+      "dimension": "spec",
+      "title": "El render de referencia no coincide con la spec que dice representar",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "deriva"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "preview/components-buttons.html",
+          "line": "29",
+          "note": "blanco al 45 %"
+        },
+        {
+          "type": "code-read",
+          "file": "preview/components-card.html",
+          "line": "25",
+          "note": "blanco al 45 %"
+        },
+        {
+          "type": "code-read",
+          "file": "components/components.json",
+          "line": "47",
+          "note": "--color-muted"
+        },
+        {
+          "type": "code-read",
+          "file": "components/components.json",
+          "line": "71",
+          "note": "--color-muted"
+        },
+        {
+          "type": "code-read",
+          "file": "components/components.json",
+          "line": "2",
+          "note": "el render de referencia vive en preview/"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.25,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "A-15",
+      "fase": "A",
+      "dimension": "docs",
+      "title": "La portada promete que las muestras no pueden enseñar un valor viejo; solo lo cumplen 3 de 23",
+      "severity": "MEDIUM",
+      "severity_base": "MEDIUM",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "rubric docs: afirmación falsa en la portada"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "README.md",
+          "line": "37",
+          "note": "la garantía"
+        },
+        {
+          "type": "code-read",
+          "file": "preview/spacing-scale.html",
+          "line": "16-21",
+          "note": "valores cableados"
+        },
+        {
+          "type": "code-read",
+          "file": "preview/type-display.html",
+          "line": "17-19",
+          "note": "tamaños fijos"
+        },
+        {
+          "type": "code-read",
+          "file": "preview/spacing-radii-shadows.html",
+          "line": "21",
+          "note": "copia del valor de --glow-brand"
+        },
+        {
+          "type": "code-read",
+          "file": "tools/guard_valores.py",
+          "line": "47-50",
+          "note": "los compuestos no se vigilan"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 1,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "A-16",
+      "fase": "A",
+      "dimension": "sistema",
+      "title": "40 valores de espaciado entre letras fuera de la escala del canon (18 distintos, 22 ficheros)",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "rubric arquitectura: smell (la composición usa otra escala)"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "colors_and_type.css",
+          "line": "313",
+          "note": ".t-h4 fuera de escala"
+        },
+        {
+          "type": "tool-external",
+          "file": "components/components.json",
+          "line": "106",
+          "note": "badge"
+        },
+        {
+          "type": "tool-external",
+          "file": "components/components.json",
+          "line": "108",
+          "note": "codetag"
+        },
+        {
+          "type": "tool-external",
+          "file": "evidencia/tracking-fuera-de-escala.txt",
+          "line": null,
+          "note": null
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": "¿Se llevan esos valores a la escala (cambia el aspecto) o se añade alguno como token (versión menor)?",
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 2,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "A-17",
+      "fase": "A",
+      "dimension": "marca",
+      "title": "El kit incumple tres reglas del canon, y la lista de excepciones del radio no coincide entre ficheros",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "coherencia"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/Header.jsx",
+          "line": "53-54",
+          "note": "píldora roja y redonda"
+        },
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/README.md",
+          "line": "37",
+          "note": "«enforced globally»"
+        },
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/styles.css",
+          "line": "63",
+          "note": "sin !important"
+        },
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/AntiClient.jsx",
+          "line": "113",
+          "note": "puntos redondos"
+        },
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/Hero.jsx",
+          "line": "48",
+          "note": "segundo CTA rojo a la vista"
+        },
+        {
+          "type": "code-read",
+          "file": "components/components.json",
+          "line": "55",
+          "note": "una sola primary por vista"
+        },
+        {
+          "type": "code-read",
+          "file": "components/components.json",
+          "line": "112",
+          "note": "pill NO es redonda"
+        },
+        {
+          "type": "code-read",
+          "file": "docs/BRAND-RULES.md",
+          "line": "27",
+          "note": "solo el cursor"
+        },
+        {
+          "type": "code-read",
+          "file": "colors_and_type.css",
+          "line": "168",
+          "note": "cursor y pips"
+        },
+        {
+          "type": "code-read",
+          "file": "preview/spacing-radii-shadows.html",
+          "line": "23",
+          "note": "cursor y pips"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.5,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "A-18",
+      "fase": "A",
+      "dimension": "marca",
+      "title": "El eyebrow pide un peso que su tipografía no tiene (decisión abierta)",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "coherencia"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "colors_and_type.css",
+          "line": "136",
+          "note": "peso 900"
+        },
+        {
+          "type": "code-read",
+          "file": "colors_and_type.css",
+          "line": "9-12",
+          "note": "la mono solo trae 400 y 700"
+        },
+        {
+          "type": "code-read",
+          "file": "components/components.json",
+          "line": "68",
+          "note": "«cuál manda no está decidido»"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": "¿El eyebrow va en 400 o en 700?",
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.25,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "A-19",
+      "fase": "A",
+      "dimension": "marca",
+      "title": "12 lockups dependen de que la máquina tenga instaladas las fuentes",
+      "severity": "MEDIUM",
+      "severity_base": "MEDIUM",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "rubric docs/contrato: activo servido cuyo render depende del entorno, sin avisarlo"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "products/kanban-desk/lockups/aglaya-kanban-desk-lockup.svg",
+          "line": "2",
+          "note": "fuente pedida por nombre"
+        },
+        {
+          "type": "code-read",
+          "file": "products/kanban-desk/lockups/aglaya-kanban-desk-lockup.svg",
+          "line": "9-10",
+          "note": "<text> vivo"
+        },
+        {
+          "type": "code-read",
+          "file": "products/products.json",
+          "line": "84",
+          "note": "ConsentFlow se pasó a contornos por esto"
+        },
+        {
+          "type": "code-read",
+          "file": "README.md",
+          "line": "184",
+          "note": "la portada lo da por bueno"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 3,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "A-20",
+      "fase": "A",
+      "dimension": "marca",
+      "title": "El lockup horizontal de ConsentFlow lleva un fondo opaco pegado",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "coherencia"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "products/consent-flow/lockups/aglaya-consent-flow-lockup.svg",
+          "line": "26",
+          "note": "clase cfl-6"
+        },
+        {
+          "type": "code-read",
+          "file": "products/consent-flow/lockups/aglaya-consent-flow-lockup.svg",
+          "line": "30",
+          "note": "rectángulo a sangre"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.25,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "A-21",
+      "fase": "A",
+      "dimension": "uso",
+      "title": "El eslogan de la cabecera a 7 px",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "legibilidad (sin criterio WCAG)"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/Header.jsx",
+          "line": "20",
+          "note": "fontSize 7"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.1,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "A-22",
+      "fase": "A",
+      "dimension": "rendimiento",
+      "title": "Las fuentes solo en OTF/TTF, ninguna en WOFF2",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "rubric arquitectura: deuda de activos"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "colors_and_type.css",
+          "line": "9-44",
+          "note": "31 caras OTF/TTF"
+        },
+        {
+          "type": "tool-external",
+          "file": "evidencia/npm-pack.txt",
+          "line": null,
+          "note": "2,93 MB gz · fonts/ 5,03 MB"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 2,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "A-23",
+      "fase": "A",
+      "dimension": "rendimiento",
+      "title": "El kit compila el JSX en el navegador con Babel standalone (3,1 MB)",
+      "severity": "INFO",
+      "severity_base": "INFO",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "sin tabla de rubric; página no servida"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/index.html",
+          "line": "34-42",
+          "note": null
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "A-24",
+      "fase": "A",
+      "dimension": "rendimiento",
+      "title": "Outfit declarada dos veces para los mismos pesos; cuál gana lo decide el navegador",
+      "severity": null,
+      "severity_base": null,
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "—"
+      },
+      "confidence_tier": "UNVERIFIABLE",
+      "not_verifiable_subtype": "NV_RUNTIME",
+      "evidence_source": null,
+      "evidence": [
+        {
+          "type": "none",
+          "file": "colors_and_type.css",
+          "line": "15-24",
+          "note": null
+        }
+      ],
+      "recommended_external_action": "Servir preview/type-outfit-weights.html por HTTP y mirar en DevTools qué ficheros de fuente se descargan.",
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": null,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": null,
+      "sprint": null
+    },
+    {
+      "id": "A-NV-01",
+      "fase": "A",
+      "dimension": "rendimiento",
+      "title": "Métricas web reales (LCP/INP/CLS) de quien consume las fuentes",
+      "severity": null,
+      "severity_base": null,
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "—"
+      },
+      "confidence_tier": "UNVERIFIABLE",
+      "not_verifiable_subtype": "NV_RUNTIME",
+      "evidence_source": null,
+      "evidence": [],
+      "recommended_external_action": "PageSpeed Insights sobre aglaya.biz.",
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": null,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": null,
+      "sprint": null
+    },
+    {
+      "id": "A-NV-02",
+      "fase": "A",
+      "dimension": "uso",
+      "title": "Si el kit arranca abierto como fichero local (Babel pide los .jsx por XHR)",
+      "severity": null,
+      "severity_base": null,
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "—"
+      },
+      "confidence_tier": "UNVERIFIABLE",
+      "not_verifiable_subtype": "NV_RUNTIME",
+      "evidence_source": null,
+      "evidence": [
+        {
+          "type": "none",
+          "file": "README.md",
+          "line": "209",
+          "note": null
+        },
+        {
+          "type": "none",
+          "file": "ui_kits/website/index.html",
+          "line": "36-42",
+          "note": null
+        }
+      ],
+      "recommended_external_action": "Abrir ui_kits/website/index.html con doble clic en Chrome y mirar la consola.",
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": null,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": null,
+      "sprint": null
+    },
+    {
+      "id": "A-NV-03",
+      "fase": "A",
+      "dimension": "accessibility",
+      "title": "No se ha pasado ningún escáner automático de accesibilidad",
+      "severity": null,
+      "severity_base": null,
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "—"
+      },
+      "confidence_tier": "UNVERIFIABLE",
+      "not_verifiable_subtype": "NV_TOOL",
+      "evidence_source": null,
+      "evidence": [],
+      "recommended_external_action": "axe DevTools o Lighthouse sobre el kit y una muestra de preview/, servidos por HTTP.",
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": null,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": null,
+      "sprint": null
+    },
+    {
+      "id": "B-01",
+      "fase": "B",
+      "dimension": "security",
+      "title": "La doc manda `npx aglaya-tokens-version`, ese nombre está libre en npm y npm lo instalaría solo en un CI",
+      "severity": "HIGH",
+      "severity_base": "HIGH",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "OWASP A08:2021 · CVSS 3.1 7.5",
+        "cvss_3_1_vector": "AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+        "cvss_3_1_score": 7.5,
+        "owasp_2021": "A08",
+        "attacker_level": "None",
+        "user_interaction_required": true,
+        "scope_changed": false,
+        "impact": {
+          "C": "High",
+          "I": "High",
+          "A": "High"
+        }
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "README.md",
+          "line": "244",
+          "note": "npx aglaya-tokens-version"
+        },
+        {
+          "type": "tool-external",
+          "file": "docs/PACKAGE.md",
+          "line": "127",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": "docs/PACKAGE.md",
+          "line": "132",
+          "note": "--strict como gate de CI"
+        },
+        {
+          "type": "tool-external",
+          "file": "evidencia/npm-registro.txt",
+          "line": null,
+          "note": "404 en npm; npm-exec.md:28-29 --yes asumido en CI"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.5,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P1",
+      "sprint": "Sprint 1"
+    },
+    {
+      "id": "B-02",
+      "fase": "B",
+      "dimension": "dependencies",
+      "title": "El venv del MCP lleva 7 vulnerabilidades conocidas; nada fija ni vigila las versiones",
+      "severity": "LOW",
+      "severity_base": "MEDIUM",
+      "severity_reduction": "Regla de reducción 2: ningún camino de explotación en el uso por stdio (sin TLS, sin HTTP, sin PKCS7, sin pools de procesos).",
+      "severity_metadata": {
+        "criterio": "rubric DevOps: dependencias con CVE (MEDIA)"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "evidencia/pip-audit-venv.txt",
+          "line": null,
+          "note": "anyio, cryptography, httpx2"
+        },
+        {
+          "type": "tool-external",
+          "file": "aglaya-ds-mcp/pyproject.toml",
+          "line": "22-24",
+          "note": "solo suelo"
+        },
+        {
+          "type": "tool-external",
+          "file": ".github/workflows/huella.yml",
+          "line": "85-87",
+          "note": "instala lo último"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 1,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "B-03",
+      "fase": "B",
+      "dimension": "architecture",
+      "title": "Un } dentro de un comentario de :root hace que el MCP sirva 1 token en vez de 87, sin avisar",
+      "severity": "MEDIUM",
+      "severity_base": "MEDIUM",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "rubric arquitectura: lógica duplicada con defecto compartido"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "aglaya-ds-mcp/brand.py",
+          "line": "87-88",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": "scripts/build-tokens.mjs",
+          "line": "35",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": "scripts/build-tokens.mjs",
+          "line": "69",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": "tools/guard_valores.py",
+          "line": "118",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": "tools/guard_valores.py",
+          "line": "144-147",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": "evidencia/mutaciones.txt",
+          "line": null,
+          "note": "MCP 1 token · build exit 1 · guardián rojo por otro motivo"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 1,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "B-04",
+      "fase": "B",
+      "dimension": "architecture",
+      "title": "guard_punteros no mira .otf: las 18 URLs de Inter quedan sin vigilar",
+      "severity": "MEDIUM",
+      "severity_base": "MEDIUM",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "promesa de un guardián incumplida"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "tools/guard_punteros.py",
+          "line": "96",
+          "note": "EXTENSIONES sin otf"
+        },
+        {
+          "type": "tool-external",
+          "file": "evidencia/mutaciones.txt",
+          "line": null,
+          "note": ".otf roto: los 4 guardianes dan 0"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.25,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "B-05",
+      "fase": "B",
+      "dimension": "architecture",
+      "title": "El MCP no sirve el modo claro y el paquete sí: las dos vías dicen cosas distintas",
+      "severity": "MEDIUM",
+      "severity_base": "MEDIUM",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "contrato de consumo"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "aglaya-ds-mcp/brand.py",
+          "line": "84-92",
+          "note": "solo :root"
+        },
+        {
+          "type": "code-read",
+          "file": "scripts/build-tokens.mjs",
+          "line": "43-45",
+          "note": "modes.light"
+        },
+        {
+          "type": "code-read",
+          "file": "scripts/build-tokens.mjs",
+          "line": "76-98",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "docs/CONTRACT.md",
+          "line": "18",
+          "note": "«las dos leen los mismos archivos»"
+        },
+        {
+          "type": "code-read",
+          "file": "docs/CONTRACT.md",
+          "line": "30",
+          "note": "construir con lo que sirve aglaya-ds"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 2,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "B-06",
+      "fase": "B",
+      "dimension": "api-docs",
+      "title": "Las descripciones de las tools y el README del MCP anuncian cosas que el código no hace",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "rubric docs: API mal documentada; el error devuelve la lista buena"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "aglaya-ds-mcp/server.py",
+          "line": "70",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": "aglaya-ds-mcp/server.py",
+          "line": "157",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": "aglaya-ds-mcp/server.py",
+          "line": "165",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": "aglaya-ds-mcp/README.md",
+          "line": "26",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": "aglaya-ds-mcp/README.md",
+          "line": "130",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": "aglaya-ds-mcp/README.md",
+          "line": "153",
+          "note": null
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.5,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "B-07",
+      "fase": "B",
+      "dimension": "canon",
+      "title": "El manifiesto de productos contradice el CSS (sacred) y conserva una PROPUESTA ya publicada",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "coherencia"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "products/products.json",
+          "line": "71",
+          "note": "sacred: false"
+        },
+        {
+          "type": "code-read",
+          "file": "products/products.json",
+          "line": "142",
+          "note": "PROPUESTA"
+        },
+        {
+          "type": "code-read",
+          "file": "colors_and_type.css",
+          "line": "63-64",
+          "note": "sacred"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": "¿ConsentFlow es sagrado? ¿Se confirma el color y el nombre de DESIGN SYSTEM?",
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.25,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "B-08",
+      "fase": "B",
+      "dimension": "canon",
+      "title": ".t-codetag no cambia con el modo y no casa con su ficha",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "coherencia"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "colors_and_type.css",
+          "line": "324-329",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "components/components.json",
+          "line": "108",
+          "note": null
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.25,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "B-NV-01",
+      "fase": "B",
+      "dimension": "dependencies",
+      "title": "React, ReactDOM y Babel vendorizados sin escanear",
+      "severity": null,
+      "severity_base": null,
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "—"
+      },
+      "confidence_tier": "UNVERIFIABLE",
+      "not_verifiable_subtype": "NV_TOOL",
+      "evidence_source": null,
+      "evidence": [
+        {
+          "type": "none",
+          "file": "ui_kits/website/index.html",
+          "line": "31",
+          "note": "versiones declaradas"
+        }
+      ],
+      "recommended_external_action": "trivy fs o osv-scanner sobre la carpeta vendor del kit.",
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": null,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": null,
+      "sprint": null
+    },
+    {
+      "id": "B-NV-02",
+      "fase": "B",
+      "dimension": "security",
+      "title": "Historia de git sin revisar en busca de secretos (el enganche bloquea la búsqueda)",
+      "severity": null,
+      "severity_base": null,
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "—"
+      },
+      "confidence_tier": "UNVERIFIABLE",
+      "not_verifiable_subtype": "NV_CREDENTIALS",
+      "evidence_source": null,
+      "evidence": [],
+      "recommended_external_action": "Activar el secret scanning de GitHub (revisa toda la historia al activarse) o gitleaks detect.",
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": null,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": null,
+      "sprint": null
+    },
+    {
+      "id": "C-01",
+      "fase": "C",
+      "dimension": "legal",
+      "title": "Se redistribuyen React, ReactDOM y Babel (MIT) sin su licencia, bajo una LICENSE de todos los derechos reservados",
+      "severity": "MEDIUM",
+      "severity_base": "MEDIUM",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "Licencia MIT (condición de aviso) · rubric legal: hueco de cumplimiento con arreglo trivial"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "LICENSE",
+          "line": "9-18",
+          "note": "cubre ui_kits/ entero"
+        },
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/vendor/react.production.min.js",
+          "line": "1-9",
+          "note": "remite a un LICENSE que aquí es otro"
+        },
+        {
+          "type": "code-read",
+          "file": "ui_kits/website/vendor/react-dom.production.min.js",
+          "line": "1-9",
+          "note": null
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.5,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P0",
+      "sprint": "Sprint 1"
+    },
+    {
+      "id": "C-02",
+      "fase": "C",
+      "dimension": "legal",
+      "title": "ConsentFlow: concepto de una tercera persona reclamado como marca propia, sin constancia de cesión",
+      "severity": null,
+      "severity_base": null,
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "Derecho de marca y de autor"
+      },
+      "confidence_tier": "UNVERIFIABLE",
+      "not_verifiable_subtype": "NV_CREDENTIALS",
+      "evidence_source": null,
+      "evidence": [
+        {
+          "type": "none",
+          "file": "README.md",
+          "line": "177",
+          "note": null
+        },
+        {
+          "type": "none",
+          "file": "README.md",
+          "line": "186",
+          "note": null
+        },
+        {
+          "type": "none",
+          "file": "products/products.json",
+          "line": "72",
+          "note": null
+        },
+        {
+          "type": "none",
+          "file": "products/products.json",
+          "line": "84",
+          "note": null
+        },
+        {
+          "type": "none",
+          "file": "LICENSE",
+          "line": "67-70",
+          "note": null
+        }
+      ],
+      "recommended_external_action": "Confirmar el acuerdo escrito con la autora y citarlo; si no existe, pactarlo o excluir ConsentFlow de la sección 4 de LICENSE.",
+      "decision_for_ibai": "¿Existe un acuerdo escrito con la autora de ConsentFlow?",
+      "remediation": {
+        "playbook": null,
+        "effort_hours": null,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": null,
+      "sprint": null
+    },
+    {
+      "id": "C-03",
+      "fase": "C",
+      "dimension": "legal",
+      "title": "Seis identidades figuran hechas por una IA y LICENSE reclama copyright sobre ellas",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "Autoría humana (p. ej. LPI española, art. 5.1; guía US Copyright Office 2023) · requiere revisión legal"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "products/products.json",
+          "line": "15",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "products/products.json",
+          "line": "34",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "products/products.json",
+          "line": "53",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "products/products.json",
+          "line": "90",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "products/products.json",
+          "line": "110",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "products/products.json",
+          "line": "130",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "LICENSE",
+          "line": "12-14",
+          "note": null
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": null,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "C-04",
+      "fase": "C",
+      "dimension": "legal",
+      "title": "LICENSE dice que no concede ningún permiso, pero publicar en GitHub ya concede ver y bifurcar",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "Términos de servicio de GitHub, D.5"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "LICENSE",
+          "line": "27-34",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": "evidencia/github-ajustes.txt",
+          "line": null,
+          "note": "allow_forking: true, public"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.25,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "D-01",
+      "fase": "D",
+      "dimension": "docs",
+      "title": "La portada enseña a copiar la marca, lo que prohíben el contrato y la guía del paquete",
+      "severity": "MEDIUM",
+      "severity_base": "MEDIUM",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "rubric docs: instrucciones de uso que contradicen el contrato"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "README.md",
+          "line": "206",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "README.md",
+          "line": "211-219",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "README.md",
+          "line": "224-228",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "README.md",
+          "line": "254",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "docs/CONTRACT.md",
+          "line": "33",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "docs/PACKAGE.md",
+          "line": "55-56",
+          "note": null
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.5,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "D-02",
+      "fase": "D",
+      "dimension": "docs",
+      "title": "La portada describe el código de aglaya.biz como si fuera canon",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "derivado que envejece"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "README.md",
+          "line": "107",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "README.md",
+          "line": "132",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "README.md",
+          "line": "144-145",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "README.md",
+          "line": "148",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "README.md",
+          "line": "154",
+          "note": null
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.5,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "D-03",
+      "fase": "D",
+      "dimension": "ci",
+      "title": "main exige PR pero no exige el CI en verde ni ninguna aprobación",
+      "severity": "MEDIUM",
+      "severity_base": "MEDIUM",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "rubric DevOps: CI no exigido"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "evidencia/github-ajustes.txt",
+          "line": null,
+          "note": "reglas: pull_request (0 aprobaciones), non_fast_forward, deletion"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.25,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "D-04",
+      "fase": "D",
+      "dimension": "release",
+      "title": "Los tags son la versión publicada y nada impide moverlos ni borrarlos",
+      "severity": "MEDIUM",
+      "severity_base": "MEDIUM",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "integridad del canal de entrega"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "evidencia/github-ajustes.txt",
+          "line": null,
+          "note": "sin rulesets de tags"
+        },
+        {
+          "type": "tool-external",
+          "file": "docs/PACKAGE.md",
+          "line": "82",
+          "note": "la versión es el tag"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.25,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "D-05",
+      "fase": "D",
+      "dimension": "ci",
+      "title": "Escaneo de secretos, protección al hacer push, alertas y Dependabot, apagados",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "endurecimiento"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "evidencia/github-ajustes.txt",
+          "line": null,
+          "note": null
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.25,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "D-06",
+      "fase": "D",
+      "dimension": "ci",
+      "title": "Actions ancladas a tags que pueden moverse; no se exige anclar por SHA",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "endurecimiento"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": ".github/workflows/huella.yml",
+          "line": "31-32",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": ".github/workflows/huella.yml",
+          "line": "78",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": ".github/workflows/huella.yml",
+          "line": "138",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": ".github/workflows/huella.yml",
+          "line": "151",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": ".github/workflows/huella.yml",
+          "line": "207",
+          "note": null
+        },
+        {
+          "type": "tool-external",
+          "file": "evidencia/github-ajustes.txt",
+          "line": null,
+          "note": "sha_pinning_required: false"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.5,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "D-07",
+      "fase": "D",
+      "dimension": "ops",
+      "title": "El enganche versionado apunta a una ruta de esta máquina; en cualquier otra bloquea todas las herramientas",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "disponibilidad de la nave"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": ".claude/settings.json",
+          "line": "4-11",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": "evidencia/mutaciones.txt",
+          "line": null,
+          "note": "python3 sobre ruta ausente: exit=2"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": "¿Cerrar en falso fuera de esta máquina es intencionado?",
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.5,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "D-08",
+      "fase": "D",
+      "dimension": "quality",
+      "title": "No hay linter, formateador ni comprobación de tipos para Python ni JS",
+      "severity": "MEDIUM",
+      "severity_base": "MEDIUM",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "rubric DevOps: sin linter ni tipos"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": ".github/workflows/huella.yml",
+          "line": null,
+          "note": "solo guardianes y pruebas"
+        },
+        {
+          "type": "code-read",
+          "file": "aglaya-ds-mcp/pyproject.toml",
+          "line": null,
+          "note": "sin [tool.ruff], [tool.mypy] ni [tool.black]"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 2,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P2",
+      "sprint": "Sprint 2"
+    },
+    {
+      "id": "D-09",
+      "fase": "D",
+      "dimension": "provenance",
+      "title": "Un commit de main firmado como github-actions[bot] que se hizo en una máquina local",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "procedencia"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "tool-external",
+      "evidence": [
+        {
+          "type": "tool-external",
+          "file": "evidencia/git-procedencia.txt",
+          "line": null,
+          "note": "d74d06e, -0300, sin firma, PR #29"
+        },
+        {
+          "type": "tool-external",
+          "file": "tools/publicar_cifras.sh",
+          "line": "141-142",
+          "note": "solo configura el repo temporal"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.25,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "D-10",
+      "fase": "D",
+      "dimension": "runbook",
+      "title": "No hay procedimiento escrito para cuando se publica una versión mala",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "rubric DevOps: runbook no crítico"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "docs/PACKAGE.md",
+          "line": "195-242",
+          "note": "solo cómo publicar"
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.5,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    },
+    {
+      "id": "D-11",
+      "fase": "D",
+      "dimension": "docs",
+      "title": "La lista de comprobaciones a mano de CLAUDE.md se deja dos baterías que el CI corre",
+      "severity": "LOW",
+      "severity_base": "LOW",
+      "severity_reduction": null,
+      "severity_metadata": {
+        "criterio": "deriva de docs"
+      },
+      "confidence_tier": "PROVEN",
+      "not_verifiable_subtype": null,
+      "evidence_source": "code-read",
+      "evidence": [
+        {
+          "type": "code-read",
+          "file": "CLAUDE.md",
+          "line": "74-99",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": ".github/workflows/huella.yml",
+          "line": "57",
+          "note": null
+        },
+        {
+          "type": "code-read",
+          "file": ".github/workflows/huella.yml",
+          "line": "118",
+          "note": null
+        }
+      ],
+      "recommended_external_action": null,
+      "decision_for_ibai": null,
+      "remediation": {
+        "playbook": null,
+        "effort_hours": 0.1,
+        "status": "OPEN"
+      },
+      "regression_status": "NEW",
+      "priority": "P3",
+      "sprint": "Sprint 3+"
+    }
+  ]
+}

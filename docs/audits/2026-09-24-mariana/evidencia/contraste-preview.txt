@@ -1,0 +1,22 @@
+== preview/ — literales de tinta en los specimens (todos pintan sobre negro salvo donde se dice) ==
+oscuro components-buttons .btn-link blanco 45% 10px sobre #000 [:29]           4.4129  umbral 4.5: FALLA
+oscuro components-card .body blanco 45% 13px sobre --surface-2 [:25]           4.5158  umbral 4.5: PASA
+oscuro components-badges .pill blanco 35% 9px sobre #000 [:21]                 3.0096  umbral 4.5: FALLA
+oscuro components-comparison dt blanco 50% 9px sobre celda [:25]               5.3041  umbral 4.5: PASA
+oscuro colors-surface .hex blanco 45% 9px sobre #000000 [:25]                  4.4129  umbral 4.5: FALLA
+oscuro colors-surface .hex blanco 45% 9px sobre color-bg-deep [:25]            4.4465  umbral 4.5: FALLA
+oscuro colors-surface .hex blanco 45% 9px sobre color-surface [:25]            4.4818  umbral 4.5: FALLA
+oscuro colors-surface .hex blanco 45% 9px sobre color-surface-2 [:25]          4.5158  umbral 4.5: PASA
+oscuro colors-surface .hex blanco 45% 9px sobre color-surface-3 [:25]          4.5287  umbral 4.5: PASA
+oscuro colors-brand .brand-light .name/.hex blanco 10px/9px [:31]              3.2073  umbral 4.5: FALLA
+oscuro spacing-scale .px blanco 40% 9px sobre #000 [:12]                       3.6574  umbral 4.5: FALLA
+oscuro type-inter/outfit-weights .label blanco 40% 9px [:18] / type-spacemono-weights [:17]  3.6574  umbral 4.5: FALLA
+oscuro type-mono .mono blanco 45% 11px sobre #000 [:12]                        4.4129  umbral 4.5: FALLA
+oscuro spacing-radii-shadows .pill --color-brand 10px sobre #000 [:14]         4.4985  umbral 4.5: FALLA
+oscuro spacing-radii-shadows .rule blanco 55% 10px sobre #000 [:12]            6.2655  umbral 4.5: PASA
+oscuro brand-logo-variants .brand .label negro 60% 10px sobre relleno rojo [:16]  3.0460  umbral 4.5: FALLA
+oscuro brand-logo-variants .white .label negro 50% 10px sobre blanco [:14]     3.9767  umbral 4.5: FALLA
+oscuro brand-logo-variants .black .label blanco 50% 10px sobre negro [:15]     5.2808  umbral 4.5: PASA
+oscuro brand-product-identity .meta/.lbl/.note tinta 40% 9-11px [:7,:9,:14]    3.5919  umbral 4.5: FALLA
+oscuro brand-product-identity .absent tinta 30% 10px [:13]                     2.4301  umbral 4.5: FALLA
+oscuro brand-favicon .label blanco 50% 9px [:15] / brand-iconography .name [:12]  5.2808  umbral 4.5: PASA
