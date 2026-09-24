@@ -200,6 +200,14 @@ _VETO_TRIGGER = re.compile(
     re.IGNORECASE,
 )
 
+# The same triggers, but only when the quoted word FOLLOWS one of them with
+# nothing but punctuation and spaces in between. A quote further away in the
+# same cell is prose, not a veto — see `_signature_terms`.
+_VETO_QUOTE = re.compile(
+    _VETO_TRIGGER.pattern + r'[\s:,;\-–—]*"([^"]+)"',
+    re.IGNORECASE,
+)
+
 
 def _signature_terms() -> list[dict]:
     """Protected vocabulary from docs/BRAND-RULES.md '### Signature terms' tables (one
@@ -225,14 +233,23 @@ def _signature_terms() -> list[dict]:
                 if f.strip()
             ]
             head = forms[0] if forms else ""
-            # words this term replaces: any quoted synonym in a cell carrying a
-            # negative trigger. Scans BOTH the term cell ('Systems (not
-            # "solutions", not "tools")') and the usage cell ('in place of
-            # "lead", "metric", "input"' / 'Nunca "soluciones"').
+            # words this term replaces: a quoted synonym that comes RIGHT AFTER
+            # a negative trigger. Scans BOTH the term cell ('Systems (not
+            # "solutions", not "tools")') and the usage cell ('Never
+            # "newsletter"' / 'Nunca "soluciones", nunca "solución"').
+            #
+            # The trigger has to touch the quote. It used to be enough that the
+            # cell carried a trigger ANYWHERE, and then every quoted string in
+            # it was registered as a synonym — including one quoted in prose as
+            # a counter-example. That is how `Zero-filter` came to declare
+            # itself the replacement for "Zero-leak": its cell says the term
+            # survives "the retirement of absolute promises and \"Zero-leak\"
+            # does not". The canon defines `Zero-filter` as a qualifier on how
+            # AGLAYA reports, never on how a system behaves, so the MCP was
+            # handing every ship a substitute that means something else.
             replaces = []
             for cell in (term_cell, usage_cell):
-                if _VETO_TRIGGER.search(cell):
-                    replaces += re.findall(r'"([^"]+)"', cell)
+                replaces += _VETO_QUOTE.findall(cell)
             terms.append(
                 {
                     "term": head,
@@ -459,15 +476,26 @@ def is_allowed_word(term: str) -> dict:
     # A retired term is not neutral. Without this, `is_allowed_word` claimed a
     # word was "not forbidden" while `check_voice` flagged the same word — two
     # tools, two answers, and the cheaper one blessing what the other bans.
-    for phrase in _forbidden_phrases():
-        if phrase.lower() == tl:
-            return {
-                "term": t,
-                "allowed": False,
-                "protected": False,
-                "note": "forbidden pattern — docs/BRAND-RULES.md '### Forbidden patterns' "
-                        "says what to write instead",
-            }
+    #
+    # Asking `check_voice` itself — instead of comparing the term against the
+    # forbidden list by equality — is what closes that gap for good. Equality
+    # only caught the bare word: `is_allowed_word("Zero-Leak Architecture")`
+    # answered "neutral" while `check_voice` on the same string flagged
+    # `zero-leak`, and a name is asked about the way it is written on the page,
+    # not stripped down to the vetoed part. Now the invariant holds by
+    # construction: whatever `check_voice` catches, this cannot bless.
+    findings = check_voice(t)["findings"]
+    if findings:
+        first = findings[0]
+        return {
+            "term": t,
+            "allowed": False,
+            "protected": False,
+            "matched": first["match"],
+            "note": f"{first['message']} — docs/BRAND-RULES.md "
+                    "'### Forbidden patterns' says what to write instead",
+            "findings": findings,
+        }
     return {
         "term": t,
         "allowed": True,
