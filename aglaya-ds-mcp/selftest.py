@@ -53,6 +53,8 @@ LLAMADAS = [
     ("check_voice", {"text": "Our solutions transform your business!"}, "ok"),
     ("is_allowed_word", {"term": "newsletter"}, "ok"),
     ("is_allowed_word", {"term": "Sovereignty"}, "ok"),
+    ("is_allowed_word", {"term": "Zero-Leak Architecture"}, "ok"),
+    ("is_allowed_word", {"term": "revisión humana obligatoria"}, "ok"),
     ("get_logo", {"variant": "isotipo-rojo"}, "ok"),
     ("get_logo", {"variant": "logotipo-white"}, "ok"),
     ("get_logo", {"variant": "isotipo-fucsia"}, "falla"),
@@ -242,6 +244,44 @@ async def main() -> int:
             veto = _payload(await session.call_tool("is_allowed_word", {"term": "soluciones"}))
             if not isinstance(veto, dict) or veto.get("allowed") is not False:
                 fallos.append("is_allowed_word('soluciones') debía vetarse y no lo hace")
+
+            # Y un veto que solo muerde la palabra pelada no protege nada: un
+            # nombre se pregunta como está escrito en la superficie. Mientras
+            # `is_allowed_word` comparó por igualdad, «Zero-Leak Architecture»
+            # salía "neutral" y `check_voice` sobre la misma cadena cazaba
+            # `zero-leak`: dos tools, dos respuestas, y la barata bendiciendo
+            # lo que la otra veta. Se comprueban las dos mitades —que la
+            # compuesta se caza y que una cadena limpia sigue pasando— porque
+            # un veto que lo prohíbe todo pasaría la primera sola.
+            for compuesto in ("Zero-Leak Architecture", "Arquitectura Zero-Leak"):
+                res_c = _payload(
+                    await session.call_tool("is_allowed_word", {"term": compuesto})
+                )
+                if not isinstance(res_c, dict) or res_c.get("allowed") is not False:
+                    fallos.append(
+                        f"is_allowed_word({compuesto!r}) debía vetarse: lleva dentro "
+                        f"una frase prohibida que check_voice sí caza"
+                    )
+                # Y el sustituto no puede ser un término que significa otra
+                # cosa: el canon define `Zero-filter` como calificador sobre
+                # cómo informa AGLAYA, «nunca sobre cómo se comporta un
+                # sistema». Lo proponía porque el parser leía como sinónimo
+                # una cita en prosa de la celda de `Zero-filter`.
+                texto_c = json.dumps(res_c, ensure_ascii=False).lower()
+                for impostor in ("zero-filter", "sin filtros"):
+                    if impostor in texto_c:
+                        fallos.append(
+                            f"is_allowed_word({compuesto!r}) propone {impostor!r}, "
+                            f"que el canon define para otra cosa"
+                        )
+
+            limpia = "revisión humana obligatoria"
+            res_l = _payload(await session.call_tool("is_allowed_word", {"term": limpia}))
+            if not isinstance(res_l, dict) or res_l.get("allowed") is not True:
+                fallos.append(
+                    f"is_allowed_word({limpia!r}) debía seguir pasando: es la propiedad "
+                    f"concreta que el canon manda escribir en vez de la promesa absoluta"
+                )
 
             # Una fila puede declarar VARIAS formas del mismo término
             # ("Sovereignty / Sovereign", "soberanía / soberano"), y la tool
