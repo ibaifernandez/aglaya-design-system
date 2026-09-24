@@ -2,16 +2,16 @@
   "contrato": "cifras-publicas",
   "version": 1,
   "nave": "aglaya-design-system",
-  "commit": "c64f5a5e4d6e0bcc557d36ef08f3d88bebba1563",
-  "medido_el": "2026-09-24T22:09:20Z",
-  "ejecucion": "https://github.com/ibaifernandez/aglaya-design-system/actions/runs/36065739384",
+  "commit": "5bbbe1b3c03f64aab11b577b25c13bf0af329244",
+  "medido_el": "2026-09-24T22:24:58Z",
+  "ejecucion": "https://github.com/ibaifernandez/aglaya-design-system/actions/runs/36067224195",
   "cifras": {
     "version": {
       "valor": "1.3.6",
       "fuente": "package.json"
     },
     "tokens": {
-      "valor": 87,
+      "valor": 89,
       "unidad": "tokens",
       "fuente": "node scripts/build-tokens.mjs (job `paquete` de esta ejecución)"
     },
