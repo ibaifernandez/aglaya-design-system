@@ -8,9 +8,13 @@ const Header = () => {
       borderBottom: '1px solid color-mix(in srgb, var(--color-text) 5%, transparent)',
     }}>
       <div style={{
-        maxWidth: 1280, margin: '0 auto', height: 80,
+        maxWidth: 1280, margin: '0 auto',
+        // `minHeight` y no `height`: con altura fija, lo que envuelve se sale de
+        // la barra en vez de agrandarla. Laterales por token: 40 px fijos dejan
+        // 295 de contenido en una pantalla de 375.
+        minHeight: 80, padding: 'var(--space-4) var(--space-6)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '0 40px', gap: 32,
+        flexWrap: 'wrap', gap: 'var(--space-4)',
       }}>
         {/* Logo lockup */}
         <a href="#home" aria-label="AGLAYA Home"
@@ -23,10 +27,15 @@ const Header = () => {
         </a>
 
         {/* Nav */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
+        {/* `flexWrap` y un hueco menor: medido en la página, a 375 px este nav medía
+            709 px y arrastraba scroll horizontal a todo el documento. No hay punto
+            de corte porque no hace falta: envuelve cuando no cabe. */}
+        <nav style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
           {['Systems','Proof','Economics','Services','ROI Audit'].map(label => (
             <a key={label} href={`#${label.toLowerCase().replace(/ /g,'-')}`}
-              onMouseEnter={e => e.currentTarget.style.color = 'var(--brand)'}
+              /* --brand como tinta da 4.4985 sobre negro y el canon lo prohíbe;
+                 --brand-ink es el alias del kit para --fg-brand, que da 6.55. */
+              onMouseEnter={e => e.currentTarget.style.color = 'var(--brand-ink)'}
               onMouseLeave={e => e.currentTarget.style.color = 'var(--muted)'}
               style={{
                 color: 'var(--muted)', fontFamily: 'var(--font-display)',
@@ -38,11 +47,16 @@ const Header = () => {
         </nav>
 
         {/* Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+        {/* También envuelve: medido, este grupo se salía 11 px a 375. */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
           {/* Lang switcher */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, opacity: 0.7 }}>
             <span title="ES" style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: 'var(--tracking-wider)' }}>ES</span>
-            <span style={{ color: 'var(--color-faint)' }}>/</span>
+            {/* Separador: decoración, no contenido. Con `--color-faint` bajo el
+                0.7 del grupo daba 2.73 sobre negro. Se oculta a lectores de
+                pantalla en vez de subirle el color, porque leer «ES barra PT»
+                no aporta nada. */}
+            <span aria-hidden="true" style={{ color: 'var(--color-faint)' }}>/</span>
             <span title="PT" style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: 'var(--tracking-wider)' }}>PT</span>
           </div>
 

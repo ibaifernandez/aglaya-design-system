@@ -134,5 +134,36 @@ button { font: inherit; background: none; border: 0; color: inherit; cursor: poi
 @keyframes fade-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
 [data-animate] { animation: fade-up 0.8s var(--ease) both; }
 
-/* focus */
-:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+/* focus — el anillo que pide la ficha de `input` en components.json:
+   «outline 2px solid … con outline-offset 2px». El offset era 3 y la ficha
+   dice 2: la spec la sirve el MCP a las demás naves, así que manda ella. */
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+/* Movimiento: quien pide menos, recibe menos.
+   Esta composición lleva tres animaciones —la marquesina, la aparición al
+   entrar en pantalla y los puntos que laten—, ninguna con forma de pararse.
+   Una marquesina infinita sin freno no es un adorno para quien tiene vértigo
+   vestibular o un trastorno de atención: es la razón por la que esa persona
+   cierra la página. Se respeta la preferencia del sistema, que es la única
+   forma de saberlo sin preguntar.
+   No hay regla para `[data-animate]` aunque la hoja lo declare más arriba:
+   medido en la página renderizada, ese atributo no lo lleva ni un elemento del
+   kit. Una regla para algo que no existe es código muerto con pinta de
+   cobertura. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Responsive: esta composición se declara «así va todo junto» y hasta hoy solo
+   valía a un ancho — a 320 px el texto de las tarjetas se recortaba. El ajuste
+   NO vive aquí: el kit maqueta con estilos en línea, y una regla de hoja de
+   estilos no puede pisarlos. Las rejillas se arreglan donde están declaradas,
+   con `auto-fit` y un mínimo por tarjeta, que además no necesita puntos de
+   corte. Esta nota existe para que el siguiente no escriba aquí un @media que
+   no haría nada, como hice yo antes de medirlo. */

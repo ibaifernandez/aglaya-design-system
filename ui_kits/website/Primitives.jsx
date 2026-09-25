@@ -9,13 +9,20 @@ const BrandArrow = ({ size = 14, stroke = 'currentColor' }) => (
 );
 
 // Primary CTA — filled brand red with offset shadow-border
-const PrimaryButton = ({ children, href = '#', onClick }) => {
+// `href` ya NO tiene valor por defecto. Lo tenía ('#'), así que el ternario de
+// abajo daba SIEMPRE 'a': el botón de enviar el formulario era un enlace a '#',
+// y un clic navegaba en vez de validar. Un CTA que navega es un enlace; uno que
+// hace algo es un botón, y el teclado y los lectores de pantalla los tratan
+// distinto.
+const PrimaryButton = ({ children, href, onClick, type = 'button' }) => {
   const Tag = href ? 'a' : 'button';
   return (
-    <Tag href={href} onClick={onClick}
+    <Tag href={href} onClick={onClick} type={href ? undefined : type}
       style={{
         position: 'relative', display: 'inline-flex', alignItems: 'center', gap: 8,
-        background: 'var(--brand)', color: '#ffffff' /* tinta sobre relleno rojo: blanca (tramo 3) */,
+        // La tinta sobre relleno de marca tiene token desde 2026-09-24: se cita,
+        // no se escribe. Antes era '#ffffff' a mano.
+        background: 'var(--brand)', color: 'var(--fg-on-brand)',
         padding: '20px 22px',
         fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 16,
         letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase',

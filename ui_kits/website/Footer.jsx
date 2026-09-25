@@ -14,9 +14,10 @@ const DispatchForm = () => {
 
   return (
     <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-      <label className="t-eyebrow" style={{ fontSize: 9, fontWeight: 400 }}>CORPORATE_EMAIL</label>
+      <label className="t-eyebrow" htmlFor="dispatch-email" style={{ fontSize: 9, fontWeight: 400 }}>CORPORATE_EMAIL</label>
       <div style={{ display: 'flex', gap: 12 }}>
         <input
+          id="dispatch-email" name="email" required
           type="email" value={email} onChange={e => setEmail(e.target.value)}
           onFocus={() => setFocus(true)} onBlur={() => setFocus(false)}
           placeholder="operator@company.com"
@@ -25,13 +26,22 @@ const DispatchForm = () => {
             background: focus ? 'color-mix(in srgb, var(--brand) 3%, transparent)' : 'color-mix(in srgb, var(--color-text) 3%, transparent)',
             border: `1px solid ${focus ? 'color-mix(in srgb, var(--brand) 50%, transparent)' : 'color-mix(in srgb, var(--color-text) 25%, transparent)'}`,
             color: 'var(--color-text)', fontFamily: 'var(--font-body)', fontSize: 15,
-            outline: 'none', transition: 'all 0.3s var(--ease)',
+            // Sin `outline` aquí. El kit ponía `outline: none` y se cargaba el
+            // anillo de foco que su propia ficha exige
+            // (`components/components.json` → input.states.focus). Tampoco se
+            // repinta desde el estado de React: un estilo en línea gana a la
+            // hoja, así que atarlo a `focus` deja fuera al teclado, que es
+            // justo quien lo necesita. Lo sirve `:focus-visible` en styles.css.
+            transition: 'all 0.3s var(--ease)',
           }}/>
-        <PrimaryButton onClick={submit}>
+        <PrimaryButton type="submit" onClick={submit}>
           {state === 'syncing' ? 'SYNCING...' : state === 'synced' ? 'SYNCED' : 'Subscribe →'}
         </PrimaryButton>
       </div>
-      <p style={{
+      {/* El estado se anuncia: sin esto cambia el texto y quien no ve la
+          pantalla no se entera de que su correo entró. `polite` y no
+          `assertive` porque no interrumpe nada. */}
+      <p role="status" aria-live="polite" style={{
         margin: 0, color: 'var(--color-faint)',
         fontFamily: 'var(--font-mono)', fontSize: 10,
         letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase',
@@ -83,7 +93,9 @@ const Footer = () => (
   <footer style={{
     position: 'relative', overflow: 'hidden',
     borderTop: '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-    background: 'var(--color-bg-deep)', padding: '80px 40px 40px',
+    background: 'var(--color-bg-deep)',
+    /* Laterales del canon en vez de 40px fijos: a 320 px el contenido se salía. */
+    padding: 'var(--space-20) var(--space-6) var(--space-10)',
   }}>
     <div className="bg-grid" style={{
       position: 'absolute', inset: 0, opacity: 0.15, pointerEvents: 'none',
@@ -93,7 +105,7 @@ const Footer = () => (
       display: 'flex', flexDirection: 'column', gap: 64,
     }}>
       <div style={{
-        display: 'grid', gridTemplateColumns: '1.55fr 0.9fr', gap: 64, alignItems: 'flex-start',
+        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 64, alignItems: 'flex-start',
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
           <img src="./assets/logo-white.svg" alt="AGLAYA" style={{ height: 24, width: 'auto' }}/>
