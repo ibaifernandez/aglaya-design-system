@@ -34,7 +34,7 @@ Root files:
 Folders:
 - **`assets/`** — logos (white / black / brand-red), favicons (SVG), PNG fallbacks
 - **`fonts/`** — local font files (Outfit variable + statics, Inter 100–900 + italics, Space Mono) — no CDN. Third-party, redistributed under SIL Open Font License 1.1; each family ships its licence beside it (`fonts/README.md`)
-- **`preview/`** — design-system specimen cards (colors, type, spacing, components, brand). Colors and type render through `var(--token)`, so a swatch cannot show a colour the canon no longer holds. **Sizes are a different story: four cards write dimensions into the markup for the demo** (`spacing-scale`, `type-body`, `type-display`, `brand-logo-variants`), so read those labels as illustration, not as the canon. The canon is `colors_and_type.css`, and `get_token` answers for it
+- **`preview/`** — design-system specimen cards (colors, type, spacing, components, brand). Colours render through `var(--token)`, so a swatch cannot show a colour the canon no longer holds — measured: no specimen hard-codes a canon colour. **Everything a card states in words — a size, a spacing step, the shadow of a rule — is written by hand and can age.** Read a specimen as illustration; the canon is `colors_and_type.css`, and `get_token` answers for it. *(No list of which cards here on purpose: it would be one more thing to keep true.)*
 - **`products/`** — per-product identity: `products.json` (the roster) plus glyphs and lockups
 - **`components/`** — `components.json`, the component specs served by `get_component`
 - **`ui_kits/website/`** — full AGLAYA.biz homepage recreation. It imports `colors_and_type.css`; its own `:root` is aliases only, no values
