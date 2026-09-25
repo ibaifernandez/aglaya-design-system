@@ -112,8 +112,12 @@ muerde() { # etiqueta | archivo | patrón sed que rompe el filtrado
   return 1
 }
 
+# El ancla cambió el 2026-09-25: el filtrado dejó de aplicarse al contenido del
+# bloque y pasó a aplicarse al CSS ENTERO, antes de buscarlo — un `}` dentro de
+# un comentario de `:root` cerraba el bloque antes de tiempo. Retirar el
+# filtrado aquí es, además, el mismo sabotaje que entonces.
 muerde "MCP (brand.py)" "aglaya-ds-mcp/brand.py" \
-  's/_SIN_COMENTARIOS\.sub\("", (root\.group\(1\) if root else css)\)/$1/' || fallos=$((fallos+1))
+  's/_SIN_COMENTARIOS\.sub\("", _read\(CSS_FILE\)\)/_read(CSS_FILE)/' || fallos=$((fallos+1))
 muerde "guardián (guard_valores.py)" "tools/guard_valores.py" \
   's/SIN_COMENTARIOS\.sub\("", m\.group\(1\)\)/m.group(1)/' || fallos=$((fallos+1))
 muerde "paquete (build-tokens.mjs)" "scripts/build-tokens.mjs" \

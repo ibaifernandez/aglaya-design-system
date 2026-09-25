@@ -93,7 +93,13 @@ ENLACE = re.compile(r"\[[^\]]*\]\(([^)\s]+)\)")
 # prosa — `docs/CONTRACT.md` solo puede ser una ruta, mientras que `SKILL.md`
 # suelto puede ser tanto una instrucción como una retractación (ver el
 # docstring: por eso el nombre suelto no se vigila).
-EXTENSIONES = "md|css|json|py|sh|mjs|js|toml|yml|yaml|txt|html|jsx|ts|tsx|svg|ttf"
+# `otf`, `woff` y `woff2` entraron el 2026-09-25: estaban en BINARIOS —o sea,
+# el guardián sabía no LEERLOS— pero no aquí, así que una ruta rota a una
+# tipografía no la veía nadie. Y las tipografías son marca: viajan en el
+# paquete, con su licencia al lado, y el CSS canónico las carga por ruta.
+EXTENSIONES = (
+    "md|css|json|py|sh|mjs|js|toml|yml|yaml|txt|html|jsx|ts|tsx|svg|ttf|otf|woff2|woff"
+)
 RUTA = re.compile(
     rf"(?<![\w.-])(@?(?:/|\.{{1,2}}/)?(?:[\w.@-]+/)+[\w.-]+\.(?:{EXTENSIONES}))\b"
 )
