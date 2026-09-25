@@ -39,7 +39,7 @@ llave SSH.
 npm install "git+https://github.com/ibaifernandez/aglaya-design-system.git#v1.4.0"
 ```
 
-Sustituye el tag por el último publicado — `npx aglaya-tokens-version` te dice
+Sustituye el tag por el último publicado — `npm exec --no -- aglaya-tokens-version` te dice
 cuál es, y `git ls-remote --tags https://github.com/ibaifernandez/aglaya-design-system.git`
 los lista todos.
 
@@ -124,8 +124,15 @@ primer día: duele siete semanas después, cuando nadie sabe desde cuándo. Un
 consumidor que copia no tiene forma de preguntar. Uno que depende, sí:
 
 ```bash
-npx aglaya-tokens-version
+npm exec --no -- aglaya-tokens-version
 ```
+
+**El `--no` es la mitad de la instrucción, no un adorno.** Ejecuta el binario
+que este paquete instala y se niega a bajar nada: si el paquete no está, sale
+con 1 y lo dice. `npx` a secas busca el nombre en el registro público cuando no
+lo encuentra en el proyecto, y **en un CI, sin terminal interactiva, npm asume
+`--yes` e instala sin preguntar** — así que un nombre que hoy está libre se
+convierte mañana en código ajeno corriendo dentro del CI de un consumidor.
 
 - Al día → sale `0`.
 - Atrasado → imprime el último publicado y la lista de versiones que faltan.
