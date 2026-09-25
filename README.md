@@ -34,7 +34,7 @@ Root files:
 Folders:
 - **`assets/`** — logos (white / black / brand-red), favicons (SVG), PNG fallbacks
 - **`fonts/`** — local font files (Outfit variable + statics, Inter 100–900 + italics, Space Mono) — no CDN. Third-party, redistributed under SIL Open Font License 1.1; each family ships its licence beside it (`fonts/README.md`)
-- **`preview/`** — design-system specimen cards (colors, type, spacing, components, brand). They read their values from `colors_and_type.css` at paint time, so a specimen cannot show a value the canon no longer holds
+- **`preview/`** — design-system specimen cards (colors, type, spacing, components, brand). Colours render through `var(--token)`, so a swatch cannot show a colour the canon no longer holds — measured: no specimen hard-codes a canon colour. **Everything a card states in words — a size, a spacing step, the shadow of a rule — is written by hand and can age.** Read a specimen as illustration; the canon is `colors_and_type.css`, and `get_token` answers for it. *(No list of which cards here on purpose: it would be one more thing to keep true.)*
 - **`products/`** — per-product identity: `products.json` (the roster) plus glyphs and lockups
 - **`components/`** — `components.json`, the component specs served by `get_component`
 - **`ui_kits/website/`** — full AGLAYA.biz homepage recreation. It imports `colors_and_type.css`; its own `:root` is aliases only, no values
@@ -203,29 +203,32 @@ Nothing is being substituted. The kit is fully offline-capable once these files 
 
 ## How to use this system
 
-This design system is a **self-contained folder** you can drop anywhere. It has no dependencies beyond a browser.
+**There are two ways to consume this brand, and copying is not one of them.** Depend on the package, or query the MCP. Both read the canonical files; neither leaves a copy behind that ages out of sight. That is not style advice — it is what [`docs/CONTRACT.md`](docs/CONTRACT.md) imposes on every consumer, and what `tools/test_mutacion.sh` exists to prove: move a value here and the consumer that depends gets the new one without touching a file, while the consumer that copied keeps the old one and nobody finds out.
 
 ### Browse the system
-Open any file in `preview/` in a browser and you'll see the specimen card for that token (colors, type, spacing, components, brand). `ui_kits/website/index.html` is a full hi-fi recreation of the homepage built with the tokens — use it as the canonical reference for how everything composes.
+Clone or download this repo and open any file in `preview/` in a browser: you get the specimen card for that token (colors, type, spacing, components, brand). `ui_kits/website/index.html` is a full hi-fi recreation of the homepage built with the tokens — the canonical reference for how everything composes. **This is for looking, not for building**: what you read here you then consume through one of the two ways below.
 
 ### Use it in production code
-```html
-<!-- Drop-in stylesheet; loads fonts and exposes all tokens as CSS variables -->
-<link rel="stylesheet" href="./colors_and_type.css">
+Install the package (below) and import the canonical stylesheet from it:
 
+```css
+@import "@aglaya/design-tokens/tokens.css";
+```
+
+```html
 <body style="background: var(--color-bg); color: var(--fg-1);">
-  <h1 class="t-display-lg">Sovereign <span style="color: var(--color-brand);">systems.</span></h1>
+  <h1 class="t-display-lg">Sovereign <span style="color: var(--fg-brand);">systems.</span></h1>
 </body>
 ```
 
-All tokens are CSS custom properties (`--color-brand`, `--text-display-xl`, `--space-8`, `--ease-out`, etc.). Import `colors_and_type.css` and they're available globally.
+All tokens are CSS custom properties (`--color-brand`, `--text-display-xl`, `--space-8`, `--ease-out`, etc.), available globally once imported. **Pointing a `<link>` at a copy of `colors_and_type.css` inside your repo is the one shape this contract rules out**: it installs fine today and silently drifts from the canon tomorrow.
 
 ### Use it with an AI coding tool (Claude Code, Cursor, Copilot)
-Unzip the folder into your project. Any agent can read this `README.md` for the visual system and `docs/BRAND-RULES.md` for the non-negotiables and the voice, and immediately start generating on-brand code. Example prompt:
+Install the package in the project and — where it is available — mount the `aglaya-ds` MCP. The agent then reads `docs/BRAND-RULES.md` for the non-negotiables and the voice, and asks `get_token` / `get_component` for values instead of transcribing them. Example prompt:
 
-> "Using the design system in `./aglaya-design-system/`, build a landing page for our new ROI audit product."
+> "Using `@aglaya/design-tokens` and the `aglaya-ds` MCP, build a landing page for our new ROI audit product."
 
-The agent reads the tokens, copies assets, follows the voice rules, and ships pixel-consistent with the rest of the brand.
+**Do not ask an agent to copy the folder into the project.** An agent that copies values is the fastest way to produce a surface that looks on-brand the day it ships and lies three weeks later.
 
 ### Depend on it from another repo (package)
 The tokens ship as a versioned package, `@aglaya/design-tokens`, pinned to a tag over `git+https` — the only shape that survives a foreign CI, which clones the consumer's repo and not this one.
@@ -253,11 +256,13 @@ Semver policy, the name-collision rule (consumers rename; there is no alias map)
 ### Query the brand live (MCP)
 For projects that should read the brand **live** instead of copying it, this repo ships a sovereign MCP server in [`aglaya-ds-mcp/`](aglaya-ds-mcp/README.md). It exposes `get_token`, `list_tokens`, `get_voice_rules`, `check_voice`, `is_allowed_word`, `get_logo`, and `get_nonnegotiables` (master + `scope="product"`), plus **product identity** (`list_products`, `get_product`, `get_accent`, `get_glyph`, `get_lockup`, `get_product_voice`) and **component specs** (`list_components`, `get_component`) — each reading these canonical files live, so downstream surfaces (`aglaya.biz` included) consume the brand instead of duplicating it. The MCP is an optional, separable layer; the design-system folder stays runtime-free without it.
 
-### Use it in Figma / other tools
+### Use it in Figma / other design tools
+Figma has neither the package nor the MCP, so here a copy is the only way — and a copy expires. **Ask `get_token` for the value, write down the day you did it, and re-check before anything ships.** The canon is `colors_and_type.css`; a Figma Variable is a snapshot of it.
+
 - **Fonts:** install the `.otf` / `.ttf` files from `fonts/` into your OS font book.
-- **Colors:** copy the hex values from `preview/colors-brand.html` and `colors-surface.html` into Figma Variables, Tailwind config, etc.
-- **Logos:** drop the SVGs from `assets/` directly into Figma / Sketch / Illustrator.
-- **Typography scale:** translate the `--text-*` tokens in `colors_and_type.css` into your tool's text styles.
+- **Colors:** take the values from `get_token` / `list_tokens` (or from `colors_and_type.css`) into Figma Variables, Tailwind config, etc. Do not read them off a specimen card: that page is a demo, not the source.
+- **Logos and lockups:** drop the SVGs from `assets/` and `products/*/lockups/` straight into Figma / Sketch / Illustrator. These are artwork with the colour painted in, so they are the one thing that travels as a file by design.
+- **Typography scale:** translate the `--text-*` tokens into your tool's text styles, same caveat: it is a snapshot.
 
 ### Extend it
 If you build new components, drop them in `preview/components-*.html` and they become part of the system. The visual rules here and the brand rules in `docs/BRAND-RULES.md` are the contract — anything that follows them belongs.
