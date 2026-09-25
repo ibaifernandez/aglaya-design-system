@@ -44,7 +44,7 @@ Cada pregunta se contesta yendo a mirar. La tercera columna es la que hace el tr
 | ¿El MCP `aglaya-ds` está montado y qué tools expone? | la lista de tools del servidor en la sesión actual · `cd aglaya-ds-mcp && ./.venv/bin/python selftest.py` (con el `python3` del sistema falla: el SDK vive en el venv) | un conteo de tools tecleado aquí · «el MCP está arriba» leído en un doc |
 | ¿Qué versión tiene el contrato de marca? | `git tag --list` · la cabecera de [`docs/CONTRACT.md`](docs/CONTRACT.md) | un número de versión tecleado en esta sección |
 | ¿Cómo depende otro repo de esta marca? | [`docs/PACKAGE.md`](docs/PACKAGE.md) — el paquete, la política de semver y la regla de los nombres que chocan | copiarle el CSS al consumidor · inventar allí un token que aquí no existe |
-| ¿Cuánto va por detrás un consumidor? | `npx aglaya-tokens-version` desde el repo del consumidor (`--strict` para cerrarle el CI) | mirar a ojo dos archivos · un número de versión tecleado en esta sección |
+| ¿Cuánto va por detrás un consumidor? | `npm exec --no -- aglaya-tokens-version` desde el repo del consumidor (`--strict` para cerrarle el CI; el `--no` impide que npm baje ese nombre del registro) | mirar a ojo dos archivos · un número de versión tecleado en esta sección |
 | ¿Un token, un logo, los no-negociables? | MCP `aglaya-ds` (`get_token`, `get_logo`, `get_nonnegotiables`) sobre `colors_and_type.css` y `docs/BRAND-RULES.md` | parafrasear el `README.md` de memoria |
 | ¿Qué contrato rige esta marca y quién la consume? | `contrato` y `quien_consume` del MCP `aglaya-atlas` | una lista de consumidores copiada aquí, que envejece a espaldas de todos |
 | ¿Precios, ofertas, GTM? | `verdad_comercial` del MCP `aglaya-atlas` | una cifra escrita en este repo |

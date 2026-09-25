@@ -241,8 +241,12 @@ npm install "git+https://github.com/ibaifernandez/aglaya-design-system.git#v1.4.
 The package ships the canonical `colors_and_type.css` itself — not an adapted copy — plus the fonts it loads and JSON/JS token forms derived at install time. One command tells a consumer how far behind it is:
 
 ```bash
-npx aglaya-tokens-version
+npm exec --no -- aglaya-tokens-version
 ```
+
+`--no` matters: it runs the binary this package installed and refuses to fetch
+anything. Plain `npx` would download and run whatever is published under that
+name — and in CI, with no TTY, npm assumes `--yes` and does it without asking.
 
 Semver policy, the name-collision rule (consumers rename; there is no alias map), and the mutation test that proves a consumer is depending rather than copying: [`docs/PACKAGE.md`](docs/PACKAGE.md).
 
