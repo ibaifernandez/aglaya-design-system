@@ -197,6 +197,46 @@ sys.exit(1 if intrusos else 0)
 PY
 [ $? -eq 0 ] || fallos=$((fallos+1))
 
+echo "== 9f. el código de terceros del kit también tiene que llevar su licencia =="
+echo "   (la MIT exige que su aviso viaje con el código, y este repo es público)"
+VLIC="ui_kits/website/vendor/LICENSE-react.txt"
+VLIC_BK="$(mktemp)"; cp "$VLIC" "$VLIC_BK"; mv "$VLIC" "$VLIC.escondida"
+salida=$(python3 "$GUARD" 2>&1); rc=$?
+mv "$VLIC.escondida" "$VLIC"
+cmp -s "$VLIC" "$VLIC_BK" || { echo "  NO restauré $VLIC"; exit 1; }
+rm -f "$VLIC_BK"
+if [ "$rc" -eq 1 ] && printf '%s' "$salida" | grep -q "\[vendor-sin-licencia\]"; then
+  echo "  ROJO  ok   vendor-sin-licencia   ← falta la licencia de react"
+else
+  echo "  ESCAPÓ     vendor-sin-licencia   ← falta la licencia de react (rc=$rc)"
+  fallos=$((fallos+1))
+fi
+
+echo "== 9g. una librería NUEVA sin licencia también =="
+echo "   (empareja por nombre de archivo, así que protege a la que aún no se vendorizó)"
+python3 - <<'PY2'
+import sys; sys.path.insert(0, "tools")
+import guard_paquete as g
+reales = g.vendorizados() or []
+g.vendorizados = lambda: reales + [g.VENDOR / "htmx.min.js"]   # librería inventada
+rc = g.main()
+print("  ROJO  ok   vendor-sin-licencia (librería nueva)" if rc == 1
+      else f"  ESCAPÓ     vendor-sin-licencia (librería nueva) (rc={rc})")
+sys.exit(0 if rc == 1 else 1)
+PY2
+[ $? -eq 0 ] || fallos=$((fallos+1))
+
+echo "== 9h. no ver ningún archivo vendorizado tampoco puede dar verde =="
+python3 - <<'PY3'
+import sys; sys.path.insert(0, "tools")
+import guard_paquete as g
+g.vendorizados = lambda: []              # el directorio está, pero no se ve nada
+rc = g.main()
+print("  ROJO  ok   sin-vendor (rc=2)" if rc == 2 else f"  ESCAPÓ     sin-vendor (rc={rc})")
+sys.exit(0 if rc == 2 else 1)
+PY3
+[ $? -eq 0 ] || fallos=$((fallos+1))
+
 echo "== 10. sin manifiesto no se puede dar verde =="
 python3 - <<'PY'
 import sys; sys.path.insert(0, "tools")

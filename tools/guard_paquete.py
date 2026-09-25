@@ -66,6 +66,12 @@ FUENTES = RAIZ / "fonts"
 # Lo que cuenta como «font software» a efectos del OFL.
 EXT_FUENTE = {".otf", ".ttf", ".woff", ".woff2", ".ttc", ".otc"}
 
+# El otro material de terceros del repo: el código vendorizado del kit. Va
+# aparte de las tipografías porque su licencia es otra (MIT, no OFL) y porque
+# se empareja por archivo y no por familia.
+VENDOR = RAIZ / "ui_kits" / "website" / "vendor"
+EXT_VENDOR = {".js", ".mjs", ".cjs", ".css"}
+
 # Directorios que el paquete fabrica al instalar y que por tanto NO tienen que
 # existir en un clon limpio. Cualquier otro objetivo declarado sí.
 CONSTRUIDOS = ("dist/",)
@@ -120,6 +126,27 @@ def fuentes() -> list[Path] | None:
                   if p.is_file() and p.suffix.lower() in EXT_FUENTE)
 
 
+def vendorizados() -> list[Path] | None:
+    """El código de terceros que este repo redistribuye dentro del kit.
+
+    Misma lógica que `fuentes()`, y por el mismo motivo: `None` si el directorio
+    no existe —no hay nada vendorizado y la regla no aplica— pero lista vacía
+    es «el directorio está y no veo nada dentro», que arriba se trata como «no
+    se pudo comprobar». Un guardián de licencias que no encuentra el material
+    da el verde más tranquilizador y más falso que hay.
+    """
+    if not VENDOR.is_dir():
+        return None
+    return sorted(p for p in VENDOR.iterdir()
+                  if p.is_file() and p.suffix.lower() in EXT_VENDOR)
+
+
+def _biblioteca(archivo: Path) -> str:
+    """`react-dom.production.min.js` -> `react-dom`. El nombre de la librería es
+    lo que va antes del primer punto, que es como están nombrados."""
+    return archivo.name.split(".")[0]
+
+
 def _familia(archivo: Path) -> str:
     """`Inter-BoldItalic.otf` -> `Inter`. El nombre antes del primer guion."""
     return archivo.stem.split("-")[0]
@@ -153,7 +180,8 @@ def _objetivos(pkg: dict) -> list[tuple[str, str]]:
     return fuera
 
 
-def revisar(pkg: dict, versionados: list[str], tipografias: list[Path] | None) -> list[tuple[str, str]]:
+def revisar(pkg: dict, versionados: list[str], tipografias: list[Path] | None,
+            vendor: list[Path] | None = None) -> list[tuple[str, str]]:
     """[(regla, explicación)] — vacío si el paquete sobrevive a un clon ajeno."""
     fallos: list[tuple[str, str]] = []
 
@@ -173,6 +201,25 @@ def revisar(pkg: dict, versionados: list[str], tipografias: list[Path] | None) -
             f"fonts/LICENSE-{familia}.txt — el OFL exige que la licencia y el "
             "aviso de copyright viajen con los archivos",
         ))
+
+    # 0b · ningún código de terceros se redistribuye sin su licencia al lado.
+    # Es la misma avería que la de las tipografías, en el otro material de
+    # terceros del repo: el kit vendoriza React, ReactDOM y Babel —MIT, que
+    # exige que su aviso viaje con el código— dentro de un repo público cuya
+    # licencia declara «todos los derechos reservados». Aquí no se agrupa por
+    # familia porque cada archivo es su propia librería.
+    for archivo in vendor or []:
+        if archivo.name.startswith("LICENSE-"):
+            continue
+        lib = _biblioteca(archivo)
+        if not (archivo.parent / f"LICENSE-{lib}.txt").is_file():
+            fallos.append((
+                "vendor-sin-licencia",
+                f"{archivo.relative_to(RAIZ)} es código de terceros y falta "
+                f"{(archivo.parent / f'LICENSE-{lib}.txt').relative_to(RAIZ)} — "
+                "la MIT exige que su aviso de copyright viaje con el código, y "
+                "este repo es público",
+            ))
 
     # 1 · ninguna dependencia atada a este disco
     for bloque in BLOQUES_DEPS:
@@ -294,12 +341,22 @@ def main() -> int:
               "ni exports ni files ni bin; no hay nada que verificar")
         return 2
 
-    fallos = revisar(pkg, versionados, tipografias)
+    vendor = vendorizados()
+    if vendor is not None and not any(
+            not p.name.startswith("LICENSE-") for p in vendor):
+        print("guard-paquete: NO SE PUDO COMPROBAR — existe "
+              f"{VENDOR.relative_to(RAIZ)} pero no se vio ni un archivo de "
+              "terceros; la regla de licencias pasaría en vacío")
+        return 2
+
+    fallos = revisar(pkg, versionados, tipografias, vendor)
     if not fallos:
         familias = sorted({_familia(f) for f in (tipografias or [])})
         print(f"guard-paquete: OK — {pkg.get('name')} v{pkg.get('version')}, "
               f"{len(objetivos)} objetivo(s) declarados, ninguno atado a este disco; "
-              f"{len(familias)} familia(s) tipográfica(s), todas con su licencia al lado.")
+              f"{len(familias)} familia(s) tipográfica(s) y "
+              f"{len([p for p in (vendor or []) if not p.name.startswith('LICENSE-')])} "
+              f"archivo(s) de terceros, todos con su licencia al lado.")
         return 0
 
     print(f"guard-paquete: {len(fallos)} problema(s) — el paquete no sobrevive a un clon ajeno\n")
