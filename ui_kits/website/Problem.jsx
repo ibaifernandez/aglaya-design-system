@@ -63,7 +63,7 @@ const Problem = () => (
         line1="Agencies sell hours."
         line2="We sell sovereignty."/>
       <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24,
+        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 24,
       }}>
         {PROBLEMS.map((p, i) => <ProblemCard key={i} i={i} {...p}/>)}
       </div>

@@ -20,7 +20,9 @@ const ExclusionCard = ({ num, title, body }) => {
         transition: 'border-color 0.3s var(--ease)',
       }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 520 }}>
-        <span className="t-eyebrow" style={{ fontSize: 9, fontWeight: 400, opacity: 0.55 }}
+        {/* Sin `opacity`: con 0.55 el verde del eyebrow daba 3.54 sobre negro, por
+            debajo del suelo de texto. La clase del canon ya trae su color. */}
+        <span className="t-eyebrow" style={{ fontSize: 9, fontWeight: 400 }}
         >EXCLUSION_PRINCIPLE_{String(num).padStart(2,'0')}</span>
         <h3 style={{
           margin: 0, color: hover ? 'var(--brand-ink)' : 'var(--color-text)',
@@ -65,7 +67,11 @@ const AntiClient = () => {
         position: 'absolute', inset: 0,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         opacity: 0.02, pointerEvents: 'none', userSelect: 'none',
-      }}>
+      }}
+      /* Marca de agua: opacidad 0.02 a propósito, o sea contraste 1.03. NO se
+         le sube el contraste —dejaría de ser marca de agua y sería otro diseño—;
+         se declara decoración, que es lo que es, y deja de anunciarse. */
+      aria-hidden="true">
         <span style={{
           fontSize: '30vw', fontFamily: 'var(--font-display)', fontWeight: 900,
           letterSpacing: '-0.05em', lineHeight: 1, textTransform: 'uppercase',
@@ -75,7 +81,7 @@ const AntiClient = () => {
 
       <div style={{
         position: 'relative', maxWidth: 1280, margin: '0 auto',
-        display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64,
+        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 64,
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           <SectionHeader eyebrow="Access Control" line1="Non-Negotiable Parameters."/>
@@ -91,7 +97,7 @@ const AntiClient = () => {
               verde del modo claro. Aquí solo queda la composición. */}
           <div className="t-eyebrow" style={{
             display: 'flex', alignItems: 'center', gap: 16,
-            fontSize: 10, fontWeight: 400, opacity: 0.6,
+            fontSize: 10, fontWeight: 400,   /* sin opacity: con 0.6 daba 4.02 */
           }}>
             <span>OPERATIONAL_INTEGRITY</span>
             <div style={{ width: 48, height: 1, background: 'color-mix(in srgb, var(--brand) 20%, transparent)' }}/>
