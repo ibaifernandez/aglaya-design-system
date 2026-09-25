@@ -48,29 +48,39 @@ def _guard(fn, *args, **kwargs):
 
 
 @mcp.tool()
-def get_token(name: str) -> dict:
+def get_token(name: str, mode: Optional[str] = None) -> dict:
     """Return the live value of a single design token from colors_and_type.css.
 
     `name` accepts 'color-brand' or '--color-brand'.
-    Shape: {"token": "--color-brand", "value": <live from the CSS>}.
+    `mode` picks the color mode: 'dark' (the default canvas of this brand) or
+    'light'. Omit it and the answer is what it always was — a token that does
+    not change between modes answers the same either way.
+    Shape: {"token": "--color-brand", "mode": "dark", "value": <live from the CSS>}.
     The example deliberately shows no value: a docstring that prints the red
     is the copy this tool exists to make unnecessary, and it would be read as
     authoritative the day the red moves.
     """
-    val = _guard(brand.get_token, name)
+    val = _guard(brand.get_token, name, mode)
     if isinstance(val, dict):  # error
         return val
-    return {"token": "--" + name.strip().lstrip("-"), "value": val}
+    return {
+        "token": "--" + name.strip().lstrip("-"),
+        "mode": (mode or brand._MODO_POR_DEFECTO).strip().lower(),
+        "value": val,
+    }
 
 
 @mcp.tool()
-def list_tokens(category: Optional[str] = None) -> dict:
-    """List design tokens, optionally by category.
+def list_tokens(category: Optional[str] = None, mode: Optional[str] = None) -> dict:
+    """List design tokens, optionally by category and by color mode.
 
     Categories: color, type, spacing, radius, motion, shadow, other.
+    Modes: dark (default), light. The light block redefines only what changes,
+    so the answer carries the whole canon with the light values applied on top —
+    serving that block alone would lie by omission.
     Omit `category` for all tokens.
     """
-    return _guard(brand.list_tokens, category)
+    return _guard(brand.list_tokens, category, mode)
 
 
 @mcp.tool()
