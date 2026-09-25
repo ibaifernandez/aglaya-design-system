@@ -53,6 +53,9 @@ LLAMADAS = [
     ("check_voice", {"text": "Our solutions transform your business!"}, "ok"),
     ("is_allowed_word", {"term": "newsletter"}, "ok"),
     ("is_allowed_word", {"term": "Sovereignty"}, "ok"),
+    ("get_token", {"name": "color-text", "mode": "light"}, "ok"),
+    ("get_token", {"name": "color-text", "mode": "sepia"}, "falla"),
+    ("list_tokens", {"mode": "light"}, "ok"),
     ("is_allowed_word", {"term": "Zero-Leak Architecture"}, "ok"),
     ("is_allowed_word", {"term": "revisión humana obligatoria"}, "ok"),
     ("get_logo", {"variant": "isotipo-rojo"}, "ok"),
@@ -274,6 +277,43 @@ async def main() -> int:
                             f"is_allowed_word({compuesto!r}) propone {impostor!r}, "
                             f"que el canon define para otra cosa"
                         )
+
+            # El modo de color no se prueba solo llamando: una tool que
+            # ignorara `mode` y devolviera siempre `:root` pasaría las llamadas
+            # de arriba con veredicto "ok". Lo que lo fija es que el valor
+            # CAMBIE donde el canon dice que cambia, que NO cambie donde no, y
+            # que no pedir modo siga contestando lo de siempre.
+            claro = _payload(await session.call_tool(
+                "get_token", {"name": "color-text", "mode": "light"}))
+            oscuro = _payload(await session.call_tool(
+                "get_token", {"name": "color-text", "mode": "dark"}))
+            sin_modo = _payload(await session.call_tool(
+                "get_token", {"name": "color-text"}))
+            if not (isinstance(claro, dict) and isinstance(oscuro, dict)
+                    and isinstance(sin_modo, dict)):
+                fallos.append("get_token con modo no devolvió una respuesta legible")
+            else:
+                if claro.get("value") == oscuro.get("value"):
+                    fallos.append(
+                        f"get_token('--color-text') da el mismo valor en los dos "
+                        f"modos ({claro.get('value')!r}) — ¿se ignora `mode`?"
+                    )
+                if sin_modo.get("value") != oscuro.get("value"):
+                    fallos.append(
+                        "get_token sin `mode` dejó de contestar lo que contestaba: "
+                        "el argumento nuevo tenía que no romper a quien ya llama"
+                    )
+            # Y un token que NO cambia entre modos no puede cambiar: si cambiara,
+            # el lector estaría inventando en vez de heredar de `:root`.
+            esp_claro = _payload(await session.call_tool(
+                "get_token", {"name": "space-8", "mode": "light"}))
+            if isinstance(esp_claro, dict) and isinstance(sin_modo, dict):
+                esp = _payload(await session.call_tool("get_token", {"name": "space-8"}))
+                if isinstance(esp, dict) and esp_claro.get("value") != esp.get("value"):
+                    fallos.append(
+                        "--space-8 cambia entre modos y el canon no lo redefine: "
+                        "el modo claro tiene que HEREDAR lo que no toca"
+                    )
 
             limpia = "revisión humana obligatoria"
             res_l = _payload(await session.call_tool("is_allowed_word", {"term": limpia}))

@@ -91,6 +91,62 @@ _CATEGORIES: dict[str, tuple[str, ...]] = {
 _MINIMO_TOKENS = 40
 
 
+# Los modos de color, leídos por su selector. `dark` es `:root` porque el negro
+# es el lienzo por defecto de esta marca, no una variante. Un modo nuevo se
+# añade aquí y las dos tools lo sirven sin tocarlas.
+_MODOS = {
+    "dark": r":root\s*\{(.*?)\n\}",
+    "light": r'\[data-theme="light"\]\s*\{(.*?)\n\}',
+}
+_MODO_POR_DEFECTO = "dark"
+
+
+def _css_sin_comentarios() -> str:
+    """El CSS canónico con los comentarios fuera, que es la ÚNICA forma en que
+    este módulo debe mirarlo.
+
+    Está en una función sola a propósito, y no repetido en cada lector: cuando
+    el filtrado vivía en dos sitios, el sabotaje de
+    `tools/test_parsers_comentarios.sh` retiraba el primero y el otro seguía
+    protegiendo, así que la prueba daba verde sobre un parser roto. Un filtro
+    duplicado es un filtro que solo se puede probar a medias.
+    """
+    return _SIN_COMENTARIOS.sub("", _read(CSS_FILE))
+
+
+def _tokens_de_modo(modo: str) -> dict[str, str]:
+    """Los tokens de un modo, con lo que hereda de `:root`.
+
+    El modo claro **redefine solo lo que cambia**, así que servir su bloque a
+    secas daría 15 tokens y mentiría por omisión: `--space-8` no está ahí porque
+    no cambia, no porque no exista en claro.
+    """
+    if modo not in _MODOS:
+        raise BrandError(
+            f"unknown mode '{modo}'. Valid: {', '.join(sorted(_MODOS))}."
+        )
+    base = _all_tokens()
+    if modo == _MODO_POR_DEFECTO:
+        return base
+    m = re.search(_MODOS[modo], _css_sin_comentarios(), re.DOTALL)
+    if not m:
+        raise BrandError(
+            f"mode '{modo}' is declared in the server but its block is not in "
+            f"{CSS_FILE.name}: nothing to serve."
+        )
+    fuera = dict(base)
+    propios = 0
+    for name, value in _TOKEN_RE.findall(m.group(1)):
+        fuera[name] = re.sub(r"\s+", " ", value).strip()
+        propios += 1
+    if not propios:
+        raise BrandError(
+            f"mode '{modo}' parsed to zero tokens: its block exists but nothing "
+            f"was read from it."
+        )
+    return fuera
+
+
 def _all_tokens() -> dict[str, str]:
     """Parse every custom property inside the first :root { … } block.
 
@@ -106,7 +162,7 @@ def _all_tokens() -> dict[str, str]:
     falsa por la puerta oficial es lo peor que puede hacer esta nave, y quedarse
     callado es lo que la convierte en falsa en vez de en avería.
     """
-    css = _SIN_COMENTARIOS.sub("", _read(CSS_FILE))
+    css = _css_sin_comentarios()
     root = re.search(r":root\s*\{(.*?)\}", css, re.DOTALL)
     scope = root.group(1) if root else css
     out: dict[str, str] = {}
@@ -128,10 +184,16 @@ def _category_of(name: str) -> str:
     return "other"
 
 
-def get_token(name: str) -> str:
-    """Return the value of a single token. Accepts 'color-brand' or '--color-brand'."""
+def get_token(name: str, mode: Optional[str] = None) -> str:
+    """Return the value of a single token. Accepts 'color-brand' or '--color-brand'.
+
+    `mode` picks the color mode ('dark' — the default — or 'light'). Sin `mode` la
+    respuesta es la de siempre: el paquete publicaba los dos modos y el MCP solo
+    servía `:root`, así que las dos vías de consumo contestaban distinto a la
+    misma pregunta. Quien ya llama sin `mode` no se entera de este cambio.
+    """
     key = name.strip().lstrip("-")
-    tokens = _all_tokens()
+    tokens = _tokens_de_modo(mode.strip().lower()) if mode else _all_tokens()
     if key not in tokens:
         # helpful nudge: suggest near matches
         near = [n for n in tokens if key in n or n in key][:5]
@@ -140,13 +202,16 @@ def get_token(name: str) -> str:
     return tokens[key]
 
 
-def list_tokens(category: Optional[str] = None) -> dict:
+def list_tokens(category: Optional[str] = None, mode: Optional[str] = None) -> dict:
     """List tokens, optionally filtered by category.
 
-    Returns {"category": <str|"all">, "count": n, "tokens": {name: value}}.
+    Returns {"category": <str|"all">, "mode": <str>, "count": n,
+    "tokens": {name: value}}.
     Categories: color, type, spacing, radius, motion, shadow, other.
+    Modes: dark (default), light.
     """
-    tokens = _all_tokens()
+    modo = mode.strip().lower() if mode else _MODO_POR_DEFECTO
+    tokens = _tokens_de_modo(modo)
     if category:
         cat = category.strip().lower()
         valid = set(_CATEGORIES) | {"other"}
@@ -159,6 +224,7 @@ def list_tokens(category: Optional[str] = None) -> dict:
         cat = "all"
     return {
         "category": cat,
+        "mode": modo,
         "count": len(tokens),
         "tokens": {f"--{n}": v for n, v in tokens.items()},
     }

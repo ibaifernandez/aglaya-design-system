@@ -56,7 +56,7 @@ echo "  verde"
 echo "== 2. una tool que debe responder devuelve un error =="
 echo "   (el fallo real: esto viaja con isError=False y colaba)"
 probar "get_token responde {error}" '
-viejo = "    val = _guard(brand.get_token, name)"
+viejo = "    val = _guard(brand.get_token, name, mode)"
 assert viejo in t, "ancla get_token"
 t = t.replace(viejo, "    return {\"error\": \"sabotaje\"}\n" + viejo, 1)'
 
@@ -73,6 +73,13 @@ probar "get_component sin @mcp.tool()" '
 viejo = "@mcp.tool()\ndef get_component"
 assert viejo in t, "ancla get_component"
 t = t.replace(viejo, "def get_component", 1)'
+
+echo "== 4b. una tool que IGNORA el modo de color =="
+echo "   (sin esto, la comprobación del modo del selftest no prueba nada)"
+probar "get_token ignora mode" '
+viejo = "    val = _guard(brand.get_token, name, mode)"
+assert viejo in t, "ancla get_token con mode"
+t = t.replace(viejo, "    val = _guard(brand.get_token, name)", 1)'
 
 # ── 5 y 6: el CSS canónico, no el servidor ──────────────────────────────────
 # El bloque de tokens se buscaba sobre el CSS CRUDO con una expresión no
