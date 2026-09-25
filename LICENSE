@@ -6,19 +6,22 @@ Todos los derechos reservados.
 1. SCOPE / ALCANCE
 ===================================================================
 
-This licence covers everything in this repository EXCEPT the font
-software under `fonts/`, which is third-party and covered by section 3.
+This licence covers everything in this repository EXCEPT two bodies of
+third-party material: the font software under `fonts/` (section 3) and the
+vendored libraries under `ui_kits/website/vendor/` (section 4).
 
 Covered material includes, without limitation: the design tokens in
 `colors_and_type.css`; the logos, isotypes, wordmarks, product glyphs
 and lockups under `assets/` and `products/`; the brand voice, rules and
 non-negotiables in `docs/`; the component
-specifications; the preview specimens; the UI kit under `ui_kits/`; the
+specifications; the preview specimens; the UI kit under `ui_kits/` (except
+its `vendor/` directory); the
 MCP server under `aglaya-ds-mcp/`; and the tooling under `tools/`,
 `scripts/` and `bin/`.
 
-Esta licencia cubre todo el repositorio EXCEPTO las tipografías de
-`fonts/`, que son de terceros y se rigen por la sección 3.
+Esta licencia cubre todo el repositorio EXCEPTO dos conjuntos de material
+de terceros: las tipografías de `fonts/` (sección 3) y las librerías
+vendorizadas de `ui_kits/website/vendor/` (sección 4).
 
 ===================================================================
 2. RIGHTS GRANTED / DERECHOS CONCEDIDOS
@@ -61,7 +64,33 @@ Each licence text is distributed verbatim beside the font files, as the
 OFL requires. See `fonts/README.md`.
 
 ===================================================================
-4. TRADEMARKS / MARCAS
+4. VENDORED LIBRARIES / LIBRERÍAS VENDORIZADAS — third-party, NOT covered
+===================================================================
+
+The JavaScript under `ui_kits/website/vendor/` belongs to its respective
+authors and is redistributed under the MIT licence. This licence neither
+covers it nor may restrict it. It is vendored, and not loaded from a CDN,
+so the kit renders with no network and no third-party request.
+
+  React 18.3.1      Copyright (c) Facebook, Inc. and its affiliates.
+                    ui_kits/website/vendor/LICENSE-react.txt
+  ReactDOM 18.3.1   Copyright (c) Facebook, Inc. and its affiliates.
+                    ui_kits/website/vendor/LICENSE-react-dom.txt
+  Babel 7.29.0      Copyright (c) 2014-present Sebastian McKenzie and
+                    other contributors
+                    ui_kits/website/vendor/LICENSE-babel.txt
+
+Each licence text is distributed verbatim beside the file it covers, as
+the MIT licence requires. A vendored file without its licence beside it
+is a licence breach, so `tools/guard_paquete.py` fails on one.
+
+Each version above was established by comparing the vendored file byte for
+byte against that published version, not by reading a version string out of
+the file: `babel.min.js` carries several, and the first one read gave 7.24.0
+for a file that is 7.29.0.
+
+===================================================================
+5. TRADEMARKS / MARCAS
 ===================================================================
 
 AGLAYA, the AGLAYA wordmark, the isotype, the product names and their
@@ -70,7 +99,7 @@ this repository grants any right to use them, and no such right arises
 from the repository being public.
 
 ===================================================================
-5. NO WARRANTY / SIN GARANTÍA
+6. NO WARRANTY / SIN GARANTÍA
 ===================================================================
 
 The material is provided "as is", without warranty of any kind, express
@@ -78,7 +107,7 @@ or implied. The copyright holder is not liable for any claim, damages or
 other liability arising from it or from its use.
 
 ===================================================================
-6. PERMISSIONS / PERMISOS
+7. PERMISSIONS / PERMISOS
 ===================================================================
 
 Written permission for any use beyond section 2 may be requested from
