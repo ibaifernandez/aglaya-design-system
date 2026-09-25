@@ -120,7 +120,17 @@ probar_en ruta-rota "LICENSE"              "See also \`docs/NO_EXISTE.md\` for t
 # «../SKILL.md» en «SKILL.md» y la ruta se cuela por la rama de «ajena».
 probar_en ruta-rota "aglaya-ds-mcp/pyproject.toml" "# ver ../NO_EXISTE.md"                    RED
 
+echo "== 4c-bis. una ruta rota a una TIPOGRAFÍA, que hasta hoy no vigilaba nadie =="
+echo "   (estaban en BINARIOS —no se leen— pero no en EXTENSIONES —no se miraban—)"
+probar_en ruta-rota "colors_and_type.css" \
+  "/* @font-face { src: url('./fonts/NO_EXISTE-Regular.otf'); } */"                            RED
+probar_en ruta-rota "colors_and_type.css" \
+  "/* la variable moderna: fonts/NO_EXISTE.woff2 */"                                           RED
+probar_en enlace-roto "fonts/README.md"   "Ver [la negrita](Inter-NoExiste.woff)."             RED
+
 echo "== 4d. y lo legítimo fuera de markdown sigue en verde =="
+probar_en fuente-que-existe  "colors_and_type.css" "/* ver fonts/Inter-Black.otf */"          GREEN
+probar_en fuente-en-md       "fonts/README.md" "Ver [la negra](Inter-Black.otf)."             GREEN
 probar_en ruta-valida-css   "colors_and_type.css" "/* ver docs/CONTRACT.md */"                GREEN
 probar_en ruta-relativa-ok  "aglaya-ds-mcp/pyproject.toml" "# ver ../README.md"               GREEN
 probar_en dist-generado     "colors_and_type.css" "/* el build escribe dist/tokens.json */"   GREEN

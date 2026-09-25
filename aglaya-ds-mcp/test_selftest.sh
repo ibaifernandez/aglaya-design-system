@@ -74,7 +74,63 @@ viejo = "@mcp.tool()\ndef get_component"
 assert viejo in t, "ancla get_component"
 t = t.replace(viejo, "def get_component", 1)'
 
-echo "== 5. restauración =="
+# ── 5 y 6: el CSS canónico, no el servidor ──────────────────────────────────
+# El bloque de tokens se buscaba sobre el CSS CRUDO con una expresión no
+# codiciosa, así que el primer `}` cerraba el bloque: una llave de cierre dentro
+# de un comentario de `:root` dejaba al MCP sirviendo los tokens que hubiera
+# hasta ahí, SIN error y SIN aviso. Medido antes del arreglo: 17 de 89 con un
+# comentario temprano, y 88 de 89 con uno tardío — el segundo es el peor, porque
+# nadie lo nota.
+#
+# Se prueban las dos mitades, y hacen falta las dos: sin la primera, un parser
+# que se negara a servir siempre pasaría la segunda.
+CSS="../colors_and_type.css"
+CSSBK="$(mktemp)"; cp "$CSS" "$CSSBK"
+trap 'cp "$BK" "$SRV"; cp "$CSSBK" "$CSS"; rm -f "$BK" "$CSSBK"' EXIT
+
+sabotear_css() { # ancla | texto a insertar detrás  ->  0 si se aplicó
+  python3 - "$CSS" "$1" "$2" <<'PY'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1]); t = p.read_text(encoding="utf-8")
+ancla, inyecto = sys.argv[2], sys.argv[3]
+if t.count(ancla) != 1:
+    sys.exit(f"el ancla aparece {t.count(ancla)} veces, no 1")
+p.write_text(t.replace(ancla, ancla + inyecto, 1), encoding="utf-8")
+PY
+}
+
+echo "== 5. un } dentro de un comentario de :root NO puede recortar el canon =="
+tokens_sano="$("$PY" -c 'import brand; print(len(brand._all_tokens()))')"
+if sabotear_css "  --color-bg:               #000000;" $'\n  /* una llave de cierre } dentro de un comentario */'; then
+  tokens_roto="$("$PY" -c 'import brand; print(len(brand._all_tokens()))' 2>/dev/null)"
+  if [ "$tokens_roto" = "$tokens_sano" ]; then
+    echo "  VERDE ok   el canon sigue entero ($tokens_sano tokens) con el } en el comentario"
+  else
+    echo "  ESCAPÓ     el } del comentario recortó el canon: $tokens_roto de $tokens_sano"
+    fallos=$((fallos+1))
+  fi
+else
+  echo "  NO APLICÓ   el sabotaje del comentario no encontró su ancla en $CSS"
+  fallos=$((fallos+1))
+fi
+cp "$CSSBK" "$CSS"
+
+echo "== 6. una lectura absurda NO se sirve: el MCP falla y lo dice =="
+if sabotear_css "  --color-bg:               #000000;" $'\n}\n/* bloque cerrado a la fuerza */\n:root {'; then
+  "$PY" selftest.py >/dev/null 2>&1; rc=$?
+  if [ "$rc" -eq 1 ]; then
+    echo "  ROJO  ok   :root truncado de verdad — el selftest se pone rojo"
+  else
+    echo "  ESCAPÓ     :root truncado y el selftest dio verde (rc=$rc)"
+    fallos=$((fallos+1))
+  fi
+else
+  echo "  NO APLICÓ   el sabotaje de truncado no encontró su ancla en $CSS"
+  fallos=$((fallos+1))
+fi
+cp "$CSSBK" "$CSS"
+
+echo "== 7. restauración =="
 cp "$BK" "$SRV"
 "$PY" selftest.py >/dev/null 2>&1 && echo "  $SRV restaurado y verde" || { echo "  !! $SRV NO quedó verde"; fallos=$((fallos+1)); }
 

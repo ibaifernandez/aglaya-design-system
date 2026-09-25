@@ -81,14 +81,43 @@ _CATEGORIES: dict[str, tuple[str, ...]] = {
 }
 
 
+# Suelo de cordura para el bloque de tokens. No es el número de tokens de hoy
+# —eso envejecería y daría rojos falsos— sino la frontera por debajo de la cual
+# una lectura ya no puede ser el canon, sino un parseo roto. Medido: el canon
+# sirve 89 tokens; truncando el bloque en los sitios donde hoy hay comentarios
+# dentro de `:root`, la lectura caía a 17 y a 29. Un canon que legítimamente
+# adelgazara a menos de 40 sería una reescritura de la marca, no una edición, y
+# entonces este número se cambia a mano y a propósito.
+_MINIMO_TOKENS = 40
+
+
 def _all_tokens() -> dict[str, str]:
-    """Parse every custom property inside the first :root { … } block."""
-    css = _read(CSS_FILE)
+    """Parse every custom property inside the first :root { … } block.
+
+    Los comentarios se quitan ANTES de buscar el bloque, como ya hacía
+    `scripts/build-tokens.mjs`. La expresión es no codiciosa, así que **el primer
+    `}` cierra el bloque**: sobre el CSS crudo, una llave de cierre dentro de un
+    comentario de `:root` recortaba la lectura y el MCP servía los tokens que
+    hubiera hasta ahí, sin error y sin aviso. Medido sobre el canon: un `}` en un
+    comentario temprano dejaba la respuesta en 17 tokens de 89, y uno tardío se
+    llevaba solo uno — que es el caso peor, porque no lo nota nadie.
+
+    Y si aun así la lectura sale absurda, esto se niega a servirla: una respuesta
+    falsa por la puerta oficial es lo peor que puede hacer esta nave, y quedarse
+    callado es lo que la convierte en falsa en vez de en avería.
+    """
+    css = _SIN_COMENTARIOS.sub("", _read(CSS_FILE))
     root = re.search(r":root\s*\{(.*?)\}", css, re.DOTALL)
-    scope = _SIN_COMENTARIOS.sub("", root.group(1) if root else css)
+    scope = root.group(1) if root else css
     out: dict[str, str] = {}
     for name, value in _TOKEN_RE.findall(scope):
         out[name] = re.sub(r"\s+", " ", value).strip()
+    if len(out) < _MINIMO_TOKENS:
+        raise ValueError(
+            f"lectura absurda de {CSS_FILE.name}: {len(out)} token(s) en el bloque "
+            f":root, por debajo del suelo de {_MINIMO_TOKENS}. No se sirve una "
+            f"respuesta parcial: revisa el CSS (¿una llave sin cerrar?)."
+        )
     return out
 
 
