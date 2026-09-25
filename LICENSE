@@ -76,13 +76,18 @@ so the kit renders with no network and no third-party request.
                     ui_kits/website/vendor/LICENSE-react.txt
   ReactDOM 18.3.1   Copyright (c) Facebook, Inc. and its affiliates.
                     ui_kits/website/vendor/LICENSE-react-dom.txt
-  Babel 7.24.0      Copyright (c) 2014-present Sebastian McKenzie and
+  Babel 7.29.0      Copyright (c) 2014-present Sebastian McKenzie and
                     other contributors
                     ui_kits/website/vendor/LICENSE-babel.txt
 
 Each licence text is distributed verbatim beside the file it covers, as
 the MIT licence requires. A vendored file without its licence beside it
 is a licence breach, so `tools/guard_paquete.py` fails on one.
+
+Each version above was established by comparing the vendored file byte for
+byte against that published version, not by reading a version string out of
+the file: `babel.min.js` carries several, and the first one read gave 7.24.0
+for a file that is 7.29.0.
 
 ===================================================================
 5. TRADEMARKS / MARCAS
