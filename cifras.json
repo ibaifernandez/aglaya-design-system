@@ -2,9 +2,9 @@
   "contrato": "cifras-publicas",
   "version": 1,
   "nave": "aglaya-design-system",
-  "commit": "c1156d0088991cc01c889ea7016356947b5e0d09",
-  "medido_el": "2026-10-04T12:41:18Z",
-  "ejecucion": "https://github.com/ibaifernandez/aglaya-design-system/actions/runs/37202919198",
+  "commit": "d9df1b8b4408283664b2236ce867c4ed20ec7be0",
+  "medido_el": "2026-10-04T13:04:36Z",
+  "ejecucion": "https://github.com/ibaifernandez/aglaya-design-system/actions/runs/37204255112",
   "cifras": {
     "version": {
       "valor": "1.4.0",
@@ -36,7 +36,7 @@
       "fuente": "aglaya-ds-mcp/selftest.py: cabeceras «== [rechaza] », las que deben negarse (job `mcp`)"
     },
     "sabotajes_autotest": {
-      "valor": 5,
+      "valor": 6,
       "unidad": "sabotajes",
       "fuente": "aglaya-ds-mcp/test_selftest.sh: líneas «ROJO  ok» (job `mcp`)"
     }
