@@ -23,7 +23,9 @@ Reglas de la **marca madre AGLAYA** (aglaya.biz, materiales de agencia, redes). 
 
 - `AGLAYA` always UPPERCASE.
 - Zero border-radius. Every corner is square.
-- Black canvas (`--color-bg`), red accent (`--color-brand`), green monospace (`--color-corporate-green`). Nothing else. Ask `get_token` for the values — a rule that carries its own hex stops being true the day the hex moves.
+- **The master palette is four colours: white, black, red (`--color-brand`) and green (`--color-corporate-green`). Any combination of them is legitimate.** Ask `get_token` for the values — a rule that carries its own hex stops being true the day the hex moves.
+- **Light and dark are modes of equal rank. Neither is the normal one**, and neither governs the other. A surface picks the mode it needs; what cannot change is which four colours it has to pick from.
+- **The one thing that is not negotiable here is that whatever is written on top can be read.** The contrast number is a **floor, not a verdict**: under it there is nothing to discuss, over it the eye still decides — if the battery says a pairing passes and Ibai says it cannot be read, the eye wins. The reverse never holds.
 - No emoji. No Lucide. No Heroicons. No gradients-as-decoration. No rounded corners except the custom cursor.
 - Copy is terse and imperative. No "we believe", no "we're passionate about", no exclamation marks, no rhetorical questions.
 - Display type is Outfit Black, UPPERCASE, tight tracking. Body is Inter. Mono is Space Mono with extreme `letter-spacing: var(--tracking-widest)` to `var(--tracking-ultra)`.
@@ -39,11 +41,11 @@ Reglas de la **marca madre AGLAYA** (aglaya.biz, materiales de agencia, redes). 
 
 Una **superficie de producto** (KANBAN DESK, CRM, OUTREACH, ConsentFlow, LEGAL REG TECH, ORCHESTRATOR, y la propia DESIGN SYSTEM — ver `products/products.json`) hereda TODOS los no-negociables de la marca madre, con una única excepción: su color de acento es de primera clase.
 
-- Hereda todos los no-negociables de la marca madre **excepto la exclusividad de color** («Nothing else»).
+- Hereda todos los no-negociables de la marca madre **y añade un color propio**: su acento. La marca madre ya no es exclusiva —son cuatro colores y cualquier combinación entre ellos—, así que lo que esta excepción concede no es libertad de paleta, sino **un quinto color que la madre no tiene**.
 - El **acento del producto** (definido en `products/products.json` y como token en `colors_and_type.css`) es color de primera clase: **libre en CTA, sin tope de proporción**.
 - El rojo madre (`--color-brand`) no se reemplaza: coexiste con el acento en la superficie del producto. El acento identifica al producto; el rojo sigue siendo el rojo de la marca.
 - Todo lo demás sigue vigente sin cambios: radius 0, sin emoji / Lucide / Heroicons, tipografía (Outfit Black / Inter / Space Mono), headline de dos líneas, voz seca e imperativa.
-- La marca madre NO adopta acentos de producto: fuera de una superficie de producto, siguen los 3 colores y nada más.
+- La marca madre NO adopta acentos de producto: fuera de una superficie de producto, la paleta son los **cuatro** colores de la madre. El acento vive en la superficie de su producto y no sale de ahí.
 - **En modo claro el acento de producto tampoco es tinta**, y eso no le quita ser de primera clase: sigue libre en CTA y sin tope de proporción **como relleno, filete, punto o marca**. Lo que cambia es que el texto no se pinta con él.
 - **Sobre relleno de acento de producto, la tinta es negra: `--fg-on-accent`.** Tampoco gira con el modo, por lo mismo que la de marca. **Una sola excepción, y es el carmín de ConsentFlow (`--product-consent-flow-accent`), que lleva `--fg-on-brand`.** Medido acento a acento, blanca contra negra:
 
