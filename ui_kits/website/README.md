@@ -35,7 +35,7 @@ curve; the day any of them moves, a README that names them is quietly wrong
 while claiming to be canonical.
 
 - Zero border-radius anywhere (enforced globally in `styles.css`)
-- Pure black canvas — card surfaces step up through the surface tokens, never a warm grey
+- This kit is composed **in dark mode**: black canvas, card surfaces stepping up through the surface tokens, never a warm grey. That is this composition's choice, **not a rule of the brand** — the canon says light and dark are modes of equal rank, and `styles.css` already carries the light aliases
 - **Brand red only on:** logo accent, second-line headlines, primary CTAs, hover borders, focus outlines. Signal, never decoration
 - **Corporate green only on:** mono eyebrows, codetags, "applied logic" labels. Never a fill, never a button
 - One easing curve for every transition — no bounce, no spring
