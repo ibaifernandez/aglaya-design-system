@@ -125,11 +125,17 @@ def get_logo(variant: str, fmt: str = "svg") -> dict:
 def get_nonnegotiables(scope: Optional[str] = None) -> dict:
     """The hard brand rules read live from docs/BRAND-RULES.md.
 
-    scope: 'master' (default) — the rigid marca-madre rules: AGLAYA uppercase,
-    zero radius, 3 colors only, no emoji / Lucide / Heroicons, two-line headline
-    with the second line in brand red, etc. 'product' — the product-surface
-    rules: everything inherited from master EXCEPT color exclusivity; the
-    product accent is first-class (allowed on CTAs, no proportion cap).
+    scope: 'master' (default) — the rules of the master brand. 'product' — the
+    product-surface rules: everything the master imposes, plus the product's
+    own accent as a first-class colour (allowed on CTAs, no proportion cap).
+
+    This description deliberately does NOT list the rules, and above all does
+    not count the colours. It used to carry a count, and kept carrying it long
+    after the canon had widened the palette and put light and dark on equal
+    rank: the tool introduced itself with one rule and then answered another.
+    A description is read by every agent that loads the tool, whether or not
+    it ever calls it, so a summary here is a copy of the canon that ages out
+    of sight. Call the tool. `selftest.py` fails if a count reappears.
     """
     return _guard(brand.get_nonnegotiables, scope)
 

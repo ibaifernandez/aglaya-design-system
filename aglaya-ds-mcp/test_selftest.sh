@@ -74,6 +74,13 @@ viejo = "@mcp.tool()\ndef get_component"
 assert viejo in t, "ancla get_component"
 t = t.replace(viejo, "def get_component", 1)'
 
+echo "== 4a-bis. una DESCRIPCIÓN que cuenta colores =="
+echo "   (la describe el servidor a cada agente que lo carga, la llame o no)"
+probar "get_nonnegotiables se presenta con un recuento" '
+viejo = "    not count the colours."
+assert viejo in t, "ancla del docstring de get_nonnegotiables"
+t = t.replace(viejo, "    not count the colours. The master palette is two colours.", 1)'
+
 echo "== 4b. una tool que IGNORA el modo de color =="
 echo "   (sin esto, la comprobación del modo del selftest no prueba nada)"
 probar "get_token ignora mode" '

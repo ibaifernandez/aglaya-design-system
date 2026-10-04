@@ -23,6 +23,7 @@ Run: ./.venv/bin/python selftest.py     ·     Exit: 0 all good · 1 failures.
 
 import asyncio
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -176,6 +177,33 @@ async def main() -> int:
                 # haya llamado nunca — y el verde de este archivo la avalaría.
                 print("!! tools sin probar (añádelas a LLAMADAS):", sorted(sobran), "\n")
                 fallos.append(f"tools sin cobertura: {sorted(sobran)}")
+
+            # ── La DESCRIPCIÓN de una tool no puede contar reglas ────────
+            # La descripción viaja a cada agente que carga el servidor, lo
+            # llame o no. La de `get_nonnegotiables` decía un número de
+            # colores escrito a mano y lo siguió diciendo cuando el canon pasó
+            # a cuatro: la herramienta se presentaba con una regla y contestaba
+            # otra. Se vigila la CLASE, no aquella frase: cualquier recuento de
+            # colores en cualquier descripción, en cifra o en palabra, en los
+            # dos idiomas de la casa. Lo que no se puede contar, no envejece.
+            _CUENTA_COLORES = re.compile(
+                r"\b(?:\d+|one|two|three|four|five|six|un|una|dos|tres|cuatro|cinco|seis)"
+                r"[\s-]+(?:colou?rs?|colores?)\b",
+                re.IGNORECASE,
+            )
+            contadores = []
+            for t in tools.tools:
+                for m in _CUENTA_COLORES.finditer(t.description or ""):
+                    contadores.append(f"{t.name}: «{m.group(0)}»")
+            if contadores:
+                fallos.append(
+                    "una descripción de tool cuenta colores, y eso envejece a "
+                    f"espaldas de lo que sirve: {contadores}"
+                )
+            print(
+                f"== [descripciones] {len(tools.tools)} descripcion(es) revisadas · "
+                f"recuentos de color: {len(contadores)} ==\n"
+            )
 
             for nombre, args, veredicto in LLAMADAS:
                 res = await session.call_tool(nombre, args)
