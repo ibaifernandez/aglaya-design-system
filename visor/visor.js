@@ -150,19 +150,68 @@ function pintarVoz(voz) {
   }
 }
 
-/* Pinta cualquier cosa que devuelva el canon como lo que es —lista, ficha de
- * campos o prosa— y NUNCA como bloque de código. Un `pre` no parte líneas: por
- * eso cada tarjeta traía su barra horizontal. */
+/* Cuando una lista trae cosas con nombre propio —un término protegido, una
+ * ficha de componente—, cada una es una UNIDAD y se pinta como tal. Antes salía
+ * un rosario de pares etiqueta-valor (TÉRMINO, FORMAS, IDIOMA, USO, otra vez
+ * TÉRMINO…) y no se veía dónde acababa uno y empezaba el siguiente.
+ * El nombre no se inventa: se toma del campo que el propio canon ya trae. */
+const CLAVE_TITULO = ["term", "name", "id", "product"];
+const tituloDe = (o) => CLAVE_TITULO.find((k) => typeof o[k] === "string" && o[k]);
+
+const campos = (o) => `<dl>${Object.entries(o).map(([k, v]) =>
+  `<div class="campo"><dt>${esc(ROTULO[k] || k)}</dt><dd>${comoTexto(v)}</dd></div>`).join("")}</dl>`;
+
+/* Dentro de una unidad, el rótulo de un dato corto pesaba tanto como el dato:
+ * «IDIOMA» ocupaba su línea para decir «en». Los cortos se juntan en una línea
+ * de apoyo y lo largo queda de cuerpo. No se oculta ningún campo: salen todos,
+ * y uno que el canon estrene mañana sale solo, en el lado que le toque por su
+ * tamaño. */
+const esEtiqueta = (s) => typeof s === "string" && !s.includes("\n") && s.length <= 24 && !/[.!?]/.test(s);
+const esCorto = (v) =>
+  esEtiqueta(v) ||
+  (Array.isArray(v) && v.length && v.length <= 6 && v.every(esEtiqueta));
+
+function camposDeUnidad(o) {
+  const entradas = Object.entries(o);
+  const cortos = entradas.filter(([, v]) => esCorto(v));
+  const largos = entradas.filter(([, v]) => !esCorto(v));
+  const meta = cortos.length
+    ? `<p class="meta-unidad">${cortos.map(([k, v]) =>
+        `<span class="par"><span class="clave">${esc(ROTULO[k] || k)}</span> ${comoTexto(v)}</span>`).join("")}</p>`
+    : "";
+  return meta + largos.map(([k, v]) =>
+    `<div class="campo-unidad"><span class="clave">${esc(ROTULO[k] || k)}</span><div>${comoTexto(v)}</div></div>`).join("");
+}
+
+/* Pinta cualquier cosa que devuelva el canon como lo que es —lista, unidad,
+ * ficha de campos o prosa— y NUNCA como bloque de código. Un `pre` no parte
+ * líneas: por eso cada tarjeta traía su barra horizontal.
+ *
+ * Y la prosa conserva los saltos de línea que YA vienen en el dato: el canon
+ * sirve `evidence` con 10 saltos y el navegador los aplastaba en un párrafo.
+ * Se respetan con CSS (`white-space: pre-wrap`), que no interpreta nada. Aquí
+ * NO se parsea markdown de bloque: un segundo intérprete del canon es la
+ * avería que esta casa ya se comió tres veces. */
 function comoTexto(valor) {
   if (valor === null || valor === undefined) return "";
   if (Array.isArray(valor)) {
+    if (valor.length && valor.every((x) => x && typeof x === "object" && !Array.isArray(x) && tituloDe(x))) {
+      return `<div class="unidades">${valor.map((x) => {
+        const k = tituloDe(x);
+        const { [k]: titulo, ...resto } = x;
+        return `<article class="unidad"><h4 class="titulo-unidad">${conCodigo(titulo)}</h4>${camposDeUnidad(resto)}</article>`;
+      }).join("")}</div>`;
+    }
+    // Una lista de etiquetas cortas no necesita viñeta por línea: `forms` suele
+    // traer una o dos palabras, y una lista vertical pesaba más que el dato.
+    if (valor.length && valor.length <= 12 && valor.every(esEtiqueta)) {
+      return `<span class="en-linea">${valor.map(conCodigo).join(" · ")}</span>`;
+    }
     return `<ul class="reglas">${valor.map((x) => `<li>${comoTexto(x)}</li>`).join("")}</ul>`;
   }
-  if (typeof valor === "object") {
-    return `<dl>${Object.entries(valor).map(([k, v]) =>
-      `<div class="campo"><dt>${esc(ROTULO[k] || k)}</dt><dd>${comoTexto(v)}</dd></div>`).join("")}</dl>`;
-  }
-  return conCodigo(String(valor));
+  if (typeof valor === "object") return campos(valor);
+  const texto = String(valor);
+  return texto.includes("\n") ? `<div class="prosa">${conCodigo(texto)}</div>` : conCodigo(texto);
 }
 
 function filaColor(nombre, claro, oscuro) {

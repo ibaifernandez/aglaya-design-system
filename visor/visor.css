@@ -176,6 +176,66 @@ h3.rotulo {
 .campo dt { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--fg-3); }
 .campo dd { margin: 0; }
 
+/* La prosa del canon llega con sus saltos de línea —cita, párrafos y viñetas
+   separados— y el navegador los aplastaba en un párrafo único. `pre-wrap`
+   respeta los que vienen y sigue partiendo la línea larga, que es lo que el
+   `pre` de antes no hacía y por eso obligaba a arrastrar en horizontal.
+   No interpreta nada: lo que se ve es el texto tal cual lo sirve el canon. */
+.prosa {
+  white-space: pre-wrap;
+  line-height: 1.65;
+  max-width: 80ch;
+  overflow-wrap: anywhere;
+}
+
+/* Cada cosa con nombre propio, en su caja. */
+.unidades {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-4);
+}
+.unidad {
+  border: 1px solid var(--color-border);
+  padding: var(--space-4);
+}
+.titulo-unidad {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.2;
+  margin: 0 0 var(--space-3);
+}
+/* Dentro de una unidad el rótulo acompaña: no se lleva una columna entera de
+   ancho ni una línea para decir «en». Los datos cortos van juntos en una
+   línea de apoyo; lo largo queda de cuerpo. El dato es lo que se lee. */
+.clave {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.meta-unidad {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0 0 var(--space-3);
+  font-size: 13px;
+}
+.meta-unidad .par { display: inline-flex; align-items: baseline; gap: var(--space-2); }
+/* Una ficha de campos ANIDADA dentro de una unidad tampoco se lleva una
+   columna de rótulo: en una caja estrecha dejaba el valor partido en dos
+   líneas con media caja vacía al lado. */
+.unidad .campo {
+  grid-template-columns: 1fr;
+  gap: var(--space-1);
+  border-top: 0;
+  padding: var(--space-2) 0 0;
+}
+.campo-unidad { margin-top: var(--space-3); line-height: 1.55; }
+.campo-unidad .clave { display: block; margin-bottom: var(--space-1); }
+.en-linea { font-family: var(--font-mono); font-size: 12px; }
+
 /* Lo único que sigue siendo código se parte, no empuja. */
 code, .valores code, .reglas code { overflow-wrap: anywhere; }
 body { overflow-x: hidden; }
