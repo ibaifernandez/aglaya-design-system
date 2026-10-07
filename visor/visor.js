@@ -75,20 +75,94 @@ function pintarNormas(d) {
     `y de colors_and_type.css, a través de aglaya-ds-mcp/brand.py, en esta misma recarga.`;
 }
 
+/* Rótulos en castellano de los bloques que devuelve `get_voice_rules`. Las
+ * claves de la API están en inglés y en minúscula, y hasta hoy se enseñaban
+ * crudas: «voice», «evidence», «protected_vocabulary», con el contenido en
+ * castellano debajo. Esto NO traduce contenido —el contenido es del canon— ni
+ * decide nada: solo pone nombre al cajón. Una clave que no esté aquí se enseña
+ * tal cual y se nota, en vez de desaparecer. */
+const ROTULO = {
+  voice: "Voz",
+  evidence: "Evidencia",
+  shape: "Forma",
+  pronouns: "Pronombres",
+  casing: "Mayúsculas",
+  protected_vocabulary: "Vocabulario protegido",
+  forbidden_patterns: "Frases vetadas",
+  final_check: "Comprobación final",
+
+  // Y los campos de las fichas de componente y de los acentos de producto, que
+  // también se enseñaban con su clave inglesa. Mismo criterio: esto nombra el
+  // cajón, no toca el contenido. Lo que no esté aquí sale con su clave y se ve.
+  id: "Identificador",
+  name: "Nombre",
+  use: "Para qué",
+  specimen: "Muestra",
+  tokens: "Tokens que usa",
+  variants: "Variantes",
+  spec: "Especificación",
+  states: "Estados",
+  rules: "Reglas",
+  signature: "Rasgo de firma",
+  label_convention: "Convención de rótulo",
+  background: "Fondo",
+  color: "Color",
+  border: "Borde",
+  padding: "Relleno",
+  radius: "Radio",
+  font: "Tipografía",
+  title: "Título",
+  body: "Cuerpo",
+  label: "Etiqueta",
+  rule: "Filete",
+  dot: "Punto",
+  adornment: "Adorno",
+  hover: "Al pasar el ratón",
+  focus: "Al enfocar",
+  textarea: "Área de texto",
+  index_eyebrow: "Antetítulo de índice",
+  "letter-spacing": "Espaciado entre letras",
+  "text-transform": "Caja del texto",
+  product: "Producto",
+  token: "Token",
+  hex: "Hexadecimal",
+  oklch: "OKLCH",
+  css_value: "Valor CSS",
+  secondary: "Secundario",
+
+  // Del vocabulario protegido. `button`, `card` y compañía NO entran aquí: no
+  // son claves de la API, son el nombre del componente — dato, no rótulo.
+  term: "Término",
+  forms: "Formas",
+  lang: "Idioma",
+  usage: "Uso",
+};
+
 function pintarVoz(voz) {
   const cuerpo = el("#voz-cuerpo");
   cuerpo.innerHTML = "";
   for (const [clave, valor] of Object.entries(voz || {})) {
     const caja = document.createElement("div");
     caja.className = "ficha";
-    const items = Array.isArray(valor) ? valor : null;
     caja.innerHTML =
-      `<div class="nombre">${esc(clave)}</div>` +
-      (items
-        ? `<ul class="reglas">${items.map((x) => `<li>${conCodigo(typeof x === "string" ? x : JSON.stringify(x))}</li>`).join("")}</ul>`
-        : `<pre>${esc(typeof valor === "string" ? valor : JSON.stringify(valor, null, 1))}</pre>`);
+      `<h3 class="rotulo">${esc(ROTULO[clave] || clave)}</h3>` + comoTexto(valor);
     cuerpo.appendChild(caja);
   }
+}
+
+/* Pinta cualquier cosa que devuelva el canon como lo que es —lista, ficha de
+ * campos o prosa— y NUNCA como bloque de código. Un `pre` no parte líneas: por
+ * eso cada tarjeta traía su barra horizontal. */
+function comoTexto(valor) {
+  if (valor === null || valor === undefined) return "";
+  if (Array.isArray(valor)) {
+    return `<ul class="reglas">${valor.map((x) => `<li>${comoTexto(x)}</li>`).join("")}</ul>`;
+  }
+  if (typeof valor === "object") {
+    return `<dl>${Object.entries(valor).map(([k, v]) =>
+      `<div class="campo"><dt>${esc(ROTULO[k] || k)}</dt><dd>${comoTexto(v)}</dd></div>`).join("")}</dl>`;
+  }
+  return conCodigo(String(valor));
 }
 
 function filaColor(nombre, claro, oscuro) {
@@ -189,7 +263,10 @@ function parejasDeTinta(oscuro, claro) {
 function pintarFichas(comp, prod) {
   const fichas = comp.fichas || [];
   el("#componentes").innerHTML = fichas.length
-    ? fichas.map((f) => `<div class="ficha"><div class="nombre">${esc(f.id || "")}</div><pre>${esc(JSON.stringify(f, null, 1))}</pre></div>`).join("")
+    ? fichas.map((f) => {
+        const { id, ...resto } = f;
+        return `<div class="ficha"><h3 class="rotulo">${esc(id || "")}</h3>${comoTexto(resto)}</div>`;
+      }).join("")
     : "<p class='aviso'>el canon no devolvió fichas</p>";
 
   const acentos = prod.acentos || [];
