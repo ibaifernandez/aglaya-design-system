@@ -2,9 +2,9 @@
   "contrato": "cifras-publicas",
   "version": 1,
   "nave": "aglaya-design-system",
-  "commit": "d9df1b8b4408283664b2236ce867c4ed20ec7be0",
-  "medido_el": "2026-10-04T13:04:36Z",
-  "ejecucion": "https://github.com/ibaifernandez/aglaya-design-system/actions/runs/37204255112",
+  "commit": "2c05f38febbe504eb1158e50d9b56234d6083907",
+  "medido_el": "2026-10-07T09:58:28Z",
+  "ejecucion": "https://github.com/ibaifernandez/aglaya-design-system/actions/runs/37604151515",
   "cifras": {
     "version": {
       "valor": "1.4.0",
@@ -21,12 +21,12 @@
       "fuente": "aglaya-ds-mcp/selftest.py: lista TOOLS REGISTERED del servidor (job `mcp`)"
     },
     "llamadas_autotest": {
-      "valor": 37,
+      "valor": 38,
       "unidad": "llamadas",
       "fuente": "aglaya-ds-mcp/selftest.py: línea SELFTEST: N llamadas (job `mcp`)"
     },
     "llamadas_contestan": {
-      "valor": 27,
+      "valor": 28,
       "unidad": "llamadas",
       "fuente": "aglaya-ds-mcp/selftest.py: cabeceras «== [ok] », las que deben contestar (job `mcp`)"
     },
@@ -36,7 +36,7 @@
       "fuente": "aglaya-ds-mcp/selftest.py: cabeceras «== [rechaza] », las que deben negarse (job `mcp`)"
     },
     "sabotajes_autotest": {
-      "valor": 6,
+      "valor": 7,
       "unidad": "sabotajes",
       "fuente": "aglaya-ds-mcp/test_selftest.sh: líneas «ROJO  ok» (job `mcp`)"
     }
