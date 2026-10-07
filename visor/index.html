@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AGLAYA — visor de marca</title>
+<!-- El canon, servido tal cual por el servidor. Aquí no se copia ningún valor:
+     lo que se ve pintado lo pinta este fichero, el mismo que entrega el paquete. -->
+<link rel="stylesheet" href="/colors_and_type.css">
+<link rel="stylesheet" href="/visor.css">
+</head>
+<body>
+  <header class="barra">
+    <div>
+      <span class="t-eyebrow">AGLAYA · VISOR DE MARCA</span>
+      <p class="aviso">Todo lo de abajo se lee del canon en cada recarga. Esta página no guarda ni un dato.</p>
+    </div>
+    <button id="modo" type="button">modo: <span data-modo></span></button>
+  </header>
+
+  <nav class="pestanas">
+    <button type="button" data-ir="normas" class="activa">Normas</button>
+    <button type="button" data-ir="valores">Valores</button>
+    <button type="button" data-ir="voz">Voz</button>
+    <button type="button" data-ir="fichas">Componentes y productos</button>
+  </nav>
+
+  <main>
+    <section id="normas">
+      <h2>No-negociables — marca madre</h2>
+      <ol id="nn-madre" class="reglas"></ol>
+      <h2>No-negociables — producto</h2>
+      <ol id="nn-producto" class="reglas"></ol>
+    </section>
+
+    <section id="valores" hidden>
+      <h2>Color — las dos modalidades a la vez</h2>
+      <p class="aviso">
+        El contraste se calcula aquí mismo con los valores que acaba de servir el
+        canon, y es un <strong>suelo, no un veredicto</strong>: por debajo no hay
+        nada que discutir; por encima sigue decidiendo el ojo.
+      </p>
+      <table id="tabla-color" class="valores"></table>
+      <h2>Tipografía</h2>
+      <div id="tipos"></div>
+      <h2>Lo demás</h2>
+      <table id="tabla-resto" class="valores"></table>
+    </section>
+
+    <section id="voz" hidden>
+      <h2>Reglas de voz</h2>
+      <div id="voz-cuerpo"></div>
+    </section>
+
+    <section id="fichas" hidden>
+      <h2>Fichas de componente</h2>
+      <div id="componentes"></div>
+      <h2>Acentos de producto</h2>
+      <table id="acentos" class="valores"></table>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <span class="t-eyebrow">FUENTE</span>
+    <p id="procedencia"></p>
+  </footer>
+
+  <script src="/visor.js"></script>
+</body>
+</html>
