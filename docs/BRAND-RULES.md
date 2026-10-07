@@ -21,15 +21,15 @@
 
 Reglas de la **marca madre AGLAYA** (aglaya.biz, materiales de agencia, redes). Rígidas: se aplican a toda superficie AGLAYA, salvo donde una superficie de **producto** declare una excepción explícita en `## Non-negotiables — producto`.
 
-- `AGLAYA` always UPPERCASE.
-- Zero border-radius. Every corner is square.
-- **The master palette is four colours: white, black, red (`--color-brand`) and green (`--color-corporate-green`). Any combination of them is legitimate.** Ask `get_token` for the values — a rule that carries its own hex stops being true the day the hex moves.
-- **Light and dark are modes of equal rank. Neither is the normal one**, and neither governs the other. A surface picks the mode it needs; what cannot change is which four colours it has to pick from.
-- **The one thing that is not negotiable here is that whatever is written on top can be read.** The contrast number is a **floor, not a verdict**: under it there is nothing to discuss, over it the eye still decides — if the battery says a pairing passes and Ibai says it cannot be read, the eye wins. The reverse never holds.
-- No emoji. No Lucide. No Heroicons. No gradients-as-decoration. No rounded corners except the custom cursor.
-- Copy is terse and imperative. No "we believe", no "we're passionate about", no exclamation marks, no rhetorical questions.
-- Display type is Outfit Black, UPPERCASE, tight tracking. Body is Inter. Mono is Space Mono with extreme `letter-spacing: var(--tracking-widest)` to `var(--tracking-ultra)`.
-- Signature headline move: line 1 white, line 2 `color: var(--color-brand)`.
+- `AGLAYA` siempre en MAYÚSCULAS.
+- Radio cero. Toda esquina es recta.
+- **La paleta de la marca madre son cuatro colores: blanco, negro, rojo (`--color-brand`) y verde (`--color-corporate-green`). Cualquier combinación entre ellos es legítima.** Pregunta los valores a `get_token`: una regla que lleva su propio hexadecimal dentro deja de ser verdad el día que ese valor se mueve.
+- **Claro y oscuro son modos de igual rango. Ninguno es el normal**, y ninguno gobierna al otro. Cada superficie elige el modo que necesita; lo que no cambia es de qué cuatro colores tiene que elegir.
+- **Lo único no negociable aquí es que lo escrito encima se lea.** El número de contraste es un **suelo, no un veredicto**: por debajo no hay nada que discutir; por encima sigue decidiendo el ojo — si la batería dice que una pareja pasa e Ibai dice que no se lee, gana el ojo. Al revés, nunca.
+- Sin emoji. Sin Lucide. Sin Heroicons. Sin degradados como adorno. Sin esquinas redondeadas, salvo el cursor propio.
+- El texto es seco e imperativo. Nada de "we believe", nada de "we're passionate about", sin signos de exclamación y sin preguntas retóricas. *(Esas dos fórmulas se citan en inglés a propósito: son las frases literales que persigue `check_voice`, no una traducción.)*
+- La tipografía de display es Outfit Black, en MAYÚSCULAS y con tracking apretado. La de texto es Inter. La monoespaciada es Space Mono, con un `letter-spacing` extremo: de `var(--tracking-widest)` a `var(--tracking-ultra)`.
+- Movimiento de titular de firma: línea 1 en blanco, línea 2 en `color: var(--color-brand)`.
 - **En modo claro un acento no es tinta.** Es relleno, filete, punto o marca. Los acentos se eligieron para brillar sobre negro; sobre los fondos claros no llegan al suelo de texto. Cuando el acento es relleno, lo que tiene que pasar el umbral es el texto que va encima, no el acento.
 - **`--color-brand` no es tinta de TEXTO CORRIDO en ningún modo.** Como tinta, en claro es `--color-brand-dark` y en oscuro `--color-brand-light`. Pregunta los valores a `get_token`.
 - **El titular de firma es la excepción, y no es una excepción arbitraria:** «línea 1 blanca, línea 2 en `--color-brand`» sigue vigente porque es **display**, y el suelo del texto grande es más bajo que el del corrido. Medido en los dos modos y sobre los cinco fondos de cada uno: el rojo va de 4,06 a 4,67, por encima de ese suelo en todos. **La regla de arriba y el movimiento de firma no se contradicen: hablan de tamaños distintos.**
