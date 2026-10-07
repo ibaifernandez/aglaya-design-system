@@ -4,6 +4,12 @@
    Si algún día hiciera falta un color propio, NO se escribe aquí: se pide al
    canon, o no existe. */
 
+/* Sin topes de ancho sobre el texto. Decisión de Ibai del 2026-10-07: la prosa,
+   las entradillas, las citas y las viñetas ocupan el ancho de su columna. Los
+   cinco `max-width` en `ch` que había —70, 75, 80, 80 y 85— están quitados, no
+   comentados. Lo que SÍ se queda es el marco de la página (1440 px) y el punto
+   de apilado en estrecho, que no son límites de lectura. */
+
 body {
   margin: 0;
   background: var(--color-bg);
@@ -57,7 +63,6 @@ main,
   margin: var(--space-2) 0 0;
   color: var(--fg-3);
   font-size: 13px;
-  max-width: 70ch;
 }
 
 /* La entradilla de una sección NO es un pie de foto: explica qué se está
@@ -66,7 +71,6 @@ main,
 .intro {
   font: var(--text-body);
   color: var(--fg-2);
-  max-width: 75ch;
   margin: 0 0 var(--space-10);
 }
 
@@ -124,7 +128,7 @@ h3.rotulo {
 }
 
 .reglas { padding-left: var(--space-6); line-height: 1.6; }
-.reglas li { margin-bottom: var(--space-3); max-width: 85ch; }
+.reglas li { margin-bottom: var(--space-3); }
 .reglas code { font-family: var(--font-mono); font-size: 0.9em; }
 
 .valores { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
@@ -198,7 +202,6 @@ h3.rotulo {
   padding-left: var(--space-4);
   border-left: 2px solid var(--fg-brand);
   white-space: pre-wrap;
-  max-width: 80ch;
   line-height: 1.65;
   color: var(--fg-2);
 }
@@ -223,7 +226,6 @@ h3.rotulo {
 .prosa {
   white-space: pre-wrap;
   line-height: 1.65;
-  max-width: 80ch;
   overflow-wrap: anywhere;
 }
 
