@@ -53,7 +53,8 @@ LLAMADAS = [
     ("get_voice_rules", {}, "ok"),
     ("check_voice", {"text": "Our solutions transform your business!"}, "ok"),
     ("is_allowed_word", {"term": "newsletter"}, "ok"),
-    ("is_allowed_word", {"term": "Sovereignty"}, "ok"),
+    ("is_allowed_word", {"term": "Sovereignty"}, "ok"),   # responde: NEUTRAL, ya no protegida
+    ("is_allowed_word", {"term": "Autonomía"}, "ok"),
     ("get_token", {"name": "color-text", "mode": "light"}, "ok"),
     ("get_token", {"name": "color-text", "mode": "sepia"}, "falla"),
     ("list_tokens", {"mode": "light"}, "ok"),
@@ -342,6 +343,30 @@ async def main() -> int:
                         "--space-8 cambia entre modos y el canon no lo redefine: "
                         "el modo claro tiene que HEREDAR lo que no toca"
                     )
+
+            # «Sovereignty» salió del vocabulario protegido el 2026-10-06:
+            # la marca deja de venderla y pasa a hablar de independencia y
+            # autonomía. Mientras estuvo en la tabla, el MCP le contestaba a
+            # cualquier nave que era LA palabra buena —y la skill de voz de
+            # aglaya.biz lee de ahí—, o sea que esta casa bendecía lo que la
+            # marca retiraba. Se comprueba la pareja: la retirada ya no es
+            # término protegido, y la que se queda sigue siéndolo. Sin la
+            # segunda mitad, un parser que dejara de leer la tabla entera
+            # pasaría la primera tan contento.
+            retirada = _payload(await session.call_tool(
+                "is_allowed_word", {"term": "Sovereignty"}))
+            if not isinstance(retirada, dict) or retirada.get("protected"):
+                fallos.append(
+                    "is_allowed_word('Sovereignty') la sigue dando por término "
+                    "protegido: el MCP bendice la palabra que la marca retiró"
+                )
+            viva = _payload(await session.call_tool(
+                "is_allowed_word", {"term": "Autonomía"}))
+            if not isinstance(viva, dict) or not viva.get("protected"):
+                fallos.append(
+                    "is_allowed_word('Autonomía') debía seguir siendo término "
+                    "protegido — ¿se dejó de leer la tabla castellana?"
+                )
 
             limpia = "revisión humana obligatoria"
             res_l = _payload(await session.call_tool("is_allowed_word", {"term": limpia}))

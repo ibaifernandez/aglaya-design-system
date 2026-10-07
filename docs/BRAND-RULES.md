@@ -135,7 +135,6 @@ no prohibiciones. Lo que sigue vetado es lo que el canon prohíbe expresamente.
 
 | Term | Usage |
 | --- | --- |
-| **Sovereignty** / **Sovereign** | The thing AGLAYA sells. |
 | **Systems** (not "solutions", not "tools") | The thing AGLAYA ships. Preferred over the vetoed words when what is being described really is a system. |
 | **Architecture** / **Infrastructure** | What the system is made of. |
 | **Operational truth** | What the audit surfaces. |
@@ -159,7 +158,7 @@ sepa vetar frases en vez de palabras sueltas.
 
 | Término | Uso |
 | --- | --- |
-| **Autonomía / Autónomo** (Sovereignty) | Lo que AGLAYA vende. **La asimetría con la tabla inglesa es deliberada, no una errata**: en español «soberanía» parece aludir a política más que ninguna otra cosa. Cuando alguien puede hacer algo por su cuenta no es «soberano», es «autónomo». `Sovereignty` se queda en inglés; aquí no. Quien lo «arregle» estará deshaciendo una decisión de marca. |
+| **Autonomía / Autónomo** | Lo que AGLAYA vende. **Ya no hay fila inglesa de la que esto sea la traducción, y eso es la decisión, no un descuido**: «soberanía» alude a política antes que a nada, y su equivalente inglés arrastra lo mismo además de ser jerga de ingeniero. Cuando alguien puede hacer algo por su cuenta no es «soberano»: es **autónomo**, o **independiente**. Quien «arregle» esto devolviendo el término retirado estará deshaciendo una decisión de marca. |
 | **sistemas** (Systems) | Lo que AGLAYA entrega. Nunca "soluciones", nunca "solución", nunca "herramientas", nunca "herramienta". |
 | **arquitectura / infraestructura** (Architecture / Infrastructure) | De qué está hecho el sistema. |
 | **verdad operativa** (Operational truth) | Lo que la auditoría saca a la superficie. |
