@@ -113,6 +113,34 @@ p.write_text(t.replace(ancla, ancla + inyecto, 1), encoding="utf-8")
 PY
 }
 
+echo "== 4c. el término retirado vuelve a la tabla de protegidos =="
+echo "   (si vuelve, el MCP bendice otra vez la palabra que la marca retiró)"
+CANON="../docs/BRAND-RULES.md"
+CANONBK="$(mktemp)"; cp "$CANON" "$CANONBK"
+trap 'cp "$BK" "$SRV"; cp "$CSSBK" "$CSS"; cp "$CANONBK" "$CANON"; rm -f "$BK" "$CSSBK" "$CANONBK"' EXIT
+if python3 - "$CANON" <<'PY2'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1]); t = p.read_text(encoding="utf-8")
+ancla = "| **Systems** (not"
+if t.count(ancla) != 1:
+    sys.exit(f"el ancla de la tabla aparece {t.count(ancla)} veces, no 1")
+fila = "| **Sovereignty** / **Sovereign** | The thing AGLAYA sells. |\n"
+p.write_text(t.replace(ancla, fila + ancla, 1), encoding="utf-8")
+PY2
+then
+  "$PY" selftest.py >/dev/null 2>&1; rc=$?
+  if [ "$rc" -eq 1 ]; then
+    echo "  ROJO  ok   el término retirado vuelve a ser protegido"
+  else
+    echo "  ESCAPÓ     el término retirado volvió y el selftest dio verde (rc=$rc)"
+    fallos=$((fallos+1))
+  fi
+else
+  echo "  NO APLICÓ   el sabotaje del canon no encontró su ancla"
+  fallos=$((fallos+1))
+fi
+cp "$CANONBK" "$CANON"
+
 echo "== 5. un } dentro de un comentario de :root NO puede recortar el canon =="
 tokens_sano="$("$PY" -c 'import brand; print(len(brand._all_tokens()))')"
 if sabotear_css "  --color-bg:               #000000;" $'\n  /* una llave de cierre } dentro de un comentario */'; then
