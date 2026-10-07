@@ -11,13 +11,22 @@ body {
   font-family: var(--font-body);
 }
 
+/* Una sola medida de página para todo: cabecera, cuerpo y pie comparten eje.
+   Antes el cuerpo iba tope a 1100 y pegado a la izquierda, así que en una
+   pantalla de 1920 quedaban 820 px muertos a la derecha y las dos columnas
+   ocupaban un cuarto de pantalla cada una en vez de media. El borde de la
+   barra sigue yendo de lado a lado; lo que se centra es el contenido. */
+.barra-dentro,
+main,
+.pie-dentro {
+  max-width: 1440px;
+  margin-inline: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Cabecera y navegación, una sola pieza pegada arriba. */
 .barra {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4);
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-6);
   border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
@@ -25,11 +34,40 @@ body {
   z-index: 10;
 }
 
+.barra-dentro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-8);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-6);
+}
+
+/* La nav va al lado del rótulo y empuja al interruptor de modo al extremo.
+   Cuando no cabe, cae a su propia línea sin dejar de estar en la barra. */
+.rotulo-visor { flex: 0 1 auto; }
+.pestanas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+
 .aviso {
   margin: var(--space-2) 0 0;
   color: var(--fg-3);
   font-size: 13px;
   max-width: 70ch;
+}
+
+/* La entradilla de una sección NO es un pie de foto: explica qué se está
+   mirando. Se lee a tamaño de texto y respira antes de los rótulos de
+   columna, que antes tenía pegados debajo. */
+.intro {
+  font: var(--text-body);
+  color: var(--fg-2);
+  max-width: 75ch;
+  margin: 0 0 var(--space-10);
 }
 
 button {
@@ -47,14 +85,7 @@ button {
 
 button.activa { border-color: var(--fg-brand); color: var(--fg-brand); }
 
-.pestanas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  padding: var(--space-4) var(--space-6);
-}
-
-main { padding: 0 var(--space-6) var(--space-20); max-width: 1100px; }
+main { padding: var(--space-4) var(--space-6) var(--space-20); }
 
 /* Jerarquía de títulos: sección, bloque y contenido se distinguen SIN leer.
    Antes los tres pesaban casi igual y el rótulo de un bloque de voz era la
@@ -71,14 +102,15 @@ h2 {
   border-bottom: 2px solid var(--fg-brand);
 }
 
+/* El rótulo de columna encabeza media página: a 10 px no encabezaba nada. */
 h3.rotulo {
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: var(--tracking-widest);
+  font-size: 13px;
+  letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
   color: var(--fg-eyebrow);
-  margin: 0 0 var(--space-4);
-  padding-bottom: var(--space-2);
+  margin: 0 0 var(--space-6);
+  padding-bottom: var(--space-3);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -147,6 +179,22 @@ h3.rotulo {
 /* Lo único que sigue siendo código se parte, no empuja. */
 code, .valores code, .reglas code { overflow-wrap: anywhere; }
 body { overflow-x: hidden; }
+
+/* En estrecho, dos cosas dejan de funcionar y se dicen aquí:
+   — la barra pegada arriba se come media pantalla cuando la nav baja de línea,
+     así que a esos anchos deja de ser pegajosa en vez de encoger el rótulo;
+   — la ficha de campos a dos columnas se sale de su caja. Eso NO lo tapaba el
+     scroll: lo tapaba `overflow-x: hidden`, que recorta el valor. Medido a 581
+     px de ventana, en la rama anterior y en esta por igual: `.campo` sobresalía
+     247 px. Aquí se apila y el valor se lee entero. */
+@media (max-width: 760px) {
+  .barra { position: static; }
+  .campo { grid-template-columns: 1fr; gap: var(--space-1); }
+  /* Y lo que quedaba de recorte: la muestra de color y el relleno de celda
+     empujaban la tabla 2 px, y una palabra larga sin partir, 6. */
+  .muestra { width: 48px; }
+  .valores th, .valores td { padding: var(--space-2); overflow-wrap: anywhere; }
+}
 
 .pie {
   padding: var(--space-6);
