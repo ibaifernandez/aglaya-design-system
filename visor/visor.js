@@ -145,7 +145,8 @@ function pintarVoz(voz) {
     const caja = document.createElement("div");
     caja.className = "ficha";
     caja.innerHTML =
-      `<h3 class="rotulo">${esc(ROTULO[clave] || clave)}</h3>` + comoTexto(valor);
+      `<h3 class="rotulo">${esc(ROTULO[clave] || clave)}</h3>` +
+      `<div class="contenido">${comoTexto(valor)}</div>`;
     cuerpo.appendChild(caja);
   }
 }
@@ -189,9 +190,32 @@ function camposDeUnidad(o) {
  *
  * Y la prosa conserva los saltos de línea que YA vienen en el dato: el canon
  * sirve `evidence` con 10 saltos y el navegador los aplastaba en un párrafo.
- * Se respetan con CSS (`white-space: pre-wrap`), que no interpreta nada. Aquí
- * NO se parsea markdown de bloque: un segundo intérprete del canon es la
- * avería que esta casa ya se comió tres veces. */
+ * Se respetan con CSS (`white-space: pre-wrap`), que no interpreta nada.
+ *
+ * Lo ÚNICO que se reconoce de markdown de bloque es la marca de cita al
+ * principio de línea, y está acotado a propósito por decisión de Ibai
+ * (2026-10-07): se quita el `>` y esa línea se pinta como cita. Nada más — ni
+ * títulos, ni listas, ni anidados. Quitar el marcador de una cita no cambia lo
+ * que la regla dice; parsear el documento sería un segundo intérprete del
+ * canon, que es la avería que esta casa ya se comió tres veces. */
+const MARCA_CITA = /^>[ \t]?/;
+
+function comoProsa(texto) {
+  const trozos = [];
+  for (const linea of texto.split("\n")) {
+    const cita = MARCA_CITA.test(linea);
+    const limpia = cita ? linea.replace(MARCA_CITA, "") : linea;
+    const ultimo = trozos[trozos.length - 1];
+    if (ultimo && ultimo.cita === cita) ultimo.lineas.push(limpia);
+    else trozos.push({ cita, lineas: [limpia] });
+  }
+  return trozos.map(({ cita, lineas }) => {
+    const t = lineas.join("\n").replace(/^\n+|\n+$/g, "");
+    if (!t) return "";
+    return cita ? `<blockquote class="cita">${conCodigo(t)}</blockquote>`
+                : `<div class="prosa">${conCodigo(t)}</div>`;
+  }).join("");
+}
 function comoTexto(valor) {
   if (valor === null || valor === undefined) return "";
   if (Array.isArray(valor)) {
@@ -211,7 +235,7 @@ function comoTexto(valor) {
   }
   if (typeof valor === "object") return campos(valor);
   const texto = String(valor);
-  return texto.includes("\n") ? `<div class="prosa">${conCodigo(texto)}</div>` : conCodigo(texto);
+  return texto.includes("\n") || MARCA_CITA.test(texto) ? comoProsa(texto) : conCodigo(texto);
 }
 
 function filaColor(nombre, claro, oscuro) {
@@ -314,7 +338,8 @@ function pintarFichas(comp, prod) {
   el("#componentes").innerHTML = fichas.length
     ? fichas.map((f) => {
         const { id, ...resto } = f;
-        return `<div class="ficha"><h3 class="rotulo">${esc(id || "")}</h3>${comoTexto(resto)}</div>`;
+        return `<div class="ficha"><h3 class="rotulo">${esc(id || "")}</h3>` +
+               `<div class="contenido">${comoTexto(resto)}</div></div>`;
       }).join("")
     : "<p class='aviso'>el canon no devolvió fichas</p>";
 
