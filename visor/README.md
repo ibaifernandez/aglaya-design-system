@@ -4,6 +4,43 @@ Una ventana a la marca: **las normas primero, los valores después**. No es
 documentación — no guarda ni un dato. Todo lo que enseña lo lee del canon en el
 momento de pedirlo.
 
+## Para qué pantalla está hecho
+
+**El visor es para ordenador.** Decisión de Ibai del 2026-10-07, escrita aquí
+porque es aquí donde se mide: lo que se vea mal en ancho de móvil **no es un
+defecto del visor**, y una medición que lo señale no cuenta como hallazgo.
+
+Está escrito porque ya costó trabajo: en el PR #51 se midió en las dos ramas
+que a 375 px la ficha de componente se salía 247 px de su caja, y se dio por
+hallazgo bueno. Con la decisión tomada, esa clase de medición deja de contar
+**para el visor** — pero eso solo lo sabía quien estuvo en la conversación.
+
+**Lo que esto NO es:**
+
+- **No es permiso para que el visor se rompa.** Lo que deja de ser defecto es
+  el ancho de móvil, no la legibilidad: **el scroll horizontal en escritorio
+  sigue siendo un fallo**, y fue justo lo que pidió Ibai en la tarjeta que dio
+  origen a esta herramienta.
+- **No se deshace lo ya construido.** Lo que el PR #51 arregló en estrecho está
+  mergeado y no estorba; nadie lo revierte.
+- **No vale para el resto de la nave.** Aquí no se ha dejado de medir en los
+  dos anchos: solo el visor queda fuera.
+
+### Lo que sí se mide en los dos anchos, y por qué
+
+| Qué | Por qué se mide estrecho también |
+|---|---|
+| [`ui_kits/`](../ui_kits) | Es **marca AGLAYA**: la composición canónica «así va todo junto», que [`CLAUDE.md`](../CLAUDE.md) manda citar. Lo que se enseñe ahí roto se copia roto. |
+| [`components/components.json`](../components/components.json) | Es lo que el MCP sirve a **toda la flota** con `get_component`: una ficha no se mira aquí, se consume desde otra nave y se pinta en la pantalla que sea. |
+
+La diferencia no es de rigor, es de destino: **esas dos salen de esta casa; el
+visor se mira aquí.** Para ser exactos sobre qué significa «salir»: ni
+`ui_kits/` ni `components/` viajan dentro del paquete npm —`files` de
+[`package.json`](../package.json) entrega el CSS, las fuentes, `bin/`,
+`scripts/`, `dist/`, la licencia y dos documentos—; lo que sale de aquí es su
+**contenido**, servido en vivo por el MCP y citado como referencia. El visor no
+sale de ninguna de las dos formas.
+
 ## Cómo se arranca
 
 Desde la raíz del repo:
