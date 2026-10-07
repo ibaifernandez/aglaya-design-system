@@ -10,25 +10,28 @@
 <link rel="stylesheet" href="/visor.css">
 </head>
 <body>
+  <!-- Cabecera y navegación en la MISMA barra: la nav cabe al lado del rótulo,
+       y así lo que queda pegado arriba al hacer scroll es una sola pieza. -->
   <header class="barra">
-    <div>
-      <span class="t-eyebrow">AGLAYA · VISOR DE MARCA</span>
-      <p class="aviso">Todo lo de abajo se lee del canon en cada recarga. Esta página no guarda ni un dato.</p>
+    <div class="barra-dentro">
+      <div class="rotulo-visor">
+        <span class="t-eyebrow">AGLAYA · VISOR DE MARCA</span>
+        <p class="aviso">Todo lo de abajo se lee del canon en cada recarga. Esta página no guarda ni un dato.</p>
+      </div>
+      <nav class="pestanas">
+        <button type="button" data-ir="normas" class="activa">Normas</button>
+        <button type="button" data-ir="valores">Valores</button>
+        <button type="button" data-ir="voz">Voz</button>
+        <button type="button" data-ir="fichas">Componentes y productos</button>
+      </nav>
+      <button id="modo" type="button">modo: <span data-modo></span></button>
     </div>
-    <button id="modo" type="button">modo: <span data-modo></span></button>
   </header>
-
-  <nav class="pestanas">
-    <button type="button" data-ir="normas" class="activa">Normas</button>
-    <button type="button" data-ir="valores">Valores</button>
-    <button type="button" data-ir="voz">Voz</button>
-    <button type="button" data-ir="fichas">Componentes y productos</button>
-  </nav>
 
   <main>
     <section id="normas">
       <h2>No-negociables</h2>
-      <p class="aviso">
+      <p class="intro">
         A la izquierda, lo que rige en toda superficie AGLAYA. A la derecha, lo que
         cambia cuando la superficie es de producto: se ve de un vistazo qué hereda y
         en qué se separa.
@@ -47,7 +50,7 @@
 
     <section id="valores" hidden>
       <h2>Color — las dos modalidades a la vez</h2>
-      <p class="aviso">
+      <p class="intro">
         El contraste se calcula aquí mismo con los valores que acaba de servir el
         canon, y es un <strong>suelo, no un veredicto</strong>: por debajo no hay
         nada que discutir; por encima sigue decidiendo el ojo.
@@ -73,8 +76,10 @@
   </main>
 
   <footer class="pie">
-    <span class="t-eyebrow">FUENTE</span>
-    <p id="procedencia"></p>
+    <div class="pie-dentro">
+      <span class="t-eyebrow">FUENTE</span>
+      <p id="procedencia"></p>
+    </div>
   </footer>
 
   <script src="/visor.js"></script>
