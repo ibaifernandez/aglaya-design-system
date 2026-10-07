@@ -56,18 +56,46 @@ button.activa { border-color: var(--fg-brand); color: var(--fg-brand); }
 
 main { padding: 0 var(--space-6) var(--space-20); max-width: 1100px; }
 
+/* Jerarquía de títulos: sección, bloque y contenido se distinguen SIN leer.
+   Antes los tres pesaban casi igual y el rótulo de un bloque de voz era la
+   clave cruda de la API. Se compone con los tokens del canon: ni un valor
+   escrito aquí. */
 h2 {
   font-family: var(--font-display);
+  font-weight: 900;
   text-transform: uppercase;
   letter-spacing: var(--tracking-tight);
-  margin: var(--space-10) 0 var(--space-4);
+  font-size: 26px;
+  margin: var(--space-16) 0 var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--fg-brand);
+}
+
+h3.rotulo {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--fg-eyebrow);
+  margin: 0 0 var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Madre y producto, a la vez. `auto-fit` y no un punto de corte: se apilan
+   solas cuando no caben, y entonces cada una conserva su rótulo. */
+.dos-columnas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-10);
+  align-items: start;
 }
 
 .reglas { padding-left: var(--space-6); line-height: 1.6; }
 .reglas li { margin-bottom: var(--space-3); max-width: 85ch; }
 .reglas code { font-family: var(--font-mono); font-size: 0.9em; }
 
-.valores { width: 100%; border-collapse: collapse; font-size: 13px; }
+.valores { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
 .valores th, .valores td {
   text-align: left;
   padding: var(--space-2) var(--space-3);
@@ -104,7 +132,21 @@ h2 {
 }
 
 .ficha { border: 1px solid var(--color-border); padding: var(--space-4); margin-bottom: var(--space-4); }
-.ficha pre { overflow-x: auto; font-family: var(--font-mono); font-size: 12px; margin: 0; }
+.ficha .nombre { margin-bottom: var(--space-3); color: var(--fg-eyebrow); }
+
+/* NADA de `pre` para prosa. El scroll horizontal de cada tarjeta no venía de
+   que faltara ancho: venía de meter frases en un bloque de código, que por
+   definición no parte líneas. Medido antes de quitarlo, en una columna de
+   293 px: contenidos de 1741, 2328 y 712 px, y la página entera en 494 contra
+   375 de ventana. */
+.campo { display: grid; grid-template-columns: minmax(7rem, 12rem) 1fr; gap: var(--space-3); padding: var(--space-2) 0; border-top: 1px solid var(--color-border); }
+.campo:first-of-type { border-top: 0; }
+.campo dt { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--fg-3); }
+.campo dd { margin: 0; }
+
+/* Lo único que sigue siendo código se parte, no empuja. */
+code, .valores code, .reglas code { overflow-wrap: anywhere; }
+body { overflow-x: hidden; }
 
 .pie {
   padding: var(--space-6);
