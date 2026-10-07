@@ -2,9 +2,9 @@
   "contrato": "cifras-publicas",
   "version": 1,
   "nave": "aglaya-design-system",
-  "commit": "baece911ee85661d2c5937ddb808a3c24b78ff67",
-  "medido_el": "2026-10-07T10:51:26Z",
-  "ejecucion": "https://github.com/ibaifernandez/aglaya-design-system/actions/runs/37610053513",
+  "commit": "19be4bac24feca620541b75104c652322f288179",
+  "medido_el": "2026-10-07T11:15:42Z",
+  "ejecucion": "https://github.com/ibaifernandez/aglaya-design-system/actions/runs/37612766889",
   "cifras": {
     "version": {
       "valor": "1.4.0",
