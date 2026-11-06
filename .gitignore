@@ -20,6 +20,14 @@ __pycache__/
 dist/
 node_modules/
 
+# ── El visor publicado: derivado, nunca versionado ────────
+# `visor/construir.py` escribe `visor/publico/` leyendo el canon con los mismos
+# lectores que usa el servidor local. Commitearlo sería una segunda casa para
+# cada valor de marca —lo mismo que `dist/` y que `graphify-out/`—, y además
+# envejecería con pinta de autoridad entre dos empujones. Se regenera: en local
+# cuando se quiera mirar, y en CI en cada empujón a `main`.
+visor/publico/
+
 # ── El bootstrap del MCP: derivado, nunca versionado ──────
 # `pip install -e .` —el bootstrap que manda aglaya-ds-mcp/README.md y que corre
 # el job `mcp` de CI— hace que setuptools escriba `aglaya_ds_mcp.egg-info/` junto
