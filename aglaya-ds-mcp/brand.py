@@ -147,6 +147,51 @@ def _tokens_de_modo(modo: str) -> dict[str, str]:
     return fuera
 
 
+def mode_overrides(modo: str) -> dict[str, str]:
+    """Lo que el bloque de un modo DECLARA, sin lo que hereda de `:root`.
+
+    `_tokens_de_modo` devuelve el modo completo, que es lo que una nave quiere
+    cuando pregunta «¿cuánto vale esto en claro?». Esto devuelve lo otro: solo
+    las declaraciones que hay escritas en ese bloque. Es lo que el paquete
+    entrega como `modes.<nombre>` — en npm y en Python — y por eso tiene que
+    salir del MISMO parser que todo lo demás: si el paquete de Python se
+    escribiera su propia expresión regular, los dos paquetes publicarían mapas
+    distintos del mismo canon.
+
+    Ojo con la diferencia, que es fina y está medida: un modo puede declarar un
+    token con el MISMO valor que `:root` —hoy `--fg-on-brand` y `--fg-on-accent`
+    lo hacen, a propósito, porque esas tintas no cambian con el modo—. Esos
+    salen aquí, porque el bloque los declara, aunque no cambien nada.
+    """
+    if modo not in _MODOS:
+        raise BrandError(
+            f"unknown mode '{modo}'. Valid: {', '.join(sorted(_MODOS))}."
+        )
+    if modo == _MODO_POR_DEFECTO:
+        # El modo por defecto no redefine: ES la base. Devolver `:root` entero
+        # aquí haría parecer que el oscuro es un modo más encima de algo.
+        return {}
+    m = re.search(_MODOS[modo], _css_sin_comentarios(), re.DOTALL)
+    if not m:
+        raise BrandError(
+            f"mode '{modo}' is declared in the server but its block is not in "
+            f"{CSS_FILE.name}: nothing to serve."
+        )
+    # Con el `--` delante, como los sirve `list_tokens`: dentro de este módulo
+    # los nombres viajan pelados, pero lo que sale por la puerta lleva el
+    # prefijo, y el nombre del token es interfaz.
+    fuera = {
+        f"--{name}": re.sub(r"\s+", " ", value).strip()
+        for name, value in _TOKEN_RE.findall(m.group(1))
+    }
+    if not fuera:
+        raise BrandError(
+            f"mode '{modo}' parsed to zero tokens: its block exists but nothing "
+            f"was read from it."
+        )
+    return fuera
+
+
 def _all_tokens() -> dict[str, str]:
     """Parse every custom property inside the first :root { … } block.
 

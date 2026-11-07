@@ -1,0 +1,52 @@
+# El paquete de Python de la marca AGLAYA, hermano del de npm.
+#
+# Existe porque el primer consumidor de la flota que no habla npm —el panel del
+# CRM, en Python— tenía tres caminos: copiarse el CSS (la deriva que este repo
+# persigue), bajárselo de una URL de GitHub (una promesa que nadie vigila), o
+# depender de verdad. Esto es depender de verdad, por la puerta de su
+# ecosistema.
+#
+#   pip install "git+https://github.com/ibaifernandez/aglaya-design-system@v1.4.0"
+#
+# LA VERSIÓN NO SE TECLEA AQUÍ. Sale de `package.json`, que es donde vive la
+# versión de esta marca — dos números serían dos verdades, y el día que
+# discreparan nadie sabría cuál es la buena. Por eso es `dynamic`.
+[project]
+name = "aglaya-design-tokens"
+dynamic = ["version"]
+description = "AGLAYA brand tokens for Python consumers — derived live from colors_and_type.css."
+readme = "docs/PACKAGE.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+# Sin dependencias, igual que el resto de la nave: lo que se instala aquí es la
+# marca, no un árbol de terceros en el entorno de un consumidor.
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/ibaifernandez/aglaya-design-system"
+
+[project.scripts]
+# El hermano de `npx aglaya-tokens-version`: un consumidor de Python también
+# tiene que poder preguntar «¿voy atrasado?».
+aglaya-tokens-version = "aglaya_tokens.atraso:main"
+
+# EL BACKEND PROPIO ES LA PIEZA QUE HACE QUE ESTO NO SEA UNA COPIA.
+# `scripts/backend_tokens.py` envuelve a setuptools y, antes de empaquetar,
+# deriva los tokens de `colors_and_type.css` con el lector del MCP. Es el
+# equivalente del `prepare` de npm. Sin esto habría que guardar los valores
+# dentro del paquete, o sea una segunda casa para cada valor de marca.
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "backend_tokens"
+backend-path = ["scripts"]
+
+[tool.setuptools]
+packages = ["aglaya_tokens"]
+
+[tool.setuptools.dynamic]
+# El número sale del módulo derivado, que a su vez lo saca de `package.json`.
+version = { attr = "aglaya_tokens.tokens.VERSION" }
+
+[tool.setuptools.package-data]
+# Lo derivado al construir entra en el wheel aunque no esté versionado.
+aglaya_tokens = ["colors_and_type.css", "fonts/*"]

@@ -63,6 +63,21 @@ PKG = RAIZ / "package.json"
 CSS_CANONICO = "colors_and_type.css"
 FUENTES = RAIZ / "fonts"
 
+# La segunda vía de consumo: el paquete de Python, para el consumidor sin Node.
+# Se vigila con las MISMAS preguntas que el de npm, y por el mismo motivo: su
+# avería también es invisible aquí —un clon de este disco instala perfectamente
+# y solo revienta en el CI del consumidor—.
+PYPROJECT = RAIZ / "pyproject.toml"
+PAQUETE_PY = "aglaya_tokens"
+# Lo que el backend fabrica al instalar. Versionar cualquiera de estos sería
+# abrir una segunda casa para cada valor de marca, que es justo lo que este
+# repo prohíbe.
+DERIVADOS_PY = (
+    f"{PAQUETE_PY}/tokens.py",
+    f"{PAQUETE_PY}/colors_and_type.css",
+    f"{PAQUETE_PY}/fonts/",
+)
+
 # Lo que cuenta como «font software» a efectos del OFL.
 EXT_FUENTE = {".otf", ".ttf", ".woff", ".woff2", ".ttc", ".otc"}
 
@@ -316,6 +331,118 @@ def revisar(pkg: dict, versionados: list[str], tipografias: list[Path] | None,
     return fallos
 
 
+def _pyproject() -> dict | None | str:
+    """El manifiesto del paquete de Python. None si no existe; str = por qué
+    no se pudo leer (y entonces arriba sale «no se pudo comprobar»)."""
+    if not PYPROJECT.is_file():
+        return None
+    try:
+        import tomllib
+    except ImportError:
+        return "este python3 no trae tomllib (hace falta 3.11+)"
+    try:
+        return tomllib.loads(PYPROJECT.read_text(encoding="utf-8"))
+    except Exception as e:
+        return f"pyproject.toml ilegible: {e}"
+
+
+def revisar_python(cfg: dict, versionados: list[str],
+                   tipografias: list[Path] | None) -> list[tuple[str, str]]:
+    """Las mismas preguntas que al de npm, en el idioma del otro ecosistema."""
+    fallos: list[tuple[str, str]] = []
+    proyecto = cfg.get("project") or {}
+    build = cfg.get("build-system") or {}
+
+    # 1 · nada atado a ESTE disco. Un `file:` o una ruta relativa instala
+    #     perfectamente aquí y revienta en el CI del consumidor.
+    for dep in proyecto.get("dependencies") or []:
+        texto = str(dep)
+        if any(m in texto for m in ("file:", "@ /", "@ ./", " ./", " ../")) or \
+                texto.startswith(("/", "./", "../")):
+            fallos.append((
+                "py-dependencia-local",
+                f"la dependencia {texto!r} apunta a una ruta de disco — "
+                "instalable aquí, imposible en la máquina del consumidor",
+            ))
+
+    # 2 · la URL del repositorio tiene que poder consultarla un CI sin llaves.
+    urls = proyecto.get("urls") or {}
+    repo = urls.get("Repository") or urls.get("repository") or ""
+    if not repo:
+        fallos.append((
+            "py-sin-repositorio",
+            "no declara [project.urls] Repository — un consumidor no puede "
+            "preguntar de dónde viene ni cuánto va por detrás",
+        ))
+    elif not repo.startswith("https://"):
+        fallos.append((
+            "py-repositorio-ssh",
+            f"[project.urls] Repository = {repo!r} no es https — un CI ajeno "
+            "no tiene llaves para consultarlo",
+        ))
+
+    # 3 · el backend que deriva los valores. Sin él el paquete instalaría sin
+    #     tokens, o con una copia guardada dentro, que es peor.
+    if build.get("build-backend") != "backend_tokens":
+        fallos.append((
+            "py-sin-backend",
+            f"build-backend = {build.get('build-backend')!r} y no 'backend_tokens' "
+            "— los valores de marca dejarían de derivarse del canon al instalar",
+        ))
+    if "scripts" not in (build.get("backend-path") or []):
+        fallos.append((
+            "py-sin-backend",
+            "build-system no declara backend-path = ['scripts'] — pip no "
+            "encontraría el backend que deriva los tokens",
+        ))
+
+    # 4 · lo derivado NO se versiona. Es la regla que más fácil se rompe sin
+    #     querer: basta un `git add -A` después de instalar.
+    for ruta in DERIVADOS_PY:
+        sucias = [v for v in versionados
+                  if v == ruta or v.startswith(ruta.rstrip("/") + "/")]
+        if sucias:
+            fallos.append((
+                "py-derivado-versionado",
+                f"{ruta} está rastreado por git ({len(sucias)} archivo/s, "
+                f"p. ej. {sucias[0]}) — una segunda casa para cada valor de "
+                "marca, que envejece con cara de canon",
+            ))
+
+    # 5 · lo declarado se entrega.
+    for paquete in (cfg.get("tool", {}).get("setuptools", {}).get("packages") or []):
+        if not (RAIZ / str(paquete).replace(".", "/") / "__init__.py").is_file():
+            fallos.append((
+                "py-declarado-no-entregado",
+                f"declara el paquete {paquete!r} y no existe "
+                f"{paquete}/__init__.py — se publicaría un hueco",
+            ))
+    for nombre, destino in (proyecto.get("scripts") or {}).items():
+        modulo = str(destino).split(":")[0].replace(".", "/")
+        if not (RAIZ / f"{modulo}.py").is_file():
+            fallos.append((
+                "py-declarado-no-entregado",
+                f"el comando {nombre!r} apunta a {destino!r} y no existe "
+                f"{modulo}.py",
+            ))
+
+    # 6 · ninguna tipografía se entrega sin su licencia. Misma exigencia que al
+    #     de npm: el paquete de Python también redistribuye las familias.
+    datos = (cfg.get("tool", {}).get("setuptools", {})
+                .get("package-data", {}).get(PAQUETE_PY) or [])
+    if any("fonts" in str(d) for d in datos):
+        familias = sorted({_familia(f) for f in (tipografias or [])})
+        sin = [f for f in familias
+               if not (FUENTES / f"LICENSE-{f}.txt").is_file()]
+        for f in sin:
+            fallos.append((
+                "py-fuente-sin-licencia",
+                f"el paquete de Python entrega la familia {f!r} y falta "
+                f"fonts/LICENSE-{f}.txt",
+            ))
+    return fallos
+
+
 def main() -> int:
     pkg = manifiesto()
     if pkg is None:
@@ -350,9 +477,24 @@ def main() -> int:
         return 2
 
     fallos = revisar(pkg, versionados, tipografias, vendor)
+
+    cfg = _pyproject()
+    if isinstance(cfg, str):
+        print(f"guard-paquete: NO SE PUDO COMPROBAR — {cfg}")
+        return 2
+    if cfg is None:
+        # Hubo un día en que esta nave publicaba por una sola vía. Si vuelve a
+        # ser así, se dice; lo que no se hace es dar verde sin mirar.
+        print("guard-paquete: NO SE PUDO COMPROBAR — no hay pyproject.toml en la "
+              "raíz; la vía de Python no se puede verificar")
+        return 2
+    fallos += revisar_python(cfg, versionados, tipografias)
+
     if not fallos:
         familias = sorted({_familia(f) for f in (tipografias or [])})
-        print(f"guard-paquete: OK — {pkg.get('name')} v{pkg.get('version')}, "
+        nombre_py = (cfg.get("project") or {}).get("name")
+        print(f"guard-paquete: OK — {pkg.get('name')} y {nombre_py} "
+              f"v{pkg.get('version')}, "
               f"{len(objetivos)} objetivo(s) declarados, ninguno atado a este disco; "
               f"{len(familias)} familia(s) tipográfica(s) y "
               f"{len([p for p in (vendor or []) if not p.name.startswith('LICENSE-')])} "

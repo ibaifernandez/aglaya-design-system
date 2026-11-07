@@ -71,6 +71,12 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
 EXCLUIDOS = ("graphify-out/", "tools/", ".claude/", "package.json")
+
+# Rutas que SE CITAN a propósito y que no existen hasta que alguien instala:
+# las fabrica el build de cada paquete y git las ignora. `dist/` es del paquete
+# de npm; `aglaya_tokens/tokens.py` y sus hermanos, del de Python.
+DERIVADOS = ("dist/", "aglaya_tokens/tokens.py", "aglaya_tokens/fonts/",
+             "aglaya_tokens/colors_and_type.css")
 EXCLUIDOS_CONTIENE = ("/vendor/",)
 
 # Los ficheros de patrones de exclusión enumeran rutas que POR DEFINICIÓN
@@ -202,10 +208,12 @@ def resuelve_ruta(doc: Path, ruta: str, paquete: str) -> bool:
 
     limpio = ruta[2:] if ruta.startswith("./") else ruta
 
-    if limpio.startswith("dist/"):
-        # `dist/` se genera en cada instalación y está en .gitignore a
-        # propósito: un tokens.json commiteado sería una segunda casa para cada
-        # valor de marca. Citarlo es correcto aunque aquí no exista.
+    if limpio.startswith(DERIVADOS):
+        # Lo que se fabrica al instalar y git ignora a propósito: un mapa de
+        # tokens commiteado sería una segunda casa para cada valor de marca.
+        # Citarlo es correcto aunque en un clon limpio no exista — y en un clon
+        # limpio es donde mide la CI, así que sin esta exención el guardián
+        # daba verde en el disco de quien construye y rojo en la CI.
         return True
 
     # ¿Es una ruta NUESTRA? Solo si su primer segmento existe aquí. Sin esto el

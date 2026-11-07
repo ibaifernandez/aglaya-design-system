@@ -25,7 +25,9 @@ GUARD="tools/guard_paquete.py"
 PKG="package.json"
 
 BK="$(mktemp)"; cp "$PKG" "$BK"
-trap 'cp "$BK" "$PKG"; rm -f "$BK"; chmod +x bin/aglaya-tokens-version.mjs 2>/dev/null' EXIT
+PY_PKG="pyproject.toml"
+PY_BK="$(mktemp)"; cp "$PY_PKG" "$PY_BK"
+trap 'cp "$BK" "$PKG"; cp "$PY_BK" "$PY_PKG"; rm -f "$BK" "$PY_BK"; chmod +x bin/aglaya-tokens-version.mjs 2>/dev/null' EXIT
 
 fallos=0
 
@@ -273,10 +275,91 @@ sys.exit(0 if rc == 2 else 1)
 PY
 [ $? -eq 0 ] || fallos=$((fallos+1))
 
+
+# ── La segunda vía: el paquete de Python ────────────────────────────────────
+# Mismas preguntas, otro ecosistema, y la misma razón para probarlas: su avería
+# tampoco se ve desde este disco. Un `file:` en las dependencias o un backend
+# cambiado instalan igual de bien AQUÍ, y solo revientan en el CI del consumidor.
+probar_py() { # regla | descripción | RED|GREEN | sed de sabotaje sobre pyproject
+  local regla="$1" desc="$2" esperado="$3" viejo="$4" nuevo="$5" salida rc
+  cp "$PY_BK" "$PY_PKG"
+  python3 - "$viejo" "$nuevo" <<'PY'
+import pathlib, sys
+p = pathlib.Path("pyproject.toml")
+t = p.read_text(encoding="utf-8")
+if sys.argv[1] not in t:
+    sys.exit(f"el sabotaje no encontró su ancla: {sys.argv[1]!r}")
+p.write_text(t.replace(sys.argv[1], sys.argv[2]), encoding="utf-8")
+PY
+  [ $? -eq 0 ] || { echo "  NO SE PUDO SABOTEAR   $regla   ← $desc"; fallos=$((fallos+1)); return; }
+  salida=$(python3 "$GUARD" 2>&1); rc=$?
+  if [ "$esperado" = RED ]; then
+    if [ "$rc" -eq 1 ] && printf '%s' "$salida" | grep -q "\[$regla\]"; then
+      echo "  ROJO  ok   $regla   ← $desc"
+    else
+      echo "  ESCAPÓ     $regla   ← $desc   (rc=$rc)"; fallos=$((fallos+1))
+    fi
+  else
+    if [ "$rc" -eq 0 ]; then
+      echo "  VERDE ok   $regla   ← $desc"
+    else
+      echo "  FALSO ROJO $regla   ← $desc"; printf '%s\n' "$salida" | head -6; fallos=$((fallos+1))
+    fi
+  fi
+  cp "$PY_BK" "$PY_PKG"
+}
+
+echo "== 10. el paquete de Python, atado a este disco =="
+probar_py py-dependencia-local "una dependencia por file://" RED \
+  'dependencies = []' 'dependencies = ["hermano @ file:///Users/x/hermano"]'
+probar_py py-dependencia-local "una ruta relativa pelada" RED \
+  'dependencies = []' 'dependencies = ["../hermano"]'
+
+echo "== 11. el paquete de Python, inconsultable o sin derivar =="
+probar_py py-repositorio-ssh "Repository en SSH" RED \
+  'Repository = "https://github.com' 'Repository = "git@github.com:'
+probar_py py-sin-backend "backend de setuptools a secas: dejaría de derivar del canon" RED \
+  'build-backend = "backend_tokens"' 'build-backend = "setuptools.build_meta"'
+probar_py py-sin-backend "sin backend-path: pip no encontraría el backend" RED \
+  'backend-path = ["scripts"]' 'backend-path = []'
+probar_py py-declarado-no-entregado "un comando que apunta a un módulo inexistente" RED \
+  'aglaya_tokens.atraso:main' 'aglaya_tokens.no_existe:main'
+probar_py py-declarado-no-entregado "un paquete declarado que no está" RED \
+  'packages = ["aglaya_tokens"]' 'packages = ["aglaya_tokens", "aglaya_fantasma"]'
+
+echo "== 11b. lo legítimo del lado de Python NO puede ponerse rojo =="
+probar_py py-dep-de-registro "una dependencia normal de PyPI" GREEN \
+  'dependencies = []' 'dependencies = ["requests>=2.31"]'
+
+echo "== 11c. los valores derivados, versionados: la segunda casa =="
+python3 - <<'PY'
+import sys; sys.path.insert(0, "tools")
+import guard_paquete as g
+real = g.rastreados()
+g.rastreados = lambda: (real or []) + ["aglaya_tokens/tokens.py"]   # simula el commit
+rc = g.main()
+print("  ROJO  ok   py-derivado-versionado" if rc == 1
+      else f"  ESCAPO     py-derivado-versionado (rc={rc})")
+sys.exit(0 if rc == 1 else 1)
+PY
+[ $? -eq 0 ] || fallos=$((fallos+1))
+
+echo "== 11d. sin pyproject.toml no hay verde: hay «no se pudo comprobar» =="
+python3 - <<'PY'
+import sys; sys.path.insert(0, "tools")
+import guard_paquete as g
+g._pyproject = lambda: None
+rc = g.main()
+print("  ROJO  ok   sin-pyproject (rc=2)" if rc == 2 else f"  ESCAPO     sin-pyproject (rc={rc})")
+sys.exit(0 if rc == 2 else 1)
+PY
+[ $? -eq 0 ] || fallos=$((fallos+1))
+
 echo "== 13. restauración =="
 cp "$BK" "$PKG"
+cp "$PY_BK" "$PY_PKG"
 chmod +x bin/aglaya-tokens-version.mjs
-python3 "$GUARD" && echo "  $PKG restaurado y verde"
+python3 "$GUARD" && echo "  $PKG y $PY_PKG restaurados y verdes"
 
 echo
 if [ "$fallos" -eq 0 ]; then

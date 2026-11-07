@@ -9,8 +9,13 @@
 #
 # Se montan DOS consumidores, y el segundo es el que da valor a la prueba:
 #
-#   A · depende del paquete por git   → el valor DEBE cambiar
-#   B · copió el CSS a su repo        → el valor NO DEBE cambiar
+#   A · depende del paquete de npm por git     → el valor DEBE cambiar
+#   B · copió el CSS a su repo                 → el valor NO DEBE cambiar
+#   C · depende del paquete de Python por git  → el valor DEBE cambiar
+#
+# C existe desde que la marca se entrega por dos ecosistemas. Un paquete de
+# Python que guardara los valores dentro pasaría todo lo demás —instala,
+# importa, el CI verde— y fallaría aquí, que es justo para lo que está.
 #
 # Sin B, esta prueba no demuestra nada: un script que siempre dice «cambió»
 # también diría «cambió» de una copia. B es el control negativo que prueba que
@@ -35,7 +40,7 @@ RAIZ="$(pwd)"
 TOKEN="--color-brand"
 MUTADO="#1234ff"   # no está en la paleta: si aparece, viene de la mutación
 
-for req in node npm git; do
+for req in node npm git python3; do
   command -v "$req" >/dev/null 2>&1 || {
     echo "test-mutacion: NO SE PUDO COMPROBAR — falta '$req'"; exit 2; }
 done
@@ -139,6 +144,39 @@ A_JSON_ANTES="$(json_de "$INSTALADO/dist/tokens.json" "$TOKEN")"
 echo "  el JSON entrega el mismo valor que el canon: $([ "$A_JSON_ANTES" = "$ORIGINAL" ] && echo sí || echo NO)"
 [ "$A_JSON_ANTES" = "$ORIGINAL" ] || fallos=$((fallos+1))
 
+echo "== 3c. consumidor C: el mismo canon, por la puerta de Python ==" 
+C="$TMP/consumidor-c"
+mkdir -p "$C/src"
+# Su código no lleva NI UN VALOR: pregunta al paquete. Igual que la hoja de A.
+cat > "$C/src/app.py" <<'EOF'
+from aglaya_tokens import TOKENS
+print(TOKENS["--color-brand"])
+EOF
+python3 -m venv "$C/.venv" >/dev/null 2>&1 || {
+  echo "  no pude crear el venv del consumidor de Python"; exit 2; }
+PIP="$C/.venv/bin/python -m pip"
+$PIP install -q --upgrade pip >/dev/null 2>&1
+if ! $PIP install -q "git+file://$CANON@$RAMA" >/dev/null 2>&1; then
+  echo "  la instalación del paquete de Python falló"; exit 2
+fi
+
+py_de() { # -> el valor que entrega el paquete instalado
+  "$C/.venv/bin/python" "$C/src/app.py" 2>/dev/null | tr -d ' \n'
+}
+C_ANTES="$(py_de)"
+echo "  C recibe del paquete el mismo valor que el canon: $([ "$C_ANTES" = "$ORIGINAL" ] && echo sí || echo NO)"
+[ "$C_ANTES" = "$ORIGINAL" ] || fallos=$((fallos+1))
+
+# Lo mismo que se exige del lado de npm: lo derivado NO viajaba commiteado.
+if git -C "$CANON" ls-files --error-unmatch aglaya_tokens/tokens.py >/dev/null 2>&1; then
+  echo "  ESCAPÓ  aglaya_tokens/tokens.py está versionado — segunda casa de los valores"
+  fallos=$((fallos+1))
+else
+  echo "  ok  aglaya_tokens/tokens.py no está en el repo: se fabricó al instalar"
+fi
+
+C_HUELLA_ANTES="$(find "$C/src" -type f -exec shasum {} \; | sort | shasum)"
+
 # Huella de los archivos FUENTE del consumidor. El lockfile queda fuera a
 # propósito: reescribirlo es lo que significa «reconstruir», y lo hace npm.
 huella() { find "$1/src" "$1/package.json" -type f -exec shasum {} \; | sort | shasum; }
@@ -161,6 +199,12 @@ echo "== 5. el consumidor A reconstruye sin tocar un archivo fuente suyo =="
 ( cd "$A" && npm install --silent --no-audit --no-fund \
     "git+file://$CANON#$RAMA" >/dev/null 2>&1 ) || {
   echo "  la reinstalación falló"; exit 2; }
+
+if ! $PIP install -q --force-reinstall --no-deps "git+file://$CANON@$RAMA" >/dev/null 2>&1; then
+  echo "  la reinstalación del paquete de Python falló"; exit 2
+fi
+C_DESPUES="$(py_de)"
+C_HUELLA_DESPUES="$(find "$C/src" -type f -exec shasum {} \; | sort | shasum)"
 
 A_DESPUES="$(valor_de "$INSTALADO/colors_and_type.css" "$TOKEN")"
 A_JSON_DESPUES="$(json_de "$INSTALADO/dist/tokens.json" "$TOKEN")"
@@ -189,6 +233,20 @@ if [ "$A_JSON_DESPUES" = "$MUTADO" ] && [ "$A_JSON_DESPUES" != "$A_JSON_ANTES" ]
   echo "  CONSUME  ok   A: el JSON derivado también cambió con el canon"
 else
   echo "  COPIA    ESCAPÓ   A: el JSON NO cambió — el build entrega algo congelado"
+  fallos=$((fallos+1))
+fi
+
+if [ "$C_DESPUES" = "$MUTADO" ] && [ "$C_DESPUES" != "$C_ANTES" ]; then
+  echo "  CONSUME  ok   C: el paquete de Python entregó el valor nuevo"
+else
+  echo "  COPIA    ESCAPÓ   C: el valor NO cambió — el paquete de Python guarda una copia"
+  fallos=$((fallos+1))
+fi
+
+if [ "$C_HUELLA_ANTES" = "$C_HUELLA_DESPUES" ]; then
+  echo "  ok   C no tocó un solo archivo fuente suyo"
+else
+  echo "  ESCAPÓ   cambiaron archivos del consumidor de Python — no prueba nada"
   fallos=$((fallos+1))
 fi
 

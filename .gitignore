@@ -20,6 +20,17 @@ __pycache__/
 dist/
 node_modules/
 
+# ── El paquete de Python: derivado, nunca versionado ──────
+# `scripts/backend_tokens.py` escribe estos tres al instalar, leyendo el canon
+# con el lector del MCP — es el `prepare` de npm por la puerta de Python. Si se
+# commitearan serían una segunda casa para cada valor de marca, que es lo que
+# persigue `tools/guard_valores.py` y lo que `dist/` ya evita del lado de npm.
+# `guard_paquete.py` falla si alguno aparece rastreado.
+aglaya_tokens/tokens.py
+aglaya_tokens/colors_and_type.css
+aglaya_tokens/fonts/
+build/
+
 # ── El visor publicado: derivado, nunca versionado ────────
 # `visor/construir.py` escribe `visor/publico/` leyendo el canon con los mismos
 # lectores que usa el servidor local. Commitearlo sería una segunda casa para
