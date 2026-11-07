@@ -1,20 +1,21 @@
-name: visor publicado
+name: visor verificado
 
-# Regenera el visor desde el canon en cada empujón a `main` y lo publica, para
-# que la página de ds.aglaya.biz no pueda ir por detrás de lo que sirve el MCP.
+# Reconstruye el visor desde el canon en cada empujón a `main` y comprueba que
+# lo construido está entero. NO despliega, y eso es una decisión, no un hueco.
+#
+# QUIÉN PUBLICA. Netlify lee este repositorio y construye sola con
+# `netlify.toml`. Así **no hay ninguna llave de Netlify guardada en GitHub**:
+# el repositorio es público, Netlify solo necesita leerlo, y una llave que no
+# existe no se puede filtrar ni hay que rotarla. Decisión de Ibai, 2026-11-07.
+#
+# ENTONCES CONSTRUYEN DOS, Y ES A PROPÓSITO. Netlify construye para publicar;
+# esto construye para medir. **No es duplicación: es la verificación.** Si se
+# borra este workflow, la publicación se queda sin nadie que la mire — un
+# `construir.py` roto se enteraría la página, no el PR. Por eso esto se queda
+# aunque no despliegue nada, y por eso no es «un paso de más que simplificar».
 #
 # Lo que se publica NO está en el repositorio: `visor/publico/` es derivado y
-# está en `.gitignore`, igual que `dist/`. Se fabrica aquí, en cada ejecución.
-#
-# POR QUÉ EL DESPLIEGUE ES CONDICIONAL. Las credenciales de Netlify son de Ibai
-# y viven en los secretos del repositorio. Si no están, este workflow **igual
-# construye y comprueba** —que es lo que de verdad protege a la página—, y dice
-# por pantalla que no desplegó. Lo que no hace es ponerse verde callando que no
-# publicó nada, ni rojo por algo que no es un defecto del repo.
-#
-# Y si Ibai conecta el repositorio directamente en Netlify, Netlify construye
-# por su cuenta con `netlify.toml`. Entonces este workflow sigue valiendo como
-# puerta: comprueba que la construcción no está rota antes de que la haga nadie.
+# está en `.gitignore`, igual que `dist/`. Se fabrica en cada ejecución.
 
 on:
   push:
@@ -25,15 +26,9 @@ permissions:
   contents: read
 
 jobs:
-  publicar:
-    name: construir y publicar el visor
+  verificar:
+    name: construir y verificar el visor
     runs-on: ubuntu-latest
-    # A nivel de job a propósito: el `env` declarado DENTRO de un paso no está
-    # disponible en el `if` de ese mismo paso, así que la condición de abajo no
-    # vería nada y el despliegue se saltaría siempre, en silencio.
-    env:
-      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
@@ -65,15 +60,3 @@ jobs:
           git check-ignore -q visor/publico
           sucio="$(git status --porcelain)"
           test -z "$sucio" || { echo "El árbol quedó sucio:"; echo "$sucio"; exit 1; }
-
-      - name: desplegar en Netlify
-        if: ${{ env.NETLIFY_AUTH_TOKEN != '' && env.NETLIFY_SITE_ID != '' }}
-        run: npx --yes netlify-cli@latest deploy --prod --dir=visor/publico --no-build
-
-      - name: sin credenciales, se dice
-        if: ${{ env.NETLIFY_AUTH_TOKEN == '' || env.NETLIFY_SITE_ID == '' }}
-        run: |
-          echo "Construido y comprobado, NO desplegado desde aquí."
-          echo "Faltan los secretos NETLIFY_AUTH_TOKEN y/o NETLIFY_SITE_ID."
-          echo "Si el repositorio está conectado en Netlify, publica Netlify"
-          echo "con netlify.toml y esto no hace falta."
