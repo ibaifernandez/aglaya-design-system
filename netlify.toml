@@ -1,0 +1,29 @@
+# Publicación del visor de marca en ds.aglaya.biz.
+#
+# Lo que se publica NO está en el repositorio: `visor/publico/` es derivado y
+# está en `.gitignore`, igual que `dist/`. Netlify lo fabrica en cada build
+# leyendo el canon con los mismos lectores que usa el servidor local, así que
+# la página publicada no puede decir algo distinto de lo que dice el MCP.
+#
+# Sin dependencias que instalar: el generador corre con el Python del sistema,
+# porque `aglaya-ds-mcp/brand.py` no tiene ninguna.
+
+[build]
+  command = "python3 visor/construir.py"
+  publish = "visor/publico"
+
+# El visor es una página sola: no hay rutas que reescribir, y las cuatro
+# respuestas de `/api/*` son ficheros de verdad en el directorio publicado.
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Content-Type = "application/json; charset=utf-8"
+    # Mismo motivo que el `no-store` del servidor local: esta página existe
+    # para enseñar lo que hay AHORA. Una respuesta cacheada enseñando el canon
+    # de hace diez minutos sería la copia que todo esto viene a evitar.
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

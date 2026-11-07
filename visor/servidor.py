@@ -42,10 +42,9 @@ import socketserver
 import sys
 from pathlib import Path
 
-RAIZ = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(RAIZ / "aglaya-ds-mcp"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-import brand  # noqa: E402  (después de tocar sys.path, a propósito)
+from lectores import RAIZ, RUTAS, a_json  # noqa: E402  (después de tocar sys.path)
 
 PUERTO = 8788
 
@@ -56,47 +55,6 @@ ESTATICOS = {
     "/colors_and_type.css": RAIZ / "colors_and_type.css",
     "/visor.css": Path(__file__).resolve().parent / "visor.css",
     "/visor.js": Path(__file__).resolve().parent / "visor.js",
-}
-
-
-def _normas() -> dict:
-    """Las normas, tal como las recibe cualquier nave que pregunte."""
-    return {
-        "no_negociables_madre": brand.get_nonnegotiables(),
-        "no_negociables_producto": brand.get_nonnegotiables("product"),
-        "voz": brand.get_voice_rules(),
-    }
-
-
-def _valores() -> dict:
-    """Los tokens en los dos modos. El contraste NO se calcula aquí: lo calcula
-    la página con estos mismos valores, para que no haya dos sitios donde un
-    número pueda discrepar."""
-    return {
-        "oscuro": brand.list_tokens(mode="dark"),
-        "claro": brand.list_tokens(mode="light"),
-    }
-
-
-def _componentes() -> dict:
-    fichas = brand.list_components()
-    ids = [c["id"] for c in fichas.get("components", fichas.get("items", []))] \
-        if isinstance(fichas, dict) else []
-    return {"indice": fichas, "fichas": [brand.get_component(i) for i in ids]}
-
-
-def _productos() -> dict:
-    lista = brand.list_products()
-    ids = [p["id"] for p in lista.get("products", lista.get("items", []))] \
-        if isinstance(lista, dict) else []
-    return {"indice": lista, "acentos": [brand.get_accent(i) for i in ids]}
-
-
-RUTAS = {
-    "/api/normas": _normas,
-    "/api/valores": _valores,
-    "/api/componentes": _componentes,
-    "/api/productos": _productos,
 }
 
 
@@ -123,7 +81,7 @@ class Visor(http.server.BaseHTTPRequestHandler):
                     {"error": f"{type(e).__name__}: {e}"}, ensure_ascii=False
                 ).encode()
                 return self._responde(500, cuerpo, "application/json; charset=utf-8")
-            cuerpo = json.dumps(datos, ensure_ascii=False, indent=1).encode()
+            cuerpo = a_json(datos)
             return self._responde(200, cuerpo, "application/json; charset=utf-8")
 
         if ruta in ESTATICOS and ESTATICOS[ruta].is_file():

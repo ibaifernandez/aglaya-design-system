@@ -1,0 +1,79 @@
+name: visor publicado
+
+# Regenera el visor desde el canon en cada empujón a `main` y lo publica, para
+# que la página de ds.aglaya.biz no pueda ir por detrás de lo que sirve el MCP.
+#
+# Lo que se publica NO está en el repositorio: `visor/publico/` es derivado y
+# está en `.gitignore`, igual que `dist/`. Se fabrica aquí, en cada ejecución.
+#
+# POR QUÉ EL DESPLIEGUE ES CONDICIONAL. Las credenciales de Netlify son de Ibai
+# y viven en los secretos del repositorio. Si no están, este workflow **igual
+# construye y comprueba** —que es lo que de verdad protege a la página—, y dice
+# por pantalla que no desplegó. Lo que no hace es ponerse verde callando que no
+# publicó nada, ni rojo por algo que no es un defecto del repo.
+#
+# Y si Ibai conecta el repositorio directamente en Netlify, Netlify construye
+# por su cuenta con `netlify.toml`. Entonces este workflow sigue valiendo como
+# puerta: comprueba que la construcción no está rota antes de que la haga nadie.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publicar:
+    name: construir y publicar el visor
+    runs-on: ubuntu-latest
+    # A nivel de job a propósito: el `env` declarado DENTRO de un paso no está
+    # disponible en el `if` de ese mismo paso, así que la condición de abajo no
+    # vería nada y el despliegue se saltaría siempre, en silencio.
+    env:
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      # Sin instalar nada: el generador corre con el Python del sistema, porque
+      # `aglaya-ds-mcp/brand.py` no tiene dependencias.
+      - name: construir el visor desde el canon
+        run: python3 visor/construir.py
+
+      - name: lo construido está completo
+        # Una construcción que escribe medio sitio y sale con 0 es peor que una
+        # que falla: publicaría una página a medias con cara de estar bien.
+        run: |
+          for f in index.html visor.css visor.js colors_and_type.css \
+                   api/normas api/valores api/componentes api/productos; do
+            test -s "visor/publico/$f" || { echo "falta o está vacío: $f"; exit 1; }
+          done
+          for lic in visor/publico/fonts/LICENSE-*.txt; do
+            test -s "$lic" || { echo "una familia viajaría sin licencia"; exit 1; }
+          done
+          echo "ficheros: $(find visor/publico -type f | wc -l)"
+
+      - name: el derivado no ensucia el árbol
+        # `check-ignore` falla si alguien saca `visor/publico/` del .gitignore;
+        # el segundo comando falla si la construcción tocó cualquier otra cosa.
+        run: |
+          git check-ignore -q visor/publico
+          sucio="$(git status --porcelain)"
+          test -z "$sucio" || { echo "El árbol quedó sucio:"; echo "$sucio"; exit 1; }
+
+      - name: desplegar en Netlify
+        if: ${{ env.NETLIFY_AUTH_TOKEN != '' && env.NETLIFY_SITE_ID != '' }}
+        run: npx --yes netlify-cli@latest deploy --prod --dir=visor/publico --no-build
+
+      - name: sin credenciales, se dice
+        if: ${{ env.NETLIFY_AUTH_TOKEN == '' || env.NETLIFY_SITE_ID == '' }}
+        run: |
+          echo "Construido y comprobado, NO desplegado desde aquí."
+          echo "Faltan los secretos NETLIFY_AUTH_TOKEN y/o NETLIFY_SITE_ID."
+          echo "Si el repositorio está conectado en Netlify, publica Netlify"
+          echo "con netlify.toml y esto no hace falta."

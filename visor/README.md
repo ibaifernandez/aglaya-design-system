@@ -41,7 +41,27 @@ visor se mira aquí.** Para ser exactos sobre qué significa «salir»: ni
 **contenido**, servido en vivo por el MCP y citado como referencia. El visor no
 sale de ninguna de las dos formas.
 
-## Cómo se arranca
+## Dónde se ve
+
+**Dos formas, y las dos enseñan lo mismo porque leen el mismo canon.**
+
+| Dónde | Cómo | Cuándo se actualiza |
+|---|---|---|
+| Público, en `ds.aglaya.biz` | se abre y ya | en cada empujón a `main`, regenerado |
+| Local, en `http://127.0.0.1:8788` | `python3 visor/servidor.py` | en cada recarga de la página |
+
+La versión pública **no es una copia guardada**: `visor/construir.py` la
+fabrica llamando a los mismos lectores que usa el servidor local
+([`lectores.py`](lectores.py)), que a su vez preguntan a
+`aglaya-ds-mcp/brand.py`. Por eso no puede decir algo distinto de lo que el
+MCP sirve a la flota. El directorio que produce no se versiona, por la misma
+razón que `dist/`: un derivado guardado envejece con pinta de autoridad.
+
+```bash
+python3 visor/construir.py        # escribe visor/publico/
+```
+
+## Cómo se arranca en local
 
 Desde la raíz del repo:
 
