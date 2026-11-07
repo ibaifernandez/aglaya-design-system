@@ -72,6 +72,14 @@
   --color-surface:          #080808;  /* Card base */
   --color-surface-2:        #0c0c0c;  /* Card base alt */
   --color-surface-3:        #0f0f0f;  /* Raised */
+  /* Dos escalones más, pedidos por el panel del CRM (hover de tarjeta y
+     elevación). La cadencia de la escalera es de 4 y la cierra ESTA nave: el
+     consumidor usaba #141414 y #191919 a mano, y esos dos literales se
+     sustituyen por estos tokens — la diferencia es de uno y dos puntos de
+     luminancia, invisible, y lo que se gana es que el valor deje de vivir en
+     dos sitios. */
+  --color-surface-4:        #131313;  /* Hover de tarjeta */
+  --color-surface-5:        #171717;  /* Elevación */
 
   /* ---------- FG / TEXT ---------- */
   --color-text:             #fcfcfc;  /* Primary foreground */
@@ -102,6 +110,10 @@
   /* ---------- LINES / BORDERS ---------- */
   --color-border:           rgba(255, 255, 255, 0.08);
   --color-border-strong:    rgba(255, 255, 255, 0.20);
+  /* El tercer escalón: foco y separadores marcados. Es el borde más fuerte que
+     hay, y por eso se llama así — `-stronger` habría dejado sin nombre al que
+     viniera después, y el nombre de un token es interfaz. */
+  --color-border-strongest: rgba(255, 255, 255, 0.30);
   /* Derivado, no copiado: el rojo se escribe UNA vez, en --color-brand.
      Un rgba con el triplete escrito a mano aquí seguiría pintando el rojo
      viejo el día que el de arriba cambie — y en el archivo que dice ser la
@@ -258,6 +270,8 @@
   --color-surface:          #f7f7f7;
   --color-surface-2:        #f3f3f3;
   --color-surface-3:        #efefef;
+  --color-surface-4:        #ebebeb;
+  --color-surface-5:        #e7e7e7;
 
   /* ---------- TEXTO ---------- */
   /* Alfas PROPIOS, no los del oscuro. Contraste en el PEOR de los cinco
@@ -286,11 +300,16 @@
   /* No son texto, así que no les aplica el 4.5 — pero tienen que verse igual
      de poco que hoy, que es su oficio. Los alfas NO son los del oscuro: se
      buscó el que reproduce el mismo contraste sobre los fondos claros.
-       --color-border         oscuro 1.14–1.20  ->  claro 1.16–1.17  (0.07)
-       --color-border-strong  oscuro 1.66–1.82  ->  claro 1.73–1.74  (0.23)
-     Copiar 0.08 y 0.20 por simetría habría cambiado la sutileza. */
+       --color-border            oscuro 1.14–1.25  ->  claro 1.16–1.17  (0.07)
+       --color-border-strong     oscuro 1.66–1.87  ->  claro 1.71–1.74  (0.23)
+       --color-border-strongest  oscuro 2.45–2.72  ->  claro 2.45–2.52  (0.36)
+     Copiar 0.08, 0.20 y 0.30 por simetría habría cambiado la sutileza: el
+     negro al 0.30 sobre los fondos claros se queda en 2.06, bastante más
+     flojo que su pareja oscura. Los rangos de arriba se midieron sobre los
+     SIETE fondos de cada modo, los dos nuevos incluidos. */
   --color-border:           rgba(0, 0, 0, 0.07);
   --color-border-strong:    rgba(0, 0, 0, 0.23);
+  --color-border-strongest: rgba(0, 0, 0, 0.36);
 
   /* ---------- EYEBROW ---------- */
   /* En claro el verde deja de ser TINTA y pasa a ser MARCA: filete verde
