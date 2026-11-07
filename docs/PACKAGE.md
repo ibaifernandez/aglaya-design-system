@@ -75,6 +75,45 @@ donde discrepar, y la deriva que este paquete cierra empezó exactamente así.
 Si instalas con `--ignore-scripts`, `dist/` no se genera: usa la vía CSS, que
 no necesita build.
 
+### Si no tienes Node: el paquete de Python
+
+La misma marca, por la puerta del otro ecosistema. Existe desde que el primer
+consumidor de la flota sin npm —un panel en Python— tuvo que elegir entre
+copiarse el CSS o quedarse fuera.
+
+```bash
+pip install "git+https://github.com/ibaifernandez/aglaya-design-system@v1.4.0"
+```
+
+```python
+from aglaya_tokens import TOKENS, MODES, VERSION, mode, css_path, fonts_path
+
+TOKENS["--color-brand"]        # el valor del modo por defecto
+mode("light")["--color-bg"]    # un modo completo: la base más lo que redefine
+css_path()                     # el colors_and_type.css canónico, para servirlo
+```
+
+**Las mismas reglas, sin excepciones:** se ancla a un tag, nada de rutas de
+disco en las dependencias, y nada de vendorizar. Y el mismo nombre de token:
+`--color-brand`, no `color_brand`.
+
+**Los valores no viajan guardados dentro.** `scripts/backend_tokens.py` los
+deriva de `colors_and_type.css` al instalar —es el `prepare` de npm por la
+puerta de Python— leyendo el canon con `aglaya-ds-mcp/brand.py`, el mismo
+lector que usa el MCP. Por eso no hay un cuarto parser de CSS en la casa, y por
+eso las dos vías publican mapas idénticos: se ha medido token a token.
+
+Consecuencia que conviene saber: **`pip install --no-build-isolation` sobre un
+árbol sin `setuptools` falla**, y falla a propósito. Un paquete que se instalara
+sin derivar entregaría valores viejos sin decirlo.
+
+Y el aviso de atraso también está en su idioma:
+
+```bash
+aglaya-tokens-version            # ¿voy por detrás?
+aglaya-tokens-version --strict   # sale 1 si lo estás: gate de CI
+```
+
 ---
 
 ## Semver, explícito
@@ -196,6 +235,19 @@ Mueve un valor en el canon, reinstala en un consumidor de prueba y comprueba
 que el valor entregado cambia **sin tocar un solo archivo fuente del
 consumidor**. Una copia vendorizada pasa cualquier otra comprobación y falla
 esta por construcción — por eso es la única que decide.
+
+Monta **tres** consumidores, y el tercero existe desde que la marca se entrega
+por dos ecosistemas:
+
+| | Qué hace | Qué tiene que pasar |
+|---|---|---|
+| A | depende del paquete de npm | el valor **cambia** |
+| B | se copió el CSS | el valor **no cambia** (control negativo) |
+| C | depende del paquete de Python | el valor **cambia** |
+
+Sin B la prueba no demostraría nada —un script que siempre dijera «cambió»
+pasaría igual—, y sin C una de las dos vías podría guardar una copia dentro sin
+que nadie lo notara.
 
 ---
 

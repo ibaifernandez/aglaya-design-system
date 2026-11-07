@@ -32,13 +32,14 @@ Sin dependencias: el `python3` del sistema basta.
 from __future__ import annotations
 
 import argparse
-import re
 import shutil
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "tools"))
 
+from fuentes import familias_de, fuentes_citadas, licencias_que_faltan  # noqa: E402
 from lectores import RAIZ, RUTAS, a_json  # noqa: E402  (tras tocar sys.path)
 
 AQUI = Path(__file__).resolve().parent
@@ -54,19 +55,11 @@ COPIAS = {
     "index.html": AQUI / "index.html",
 }
 
-# Una tipografía la nombra su fichero: `Outfit-Bold.ttf` es de la familia
-# Outfit. No hay lista escrita aquí — se lee del CSS canónico, así que una
-# familia nueva entra sola y con su licencia exigida.
-_FUENTE = re.compile(r"\./fonts/([A-Za-z0-9][A-Za-z0-9._-]*\.(?:ttf|otf|woff2?))")
-
-
-def fuentes_citadas(css: str) -> list[str]:
-    """Los ficheros de tipografía que el CSS canónico pide, sin repetir."""
-    return sorted(set(_FUENTE.findall(css)))
-
-
-def familia_de(nombre: str) -> str:
-    return nombre.split("-", 1)[0].split(".", 1)[0]
+# Qué tipografías pide el canon lo contesta `tools/fuentes.py`, y lo contesta
+# para todo el que entregue fuentes —este visor y el paquete de Python—. Dos
+# expresiones regulares distintas acabarían entregando listas distintas, y la
+# que se quedara corta dejaría una familia sin su licencia sin que nadie lo
+# viera. La lista no está escrita en ningún sitio: se lee del CSS.
 
 
 def construir(salida: Path) -> int:
@@ -103,9 +96,9 @@ def construir(salida: Path) -> int:
 
     fuentes = salida / "fonts"
     fuentes.mkdir(exist_ok=True)
-    familias = sorted({familia_de(f) for f in citadas})
+    familias = familias_de(citadas)
 
-    faltan = [f for f in familias if not (RAIZ / "fonts" / f"LICENSE-{f}.txt").is_file()]
+    faltan = licencias_que_faltan(familias, RAIZ / "fonts")
     if faltan:
         for f in faltan:
             print(f"ERROR: {f} se serviría sin su LICENSE-{f}.txt", file=sys.stderr)
