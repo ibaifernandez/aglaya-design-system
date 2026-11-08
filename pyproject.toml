@@ -6,7 +6,7 @@
 # depender de verdad. Esto es depender de verdad, por la puerta de su
 # ecosistema.
 #
-#   pip install "git+https://github.com/ibaifernandez/aglaya-design-system@v1.5.0"
+#   pip install "git+https://github.com/ibaifernandez/aglaya-design-system@v1.6.0"
 #
 # LA VERSIÓN NO SE TECLEA AQUÍ. Sale de `package.json`, que es donde vive la
 # versión de esta marca — dos números serían dos verdades, y el día que
