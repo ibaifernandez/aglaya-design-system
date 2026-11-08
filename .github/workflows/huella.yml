@@ -1,6 +1,6 @@
 name: guardianes
 
-# Cuatro guardianes y el MCP. Cada guardián corre DOS veces: el guardián y su
+# Los guardianes y el MCP. Cada guardián corre DOS veces: el guardián y su
 # batería de sabotaje. La batería no es ceremonia — un guardián puede correr y
 # dar verde estando roto, y así se cazaron un patrón ciego a las MAYÚSCULAS,
 # un precio que se colaba y un selftest que no podía ponerse rojo.
@@ -177,6 +177,15 @@ jobs:
           git check-ignore -q dist
           sucio="$(git status --porcelain)"
           test -z "$sucio" || { echo "El árbol quedó sucio:"; echo "$sucio"; exit 1; }
+
+      # Va en este job porque necesita Node y Python a la vez: compara lo que
+      # publican las tres vías. En el job `docs` no hay Node, y sin él la vía
+      # de npm no se puede leer — el guardián saldría con 2 y la CI se quedaría
+      # con un «no se pudo comprobar» disfrazado de paso corrido.
+      - name: las tres vías entregan lo mismo, clave a clave
+        run: python3 tools/guard_vias.py
+      - name: ¿el guardián de vías muerde?
+        run: bash tools/test_guard_vias.sh
 
       - name: mutación — el consumidor consume, la copia no
         # La única prueba que distingue consumir de copiar. Monta dos

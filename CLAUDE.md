@@ -70,6 +70,8 @@ Y **al guardián lo vigila su propia batería**: [`tools/test_guard_huella.sh`](
 
 **Y el MCP se prueba a sí mismo.** [`aglaya-ds-mcp/selftest.py`](aglaya-ds-mcp/selftest.py) llama a cada tool declarando si debe responder o debe rechazar — la segunda mitad importa: sin ella, un servidor que nunca falla pasaría el test trivialmente. [`aglaya-ds-mcp/zerocopy_test.py`](aglaya-ds-mcp/zerocopy_test.py) edita el CSS canónico en caliente y comprueba que la respuesta cambia sin reiniciar. Y [`aglaya-ds-mcp/test_selftest.sh`](aglaya-ds-mcp/test_selftest.sh) rompe el servidor de tres formas para comprobar que el selftest se pone rojo — existe porque la versión anterior no podía: un rechazo viaja con `isError` en falso y colaba.
 
+**Y que las tres vías entreguen LO MISMO lo vigila el quinto.** [`tools/guard_vias.py`](tools/guard_vias.py) lee los tokens por las tres puertas —el paquete de npm, el de Python y el MCP— y los compara **clave a clave en los dos modos**. Vigila una promesa de [`docs/CONTRACT.md`](docs/CONTRACT.md): «leer los mismos archivos no basta: hay que entregar lo mismo». No es hipotética —esa promesa ya fue falsa una vez, cuando el paquete publicaba los dos modos y el MCP solo leía `:root`—, y hasta ahora la comprobaban personas a mano, que es como decir que nadie. Dos cosas del cómo, que son el guardián entero: **compara clave a clave y nunca por recuento**, porque dos mapas del mismo tamaño pueden discrepar en un valor; y compara **lo que cada modo DECLARA**, no lo que cambia, porque el bloque claro repite a propósito las tintas que no giran y un guardián que mire «qué cambia» las llamaría defecto. No lleva ni un valor ni un conteo dentro, así que un token nuevo entra sin tocarlo. Su batería es [`tools/test_guard_vias.sh`](tools/test_guard_vias.sh), que lo sabotea en las tres formas que importan —congelar un valor, perder un token y desincronizar solo el modo claro— y comprueba además el **control verde** de las tintas repetidas.
+
 Todo corre en CI ([`.github/workflows/huella.yml`](.github/workflows/huella.yml)) y a mano:
 
 ```
@@ -81,6 +83,8 @@ python3 tools/guard_valores.py
 bash tools/test_guard_valores.sh
 python3 tools/guard_paquete.py
 bash tools/test_guard_paquete.sh
+python3 tools/guard_vias.py
+bash tools/test_guard_vias.sh
 ```
 
 El paquete necesita Node. La prueba de mutación clona el repo a un temporal y lo muta ahí — este repo no se toca, pero exige que lo que se prueba esté **commiteado**: un consumidor clona lo commiteado, no tu working tree.

@@ -83,9 +83,11 @@ _CATEGORIES: dict[str, tuple[str, ...]] = {
 
 # Suelo de cordura para el bloque de tokens. No es el número de tokens de hoy
 # —eso envejecería y daría rojos falsos— sino la frontera por debajo de la cual
-# una lectura ya no puede ser el canon, sino un parseo roto. Medido: el canon
-# sirve 89 tokens; truncando el bloque en los sitios donde hoy hay comentarios
-# dentro de `:root`, la lectura caía a 17 y a 29. Un canon que legítimamente
+# una lectura ya no puede ser el canon, sino un parseo roto. Medido cuando se
+# puso: truncando el bloque en los sitios donde entonces había comentarios
+# dentro de `:root`, la lectura caía a 17 y a 29 de las que había.
+# El canon de hoy lo cuenta `list_tokens`, no este comentario: un conteo
+# escrito a mano es una fecha de caducidad invisible. Un canon que legítimamente
 # adelgazara a menos de 40 sería una reescritura de la marca, no una edición, y
 # entonces este número se cambia a mano y a propósito.
 _MINIMO_TOKENS = 40
@@ -200,8 +202,8 @@ def _all_tokens() -> dict[str, str]:
     `}` cierra el bloque**: sobre el CSS crudo, una llave de cierre dentro de un
     comentario de `:root` recortaba la lectura y el MCP servía los tokens que
     hubiera hasta ahí, sin error y sin aviso. Medido sobre el canon: un `}` en un
-    comentario temprano dejaba la respuesta en 17 tokens de 89, y uno tardío se
-    llevaba solo uno — que es el caso peor, porque no lo nota nadie.
+    comentario temprano dejaba la respuesta en 17 tokens de los que había, y uno
+    tardío se llevaba solo uno — que es el caso peor, porque no lo nota nadie.
 
     Y si aun así la lectura sale absurda, esto se niega a servirla: una respuesta
     falsa por la puerta oficial es lo peor que puede hacer esta nave, y quedarse
