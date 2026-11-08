@@ -1,6 +1,6 @@
 """aglaya_tokens — la marca AGLAYA para un consumidor de Python.
 
-    pip install "git+https://github.com/ibaifernandez/aglaya-design-system@v1.5.0"
+    pip install "git+https://github.com/ibaifernandez/aglaya-design-system@v1.6.0"
 
 Lo mismo que entrega `@aglaya/design-tokens` a quien tiene Node, por la puerta
 del otro ecosistema: los valores de marca, los dos modos de color, el CSS
