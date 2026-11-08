@@ -73,6 +73,16 @@ probar valor-copiado "Acento de KANBAN DESK: #4a8fd6."                          
 probar valor-copiado "El fondo de tarjeta sube a #0c0c0c."                                RED
 probar valor-copiado "Plata técnica: #e2e2e2 para bordes finos."                          RED
 
+echo "== 2b. los colores que SOLO existen en el bloque de modo claro =="
+echo "   (el agujero: durante un tiempo el alfa de los modos sí se vigilaba y el"
+echo "    hexadecimal no, así que un sabotaje con rgba salía rojo y daba por"
+echo "    cubiertos nueve colores que estaban abiertos — media paleta del claro)"
+probar valor-copiado "Hover de tarjeta en claro: #ebebeb."                              RED
+probar valor-copiado "Elevación en claro: #e7e7e7."                                     RED
+probar valor-copiado "Ámbar de aviso en claro: #8a5200."                                RED
+probar valor-copiado "Azul de info en claro: #1d4ed8."                                  RED
+probar valor-copiado "Fondo de tarjeta en claro: #f7f7f7."                              RED
+
 echo "== 3. la lección de la mayúscula y del alfa: mismas formas, disfrazadas =="
 probar valor-copiado "EL ROJO DE MARCA ES #E8003D."                                       RED
 probar valor-copiado "Con alfa al final: #e8003dff."                                      RED

@@ -149,10 +149,28 @@ HEX = re.compile(r"#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3}(?:[0-9a-fA-F]{2})?)?\b")
 
 
 def paleta() -> dict[str, list[str]] | None:
-    """{valor hex -> [tokens que lo declaran]}, leído en vivo del CSS canónico."""
+    """{valor hex -> [tokens que lo declaran]}, leído en vivo del CSS canónico.
+
+    Los DOS bloques: `:root` y los de modo. Durante un tiempo solo se leía
+    `:root`, y el efecto era desigual de una forma que engaña: el alfa de los
+    modos SÍ se vigilaba —entra por `sondas_familias`, que lee los dos— y el
+    hexadecimal no. Así que un sabotaje con `rgba(0, 0, 0, 0.36)` salía rojo y
+    daba por cubierto un territorio abierto: nueve colores que solo existen en
+    el bloque claro, o sea media paleta del modo que el canon declara de igual
+    rango que el otro.
+
+    Y había un décimo que parecía cubierto **por coincidencia**: el valor claro
+    de `--fg-on-brand` es el mismo hexadecimal que el de `:root`, así que la
+    sonda de `:root` lo cazaba sin leer el bloque claro. El día que ese token
+    estrenara valor propio se habría caído con los otros nueve sin que nadie lo
+    notara. Medido antes de escribir esto, dándole `#fafaf5`: se escapaba.
+
+    Se leen las DECLARACIONES de cada bloque y no la unión de valores, que es
+    lo que hace que el caso de arriba muerda."""
     decls = declaraciones_root()
     if decls is None:
         return None
+    decls = decls + declaraciones_modos()
     out: dict[str, list[str]] = {}
     for nombre, valor in decls:
         for h in HEX.findall(valor):
