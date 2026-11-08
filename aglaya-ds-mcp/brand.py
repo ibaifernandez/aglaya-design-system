@@ -78,6 +78,11 @@ _CATEGORIES: dict[str, tuple[str, ...]] = {
     "motion": ("ease-", "dur-"),
     "shadow": ("shadow-", "glow-", "aura-"),
     "product": ("product-",),
+    # Los colores que CODIFICAN información, no los que identifican. Tienen
+    # categoría propia porque la frontera tiene que existir también en la
+    # herramienta: si `list_tokens` los devolviera mezclados con los de marca,
+    # la separación viviría solo en el documento, y la flota consume por aquí.
+    "state": ("state-",),
 }
 
 
