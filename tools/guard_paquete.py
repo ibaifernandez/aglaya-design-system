@@ -426,6 +426,34 @@ def revisar_python(cfg: dict, versionados: list[str],
                 f"{modulo}.py",
             ))
 
+    # 5b · la versión NO se escribe aquí: se deriva.
+    #
+    # Y la regla persigue que esté ESCRITA, no que discrepe. Un `1.5.0`
+    # correcto escrito a mano hoy es un `1.5.0` obsoleto mañana, y entonces ya
+    # es tarde — la misma doctrina que `guard_valores.py` aplica a los colores:
+    # no se persigue el valor equivocado, se persigue el valor copiado.
+    #
+    # Hace falta porque esta regla vivía en tres sitios y en ninguno que se
+    # ejecute: la prosa de `docs/PACKAGE.md`, el comentario de `pyproject.toml`
+    # y el criterio de quien revisa. Medido antes de escribirla: con
+    # `version = "9.9.9"` ahí dentro, los cuatro guardianes daban verde y éste
+    # además imprimía la versión de `package.json` — no callaba, tranquilizaba.
+    if "version" in proyecto:
+        fallos.append((
+            "py-version-a-mano",
+            f"[project] declara version = {proyecto['version']!r}. La versión "
+            "de esta marca vive en package.json y aquí se deriva "
+            "(dynamic + attr): dos números son dos verdades esperando a "
+            "discrepar, y la que miente no avisa — la lee un consumidor",
+        ))
+    if "version" not in (proyecto.get("dynamic") or []):
+        fallos.append((
+            "py-version-a-mano",
+            "[project] no declara dynamic = [\"version\"]: sin eso el paquete "
+            "no toma la versión de package.json y el número acaba escrito en "
+            "dos sitios",
+        ))
+
     # 6 · ninguna tipografía se entrega sin su licencia. Misma exigencia que al
     #     de npm: el paquete de Python también redistribuye las familias.
     datos = (cfg.get("tool", {}).get("setuptools", {})

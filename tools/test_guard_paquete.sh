@@ -327,9 +327,21 @@ probar_py py-declarado-no-entregado "un comando que apunta a un módulo inexiste
 probar_py py-declarado-no-entregado "un paquete declarado que no está" RED \
   'packages = ["aglaya_tokens"]' 'packages = ["aglaya_tokens", "aglaya_fantasma"]'
 
+echo "== 11a-bis. la versión escrita a mano: una segunda casa para el número =="
+echo "   (medido: con un 9.9.9 ahí dentro los cuatro guardianes daban verde, y éste"
+echo "    además imprimía la versión de package.json — no callaba, tranquilizaba)"
+probar_py py-version-a-mano "una versión falsa, que contradice a package.json" RED \
+  'dynamic = ["version"]' 'version = "9.9.9"'
+echo "   Y con el número CORRECTO también: se persigue el número copiado, no el"
+echo "   número equivocado. Un 1.5.0 bueno de hoy es un 1.5.0 obsoleto mañana."
+probar_py py-version-a-mano "la versión BUENA, pero escrita a mano" RED \
+  'dynamic = ["version"]' 'version = "1.5.0"'
+
 echo "== 11b. lo legítimo del lado de Python NO puede ponerse rojo =="
 probar_py py-dep-de-registro "una dependencia normal de PyPI" GREEN \
   'dependencies = []' 'dependencies = ["requests>=2.31"]'
+probar_py py-version-derivada "el pyproject real, con su dynamic" GREEN \
+  'dynamic = ["version"]' 'dynamic = ["version"]'
 
 echo "== 11c. los valores derivados, versionados: la segunda casa =="
 python3 - <<'PY'
