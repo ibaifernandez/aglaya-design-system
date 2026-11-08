@@ -47,7 +47,7 @@ sale de ninguna de las dos formas.
 
 | Dónde | Cómo | Cuándo se actualiza |
 |---|---|---|
-| Público, en `ds.aglaya.biz` | se abre y ya | en cada empujón a `main`, regenerado |
+| Público, en [ds.aglaya.biz](https://ds.aglaya.biz) | se abre y ya | en cada empujón a `main`, regenerado |
 | Local, en `http://127.0.0.1:8788` | `python3 visor/servidor.py` | en cada recarga de la página |
 
 La versión pública **no es una copia guardada**: `visor/construir.py` la
