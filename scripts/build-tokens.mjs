@@ -27,7 +27,11 @@ import { fileURLToPath } from "node:url";
 
 const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const CSS = resolve(RAIZ, "colors_and_type.css");
-const DIST = resolve(RAIZ, "dist");
+// El destino es `dist/` salvo que se le diga otro. El argumento existe para
+// que `tools/guard_vias.py` pueda construir en un temporal y comparar las tres
+// vías sin pisar el `dist/` de quien esté trabajando: un guardián que ensucia
+// lo que vigila acaba midiéndose a sí mismo.
+const DIST = process.argv[2] ? resolve(process.argv[2]) : resolve(RAIZ, "dist");
 
 // Mismo recorte que usan el MCP (`brand.py:_all_tokens`) y el guardián de
 // valores. Si los tres no coinciden, el paquete puede publicar un token que el

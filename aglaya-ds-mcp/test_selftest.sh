@@ -92,8 +92,9 @@ t = t.replace(viejo, "    val = _guard(brand.get_token, name)", 1)'
 # El bloque de tokens se buscaba sobre el CSS CRUDO con una expresión no
 # codiciosa, así que el primer `}` cerraba el bloque: una llave de cierre dentro
 # de un comentario de `:root` dejaba al MCP sirviendo los tokens que hubiera
-# hasta ahí, SIN error y SIN aviso. Medido antes del arreglo: 17 de 89 con un
-# comentario temprano, y 88 de 89 con uno tardío — el segundo es el peor, porque
+# hasta ahí, SIN error y SIN aviso. Medido antes del arreglo, sobre los que
+# había entonces: se quedaba en 17 con un comentario temprano, y perdía uno
+# solo con uno tardío — el segundo es el peor, porque
 # nadie lo nota.
 #
 # Se prueban las dos mitades, y hacen falta las dos: sin la primera, un parser
