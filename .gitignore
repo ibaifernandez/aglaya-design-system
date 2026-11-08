@@ -49,6 +49,15 @@ visor/publico/
 # paquete que nazca aquí mañana.
 *.egg-info/
 
+# ── Llaves: nunca, y menos en un repo público ─────────────
+# Este repo es público. Un fichero de credenciales que está en la carpeta y NO
+# está ignorado se publica con el primer `git add -A` despistado — y unos
+# codigos de recuperacion publicados no se arreglan borrando el commit: hay
+# que regenerarlos todos. Esto impide el accidente; lo que NO hace es sacar
+# las llaves de la carpeta de trabajo, que son de Ibai y se mueven a mano.
+npm_recovery_codes.txt
+*recovery_codes*.txt
+
 # ── Claude: el enganche SÍ se versiona, el estado local NO ─
 # `.claude/settings.json` es el enganche de permisos y va commiteado: es lo que
 # hace que cualquier sesión de esta nave decida igual. Lo de abajo es estado de
