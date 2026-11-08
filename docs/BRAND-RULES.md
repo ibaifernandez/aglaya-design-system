@@ -26,6 +26,7 @@ Reglas de la **marca madre AGLAYA** (aglaya.biz, materiales de agencia, redes). 
 - **La paleta de la marca madre son cuatro colores: blanco, negro, rojo (`--color-brand`) y verde (`--color-corporate-green`). Cualquier combinación entre ellos es legítima.** Pregunta los valores a `get_token`: una regla que lleva su propio hexadecimal dentro deja de ser verdad el día que ese valor se mueve.
 - **Claro y oscuro son modos de igual rango. Ninguno es el normal**, y ninguno gobierna al otro. Cada superficie elige el modo que necesita; lo que no cambia es de qué cuatro colores tiene que elegir.
 - **Lo único no negociable aquí es que lo escrito encima se lea.** El número de contraste es un **suelo, no un veredicto**: por debajo no hay nada que discutir; por encima sigue decidiendo el ojo — si la batería dice que una pareja pasa e Ibai dice que no se lee, gana el ojo. Al revés, nunca.
+- **Los colores de estado no son paleta de marca y no la amplían.** Codifican información —aviso, info— y **no identifican a nadie**: están prohibidos en logo, web, CTA y cualquier superficie de identidad. Llevan prefijo `--state-` para que se distingan de un vistazo de los `--color-` de marca, y son los mismos en toda la flota. La regla entera, en `## Color de estado`.
 - Sin emoji. Sin Lucide. Sin Heroicons. Sin degradados como adorno. Sin esquinas redondeadas, salvo el cursor propio.
 - El texto es seco e imperativo. Nada de "we believe", nada de "we're passionate about", sin signos de exclamación y sin preguntas retóricas. *(Esas dos fórmulas se citan en inglés a propósito: son las frases literales que persigue `check_voice`, no una traducción.)*
 - La tipografía de display es Outfit Black, en MAYÚSCULAS y con tracking apretado. La de texto es Inter. La monoespaciada es Space Mono, con un `letter-spacing` extremo: de `var(--tracking-widest)` a `var(--tracking-ultra)`.
@@ -63,6 +64,46 @@ Una **superficie de producto** (KANBAN DESK, CRM, OUTREACH, ConsentFlow, LEGAL R
 - **Corrección, no reescritura:** esta sección decía antes que «ninguno de los acentos de producto llega al suelo de texto sobre los fondos claros». Es falso, y del revés. Medido el carmín de ConsentFlow **como tinta** sobre los cinco fondos de cada modo: en claro da 6,7212 · 6,4952 · 6,2738 · 6,0572 · 5,8453 —pasa los cinco—, y en oscuro 3,1244 · 3,0504 · 2,9797 · 2,9104 · 2,8520 —no llega en ninguno—. Lo que sigue en pie es la regla: **el acento no se usa como tinta**, ni en claro ni en oscuro. Lo que era falso es el motivo que se daba, y un motivo falso se cae el día que alguien lo comprueba.
 
 ---
+
+## Color de estado
+
+**Estos colores codifican información. No identifican.** Son el rojo de un
+semáforo, no la cara de la empresa. Viven aquí por un motivo y uno solo: para
+que el ámbar de «vence hoy» sea **el mismo en toda la flota**. Un consumidor
+que invente el suyo rompe la leyenda, aunque su ámbar sea bonito.
+
+**Prohibidos** en logo, web, CTA, material de marca y **cualquier superficie de
+identidad**. Si aparece un `--state-` en un cartel, alguien se saltó la
+frontera.
+
+**El no-negociable de los cuatro colores NO se amplía.** La marca madre sigue
+teniendo cuatro, más el acento propio en superficie de producto. Esto es otra
+familia — y mezclarlas ya costó trabajo: se trató una petición de amarillo de
+aviso como si fuera una reforma de marca, y no lo era.
+
+**El nombre es parte de la frontera.** El prefijo es `--state-` y no
+`--color-`: todo lo que empieza por `--color-` es marca. Renombrarlo después
+sería MAYOR, por `docs/PACKAGE.md`. Y el MCP los separa por categoría
+(`list_tokens(category="state")`), para que la frontera exista también en la
+herramienta por donde consume la flota, no solo en este documento.
+
+| Estado | Qué dice | Token |
+|---|---|---|
+| aviso | algo urge o vence | `--state-warning` |
+| info | un dato que hay que saber | `--state-info` |
+| éxito | — | **no tiene token propio**: es `--color-corporate-green`, por la regla del `badge` |
+| error | — | **no tiene token propio**: es `--color-brand`, como señal puntual |
+
+Los valores, a `get_token` — aquí no se escriben: una regla que lleva su
+hexadecimal dentro deja de ser verdad el día que ese valor se mueve. Cada uno
+tiene el suyo en cada modo, **medido sobre los siete fondos de ese modo**, no
+reflejado del otro: el ámbar del modo oscuro sobre fondo claro se queda en
+1,74 y es ilegible.
+
+**Lo que no hay que confundir con esto:** las siete etapas de un pipeline no
+son estados, son **categorías** —distinguir N cosas entre sí—, y se resuelven
+con la rampa del acento del propio producto compuesta con `color-mix`. Cero
+colores nuevos.
 
 ## Content Fundamentals
 

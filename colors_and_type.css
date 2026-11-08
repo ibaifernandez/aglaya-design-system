@@ -107,6 +107,35 @@
   --color-faint:            rgba(252, 252, 252, 0.47);  /* Tertiary / captions */
   --color-accent:           #e2e2e2;  /* Technical silver */
 
+  /* ---------- COLOR DE ESTADO — NO ES PALETA DE MARCA ---------- */
+  /* LEE ESTO ANTES DE USAR UNO. Estos colores CODIFICAN INFORMACIÓN; no
+     identifican a nadie. Son el rojo de un semáforo, no la cara de la empresa.
+     Están PROHIBIDOS en logo, web, CTA y cualquier superficie de identidad —
+     la regla entera está en `docs/BRAND-RULES.md`, sección «Color de estado».
+
+     El prefijo es `--state-` y no `--color-` a propósito: todo lo que empieza
+     por `--color-` es marca, y esto no lo es. Si un día ves un `--state-` en
+     un cartel, alguien se saltó la frontera.
+
+     El no-negociable de los cuatro colores NO se amplía: sigue rigiendo la
+     paleta de marca, que es otra familia.
+
+     Son los MISMOS en toda la flota: ése es el motivo entero de que vivan
+     aquí. Un consumidor que invente su ámbar rompe la leyenda aunque su ámbar
+     sea bonito.
+
+     Éxito y error NO tienen token propio: son `--color-corporate-green` y
+     `--color-brand`, por la regla del `badge`. Añadirlos aquí sería un segundo
+     nombre para el mismo color.
+
+     Valores medidos sobre los SIETE fondos de su modo, peor caso:
+       --state-warning  oscuro 8.35  ·  claro 5.17
+       --state-info     oscuro 7.05  ·  claro 5.42
+     Por encima del 4.5 con holgura, y a propósito: la regla de esta casa es
+     que se lean, no que rasquen el mínimo. */
+  --state-warning:          #f59e0b;  /* algo urge o vence */
+  --state-info:             #60a5fa;  /* un dato que hay que saber */
+
   /* ---------- LINES / BORDERS ---------- */
   --color-border:           rgba(255, 255, 255, 0.08);
   --color-border-strong:    rgba(255, 255, 255, 0.20);
@@ -295,6 +324,13 @@
      dado #1d1d1d, casi lo mismo; coinciden, pero lo que vale es el método:
      en los bordes de abajo la simetría SÍ falla.) */
   --color-accent:           #1f1f1f;
+
+  /* ---------- COLOR DE ESTADO ---------- */
+  /* Medidos, no reflejados: el ámbar del oscuro sobre fondo claro se queda en
+     1.74 — ilegible—, y el azul del oscuro tampoco aguanta. Cada modo tiene el
+     suyo, elegido por el peor de sus siete fondos. */
+  --state-warning:          #8a5200;
+  --state-info:             #1d4ed8;
 
   /* ---------- BORDES ---------- */
   /* No son texto, así que no les aplica el 4.5 — pero tienen que verse igual
