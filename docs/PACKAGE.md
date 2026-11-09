@@ -77,6 +77,10 @@ no necesita build.
 
 ### Si no tienes Node: el paquete de Python
 
+**Es la vía oficial para quien no tiene Node.** No es un apaño ni una
+alternativa de segunda: entrega lo mismo que la de npm —se comprueba clave a
+clave en cada PR, `tools/guard_vias.py`— y se ancla a un tag igual que ella.
+
 La misma marca, por la puerta del otro ecosistema. Existe desde que el primer
 consumidor de la flota sin npm —un panel en Python— tuvo que elegir entre
 copiarse el CSS o quedarse fuera.
@@ -113,6 +117,29 @@ Y el aviso de atraso también está en su idioma:
 aglaya-tokens-version            # ¿voy por detrás?
 aglaya-tokens-version --strict   # sale 1 si lo estás: gate de CI
 ```
+
+### Lo que NO es vía de consumo: bajarse el CSS de una URL
+
+**Descartado, y conviene saber por qué**, porque es lo primero que se le ocurre
+a un consumidor sin npm y ya se propuso una vez aquí.
+
+Bajar `colors_and_type.css` de una URL cruda del repositorio en el despliegue
+tiene tres vicios, y el tercero es el que decide:
+
+1. Convierte una dirección que el alojamiento regala en una **promesa de este
+   repo**. Mover el archivo, renombrarlo o hacer privado el repositorio rompe al
+   consumidor, y aquí no se entera nadie.
+2. Le entrega un archivo que su código **no puede leer**: puede servir el CSS al
+   navegador, pero no preguntar «¿cuánto vale `--color-brand`?» desde su
+   lenguaje.
+3. Lo deja **sin el aviso de atraso**. La pregunta «¿cuánto voy por detrás?» es
+   la ventaja entera de depender en vez de copiar, y por esa vía no se puede
+   hacer.
+
+**Ninguna dirección de descarga directa de este repositorio es interfaz
+pública.** No lo es hoy y no se convierte en una por usarla: si lo fuera, mover
+o renombrar el CSS canónico pasaría a ser MAYOR, y este repo no abre esa puerta.
+Quien no tenga Node usa el paquete de Python de arriba.
 
 ---
 
@@ -289,6 +316,25 @@ Se toma el **más antiguo** de los commits que tocan esa versión (`--reverse` y
 git fetch origin
 git tag v1.1.1 "$(git log --reverse --format=%H -S'"version": "1.1.1"' origin/main -- package.json | head -1)"
 ```
+
+**Qué contiene el árbol de ese tag, dicho en voz alta porque hoy hay que
+deducirlo.** El árbol de un tag de release **no contiene** lo que entrara en
+`main` después de que su rama saliera: el tag marca **el artefacto publicado**,
+no el estado del repositorio ese día. Es la consecuencia directa del comando de
+arriba, y es deliberada — así el árbol del tag es **exactamente el que alguien
+midió y aprobó de una pieza**; apuntar al commit de merge metería dentro lo que
+entró en medio, que se aprobó en otra medición.
+
+**Y no afecta a ningún consumidor**, que es la parte sin la cual esta frase
+alarma en vez de informar: lo que se instala no es el árbol. Medido sobre
+instalaciones hechas desde el tag, el `.gitignore` no viaja en ninguno de los
+dos paquetes — cero ficheros en el de npm y cero en el de Python. A quien le
+importa el detalle es a quien **clona el tag para trabajar dentro**, no a quien
+depende.
+
+**Los tags del remoto son inmutables.** No se borran y no se mueven: sin
+excepciones y sin actores de bypass. Un tag mal puesto no se corrige — se
+publica otra versión.
 
 **Las comprobaciones van antes del push, porque el push es lo que publica.** Si
 una falla, no se sube nada: se borra el tag local con `git tag -d v1.1.1` y se
