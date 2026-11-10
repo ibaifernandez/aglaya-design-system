@@ -105,6 +105,33 @@ son estados, son **categorías** —distinguir N cosas entre sí—, y se resuel
 con la rampa del acento del propio producto compuesta con `color-mix`. Cero
 colores nuevos.
 
+**Y la categoría tiene dos casos, no uno.** Una rampa de un solo tono codifica
+**orden**: más intensidad, más avanzado. Decirlo sin separar los casos invita a
+aplicarlo donde el orden no existe, y entonces la rampa **inventa un ranking**
+con cara de canon.
+
+1. **Categoría con orden** (las etapas de un pipeline). Rampa del acento propio
+   con `color-mix`. La intensidad **es** el encoding, y ahí está la ventaja.
+   Cero colores nuevos.
+2. **Categoría sin orden** (origen, tipo, procedencia). La misma rampa, pero
+   sirve de **etiqueta visual, no de encoding**. Dos condiciones: el **rótulo va
+   siempre presente** y es lo que identifica, y las intensidades se reparten en
+   un orden fijo y declarado **diciendo en el propio código que ese orden no
+   significa nada**. Sin el rótulo, el lector deduce una jerarquía que nadie
+   quiso.
+3. **Cuando el color no da para distinguir N cosas de un vistazo.** Neutro y
+   rótulo. No es una rendición: un dato nominal se lee. Inventar colores para
+   que quepan es confundir el canal — el color no era el canal.
+
+**No existe una paleta categórica de flota**, y no por olvido: una paleta
+compartida solo tiene sentido si la leyenda es común entre superficies, y la de
+una categoría es de su producto. Si algún día hiciera falta, **se pide aquí** y
+sale MENOR, igual que salieron los dos `--state-`. Lo que no se hace es que
+cada consumidor se invente la suya.
+
+**El reparto es del consumidor, el método es de aquí.** Este documento no dice
+qué intensidad va a qué categoría: eso vive en el repo que la pinta.
+
 ## Content Fundamentals
 
 > Los títulos de esta sección están en inglés a propósito y **no se traducen**:
