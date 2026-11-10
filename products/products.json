@@ -6,6 +6,8 @@
   "voice_note": "Todos los productos hablan con la voz única AGLAYA (get_voice_rules). No hay voz por producto — es intencional, no un hueco.",
   "glyph_variants": ["white", "accent", "fill"],
   "lockup_layouts": ["lockup", "stacked"],
+  "status_values": ["active", "planned"],
+  "status_note": "active: el producto existe y se usa. planned: la nave existe y su identidad está fijada, pero el producto llega cuando le toque su turno. Una ficha con status planned es marca completa: tiene acento, glyphs y lockups como cualquier otra. El campo es descriptivo — hoy nadie filtra por él.",
   "products": [
     {
       "id": "kanban-desk",
@@ -140,6 +142,26 @@
         "stacked": "products/design-system/lockups/aglaya-design-system-stacked.svg"
       },
       "notes": "La nave-fundación: este repo. No consume la marca, la DEFINE (is_house). Marca: rejilla 2×2 (tokens/swatches). Acento = verde corporativo (color-fuente / 'applied logic'). PROPUESTA — confirmar color y nombre."
+    },
+    {
+      "id": "jobs",
+      "name": "AGLAYA Jobs",
+      "status": "planned",
+      "status_note": "El producto llega cuando le toque su turno. Hoy la nave trabaja la estrategia.",
+      "sacred": false,
+      "author": "Claude (Claude Design)",
+      "accent": { "token": "--product-jobs-accent", "hex": "#c8a285", "oklch": "oklch(0.74 0.06 60)", "name": "Bronze" },
+      "functions": ["estrategia y gestión de la carrera profesional"],
+      "glyphs": {
+        "white": "products/jobs/glyphs/jobs-glyph-white.svg",
+        "accent": "products/jobs/glyphs/jobs-glyph-accent.svg",
+        "fill": "products/jobs/glyphs/jobs-glyph-fill.svg"
+      },
+      "lockups": {
+        "lockup": "products/jobs/lockups/aglaya-jobs-lockup.svg",
+        "stacked": "products/jobs/lockups/aglaya-jobs-stacked.svg"
+      },
+      "notes": "Marca: diana (cuadrados concéntricos). Acento de croma bajo a propósito — satélite, no producto comercial; mismo criterio que el steel del orchestrator."
     }
   ],
   "removed": [
