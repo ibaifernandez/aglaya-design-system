@@ -36,7 +36,7 @@ Dependencia a un **tag por `git+https`**. El repo es público: sin token, sin
 llave SSH.
 
 ```bash
-npm install "git+https://github.com/ibaifernandez/aglaya-design-system.git#v1.6.0"
+npm install "git+https://github.com/ibaifernandez/aglaya-design-system.git#v1.7.0"
 ```
 
 Sustituye el tag por el último publicado — `npm exec --no -- aglaya-tokens-version` te dice
@@ -86,7 +86,7 @@ consumidor de la flota sin npm —un panel en Python— tuvo que elegir entre
 copiarse el CSS o quedarse fuera.
 
 ```bash
-pip install "git+https://github.com/ibaifernandez/aglaya-design-system@v1.6.0"
+pip install "git+https://github.com/ibaifernandez/aglaya-design-system@v1.7.0"
 ```
 
 ```python
