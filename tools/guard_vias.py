@@ -23,6 +23,38 @@ CÓMO COMPARA, y aquí está lo fino:
     justo ahí y llama defecto a una decisión.
   · **Los dos modos**, porque la avería histórica fue exactamente de modo.
 
+LA REGLA QUE ESTE GUARDIÁN APLICA Y QUE NO ESTABA ESCRITA EN NINGÚN SITIO:
+
+  **Para afirmar sobre un modo se lee lo DECLARADO (`MODES[modo]`), nunca lo
+  RESUELTO (`mode(modo)`).**
+
+La vista resuelta hereda del base cuando el modo no redefine, así que hace que
+«no está» parezca «está». Sirve para pintar; no sirve para afirmar.
+
+Y de ahí lo que de verdad hay que recordar: **una tabla por modos tiene TRES
+estados, no dos** — redefine · hereda · no existe. Una salida que solo
+distingue dos acierta en unos tokens por casualidad, porque el bloque claro
+repite a propósito tintas que no giran: «hereda» y «redefine con el mismo
+valor» se leen igual y no son lo mismo.
+
+EL CASO QUE LO DESTAPÓ, medido al publicar `v1.7.0`. Un acta imprimía el
+acento de un producto en una columna «light» con el valor del base, que se lee
+como declarado en claro, y la condición de cierre exigía que NO lo estuviera:
+
+    '<acento de producto>' in MODES['light']  → False     ← lo declarado
+    mode('light')['<acento de producto>']     → el de :root  ← lo que se imprimió
+    '<color de estado>'    in MODES['light']  → True      ← control, sí gira
+
+(Sin los valores a propósito: una regla que lleva su hexadecimal dentro deja de
+ser verdad el día que ese valor se mueve, y los nombres concretos los sirve
+`list_tokens`. Aquí vale la forma del fallo, no la fila.)
+
+El dato era correcto; la presentación decía lo contrario. Se escribe aquí
+—y no en el canon— porque es una regla sobre **cómo se afirma**, no sobre la
+marca. Y porque **ningún guardián la puede sustituir**: si el CSS declarara ese
+acento en claro, las tres vías lo servirían igual y este guardián daría verde.
+El único freno es que quien escribe lo sepa.
+
 NO LLEVA NI UN VALOR NI UN CONTEO DENTRO. Lee el canon en vivo por las tres
 puertas y compara lo que salga: un token nuevo mañana entra sin tocar esto.
 
