@@ -234,7 +234,7 @@ Install the package in the project and — where it is available — mount the `
 The tokens ship as a versioned package, `@aglaya/design-tokens`, pinned to a tag over `git+https` — the only shape that survives a foreign CI, which clones the consumer's repo and not this one.
 
 ```bash
-npm install "git+https://github.com/ibaifernandez/aglaya-design-system.git#v1.6.0"
+npm install "git+https://github.com/ibaifernandez/aglaya-design-system.git#v1.7.0"
 ```
 
 ```css
